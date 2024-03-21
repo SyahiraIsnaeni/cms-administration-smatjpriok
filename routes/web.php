@@ -18,10 +18,15 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(
     }
 );
 
-Route::get('/dashboard/admin', function () {
-    return view('back.admin.dashboard');
-});
+Route::controller(\App\Http\Controllers\AdminController::class)->group(
+    function (){
+        Route::get("/dashboard/admin", "dashboard")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
+    }
+);
 
-Route::get('/dashboard/osis', function () {
-    return view('back.osis.dashboard');
-});
+Route::controller(\App\Http\Controllers\OsisController::class)->group(
+    function (){
+        Route::get("/dashboard/osis", "dashboard")->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class);
+    }
+);
+

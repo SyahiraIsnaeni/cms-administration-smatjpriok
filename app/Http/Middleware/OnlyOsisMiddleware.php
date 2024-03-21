@@ -20,6 +20,6 @@ class OnlyOsisMiddleware
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
