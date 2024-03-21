@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Login Admin SMA Tanjung Priok Jakarta</title>
+    <title>{{$title}}</title>
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
-{{--    <link href="../css/index.css" rel="stylesheet" />--}}
 
     <!-- PENTING!!!! -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -32,14 +30,20 @@
                 SMA TANJUNG PRIOK JAKARTA
             </h1>
             <div class="mt-5 lg:mt-7">
-                <form>
+                @if(isset($error))
+                    <div class="rounded-md w-full px-2 py-2 text-[13px] sm:text-sm md:text-[15px] font-normal bg-red-700 text-white mb-4">
+                        <p class="text-center">{{$error}}</p>
+                    </div>
+                @endif
+                <form  method="post" action="/login">
+                    @csrf
                     <div>
                         <p class="text-white text-sm lg:text-[15px] font-normal">Email</p>
-                        <input class="mt-1.5 w-full rounded-md py-2 lg:py-2.5 px-1 lg:px-2 placeholder:px-1 placeholder:text-sm placeholder:lg:text-[15px] text-sm lg:text-[15px]" placeholder="Masukkan Email" />
+                        <input name="email" type="email" class="mt-1.5 w-full rounded-md py-2 lg:py-2.5 px-1 lg:px-2 placeholder:px-1 placeholder:text-sm placeholder:lg:text-[15px] text-sm lg:text-[15px]" placeholder="Masukkan Email" />
                     </div>
                     <div class="mt-3">
                         <p class="text-white text-sm lg:text-[15px] font-normal">Password</p>
-                        <input class="mt-1.5 w-full rounded-md py-2 lg:py-2.5 px-1 lg:px-2 placeholder:px-1 placeholder:text-sm placeholder:lg:text-[15px] text-sm lg:text-[15px]" placeholder="Masukkan Password" />
+                        <input name="password" type="password" class="mt-1.5 w-full rounded-md py-2 lg:py-2.5 px-1 lg:px-2 placeholder:px-1 placeholder:text-sm placeholder:lg:text-[15px] text-sm lg:text-[15px]" placeholder="Masukkan Password" />
                     </div>
                     <button class="mt-7 xl:mt-10 bg-[#18A0FB] py-2 lg:py-2.5 w-full text-sm lg:text-[15px] font-semibold rounded-md hover:scale-105 ease-in-out duration-300" type="submit">Login</button>
                 </form>
