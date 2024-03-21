@@ -50,4 +50,12 @@ class UserController
             "error" => "Email or password is wrong!"
         ]);
     }
+
+    public function logout(Request $request): RedirectResponse{
+        $request->session()->flush();
+
+        $request->session()->regenerate(true);
+
+        return redirect('/login');
+    }
 }

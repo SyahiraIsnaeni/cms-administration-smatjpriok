@@ -8,6 +8,7 @@ use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -75,5 +76,20 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200)->assertSeeText("Email or password is wrong!");
+    }
+
+    public function testLogoutAdmin(){
+        $this->seed(UserSeeder::class);
+
+        $this->post("/login", [
+            'email' => 'admin.smatanjungpriok@gmail.com',
+            'password' => 'adminsmatjpriok',
+        ])->assertStatus(302);
+
+        $this->assertNotNull(session('admin'));
+
+        $response = $this->post('/logout');
+        $response->assertRedirect('/login');
+        $this->assertNotNull(session('admin'));
     }
 }
