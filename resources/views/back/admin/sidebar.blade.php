@@ -41,10 +41,9 @@
         </div>
         <div class="sidebar-menu" style="margin-top: -10px">
             <ul class="menu">
-
                 <li
-                    class="sidebar-item active ">
-                    <a href="/dashboard" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/admin') ? 'active' : '' }}">
+                    <a href="/dashboard/admin" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -60,7 +59,7 @@
                     </a>
 
                     <ul class="submenu ">
-                        <li class="submenu-item  ">
+                        <li class="submenu-item  {{ request()->is('dashboard/ekstrakurikuler*') ? 'active' : '' }}">
                             <a href="#" class="submenu-link">Ekstrakurikuler</a>
 
                         </li>
@@ -238,6 +237,14 @@
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-calendar2-week-fill"></i>
                         <span>Jadwal Guru</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-calendar-range-fill"></i>
+                        <span>Jadwal Siswa</span>
                     </a>
                 </li>
 

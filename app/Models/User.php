@@ -11,6 +11,7 @@ class User extends AuthenticatableUser implements Authenticatable
 {
     use HasFactory;
 
+    protected $table = 'users';
     protected $fillable = [
         'name', 'email', 'password', 'role',
     ];
