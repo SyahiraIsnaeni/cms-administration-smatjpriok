@@ -71,6 +71,17 @@ class EkstrakurikulerController
 
     public function editDataEkstrakurikuler(int $id, Request $request): Response|RedirectResponse
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'logo' => 'required|image',
+            'deskripsi' => 'required',
+            'images.*' => 'required|image',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $data = [
             'nama' => $request->input('nama'),
             'deskripsi' => $request->input('deskripsi'),
@@ -80,6 +91,12 @@ class EkstrakurikulerController
 
         $this->ekstrakurikulerService->edit($id, $data);
 
+        return redirect()->route('ekstrakurikuler');
+    }
+
+    public function deleteDataEkstrakurikuler($id): Response|RedirectResponse
+    {
+        $this->ekstrakurikulerService->delete($id);
         return redirect()->route('ekstrakurikuler');
     }
 }

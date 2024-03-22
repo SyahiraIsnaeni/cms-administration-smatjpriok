@@ -31,13 +31,14 @@ Route::controller(\App\Http\Controllers\OsisController::class)->group(
     }
 );
 
-Route::controller(\App\Http\Controllers\EkstrakurikulerController::class)->group(
+Route::controller(\App\Http\Controllers\EkstrakurikulerController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
-        Route::get("/dashboard/beranda/ekstrakurikuler", "ekstrakurikuler")->name("ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-        Route::get("/dashboard/beranda/ekstrakurikuler/add", "addEkstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-        Route::get("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editEkstrakurikuler")->name("edit-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-        Route::post("/dashboard/beranda/ekstrakurikuler/add", "addDataEkstrakurikuler")->name("add-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-        Route::patch("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editDataEkstrakurikuler")->name("edit-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
+        Route::get("/dashboard/beranda/ekstrakurikuler", "ekstrakurikuler")->name("ekstrakurikuler");
+        Route::get("/dashboard/beranda/ekstrakurikuler/add", "addEkstrakurikuler");
+        Route::get("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editEkstrakurikuler")->name("edit-ekstrakurikuler");
+        Route::post("/dashboard/beranda/ekstrakurikuler/add", "addDataEkstrakurikuler")->name("add-ekstrakurikuler");
+        Route::patch("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editDataEkstrakurikuler")->name("edit-ekstrakurikuler");
+        Route::delete("/dashboard/beranda/ekstrakurikuler/{id}/delete", "deleteDataEkstrakurikuler")->name("delete-ekstrakurikuler");
     }
 );
 

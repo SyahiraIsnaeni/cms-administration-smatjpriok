@@ -74,10 +74,11 @@
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
                                                                     <br>
-                                                                    <form method="post"
-                                                                          class="d-inline">
+                                                                    <form method="post" action="{{ route('delete-ekstrakurikuler', $ekstrakurikuler->id) }}" class="d-inline">
+                                                                        @csrf
+                                                                        @method('DELETE')
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
-                                                                            <i class="bi bi-trash" ></i>
+                                                                            <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
                                                                 </td>
