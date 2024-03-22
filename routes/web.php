@@ -35,8 +35,9 @@ Route::controller(\App\Http\Controllers\EkstrakurikulerController::class)->group
     function (){
         Route::get("/dashboard/beranda/ekstrakurikuler", "ekstrakurikuler")->name("ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
         Route::get("/dashboard/beranda/ekstrakurikuler/add", "addEkstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
-        Route::get("/dashboard/beranda/ekstrakurikuler/{id}/edit", "addEkstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
+        Route::get("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editEkstrakurikuler")->name("edit-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
         Route::post("/dashboard/beranda/ekstrakurikuler/add", "addDataEkstrakurikuler")->name("add-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
+        Route::patch("/dashboard/beranda/ekstrakurikuler/{id}/edit", "editDataEkstrakurikuler")->name("edit-ekstrakurikuler")->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class);
     }
 );
 

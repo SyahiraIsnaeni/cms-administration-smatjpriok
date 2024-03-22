@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekstrakurikuler;
 use App\Services\EkstrakurikulerService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -38,9 +39,9 @@ class EkstrakurikulerController
     public function addDataEkstrakurikuler(Request $request):Response|RedirectResponse{
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'logo' => 'required',
+            'logo' => 'required|image',
             'deskripsi' => 'required',
-            'images.*' => 'required',
+            'images.*' => 'required|image',
         ]);
 
         if ($validator->fails()) {
@@ -59,10 +60,26 @@ class EkstrakurikulerController
         return redirect()->route('ekstrakurikuler');
     }
 
-    public function editEkstrakurikuler(Request $request):Response{
+    public function editEkstrakurikuler($id):Response{
+        $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
         return response()
             ->view("back.admin.konten.beranda.ekstrakurikuler.edit", [
                 "title" => "Edit Data Ekstrakurikuler",
+                "ekstrakurikuler" => $ekstrakurikuler
             ]);
+    }
+
+    public function editDataEkstrakurikuler(int $id, Request $request): Response|RedirectResponse
+    {
+        $data = [
+            'nama' => $request->input('nama'),
+            'deskripsi' => $request->input('deskripsi'),
+            'logo' => $request->file('logo'),
+            'images' => $request->file('images')
+        ];
+
+        $this->ekstrakurikulerService->edit($id, $data);
+
+        return redirect()->route('ekstrakurikuler');
     }
 }

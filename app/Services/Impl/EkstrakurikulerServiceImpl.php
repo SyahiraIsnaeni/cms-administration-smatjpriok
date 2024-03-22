@@ -6,6 +6,7 @@ use App\Models\Ekstrakurikuler;
 use App\Models\EkstrakurikulerImages;
 use App\Services\EkstrakurikulerService;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class EkstrakurikulerServiceImpl implements EkstrakurikulerService
@@ -51,20 +52,40 @@ class EkstrakurikulerServiceImpl implements EkstrakurikulerService
         $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
 
         $ekstrakurikuler->nama = $data['nama'];
-        $ekstrakurikuler->logo = $data['logo'];
         $ekstrakurikuler->deskripsi = $data['deskripsi'];
-        $ekstrakurikuler->save();
+
+        if (isset($data['logo'])) {
+            if ($ekstrakurikuler->logo) {
+                // Hapus gambar logo yang lama dari storage
+                Storage::delete('public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo);
+            }
+
+            $originalName = $data['logo']->getClientOriginalName();
+            $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_');
+            $logoPath = $data['logo']->storeAs('public/ekstrakurikuler-logos', $namaFile);
+            $ekstrakurikuler->logo = $namaFile;
+        }
 
         if (isset($data['images'])) {
-            $ekstrakurikuler->images()->delete();
+            foreach ($ekstrakurikuler->images as $image) {
+                if (!in_array($image->image, $data['images'])) {
+                    Storage::delete('public/ekstrakurikuler-images/' . $image->image);
+                    $image->delete();
+                }
+            }
 
             foreach ($data['images'] as $image) {
+                $originalName = $image->getClientOriginalName();
+                $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_');
+                $imagePath = $image->storeAs('public/ekstrakurikuler-images', $namaFile);
                 $ekstrakurikulerImage = new EkstrakurikulerImages();
-                $ekstrakurikulerImage->image = $image;
+                $ekstrakurikulerImage->image = $namaFile;
                 $ekstrakurikulerImage->ekstrakurikuler_id = $ekstrakurikuler->id;
                 $ekstrakurikulerImage->save();
             }
         }
+
+        $ekstrakurikuler->save();
 
         return $ekstrakurikuler;
     }

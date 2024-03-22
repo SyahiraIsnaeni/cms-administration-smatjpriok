@@ -49,7 +49,7 @@
                                         <form method="post" enctype="multipart/form-data" action="{{ route('add-ekstrakurikuler') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="squareText">Nama Ekstrakurikuler (maks 15 karakter)</label>
+                                                <label for="squareText">Nama Ekstrakurikuler</label>
                                                 <input type="text" id="squareText" class="form-control square"
                                                        placeholder="Ekstrakurikuler" name="nama">
                                             </div>
