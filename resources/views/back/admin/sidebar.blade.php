@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo" style="display: flex; align-items: center;">
-                    <img src="../assets/image/logosma.png" style="width: 40px; height: 40px">
+                    <img src={{asset("assets/image/logosma.png")}} style="width: 40px; height: 40px">
                     <a href="#" style="margin-left: 10px"><p style="font-size: 21px;margin-top: 25px">Admin</p></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -52,15 +52,15 @@
                 <li class="sidebar-title">Konten</li>
 
                 <li
-                    class="sidebar-item  has-sub">
+                    class="sidebar-item  has-sub {{ request()->is('dashboard/beranda*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Beranda</span>
                     </a>
 
                     <ul class="submenu ">
-                        <li class="submenu-item  {{ request()->is('dashboard/ekstrakurikuler*') ? 'active' : '' }}">
-                            <a href="#" class="submenu-link">Ekstrakurikuler</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/beranda/ekstrakurikuler*') ? 'active' : '' }}">
+                            <a href="/dashboard/beranda/ekstrakurikuler" class="submenu-link">Ekstrakurikuler</a>
 
                         </li>
 
@@ -262,20 +262,6 @@
                         </button>
                     </form>
                 </li>
-
-
-{{--                <li class="sidebar-title">--}}
-{{--                    <a href="#"--}}
-{{--                       onclick="event.preventDefault();--}}
-{{--                                                     document.getElementById('logout-form').submit();">--}}
-{{--                        <i class="fas fa-undo"></i>--}}
-{{--                        <p> Logout </p>--}}
-{{--                    </a>--}}
-
-{{--                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
-{{--                        @csrf--}}
-{{--                    </form>--}}
-{{--                </li>--}}
 
             </ul>
         </div>

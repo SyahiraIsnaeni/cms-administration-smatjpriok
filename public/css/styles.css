@@ -570,6 +570,10 @@ video {
   top: 0px;
 }
 
+.order-last{
+  order: 9999;
+}
+
 .\!row-span-1{
   grid-row: span 1 / span 1 !important;
 }
@@ -646,6 +650,10 @@ video {
 
 .ml-3{
   margin-left: 0.75rem;
+}
+
+.ml-auto{
+  margin-left: auto;
 }
 
 .flex{
