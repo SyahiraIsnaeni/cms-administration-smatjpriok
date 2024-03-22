@@ -58,4 +58,11 @@ class EkstrakurikulerController
 
         return redirect()->route('ekstrakurikuler');
     }
+
+    public function editEkstrakurikuler(Request $request):Response{
+        return response()
+            ->view("back.admin.konten.beranda.ekstrakurikuler.edit", [
+                "title" => "Edit Data Ekstrakurikuler",
+            ]);
+    }
 }

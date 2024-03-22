@@ -65,10 +65,22 @@
                                                                 <td><img src={{asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @foreach($ekstrakurikuler->images as $image)
-{{--                                                                        <img src="{{ $image->image }}" width="150" height="100">--}}
+                                                                        <img src="{{asset('storage/ekstrakurikuler-logos/' . $image->image) }}" width="150" height="100">
                                                                     @endforeach
                                                                 </td>
                                                                 <td class="text-bold-500">{{ $ekstrakurikuler->deskripsi }}</td>
+                                                                <td class="text-bold-500">
+                                                                    <a href="#" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
+                                                                    <br>
+                                                                    <form method="post"
+                                                                          class="d-inline">
+                                                                        <button class="btn icon btn-danger" style="margin-top: 10px">
+                                                                            <i class="bi bi-trash" ></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
