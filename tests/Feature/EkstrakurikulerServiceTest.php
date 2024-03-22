@@ -90,4 +90,11 @@ class EkstrakurikulerServiceTest extends TestCase
         $this->ekstrakurikulerService->delete(2);
     }
 
+    public function testGetEkstrakurikulerSuccess()
+    {
+        $ekstrakurikuler = $this->ekstrakurikulerService->get();
+
+        $this->assertInstanceOf(Ekstrakurikuler::class, $ekstrakurikuler->first());
+    }
+
 }

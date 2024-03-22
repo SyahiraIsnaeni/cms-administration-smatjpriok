@@ -5,9 +5,15 @@ namespace App\Services\Impl;
 use App\Models\Ekstrakurikuler;
 use App\Models\EkstrakurikulerImages;
 use App\Services\EkstrakurikulerService;
+use Illuminate\Database\Eloquent\Collection;
 
 class EkstrakurikulerServiceImpl implements EkstrakurikulerService
 {
+
+    public function get(): Collection
+    {
+        return Ekstrakurikuler::all();
+    }
 
     public function add(array $data): Ekstrakurikuler
     {

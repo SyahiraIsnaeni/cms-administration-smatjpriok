@@ -14,6 +14,10 @@ class EkstrakurikulerImages extends Model
     protected $table = "ekstrakurikuler_images";
     protected $primaryKey = "id";
 
+    protected $fillable = [
+        "image", "ekstrakurikuler_id"
+    ];
+
     public function images(): BelongsTo{
         return $this->belongsTo(Ekstrakurikuler::class, "ekstrakurikuler_id", "id");
     }

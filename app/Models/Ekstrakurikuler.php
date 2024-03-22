@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Ekstrakurikuler extends Model
 {
     use HasFactory;
+
     protected $table = "ekstrakurikulers";
     protected $primaryKey = "id";
 
     protected $fillable =[
-
+        "nama", "logo", "deskripsi"
     ];
 
     public function images(): HasMany{
