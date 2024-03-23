@@ -44,3 +44,14 @@ Route::controller(\App\Http\Controllers\EkstrakurikulerController::class)->middl
     }
 );
 
+Route::controller(\App\Http\Controllers\PrestasiController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/prestasi", "prestasi")->name("prestasi");
+        Route::get("/dashboard/beranda/prestasi/add", "addPrestasi");
+        Route::get("/dashboard/beranda/prestasi/{id}/edit", "editPrestasi")->name("edit-prestasi");
+        Route::post("/dashboard/beranda/prestasi/add", "addDataPrestasi")->name("add-prestasi");
+        Route::patch("/dashboard/beranda/prestasi/{id}/edit", "editDataPrestasi")->name("edit-prestasi");
+        Route::delete("/dashboard/beranda/prestasi/{id}/delete", "deleteDataPrestasi")->name("delete-prestasi");
+    }
+);
+

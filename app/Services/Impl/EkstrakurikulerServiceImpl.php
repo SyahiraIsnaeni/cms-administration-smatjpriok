@@ -6,13 +6,21 @@ use App\Models\Ekstrakurikuler;
 use App\Models\EkstrakurikulerImages;
 use App\Services\EkstrakurikulerService;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use function Laravel\Prompts\table;
 
 class EkstrakurikulerServiceImpl implements EkstrakurikulerService
 {
 
-    public function get(): Collection
+    public function get(): LengthAwarePaginator
+    {
+        return Ekstrakurikuler::orderBy('created_at', 'desc')->paginate(5);
+    }
+
+    public function getAll(): Collection
     {
         return Ekstrakurikuler::orderBy('created_at', 'desc')->get();
     }

@@ -342,45 +342,21 @@
             <h1 class="font-bold text-xl sm:text-2xl text-center">Prestasi Sekolah</h1>
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] font-normal text-center">Telusuri pencapaian gemilang SMA Tanjung Priok Jakarta, sumber inspirasi bagi para siswa.</p>
             <ul id="sliderPrestasi" class="flex gap-5">
+                @foreach($prestasis as $prestasi)
                 <li class="mx-5 w-full sm:w-[300px]">
                     <a href="#">
                         <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                             <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/paskib.jpg" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                             </div>
                             <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-center">Marion Jola Jolie</h1>
-                                <p class="mt-1 text-[12.5px] font-normal text-center">Juara 1 Lomba Panjat Tebing Putri</p>
+                                <h1 class="text-sm font-semibold text-center">{{ $prestasi->nama }}</h1>
+                                <p class="mt-1 text-[12.5px] font-normal text-center">{{ $prestasi->kejuaraan }}</p>
                             </div>
                         </div>
                     </a>
                 </li>
-                <li class="hidden sm:block mx-5 w-full sm:w-[300px]">
-                    <a href="#">
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/school-AI1.jpg" class="rounded-t-md w-full h-[180px] object-cover object-center" />
-                            </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-center">Angelina Jolie</h1>
-                                <p class="mt-1 text-[12.5px] font-normal text-center">Juara 2 Lomba Menyanyi Tingkat Nasional</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="hidden mx-5 w-full sm:w-[300px]">
-                    <a href="#">
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/school-AI2.png" class="rounded-t-md w-full h-[180px] object-cover object-center" />
-                            </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-center">Futsal SMA Tanjung Priok</h1>
-                                <p class="mt-1 text-[12.5px] font-normal text-center">Juara 3 Futsal Seroja Cup</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                @endforeach
             </ul>
             <div class="flex justify-center items-center mt-5">
                 <button onclick="prevPrestasi()" class="rounded-full bg-[#0D464B] p-1.5 sm:p-2 mr-2">
@@ -423,6 +399,7 @@
                             }
                         }
                     }
+                    showSlidePrestasi();
                 }
 
                 if (window.innerWidth >= 640) {
@@ -466,50 +443,19 @@
             <div class="flex">
                 <div class="w-2/3 mr-8">
                     <ul class="flex" id="sliderPrestasiLarge">
-                        <li class="hidden mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a href="#">
-                                <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                    <img src="../assets/redd-f-9o8YdYGTT64-unsplash.jpg" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">Marion Jola Jolie</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">Juara 4 Lomba Panjat Tebing Putri</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="hidden mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a href="#">
-                                <div class="penanda justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/school-AI2.png" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">Marion Jola Jolie</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">Juara 3 Lomba Panjat Tebing Putri</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        @foreach($prestasis as $prestasi)
                         <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a href="#">
-                                <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/paskib.jpg" class="w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                            <a>
+                                <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
+                                    <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
                                     <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">Marion Jola Jolie</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">Juara 2 Lomba Panjat Tebing Putri</p>
+                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">{{ $prestasi->nama }}</h1>
+                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">{{ $prestasi->kejuaraan }}</p>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="mr-7 lg:mr-12 xl:mr-20 w-[330px] xl:w-[380px]">
-                            <a href="#">
-                                <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/school-AI1.jpg" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:px-5 xl:py-5">
-                                        <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-center">Marion Jola Jolie</h1>
-                                        <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-center">Juara 1 Lomba Panjat Tebing Putri</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="w-1/3 ml-8">
@@ -574,7 +520,6 @@
                                 high[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
 
                                 // Menghilangkan kemampuan klik pada tag <a>
-                                anchorTag.setAttribute("href", "#");
                             } else if (index === currentSlideID) {
                                 // Menampilkan slide sebelumnya
                                 slides[index].classList.remove("hidden");
@@ -587,8 +532,6 @@
                                 textP[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
                                 high[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
 
-                                // Menonaktifkan tag <a>
-                                anchorTag.removeAttribute("href");
                             } else {
                                 // Menyembunyikan slide lainnya
                                 slides[index].classList.add("hidden");
