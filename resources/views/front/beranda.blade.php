@@ -344,7 +344,7 @@
             <ul id="sliderPrestasi" class="flex gap-5">
                 @foreach($prestasis as $prestasi)
                 <li class="mx-5 w-full sm:w-[300px]">
-                    <a href="#">
+                    <a>
                         <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                             <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
                                 <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
@@ -434,6 +434,7 @@
                             }
                         }
                     }
+                    showSlidePrestasi2();
                 }
             </script>
         </div>
