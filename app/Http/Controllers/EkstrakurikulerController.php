@@ -43,7 +43,8 @@ class EkstrakurikulerController
             'nama' => 'required',
             'logo' => 'required|image|mimes:jpeg,jpg,png',
             'deskripsi' => 'required',
-            'images.*' => 'required|image|mimes:jpeg,jpg,png',
+            'images' => 'required|array',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
         ]);
 
         if ($validator->fails()) {
@@ -83,6 +84,7 @@ class EkstrakurikulerController
 
         $validator = Validator::make($request->all(), [
             'logo' => 'image|mimes:jpeg,jpg,png',
+            'images' => 'array',
             'images.*' => 'image|mimes:jpeg,jpg,png',
         ]);
 
