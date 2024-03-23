@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::controller(\App\Http\Controllers\BerandaController::class)->group(
+    function (){
+        Route::get("/", "index");
+    }
+);
 
 Route::get('/admin', function () {
     return view('welcome');
