@@ -18,6 +18,7 @@
 <script src={{asset("../assets/static/js/initTheme.js")}}></script>
 <div id="app">
     @include('back.admin.sidebar')
+    @include('sweetalert::alert')
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -59,11 +60,11 @@
                                                           placeholder="Deskripsi" name="deskripsi" style="height: 200px"></textarea>
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
-                                                <label for="formFile" class="form-label">Logo Ekstrakurikuler</label>
+                                                <label for="formFile" class="form-label">Logo Ekstrakurikuler (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" type="file" id="formFile" name="logo">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
-                                                <label for="formFile" class="form-label">Foto Kegiatan Ekstrakurikuler</label>
+                                                <label for="formFile" class="form-label">Foto Kegiatan Ekstrakurikuler (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" name="images[]" type="file" id="formFileMultiple" multiple>
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">

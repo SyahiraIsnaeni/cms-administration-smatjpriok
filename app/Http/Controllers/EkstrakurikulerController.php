@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use function PHPUnit\Framework\isNull;
 
 class EkstrakurikulerController
 {
@@ -39,12 +41,13 @@ class EkstrakurikulerController
     public function addDataEkstrakurikuler(Request $request):Response|RedirectResponse{
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'logo' => 'required|image',
+            'logo' => 'required|image|mimes:jpeg,jpg,png',
             'deskripsi' => 'required',
-            'images.*' => 'required|image',
+            'images.*' => 'required|image|mimes:jpeg,jpg,png',
         ]);
 
         if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan Semua Data Terisi');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -56,6 +59,8 @@ class EkstrakurikulerController
         ];
 
         $this->ekstrakurikulerService->add($data);
+
+        Alert::success('Sukses', 'Berhasil Menambah Data Ekstrakurikuler');
 
         return redirect()->route('ekstrakurikuler');
     }
@@ -71,14 +76,18 @@ class EkstrakurikulerController
 
     public function editDataEkstrakurikuler(int $id, Request $request): Response|RedirectResponse
     {
+        if (($request->input('nama') == null) || ($request->input('deskripsi') == null)) {
+            Alert::error('Gagal', 'Pastikan Tidak Ada Data yang kosong');
+            return redirect()->back();
+        }
+
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'logo' => 'required|image',
-            'deskripsi' => 'required',
-            'images.*' => 'required|image',
+            'logo' => 'image|mimes:jpeg,jpg,png',
+            'images.*' => 'image|mimes:jpeg,jpg,png',
         ]);
 
         if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan Data Sesuai Format');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -91,12 +100,15 @@ class EkstrakurikulerController
 
         $this->ekstrakurikulerService->edit($id, $data);
 
+        Alert::success('Sukses', 'Berhasil Mengubah Data Ekstrakurikuler');
+
         return redirect()->route('ekstrakurikuler');
     }
 
     public function deleteDataEkstrakurikuler($id): Response|RedirectResponse
     {
         $this->ekstrakurikulerService->delete($id);
+        Alert::success('Sukses', 'Berhasil Menghapus Data Ekstrakurikuler');
         return redirect()->route('ekstrakurikuler');
     }
 }

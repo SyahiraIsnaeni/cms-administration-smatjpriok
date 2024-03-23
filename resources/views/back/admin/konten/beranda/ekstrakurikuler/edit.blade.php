@@ -18,6 +18,7 @@
 <script src={{asset("../../assets/static/js/initTheme.js")}}></script>
 <div id="app">
     @include('back.admin.sidebar')
+    @include('sweetalert::alert')
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -58,14 +59,14 @@
                                                 <textarea name="deskripsi" class="form-control" id="task-textarea" style="height: 200px">{{ $ekstrakurikuler->deskripsi}}</textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="formFile" class="form-label">Logo Ekstrakurikuler</label>
+                                                <label for="formFile" class="form-label">Logo Ekstrakurikuler (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" type="file" id="formFile" name="logo">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Logo saat ini</label> <br>
                                                 <img src="{{ asset('storage/ekstrakurikuler-logos/'.$ekstrakurikuler->logo) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             <div class="form-group">
-                                                <label for="formFile" class="form-label">Foto Kegiatan Ekstrakurikuler</label>
+                                                <label for="formFile" class="form-label">Foto Kegiatan Ekstrakurikuler (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" name="images[]" type="file" id="formFileMultiple" multiple>
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto kegiatan saat ini</label> <br>
