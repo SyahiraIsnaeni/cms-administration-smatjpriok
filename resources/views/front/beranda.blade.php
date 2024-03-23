@@ -520,7 +520,6 @@
                                 textP[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
                                 high[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
 
-                                // Menghilangkan kemampuan klik pada tag <a>
                             } else if (index === currentSlideID) {
                                 // Menampilkan slide sebelumnya
                                 slides[index].classList.remove("hidden");
