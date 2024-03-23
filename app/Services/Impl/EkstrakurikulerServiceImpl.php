@@ -14,7 +14,7 @@ class EkstrakurikulerServiceImpl implements EkstrakurikulerService
 
     public function get(): Collection
     {
-        return Ekstrakurikuler::all();
+        return Ekstrakurikuler::orderBy('created_at', 'desc')->get();
     }
 
     public function add(array $data): Ekstrakurikuler
