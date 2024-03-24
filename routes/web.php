@@ -66,3 +66,14 @@ Route::controller(\App\Http\Controllers\KategoriPengumumanController::class)->mi
     }
 );
 
+Route::controller(\App\Http\Controllers\PengumumanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/pengumuman", "pengumuman")->name("pengumuman");
+        Route::get("/dashboard/beranda/pengumuman/add", "addPengumuman");
+        Route::get("/dashboard/beranda/pengumuman/{id}/edit", "editPengumuman")->name("edit-pengumuman");
+        Route::post("/dashboard/beranda/pengumuman/add", "addDataPengumuman")->name("add-pengumuman");
+        Route::patch("/dashboard/beranda/pengumuman/{id}/edit", "editDataPengumuman")->name("edit-pengumuman");
+        Route::delete("/dashboard/beranda/pengumuman/{id}/delete", "deleteDataPengumuman")->name("delete-pengumuman");
+    }
+);
+

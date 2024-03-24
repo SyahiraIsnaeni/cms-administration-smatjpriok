@@ -69,8 +69,8 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Pengumuman</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/beranda/pengumuman*') ? 'active' : '' }}">
+                            <a href="/dashboard/beranda/pengumuman" class="submenu-link">Pengumuman</a>
 
                         </li>
 
