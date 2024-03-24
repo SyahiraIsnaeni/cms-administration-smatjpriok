@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class KategoriPengumuman extends Model
 {
@@ -16,4 +17,8 @@ class KategoriPengumuman extends Model
     protected $fillable =[
         "kategori", "slug"
     ];
+
+    public function pengumumans(): HasMany{
+        return $this->hasMany(Pengumuman::class, "kategori_pengumuman_id", "id");
+    }
 }

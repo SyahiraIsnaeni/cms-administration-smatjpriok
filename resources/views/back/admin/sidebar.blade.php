@@ -117,7 +117,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item  has-sub">
+                    class="sidebar-item  has-sub {{ request()->is('dashboard/kategori*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-layers-half"></i>
                         <span>Kategori</span>
@@ -129,8 +129,8 @@
                             <a href="#" class="submenu-link">Kategori Berita</a>
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Kategori Pengumuman</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/kategori/kategori-pengumuman*') ? 'active' : '' }}">
+                            <a href="/dashboard/kategori/kategori-pengumuman" class="submenu-link">Kategori Pengumuman</a>
 
                         </li>
 

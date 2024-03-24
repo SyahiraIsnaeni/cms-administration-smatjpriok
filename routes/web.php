@@ -55,3 +55,14 @@ Route::controller(\App\Http\Controllers\PrestasiController::class)->middleware(\
     }
 );
 
+Route::controller(\App\Http\Controllers\KategoriPengumumanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/kategori/kategori-pengumuman", "kategoriPengumuman")->name("kategori-pengumuman");
+        Route::get("/dashboard/kategori/kategori-pengumuman/add", "addKategoriPengumuman");
+        Route::get("/dashboard/kategori/kategori-pengumuman/{id}/edit", "editKategoriPengumuman")->name("edit-kategori-pengumuman");
+        Route::post("/dashboard/kategori/kategori-pengumuman/add", "addDataKategoriPengumuman")->name("add-kategori-pengumuman");
+        Route::patch("/dashboard/kategori/kategori-pengumuman/{id}/edit", "editDataKategoriPengumuman")->name("edit-kategori-pengumuman");
+        Route::delete("/dashboard/kategori/kategori-pengumuman/{id}/delete", "deleteDataKategoriPengumuman")->name("delete-kategori-pengumuman");
+    }
+);
+
