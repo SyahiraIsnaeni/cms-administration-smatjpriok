@@ -99,3 +99,14 @@ Route::controller(\App\Http\Controllers\BeritaController::class)->middleware(\Ap
     }
 );
 
+Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/blog", "blog")->name("blog");
+        Route::get("/dashboard/beranda/blog/add", "addBlog");
+        Route::get("/dashboard/beranda/blog/{id}/edit", "editBlog")->name("edit-blog");
+        Route::post("/dashboard/beranda/blog/add", "addDataBlog")->name("add-blog");
+        Route::patch("/dashboard/beranda/blog/{id}/edit", "editDataBlog")->name("edit-blog");
+        Route::delete("/dashboard/beranda/blog/{id}/delete", "deleteDataBlog")->name("delete-blog");
+    }
+);
+

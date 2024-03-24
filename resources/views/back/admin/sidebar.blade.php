@@ -79,8 +79,8 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Blog</a>
+                        <li class="submenu-item {{ request()->is('dashboard/beranda/blog*') ? 'active' : '' }} ">
+                            <a href="/dashboard/beranda/blog" class="submenu-link">Blog</a>
 
                         </li>
 

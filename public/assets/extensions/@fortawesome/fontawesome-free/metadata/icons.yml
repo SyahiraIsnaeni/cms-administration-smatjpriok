@@ -2409,7 +2409,7 @@ bullhorn:
   search:
     terms:
       - announcement
-      - broadcast
+      - welcome-popup
       - louder
       - megaphone
       - share
@@ -14651,7 +14651,7 @@ podcast:
   search:
     terms:
       - audio
-      - broadcast
+      - welcome-popup
       - music
       - sound
   styles:
