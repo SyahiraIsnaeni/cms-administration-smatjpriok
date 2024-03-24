@@ -67,7 +67,7 @@ class PrestasiServiceImpl implements PrestasiService
     public function delete(int $id): bool
     {
         $prestasi = Prestasi::findOrFail($id);
-
+        Storage::delete('public/prestasi/' . $prestasi->gambar);
         $prestasi->delete();
 
         return true;

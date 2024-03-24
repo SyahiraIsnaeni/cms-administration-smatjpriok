@@ -343,19 +343,19 @@
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] font-normal text-center">Telusuri pencapaian gemilang SMA Tanjung Priok Jakarta, sumber inspirasi bagi para siswa.</p>
             <ul id="sliderPrestasi" class="flex gap-5">
                 @foreach($prestasis as $prestasi)
-                <li class="mx-5 w-full sm:w-[300px]">
-                    <a>
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                    <li class="mx-5 w-full sm:w-[300px]">
+                        <a>
+                            <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
+                                <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
+                                    <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                </div>
+                                <div class="bg-white rounded-b-md py-3 px-3">
+                                    <h1 class="text-sm font-semibold text-center">{{ $prestasi->nama }}</h1>
+                                    <p class="mt-1 text-[12.5px] font-normal text-center">{{ $prestasi->kejuaraan }}</p>
+                                </div>
                             </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-center">{{ $prestasi->nama }}</h1>
-                                <p class="mt-1 text-[12.5px] font-normal text-center">{{ $prestasi->kejuaraan }}</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 @endforeach
             </ul>
             <div class="flex justify-center items-center mt-5">
@@ -445,17 +445,17 @@
                 <div class="w-2/3 mr-8">
                     <ul class="flex" id="sliderPrestasiLarge">
                         @foreach($prestasis as $prestasi)
-                        <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a>
-                                <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                    <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">{{ $prestasi->nama }}</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">{{ $prestasi->kejuaraan }}</p>
+                            <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
+                                <a>
+                                    <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
+                                        <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
+                                        <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
+                                            <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">{{ $prestasi->nama }}</h1>
+                                            <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">{{ $prestasi->kejuaraan }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -492,11 +492,15 @@
 
                     function prevPrestasiLarge() {
                         currentSlideID++;
-                        if (currentSlideID >= totalSlides - 2) {
+                        if (currentSlideID >= totalSlides) {
                             currentSlideID = 0;
+                        } else if (currentSlideID >= totalSlides - 1) {
+                            currentSlideID = 1;
                         }
                         showSlidePrestasi3();
                     }
+
+
 
                     function showSlidePrestasi3() {
                         const slides = sliderElement.getElementsByTagName("li");
@@ -520,6 +524,8 @@
                                 textP[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
                                 high[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
 
+                                // Menghilangkan kemampuan klik pada tag <a>
+                                anchorTag.setAttribute("href", "#");
                             } else if (index === currentSlideID) {
                                 // Menampilkan slide sebelumnya
                                 slides[index].classList.remove("hidden");
@@ -532,6 +538,8 @@
                                 textP[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
                                 high[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
 
+                                // Menonaktifkan tag <a>
+                                anchorTag.removeAttribute("href");
                             } else {
                                 // Menyembunyikan slide lainnya
                                 slides[index].classList.add("hidden");
@@ -609,71 +617,72 @@
                     </svg>
                 </button>
             </div>
-            <script>
-                if (window.innerWidth < 640) {
-                    currentSlideIDPengumuman = 1;
-                    sliderElementPengumuman = document.getElementById("sliderPengumuman");
-                    totalSlidesPengumuman = sliderElementPengumuman.childElementCount;
+           <script>
+            const sliderElementLarge = document.getElementById("sliderPrestasiLarge");
+const totalSlidesLarge = sliderElementLarge.childElementCount;
+let currentSlideIDLarge = totalSlidesLarge - 2;
 
-                    function nextPengumuman() {
-                        if (currentSlideIDPengumuman < totalSlidesPengumuman) {
-                            currentSlideIDPengumuman++;
-                            showSlidePengumuman();
-                        }
-                    }
-                    function prevPengumuman() {
-                        if (currentSlideIDPengumuman > 1) {
-                            currentSlideIDPengumuman--;
-                            showSlidePengumuman();
-                        }
-                    }
-                    function showSlidePengumuman() {
-                        slidesPengumuman = document.getElementById("sliderPengumuman").getElementsByTagName("li");
-                        for (let index = 0; index < totalSlidesPengumuman; index++) {
-                            const elementPengumuman = slidesPengumuman[index];
-                            if (currentSlideIDPengumuman === index + 1) {
-                                elementPengumuman.classList.remove("hidden");
-                            } else {
-                                elementPengumuman.classList.add("hidden");
-                            }
-                        }
-                    }
-                }
+function nextPrestasiLarge() {
+    currentSlideIDLarge--;
+    if (currentSlideIDLarge < 0) {
+        currentSlideIDLarge = totalSlidesLarge - 2;
+    }
+    showSlidePrestasi3();
+}
 
-                if (window.innerWidth >= 640) {
-                    currentSlideIDPengumuman2 = 0;
-                    sliderElementPengumuman2 = document.getElementById("sliderPengumuman");
-                    totalSlidesPengumuman2 = sliderElementPengumuman2.childElementCount;
+function prevPrestasiLarge() {
+    currentSlideIDLarge--;
+    if (currentSlideIDLarge < 0) {
+        currentSlideIDLarge = totalSlidesLarge - 2;
+    }
+    showSlidePrestasi3();
+}
 
-                    function nextPengumuman() {
-                        if (currentSlideIDPengumuman2 < totalSlidesPengumuman2 - 2) {
-                            currentSlideIDPengumuman2++;
-                            showSlidePengumuman2();
-                        }
-                    }
-                    function prevPengumuman() {
-                        if (currentSlideIDPengumuman2 > 0) {
-                            currentSlideIDPengumuman2--;
-                            showSlidePengumuman2();
-                        } else if (currentSlideIDPengumuman2 === 0) {
-                            // Tambahkan kondisi ini untuk menangani slide pertama
-                            currentSlideIDPengumuman2 = 0; // Ubah currentSlideID menjadi 0 untuk menghindari slide negatif
-                            showSlidePengumuman2();
-                        }
-                    }
-                    function showSlidePengumuman2() {
-                        slidesPengumuman2 = document.getElementById("sliderPengumuman").getElementsByTagName("li");
-                        for (let index = 0; index < totalSlidesPengumuman2; index++) {
-                            const elementPengumuman2 = slidesPengumuman2[index];
-                            if (currentSlideIDPengumuman2 <= index && index < currentSlideIDPengumuman2 + 2) {
-                                elementPengumuman2.classList.remove("hidden");
-                            } else {
-                                elementPengumuman2.classList.add("hidden");
-                            }
-                        }
-                    }
-                }
-            </script>
+
+
+function showSlidePrestasi3() {
+    const slidesLarge = sliderElementLarge.getElementsByTagName("li");
+    const textH1Large = sliderElementLarge.getElementsByTagName("h1");
+    const textPLarge = sliderElementLarge.getElementsByTagName("p");
+    const highLarge = sliderElementLarge.getElementsByTagName("img");
+
+    for (let index = 0; index < totalSlidesLarge; index++) {
+        const elementLarge = slidesLarge[index];
+        const anchorTagLarge = slidesLarge[index].querySelector("a");
+
+        if (index === currentSlideIDLarge + 1 || (currentSlideIDLarge === totalSlidesLarge - 1 && index === 0)) {
+            slidesLarge[index].classList.remove("hidden");
+            slidesLarge[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
+            slidesLarge[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
+            textH1Large[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
+            textPLarge[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
+            highLarge[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+            textH1Large[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
+            textPLarge[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
+            highLarge[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+
+            anchorTagLarge.setAttribute("href", "#");
+        } else if (index === currentSlideIDLarge) {
+            slidesLarge[index].classList.remove("hidden");
+            slidesLarge[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
+            slidesLarge[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
+            textH1Large[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
+            textPLarge[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
+            highLarge[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+            textH1Large[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
+            textPLarge[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
+            highLarge[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+
+            anchorTagLarge.removeAttribute("href");
+        } else {
+            slidesLarge[index].classList.add("hidden");
+        }
+    }
+}
+
+showSlidePrestasi3();
+
+           </script>
         </div>
         <!-- TAMPILAN LAPTOP DAN TABLET -->
         <div class="hidden md:block">

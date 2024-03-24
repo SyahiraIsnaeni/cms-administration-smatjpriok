@@ -10,6 +10,8 @@ interface PrestasiService
 {
     public function get():LengthAwarePaginator;
 
+    public function getFewData():LengthAwarePaginator;
+
     public function add(array $data): Prestasi;
 
     public function edit(int $id, array $data): Prestasi;

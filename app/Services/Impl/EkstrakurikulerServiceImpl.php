@@ -101,7 +101,11 @@ class EkstrakurikulerServiceImpl implements EkstrakurikulerService
     public function delete(int $id): bool
     {
         $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
-
+        foreach ($ekstrakurikuler->images as $image) {
+            Storage::delete('public/ekstrakurikuler-images/' . $image->image);
+            $image->delete();
+        }
+        Storage::delete('public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo);
         $ekstrakurikuler->images()->delete();
 
         $ekstrakurikuler->delete();
