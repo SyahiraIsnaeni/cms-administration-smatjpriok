@@ -619,68 +619,68 @@
             </div>
            <script>
             const sliderElementLarge = document.getElementById("sliderPrestasiLarge");
-const totalSlidesLarge = sliderElementLarge.childElementCount;
-let currentSlideIDLarge = totalSlidesLarge - 2;
+            const totalSlidesLarge = sliderElementLarge.childElementCount;
+            let currentSlideIDLarge = totalSlidesLarge - 2;
 
-function nextPrestasiLarge() {
-    currentSlideIDLarge--;
-    if (currentSlideIDLarge < 0) {
-        currentSlideIDLarge = totalSlidesLarge - 2;
-    }
-    showSlidePrestasi3();
-}
+            function nextPrestasiLarge() {
+                currentSlideIDLarge--;
+                if (currentSlideIDLarge < 0) {
+                    currentSlideIDLarge = totalSlidesLarge - 2;
+                }
+                showSlidePrestasi3();
+            }
 
-function prevPrestasiLarge() {
-    currentSlideIDLarge--;
-    if (currentSlideIDLarge < 0) {
-        currentSlideIDLarge = totalSlidesLarge - 2;
-    }
-    showSlidePrestasi3();
-}
+            function prevPrestasiLarge() {
+                currentSlideIDLarge--;
+                if (currentSlideIDLarge < 0) {
+                    currentSlideIDLarge = totalSlidesLarge - 2;
+                }
+                showSlidePrestasi3();
+            }
 
 
 
-function showSlidePrestasi3() {
-    const slidesLarge = sliderElementLarge.getElementsByTagName("li");
-    const textH1Large = sliderElementLarge.getElementsByTagName("h1");
-    const textPLarge = sliderElementLarge.getElementsByTagName("p");
-    const highLarge = sliderElementLarge.getElementsByTagName("img");
+            function showSlidePrestasi3() {
+                const slidesLarge = sliderElementLarge.getElementsByTagName("li");
+                const textH1Large = sliderElementLarge.getElementsByTagName("h1");
+                const textPLarge = sliderElementLarge.getElementsByTagName("p");
+                const highLarge = sliderElementLarge.getElementsByTagName("img");
 
-    for (let index = 0; index < totalSlidesLarge; index++) {
-        const elementLarge = slidesLarge[index];
-        const anchorTagLarge = slidesLarge[index].querySelector("a");
+                for (let index = 0; index < totalSlidesLarge; index++) {
+                    const elementLarge = slidesLarge[index];
+                    const anchorTagLarge = slidesLarge[index].querySelector("a");
 
-        if (index === currentSlideIDLarge + 1 || (currentSlideIDLarge === totalSlidesLarge - 1 && index === 0)) {
-            slidesLarge[index].classList.remove("hidden");
-            slidesLarge[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-            slidesLarge[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-            textH1Large[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-            textPLarge[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-            highLarge[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-            textH1Large[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-            textPLarge[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-            highLarge[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+                    if (index === currentSlideIDLarge + 1 || (currentSlideIDLarge === totalSlidesLarge - 1 && index === 0)) {
+                        slidesLarge[index].classList.remove("hidden");
+                        slidesLarge[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
+                        slidesLarge[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
+                        textH1Large[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
+                        textPLarge[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
+                        highLarge[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+                        textH1Large[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
+                        textPLarge[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
+                        highLarge[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
 
-            anchorTagLarge.setAttribute("href", "#");
-        } else if (index === currentSlideIDLarge) {
-            slidesLarge[index].classList.remove("hidden");
-            slidesLarge[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-            slidesLarge[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-            textH1Large[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-            textPLarge[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-            highLarge[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-            textH1Large[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-            textPLarge[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-            highLarge[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+                        anchorTagLarge.setAttribute("href", "#");
+                    } else if (index === currentSlideIDLarge) {
+                        slidesLarge[index].classList.remove("hidden");
+                        slidesLarge[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
+                        slidesLarge[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
+                        textH1Large[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
+                        textPLarge[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
+                        highLarge[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+                        textH1Large[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
+                        textPLarge[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
+                        highLarge[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
 
-            anchorTagLarge.removeAttribute("href");
-        } else {
-            slidesLarge[index].classList.add("hidden");
-        }
-    }
-}
+                        anchorTagLarge.removeAttribute("href");
+                    } else {
+                        slidesLarge[index].classList.add("hidden");
+                    }
+                }
+            }
 
-showSlidePrestasi3();
+            showSlidePrestasi3();
 
            </script>
         </div>
@@ -765,18 +765,23 @@ showSlidePrestasi3();
                     function nextPengumumanLarge() {
                         currentSlideIDPengumuman3--;
                         if (currentSlideIDPengumuman3 < 0) {
-                            currentSlideIDPengumuman3 = totalSlides - 2;
+                            currentSlideIDPengumuman3 = totalSlidesPengumuman3 - 2;
                         }
                         showSlidePengumuman3();
                     }
 
+
+                
                     function prevPengumumanLarge() {
                         currentSlideIDPengumuman3++;
-                        if (currentSlideIDPengumuman3 > totalSlidesPengumuman3 - 2) {
+                        if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
                             currentSlideIDPengumuman3 = 0;
+                        } else if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3 - 1) {
+                            currentSlideIDPengumuman3 = 1;
                         }
                         showSlidePengumuman3();
                     }
+
 
                     function showSlidePengumuman3() {
                         const slidesPengumuman3 = sliderElementPengumuman.getElementsByTagName("li");
