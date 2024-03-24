@@ -2,7 +2,9 @@
 
 return [
     App\Providers\AppServiceProvider::class,
+    App\Providers\BeritaServiceProvider::class,
     App\Providers\EkstrakurikulerServiceProvider::class,
+    App\Providers\KategoriBeritaServiceProvider::class,
     App\Providers\KategoriPengumumanServiceProvider::class,
     App\Providers\PengumumanServiceProvider::class,
     App\Providers\PrestasiServiceProvider::class,

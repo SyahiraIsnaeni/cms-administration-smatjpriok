@@ -83,15 +83,20 @@ class KategoriPengumumanController
 
         $this->kategoriPengumumanService->edit($id, $data);
 
-        Alert::success('Sukses', 'Berhasil Mengubah Data Prestasi');
+        Alert::success('Sukses', 'Berhasil Mengubah Data Kategori Pengumuman');
 
         return redirect()->route('kategori-pengumuman');
     }
 
     public function deleteDataKategoriPengumuman($id): Response|RedirectResponse
     {
-        $this->kategoriPengumumanService->delete($id);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Prestasi');
+        try {
+            $this->kategoriPengumumanService->delete($id);
+            Alert::success('Sukses', 'Berhasil Menghapus Data Kategori Pengumuman');
+        } catch (\Throwable $th) {
+            Alert::error('Gagal', 'Data Kategori Pengumuman tidak dapat dihapus karena masih digunakan di data pengumuman lain');
+        }
+
         return redirect()->route('kategori-pengumuman');
     }
 }

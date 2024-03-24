@@ -66,6 +66,17 @@ Route::controller(\App\Http\Controllers\KategoriPengumumanController::class)->mi
     }
 );
 
+Route::controller(\App\Http\Controllers\KategoriBeritaController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/kategori/kategori-berita", "kategoriBerita")->name("kategori-berita");
+        Route::get("/dashboard/kategori/kategori-berita/add", "addKategoriBerita");
+        Route::get("/dashboard/kategori/kategori-berita/{id}/edit", "editKategoriBerita")->name("edit-kategori-berita");
+        Route::post("/dashboard/kategori/kategori-berita/add", "addDataKategoriBerita")->name("add-kategori-berita");
+        Route::patch("/dashboard/kategori/kategori-berita/{id}/edit", "editDataKategoriBerita")->name("edit-kategori-berita");
+        Route::delete("/dashboard/kategori/kategori-berita/{id}/delete", "deleteDataKategoriBerita")->name("delete-kategori-berita");
+    }
+);
+
 Route::controller(\App\Http\Controllers\PengumumanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/beranda/pengumuman", "pengumuman")->name("pengumuman");
@@ -74,6 +85,17 @@ Route::controller(\App\Http\Controllers\PengumumanController::class)->middleware
         Route::post("/dashboard/beranda/pengumuman/add", "addDataPengumuman")->name("add-pengumuman");
         Route::patch("/dashboard/beranda/pengumuman/{id}/edit", "editDataPengumuman")->name("edit-pengumuman");
         Route::delete("/dashboard/beranda/pengumuman/{id}/delete", "deleteDataPengumuman")->name("delete-pengumuman");
+    }
+);
+
+Route::controller(\App\Http\Controllers\BeritaController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/berita", "berita")->name("berita");
+        Route::get("/dashboard/beranda/berita/add", "addBerita");
+        Route::get("/dashboard/beranda/berita/{id}/edit", "editBerita")->name("edit-berita");
+        Route::post("/dashboard/beranda/berita/add", "addDataBerita")->name("add-berita");
+        Route::patch("/dashboard/beranda/berita/{id}/edit", "editDataBerita")->name("edit-berita");
+        Route::delete("/dashboard/beranda/berita/{id}/delete", "deleteDataBerita")->name("delete-berita");
     }
 );
 

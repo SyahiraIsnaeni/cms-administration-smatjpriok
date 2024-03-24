@@ -74,8 +74,8 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Berita</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/beranda/berita*') ? 'active' : '' }}">
+                            <a href="/dashboard/beranda/berita" class="submenu-link">Berita</a>
 
                         </li>
 
@@ -125,8 +125,8 @@
 
                     <ul class="submenu ">
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Kategori Berita</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/kategori/kategori-berita*') ? 'active' : '' }}">
+                            <a href="/dashboard/kategori/kategori-berita" class="submenu-link">Kategori Berita</a>
                         </li>
 
                         <li class="submenu-item  {{ request()->is('dashboard/kategori/kategori-pengumuman*') ? 'active' : '' }}">
