@@ -59,6 +59,11 @@
                     </a>
 
                     <ul class="submenu ">
+{{--                        <li class="submenu-item  {{ request()->is('dashboard/beranda/welcome*') ? 'active' : '' }}">--}}
+{{--                            <a href="/dashboard/beranda/welcome" class="submenu-link">Welcome Popup</a>--}}
+
+{{--                        </li>--}}
+
                         <li class="submenu-item  {{ request()->is('dashboard/beranda/ekstrakurikuler*') ? 'active' : '' }}">
                             <a href="/dashboard/beranda/ekstrakurikuler" class="submenu-link">Ekstrakurikuler</a>
 
@@ -79,13 +84,13 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Blog</a>
+                        <li class="submenu-item {{ request()->is('dashboard/beranda/blog*') ? 'active' : '' }} ">
+                            <a href="/dashboard/beranda/blog" class="submenu-link">Blog</a>
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Kritik & Saran</a>
+                        <li class="submenu-item {{ request()->is('dashboard/beranda/kritik-saran*') ? 'active' : '' }} ">
+                            <a href="/dashboard/beranda/kritik-saran" class="submenu-link">Kritik & Saran</a>
 
                         </li>
 
@@ -93,7 +98,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item  has-sub">
+                    class="sidebar-item  has-sub {{ request()->is('dashboard/profil*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-collection-fill"></i>
                         <span>Profil</span>
@@ -101,8 +106,8 @@
 
                     <ul class="submenu ">
 
-                        <li class="submenu-item ">
-                            <a href="#" class="submenu-link">Fasilitas</a>
+                        <li class="submenu-item {{ request()->is('dashboard/profil/fasilitas*') ? 'active' : '' }}">
+                            <a href="/dashboard/profil/fasilitas" class="submenu-link">Fasilitas</a>
 
                         </li>
 

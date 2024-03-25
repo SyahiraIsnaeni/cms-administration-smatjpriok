@@ -99,3 +99,32 @@ Route::controller(\App\Http\Controllers\BeritaController::class)->middleware(\Ap
     }
 );
 
+Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/blog", "blog")->name("blog");
+        Route::get("/dashboard/beranda/blog/add", "addBlog");
+        Route::get("/dashboard/beranda/blog/{id}/edit", "editBlog")->name("edit-blog");
+        Route::post("/dashboard/beranda/blog/add", "addDataBlog")->name("add-blog");
+        Route::patch("/dashboard/beranda/blog/{id}/edit", "editDataBlog")->name("edit-blog");
+        Route::delete("/dashboard/beranda/blog/{id}/delete", "deleteDataBlog")->name("delete-blog");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FasilitasController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/profil/fasilitas", "fasilitas")->name("fasilitas");
+        Route::get("/dashboard/profil/fasilitas/add", "addFasilitas");
+        Route::get("/dashboard/profil/fasilitas/{id}/edit", "editFasilitas")->name("edit-fasilitas");
+        Route::post("/dashboard/profil/fasilitas/add", "addDataFasilitas")->name("add-fasilitas");
+        Route::patch("/dashboard/profil/fasilitas/{id}/edit", "editDataFasilitas")->name("edit-fasilitas");
+        Route::delete("/dashboard/profil/fasilitas/{id}/delete", "deleteDataFasilitas")->name("delete-fasilitas");
+    }
+);
+
+Route::controller(\App\Http\Controllers\KritikSaranController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/kritik-saran", "kritikSaran")->name("kritik-saran");
+        Route::delete("/dashboard/beranda/kritik-saran/{id}/delete", "deleteDataKritikSaran")->name("delete-kritik-saran");
+    }
+);
+

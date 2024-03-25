@@ -42,7 +42,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Berita</h3>
+                        <h3>Edit Data Blog</h3>
                     </div>
                 </div>
             </div>
@@ -53,59 +53,46 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("berita")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="{{route("blog")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-berita', $berita->id)}}" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('edit-blog', $blog->id)}}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
                                             <div class="form-group">
-                                                <label for="squareText">Judul Berita</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Judul Berita" name="judul" value="{{$berita->judul}}">
+                                                <label for="squareText">Judul Blog</label>
+                                                <input type="text" id="squareText" class="form-control square" placeholder="Judul Blog" name="judul" value="{{$blog->judul}}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Penulis</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Nama Penulis" name="penulis" value="{{$berita->penulis}}">
+                                                <input type="text" id="squareText" class="form-control square" placeholder="Nama Penulis" name="penulis" value="{{$blog->penulis}}">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
-                                                <label for="squareText">Isi Berita</label>
+                                                <label for="squareText">Isi Blog</label>
                                                 <textarea id="inp_editor1" name="konten">
-                                                 &lt;p&gt;{{$berita->konten}}&lt;/p&gt;
+                                                 &lt;p&gt;{{$blog->konten}}&lt;/p&gt;
                                                 </textarea>
                                                 <script>
                                                     var editor1 = new RichTextEditor("#inp_editor1");
                                                 </script>
                                             </div>
                                             <div class="form-group">
-                                                <label for="kategori">Kategori</label>
-                                                <select name="kategori_berita_id" class="form-control">
-                                                    @foreach ($kategori_beritas as $kategori)
-                                                        @if ($kategori->id == $kategori->kategori_berita_id)
-                                                            <option value={{$kategori->id}} selected='selected'> {{ $kategori->kategori}} </option>
-                                                        @else
-                                                            <option value="{{$kategori->id}}">
-                                                                {{ $kategori->kategori}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="formFile" class="form-label">Gambar Berita (.jpg, .png, .jpeg)</label>
+                                                <label for="formFile" class="form-label">Gambar Blog (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" type="file" id="formFile" name="gambar">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Gambar saat ini</label> <br>
-                                                <img src="{{ asset('storage/berita/'.$berita->gambar) }}" width="100" style="margin-left: 10px">
+                                                <img src="{{ asset('storage/blog/'.$blog->gambar) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             <div class="form-group">
                                                 <label for="status">Status</label>
                                                 <select name="is_active" class="form-control">
-                                                    <option value="1" {{$berita->is_active == '1' ? 'selected' : '' }}>
+                                                    <option value="1" {{$blog->is_active == '1' ? 'selected' : '' }}>
                                                         Terbitkan
                                                     </option>
-                                                    <option value="0" {{$berita->is_active == '0' ? 'selected' : '' }}>
+                                                    <option value="0" {{$blog->is_active == '0' ? 'selected' : '' }}>
                                                         Draf
                                                     </option>
                                                 </select>

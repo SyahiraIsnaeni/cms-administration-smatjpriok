@@ -152,7 +152,7 @@ audio-video:
   icons:
     - audio-description
     - backward
-    - broadcast-tower
+    - welcome-popup-tower
     - circle
     - closed-captioning
     - compress
@@ -516,7 +516,7 @@ communication:
     - bell-slash
     - bluetooth
     - bluetooth-b
-    - broadcast-tower
+    - welcome-popup-tower
     - bullhorn
     - chalkboard
     - comment
@@ -834,7 +834,7 @@ energy:
     - battery-half
     - battery-quarter
     - battery-three-quarters
-    - broadcast-tower
+    - welcome-popup-tower
     - burn
     - charging-station
     - fan
@@ -1695,7 +1695,7 @@ objects:
     - book-dead
     - bookmark
     - briefcase
-    - broadcast-tower
+    - welcome-popup-tower
     - bug
     - building
     - bullhorn
