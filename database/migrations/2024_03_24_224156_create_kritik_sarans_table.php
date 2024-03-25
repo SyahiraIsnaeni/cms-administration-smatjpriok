@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kritik_sarans', function (Blueprint $table) {
-            $table->id();
+            $table->id()->nullable(false)->primary();
+            $table->string("nama")->nullable(false);
+            $table->string('email')->nullable(false);
+            $table->text('isi')->nullable(false);
             $table->timestamps();
         });
     }

@@ -110,3 +110,10 @@ Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\
     }
 );
 
+Route::controller(\App\Http\Controllers\KritikSaranController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/kritik-saran", "kritikSaran")->name("kritik-saran");
+        Route::delete("/dashboard/beranda/kritik-saran/{id}/delete", "deleteDataKritikSaran")->name("delete-kritik-saran");
+    }
+);
+

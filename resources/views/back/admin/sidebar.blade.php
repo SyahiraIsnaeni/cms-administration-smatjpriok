@@ -84,8 +84,8 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Kritik & Saran</a>
+                        <li class="submenu-item {{ request()->is('dashboard/beranda/kritik-saran*') ? 'active' : '' }} ">
+                            <a href="/dashboard/beranda/kritik-saran" class="submenu-link">Kritik & Saran</a>
 
                         </li>
 

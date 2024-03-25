@@ -11,7 +11,6 @@ use Ramsey\Collection\Collection;
 
 class BlogServiceImpl implements BlogService
 {
-
     public function get(): LengthAwarePaginator
     {
         return Blog::orderBy('created_at', 'desc')->paginate(12);
