@@ -110,6 +110,17 @@ Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\
     }
 );
 
+Route::controller(\App\Http\Controllers\FasilitasController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/profil/fasilitas", "fasilitas")->name("fasilitas");
+        Route::get("/dashboard/profil/fasilitas/add", "addFasilitas");
+        Route::get("/dashboard/profil/fasilitas/{id}/edit", "editFasilitas")->name("edit-fasilitas");
+        Route::post("/dashboard/profil/fasilitas/add", "addDataFasilitas")->name("add-fasilitas");
+        Route::patch("/dashboard/profil/fasilitas/{id}/edit", "editDataFasilitas")->name("edit-fasilitas");
+        Route::delete("/dashboard/profil/fasilitas/{id}/delete", "deleteDataFasilitas")->name("delete-fasilitas");
+    }
+);
+
 Route::controller(\App\Http\Controllers\KritikSaranController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/beranda/kritik-saran", "kritikSaran")->name("kritik-saran");

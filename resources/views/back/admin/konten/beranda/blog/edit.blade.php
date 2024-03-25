@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="formFile" class="form-label">Gambar Blog (.jpg, .png, .jpeg)</label>
-                                                <input class="form-control" type="file" id="formFile" name="logo">
+                                                <input class="form-control" type="file" id="formFile" name="gambar">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Gambar saat ini</label> <br>
                                                 <img src="{{ asset('storage/blog/'.$blog->gambar) }}" width="100" style="margin-left: 10px">
