@@ -110,6 +110,15 @@ Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\
     }
 );
 
+Route::controller(\App\Http\Controllers\WelcomeController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/beranda/welcome", "welcome")->name("welcome");
+        Route::get("/dashboard/beranda/welcome/add", "addWelcome");
+        Route::post("/dashboard/beranda/welcome/add", "addDataWelcome")->name("add-welcome");
+        Route::delete("/dashboard/beranda/welcome/{id}/delete", "deleteDataWelcome")->name("delete-welcome");
+    }
+);
+
 Route::controller(\App\Http\Controllers\FasilitasController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/profil/fasilitas", "fasilitas")->name("fasilitas");

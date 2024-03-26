@@ -59,10 +59,10 @@
                     </a>
 
                     <ul class="submenu ">
-{{--                        <li class="submenu-item  {{ request()->is('dashboard/beranda/welcome*') ? 'active' : '' }}">--}}
-{{--                            <a href="/dashboard/beranda/welcome" class="submenu-link">Welcome Popup</a>--}}
+                        <li class="submenu-item  {{ request()->is('dashboard/beranda/welcome*') ? 'active' : '' }}">
+                            <a href="/dashboard/beranda/welcome" class="submenu-link">Welcome Popup</a>
 
-{{--                        </li>--}}
+                        </li>
 
                         <li class="submenu-item  {{ request()->is('dashboard/beranda/ekstrakurikuler*') ? 'active' : '' }}">
                             <a href="/dashboard/beranda/ekstrakurikuler" class="submenu-link">Ekstrakurikuler</a>
