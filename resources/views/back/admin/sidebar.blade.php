@@ -111,8 +111,8 @@
 
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Struktur Organisasi</a>
+                        <li class="submenu-item  {{ request()->is('dashboard/profil/struktur-organisasi*') ? 'active' : '' }}">
+                            <a href="/dashboard/profil/struktur-organisasi" class="submenu-link">Struktur Organisasi</a>
 
                         </li>
 

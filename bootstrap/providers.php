@@ -11,6 +11,7 @@ return [
     App\Providers\KritikSaranServiceProvider::class,
     App\Providers\PengumumanServiceProvider::class,
     App\Providers\PrestasiServiceProvider::class,
+    App\Providers\StrukturOrganisasiServiceProvider::class,
     App\Providers\UserServiceProvider::class,
     App\Providers\WelcomeServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,

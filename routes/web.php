@@ -130,6 +130,17 @@ Route::controller(\App\Http\Controllers\FasilitasController::class)->middleware(
     }
 );
 
+Route::controller(\App\Http\Controllers\StrukturOrganisasiController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/profil/struktur-organisasi", "strukturOrganisasi")->name("struktur-organisasi");
+        Route::get("/dashboard/profil/struktur-organisasi/add", "addStrukturOrganisasi");
+        Route::get("/dashboard/profil/struktur-organisasi/{id}/edit", "editStrukturOrganisasi")->name("edit-struktur-organisasi");
+        Route::post("/dashboard/profil/struktur-organisasi/add", "addDataStrukturOrganisasi")->name("add-struktur-organisasi");
+        Route::patch("/dashboard/profil/struktur-organisasi/{id}/edit", "editDataStrukturOrganisasi")->name("edit-struktur-organisasi");
+        Route::delete("/dashboard/profil/struktur-organisasi/{id}/delete", "deleteDataStrukturOrganisasi")->name("delete-struktur-organisasi");
+    }
+);
+
 Route::controller(\App\Http\Controllers\KritikSaranController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/beranda/kritik-saran", "kritikSaran")->name("kritik-saran");
