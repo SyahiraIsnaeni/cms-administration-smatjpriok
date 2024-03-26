@@ -153,7 +153,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item  has-sub">
+                    class="sidebar-item  has-sub {{ request()->is('dashboard/riwayat*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-hourglass-split"></i>
                         <span>Riwayat Konten</span>
@@ -161,17 +161,17 @@
 
                     <ul class="submenu ">
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Riwayat Berita</a>
+                        <li class="submenu-item {{ request()->is('dashboard/riwayat/berita*') ? 'active' : '' }} ">
+                            <a href="/dashboard/riwayat/berita" class="submenu-link">Riwayat Berita</a>
                         </li>
 
-                        <li class="submenu-item  ">
-                            <a href="#" class="submenu-link">Riwayat Pengumuman</a>
+                        <li class="submenu-item {{ request()->is('dashboard/riwayat/pengumuman*') ? 'active' : '' }} ">
+                            <a href="/dashboard/riwayat/pengumuman" class="submenu-link">Riwayat Pengumuman</a>
 
                         </li>
 
-                        <li class="submenu-item ">
-                            <a href="#" class="submenu-link">Riwayat Blog</a>
+                        <li class="submenu-item {{ request()->is('dashboard/riwayat/blog*') ? 'active' : '' }}">
+                            <a href="/dashboard/riwayat/blog" class="submenu-link">Riwayat Blog</a>
 
                         </li>
 

@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Models\Berita;
 use App\Models\Pengumuman;
 use App\Services\PengumumanService;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -102,6 +103,17 @@ class PengumumanServiceImpl implements PengumumanService
         Storage::delete('public/pengumuman/dokumen' . $pengumuman->dokumen);
         $pengumuman->forceDelete();
         return true;
+    }
+
+    public function restore(int $id): bool{
+        $pengumuman = Pengumuman::onlyTrashed()->findOrFail($id);
+        $pengumuman->restore();
+        return true;
+    }
+
+    public function history(): LengthAwarePaginator{
+        $pengumuman = Pengumuman::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        return $pengumuman;
     }
 
 }

@@ -159,3 +159,27 @@ Route::controller(\App\Http\Controllers\GaleriController::class)->middleware(\Ap
     }
 );
 
+Route::controller(\App\Http\Controllers\RiwayatBeritaController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/riwayat/berita", "riwayatBerita")->name("riwayat-berita");
+        Route::delete("/dashboard/riwayat/berita/{id}/delete", "deleteBerita")->name("delete-riwayat-berita");
+        Route::delete("/dashboard/riwayat/berita/{id}/restore", "restoreBerita")->name("restore-riwayat-berita");
+    }
+);
+
+Route::controller(\App\Http\Controllers\RiwayatPengumumanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/riwayat/pengumuman", "riwayatPengumuman")->name("riwayat-pengumuman");
+        Route::delete("/dashboard/riwayat/pengumuman/{id}/delete", "deletePengumuman")->name("delete-riwayat-pengumuman");
+        Route::delete("/dashboard/riwayat/pengumuman/{id}/restore", "restorePengumuman")->name("restore-riwayat-pengumuman");
+    }
+);
+
+Route::controller(\App\Http\Controllers\RiwayatBlogController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/riwayat/blog", "riwayatBlog")->name("riwayat-blog");
+        Route::delete("/dashboard/riwayat/blog/{id}/delete", "deleteBlog")->name("delete-riwayat-blog");
+        Route::delete("/dashboard/riwayat/blog/{id}/restore", "restoreBlog")->name("restore-riwayat-blog");
+    }
+);
+

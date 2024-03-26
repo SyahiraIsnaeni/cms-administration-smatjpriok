@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Models\Berita;
 use App\Models\Blog;
 use App\Services\BlogService;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -82,5 +83,16 @@ class BlogServiceImpl implements BlogService
         Storage::delete('public/blog' . $blog->gambar);
         $blog->forceDelete();
         return true;
+    }
+
+    public function restore(int $id): bool{
+        $blog = Blog::onlyTrashed()->findOrFail($id);
+        $blog->restore();
+        return true;
+    }
+
+    public function history(): LengthAwarePaginator{
+        $blog = Blog::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        return $blog;
     }
 }

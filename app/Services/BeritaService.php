@@ -18,4 +18,8 @@ interface BeritaService
     public function softDelete(int $id):bool;
 
     public function hardDelete(int $id):bool;
+
+    public function restore(int $id):bool;
+
+    public function history():LengthAwarePaginator;
 }

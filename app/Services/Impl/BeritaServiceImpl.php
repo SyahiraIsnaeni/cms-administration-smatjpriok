@@ -84,4 +84,15 @@ class BeritaServiceImpl implements BeritaService
         $berita->forceDelete();
         return true;
     }
+
+    public function restore(int $id): bool{
+        $berita = Berita::onlyTrashed()->findOrFail($id);
+        $berita->restore();
+        return true;
+    }
+
+    public function history(): LengthAwarePaginator{
+        $berita = Berita::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        return $berita;
+    }
 }
