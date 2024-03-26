@@ -145,8 +145,8 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/galeri*') ? 'active' : '' }}">
+                    <a href="/dashboard/galeri" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>Galeri</span>
                     </a>

@@ -148,3 +148,14 @@ Route::controller(\App\Http\Controllers\KritikSaranController::class)->middlewar
     }
 );
 
+Route::controller(\App\Http\Controllers\GaleriController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/galeri", "galeri")->name("galeri");
+        Route::get("/dashboard/galeri/add", "addGaleri");
+        Route::get("/dashboard/galeri/{id}/edit", "editGaleri")->name("edit-galeri");
+        Route::post("/dashboard/galeri/add", "addDataGaleri")->name("add-galeri");
+        Route::patch("/dashboard/galeri/{id}/edit", "editDataGaleri")->name("edit-galeri");
+        Route::delete("/dashboard/galeri/{id}/delete", "deleteDataGaleri")->name("delete-galeri");
+    }
+);
+

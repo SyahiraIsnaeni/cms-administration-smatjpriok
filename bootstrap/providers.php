@@ -6,6 +6,7 @@ return [
     App\Providers\BlogServiceProvider::class,
     App\Providers\EkstrakurikulerServiceProvider::class,
     App\Providers\FasilitasServiceProvider::class,
+    App\Providers\GaleriServiceProvider::class,
     App\Providers\KategoriBeritaServiceProvider::class,
     App\Providers\KategoriPengumumanServiceProvider::class,
     App\Providers\KritikSaranServiceProvider::class,
