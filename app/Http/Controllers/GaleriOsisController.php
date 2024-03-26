@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ekstrakurikuler;
 use App\Models\Galeri;
-use App\Services\EkstrakurikulerService;
 use App\Services\GaleriService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class GaleriController
+class GaleriOsisController
 {
     protected $galeriService;
 
@@ -26,7 +24,7 @@ class GaleriController
         $galeris = $this->galeriService->get();
 
         return response()
-            ->view("back.admin.konten.galeri.view", [
+            ->view("back.osis.galeri.view", [
                 "title" => "Data Galeri",
                 "galeris" => $galeris
             ]);
@@ -34,7 +32,7 @@ class GaleriController
 
     public function addGaleri():Response{
         return response()
-            ->view("back.admin.konten.galeri.add", [
+            ->view("back.osis.galeri.add", [
                 "title" => "Tambah Data Galeri Kegiatan",
             ]);
     }
@@ -62,13 +60,13 @@ class GaleriController
 
         Alert::success('Sukses', 'Berhasil Menambah Data Galeri Kegiatan');
 
-        return redirect()->route('galeri');
+        return redirect()->route('galeri-osis');
     }
 
     public function editGaleri($id):Response{
         $galeri = Galeri::findOrFail($id);
         return response()
-            ->view("back.admin.konten.galeri.edit", [
+            ->view("back.osis.galeri.edit", [
                 "title" => "Edit Data Galeri Kegiatan",
                 "galeri" => $galeri
             ]);
@@ -103,13 +101,13 @@ class GaleriController
 
         Alert::success('Sukses', 'Berhasil Mengubah Data Galeri Kegiatan');
 
-        return redirect()->route('galeri');
+        return redirect()->route('galeri-osis');
     }
 
     public function deleteDataGaleri($id): Response|RedirectResponse
     {
         $this->galeriService->delete($id);
         Alert::success('Sukses', 'Berhasil Menghapus Data Galeri Kegiatan');
-        return redirect()->route('galeri');
+        return redirect()->route('galeri-osis');
     }
 }

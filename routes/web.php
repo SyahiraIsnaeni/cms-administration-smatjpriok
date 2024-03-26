@@ -29,9 +29,40 @@ Route::controller(\App\Http\Controllers\AdminController::class)->group(
 
 Route::controller(\App\Http\Controllers\OsisController::class)->group(
     function (){
-        Route::get("/dashboard/osis", "dashboard")->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class);
+        Route::get("/dashboard-osis/admin", "dashboard")->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class);
     }
 );
+
+Route::controller(\App\Http\Controllers\BlogOsisController::class)->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-osis/blog", "blog")->name("blog-osis");
+        Route::get("/dashboard-osis/blog/add", "addBlog");
+        Route::get("/dashboard-osis/blog/{id}/edit", "editBlog")->name("edit-blog-osis");
+        Route::post("/dashboard-osis/blog/add", "addDataBlog")->name("add-blog-osis");
+        Route::patch("/dashboard-osis/blog/{id}/edit", "editDataBlog")->name("edit-blog-osis");
+        Route::delete("/dashboard-osis/blog/{id}/delete", "deleteDataBlog")->name("delete-blog-osis");
+    }
+);
+
+Route::controller(\App\Http\Controllers\RiwayatBlogOsisController::class)->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-osis/riwayat/blog", "riwayatBlog")->name("riwayat-blog-osis");
+        Route::delete("/dashboard-osis/riwayat/blog/{id}/delete", "deleteBlog")->name("delete-riwayat-blog-osis");
+        Route::delete("/dashboard-osis/riwayat/blog/{id}/restore", "restoreBlog")->name("restore-riwayat-blog-osis");
+    }
+);
+
+Route::controller(\App\Http\Controllers\GaleriOsisController::class)->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-osis/galeri", "galeri")->name("galeri-osis");
+        Route::get("/dashboard-osis/galeri/add", "addGaleri");
+        Route::get("/dashboard-osis/galeri/{id}/edit", "editGaleri")->name("edit-galeri-osis");
+        Route::post("/dashboard-osis/galeri/add", "addDataGaleri")->name("add-galeri-osis");
+        Route::patch("/dashboard-osis/galeri/{id}/edit", "editDataGaleri")->name("edit-galeri-osis");
+        Route::delete("/dashboard-osis/galeri/{id}/delete", "deleteDataGaleri")->name("delete-galeri-osis");
+    }
+);
+
 
 Route::controller(\App\Http\Controllers\EkstrakurikulerController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
