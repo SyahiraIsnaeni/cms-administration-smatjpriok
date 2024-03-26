@@ -41,7 +41,7 @@ class GaleriController
 
     public function addDataGaleri(Request $request):Response|RedirectResponse{
         $validator = Validator::make($request->all(), [
-            'judul' => 'required',
+            'judul' => 'required|max:40',
             'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
             'images' => 'required|array',
             'images.*' => 'image|mimes:jpeg,jpg,png',
@@ -82,6 +82,7 @@ class GaleriController
         }
 
         $validator = Validator::make($request->all(), [
+            'judul' => 'max:40',
             'thumbnail' => 'image|mimes:jpeg,jpg,png',
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,jpg,png',

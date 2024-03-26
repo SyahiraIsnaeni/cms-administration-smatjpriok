@@ -50,7 +50,7 @@
                                         <form method="post" enctype="multipart/form-data" action="{{ route('add-galeri') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="squareText">Judul Galeri Kegiatan</label>
+                                                <label for="squareText">Judul Galeri Kegiatan (maksimal 40 karakter)</label>
                                                 <input type="text" id="squareText" class="form-control square"
                                                        placeholder="Judul Kegiatan" name="judul">
                                             </div>

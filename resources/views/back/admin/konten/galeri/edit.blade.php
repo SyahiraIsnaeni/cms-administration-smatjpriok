@@ -51,7 +51,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <div class="form-group">
-                                                <label for="squareText">Judul Galeri Kegiatan</label>
+                                                <label for="squareText">Judul Galeri Kegiatan (maksimal 40 karakter)</label>
                                                 <input type="text" id="squareText" class="form-control square" placeholder="Judul Kegiatan" name="judul" value="{{$galeri->judul}}">
                                             </div>
                                             <div class="form-group">
