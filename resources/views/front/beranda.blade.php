@@ -490,77 +490,155 @@
                     </div>
                 </div>
                 <script>
-                    const sliderElement = document.getElementById("sliderPrestasiLarge");
+                    const sliderElement = document.getElementById(
+                      "sliderPrestasiLarge"
+                    );
                     const totalSlides = sliderElement.childElementCount;
-                    let currentSlideID = totalSlides - 2;
-
+                    let currentSlideID = totalSlides - 1;
+      
                     function nextPrestasiLarge() {
+                      if (currentSlideID > 1) {
                         currentSlideID--;
-                        if (currentSlideID < 0) {
-                            currentSlideID = totalSlides - 2;
-                        }
-                        showSlidePrestasi3();
+                      }
+                      showSlidePrestasi3();
                     }
-
+      
                     function prevPrestasiLarge() {
+                      if (currentSlideID < totalSlides - 1) {
                         currentSlideID++;
-                        if (currentSlideID >= totalSlides) {
-                            currentSlideID = 0;
-                        } else if (currentSlideID >= totalSlides - 1) {
-                            currentSlideID = 1;
-                        }
                         showSlidePrestasi3();
+                      }
                     }
-
-
-
+      
                     function showSlidePrestasi3() {
-                        const slides = sliderElement.getElementsByTagName("li");
-                        const textH1 = sliderElement.getElementsByTagName("h1");
-                        const textP = sliderElement.getElementsByTagName("p");
-                        const high = sliderElement.getElementsByTagName("img");
-
-                        for (let index = 0; index < totalSlides; index++) {
-                            const element = slides[index];
-                            const anchorTag = slides[index].querySelector("a"); // Mengambil tag <a> di dalam slide
-
-                            if (index === currentSlideID + 1 || (currentSlideID === totalSlides - 1 && index === 0)) {
-                                // Menampilkan slide saat ini
-                                slides[index].classList.remove("hidden");
-                                slides[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                slides[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                textH1[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textP[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                high[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-                                textH1[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textP[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                high[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-
-                                // Menghilangkan kemampuan klik pada tag <a>
-                                anchorTag.setAttribute("href", "#");
-                            } else if (index === currentSlideID) {
-                                // Menampilkan slide sebelumnya
-                                slides[index].classList.remove("hidden");
-                                slides[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                slides[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                textH1[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textP[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                high[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-                                textH1[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textP[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                high[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-
-                                // Menonaktifkan tag <a>
-                                anchorTag.removeAttribute("href");
-                            } else {
-                                // Menyembunyikan slide lainnya
-                                slides[index].classList.add("hidden");
-                            }
+                      const slides = sliderElement.getElementsByTagName("li");
+                      const textH1 = sliderElement.getElementsByTagName("h1");
+                      const textP = sliderElement.getElementsByTagName("p");
+                      const high = sliderElement.getElementsByTagName("img");
+      
+                      for (let index = 0; index < totalSlides; index++) {
+                        const element = slides[index];
+                        const anchorTag = slides[index].querySelector("a"); // Mengambil tag <a> di dalam slide
+      
+                        if (index === currentSlideID) {
+                          // Menampilkan slide saat ini
+                          slides[index].classList.remove("hidden");
+                          slides[index].classList.remove(
+                            "w-[240px]",
+                            "xl:w-[280px]",
+                            "opacity-55",
+                            "mt-5",
+                            "lg:mt-6",
+                            "xl:mt-7"
+                          );
+                          slides[index].classList.add(
+                            "w-[330px]",
+                            "xl:w-[380px]",
+                            "opacity-100",
+                            "mt-0"
+                          );
+                          textH1[index].classList.remove(
+                            "text-[13px]",
+                            "lg:text-sm",
+                            "xl:text-[15px]"
+                          );
+                          textP[index].classList.remove(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-1",
+                            "lg:mt-1.5"
+                          );
+                          high[index].classList.remove(
+                            "h-[120px]",
+                            "lg:h-[140px]",
+                            "xl:h-[180px]"
+                          );
+                          textH1[index].classList.add(
+                            "text-sm",
+                            "lg:text-[15px]",
+                            "xl:text-[17px]"
+                          );
+                          textP[index].classList.add(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          high[index].classList.add(
+                            "h-[170px]",
+                            "lg:h-[190px]",
+                            "xl:h-[230px]"
+                          );
+      
+                          // Menghilangkan kemampuan klik pada tag <a>
+                          anchorTag.setAttribute("href", "#");
+                        } else if (index === currentSlideID - 1) {
+                          // Menampilkan slide sebelumnya
+                          slides[index].classList.remove("hidden");
+                          slides[index].classList.remove(
+                            "w-[330px]",
+                            "xl:w-[380px]",
+                            "opacity-100",
+                            "mt-0"
+                          );
+                          slides[index].classList.add(
+                            "w-[240px]",
+                            "xl:w-[280px]",
+                            "opacity-55",
+                            "mt-5",
+                            "lg:mt-6",
+                            "xl:mt-7"
+                          );
+                          textH1[index].classList.remove(
+                            "text-sm",
+                            "lg:text-[15px]",
+                            "xl:text-[17px]"
+                          );
+                          textP[index].classList.remove(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          high[index].classList.remove(
+                            "h-[170px]",
+                            "lg:h-[190px]",
+                            "xl:h-[230px]"
+                          );
+                          textH1[index].classList.add(
+                            "text-[13px]",
+                            "lg:text-sm",
+                            "xl:text-[15px]"
+                          );
+                          textP[index].classList.add(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-1",
+                            "lg:mt-1.5"
+                          );
+                          high[index].classList.add(
+                            "h-[120px]",
+                            "lg:h-[140px]",
+                            "xl:h-[180px]"
+                          );
+      
+                          // Menonaktifkan tag <a>
+                          anchorTag.removeAttribute("href");
+                        } else {
+                          // Menyembunyikan slide lainnya
+                          slides[index].classList.add("hidden");
                         }
+                      }
                     }
-
+      
                     showSlidePrestasi3();
-                </script>
+                  </script>
 
             </div>
         </div>
@@ -706,84 +784,198 @@
                     </ul>
                 </div>
                 <script>
-                    const sliderElementPengumuman = document.getElementById("sliderPengumumanLarge");
-                    const totalSlidesPengumuman3 = sliderElementPengumuman.childElementCount;
-                    let currentSlideIDPengumuman3 = totalSlides - 2;
-
+                    const sliderElementPengumuman = document.getElementById(
+                      "sliderPengumumanLarge"
+                    );
+                    const totalSlidesPengumuman3 =
+                      sliderElementPengumuman.childElementCount;
+                    let currentSlideIDPengumuman3 = 0;
+      
                     function nextPengumumanLarge() {
+                      if (currentSlideIDPengumuman3 > 0) {
                         currentSlideIDPengumuman3--;
-                        if (currentSlideIDPengumuman3 < 0) {
-                            currentSlideIDPengumuman3 = totalSlidesPengumuman3 - 2;
-                        }
-                        showSlidePengumuman3();
+                      } else {
+                        // Jika sudah mencapai batas akhir, jangan lakukan apa-apa
+                        return;
+                      }
+                      showSlidePengumuman3();
                     }
-
-
-
                     function prevPengumumanLarge() {
+                      if (currentSlideIDPengumuman3 < totalSlidesPengumuman3 - 2) {
                         currentSlideIDPengumuman3++;
-                        if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
-                            currentSlideIDPengumuman3 = 0;
-                        } else if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3 - 1) {
-                            currentSlideIDPengumuman3 = 1;
-                        }
-                        showSlidePengumuman3();
+                      } else {
+                        // Jika sudah mencapai awal, jangan lakukan apa-apa
+                        return;
+                      }
+                      showSlidePengumuman3();
                     }
-
-                    
+      
                     function showSlidePengumuman3() {
-                        const slidesPengumuman3 = sliderElementPengumuman.getElementsByTagName("li");
-                        const textH1Pengumuman = sliderElementPengumuman.getElementsByTagName("h1");
-                        const textH2Pengumuman = sliderElementPengumuman.getElementsByTagName("h2");
-                        const textPPengumuman = sliderElementPengumuman.getElementsByTagName("p");
-                        const highPengumuman = sliderElementPengumuman.getElementsByTagName("img");
-
-                        for (let index = 0; index <= totalSlidesPengumuman3; index++) {
-                            const element = slidesPengumuman3[index];
-                            const anchorTagPengumuman = slidesPengumuman3[index].querySelector("a"); // Mengambil tag <a> di dalam slide
-
-                            if (index === currentSlideIDPengumuman3) {
-                                // Menampilkan slide saat ini
-                                slidesPengumuman3[index].classList.remove("hidden");
-                                slidesPengumuman3[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                slidesPengumuman3[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                textH1Pengumuman[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textPPengumuman[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                textH2Pengumuman[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-0.5", "lg:mt-1");
-                                highPengumuman[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-                                textH1Pengumuman[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textPPengumuman[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                textH2Pengumuman[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                highPengumuman[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-
-                                // Menghilangkan kemampuan klik pada tag <a>
-                                anchorTagPengumuman.setAttribute("href", "#");
-                            } else if (index === currentSlideIDPengumuman3 + 1 || (currentSlideIDPengumuman3 === totalSlides - 1 && index === 0)) {
-                                // Menampilkan slide sebelumnya
-                                slidesPengumuman3[index].classList.remove("hidden");
-                                slidesPengumuman3[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                slidesPengumuman3[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                textH1Pengumuman[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textPPengumuman[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                textH2Pengumuman[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                highPengumuman[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-                                textH1Pengumuman[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textPPengumuman[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                textH2Pengumuman[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-0.5", "lg:mt-1");
-                                highPengumuman[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-
-                                // Menonaktifkan tag <a>
-                                anchorTagPengumuman.removeAttribute("href");
-                            } else {
-                                // Menyembunyikan slide lainnya
-                                slidesPengumuman3[index].classList.add("hidden");
-                            }
+                      const slidesPengumuman3 =
+                        sliderElementPengumuman.getElementsByTagName("li");
+                      const textH1Pengumuman =
+                        sliderElementPengumuman.getElementsByTagName("h1");
+                      const textH2Pengumuman =
+                        sliderElementPengumuman.getElementsByTagName("h2");
+                      const textPPengumuman =
+                        sliderElementPengumuman.getElementsByTagName("p");
+                      const highPengumuman =
+                        sliderElementPengumuman.getElementsByTagName("img");
+      
+                      for (let index = 0; index <= totalSlidesPengumuman3; index++) {
+                        const element = slidesPengumuman3[index];
+                        const anchorTagPengumuman =
+                          slidesPengumuman3[index].querySelector("a"); // Mengambil tag <a> di dalam slide
+      
+                        if (index === currentSlideIDPengumuman3) {
+                          // Menampilkan slide saat ini
+                          slidesPengumuman3[index].classList.remove("hidden");
+                          slidesPengumuman3[index].classList.remove(
+                            "w-[240px]",
+                            "xl:w-[280px]",
+                            "opacity-55",
+                            "mt-5",
+                            "lg:mt-6",
+                            "xl:mt-7"
+                          );
+                          slidesPengumuman3[index].classList.add(
+                            "w-[330px]",
+                            "xl:w-[380px]",
+                            "opacity-100",
+                            "mt-0"
+                          );
+                          textH1Pengumuman[index].classList.remove(
+                            "text-[13px]",
+                            "lg:text-sm",
+                            "xl:text-[15px]"
+                          );
+                          textPPengumuman[index].classList.remove(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-1",
+                            "lg:mt-1.5"
+                          );
+                          textH2Pengumuman[index].classList.remove(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-0.5",
+                            "lg:mt-1"
+                          );
+                          highPengumuman[index].classList.remove(
+                            "h-[120px]",
+                            "lg:h-[140px]",
+                            "xl:h-[180px]"
+                          );
+                          textH1Pengumuman[index].classList.add(
+                            "text-sm",
+                            "lg:text-[15px]",
+                            "xl:text-[17px]"
+                          );
+                          textPPengumuman[index].classList.add(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          textH2Pengumuman[index].classList.add(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          highPengumuman[index].classList.add(
+                            "h-[170px]",
+                            "lg:h-[190px]",
+                            "xl:h-[230px]"
+                          );
+      
+                          // Menghilangkan kemampuan klik pada tag <a>
+                          anchorTagPengumuman.setAttribute("href", "#");
+                        } else if (index === currentSlideIDPengumuman3 + 1) {
+                          // Menampilkan slide sebelumnya
+                          slidesPengumuman3[index].classList.remove("hidden");
+                          slidesPengumuman3[index].classList.remove(
+                            "w-[330px]",
+                            "xl:w-[380px]",
+                            "opacity-100",
+                            "mt-0"
+                          );
+                          slidesPengumuman3[index].classList.add(
+                            "w-[240px]",
+                            "xl:w-[280px]",
+                            "opacity-55",
+                            "mt-5",
+                            "lg:mt-6",
+                            "xl:mt-7"
+                          );
+                          textH1Pengumuman[index].classList.remove(
+                            "text-sm",
+                            "lg:text-[15px]",
+                            "xl:text-[17px]"
+                          );
+                          textPPengumuman[index].classList.remove(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          textH2Pengumuman[index].classList.remove(
+                            "text-xs",
+                            "lg:text-[13px]",
+                            "xl:text-[15px]",
+                            "mt-1",
+                            "lg:mt-1.5",
+                            "xl:mt-2"
+                          );
+                          highPengumuman[index].classList.remove(
+                            "h-[170px]",
+                            "lg:h-[190px]",
+                            "xl:h-[230px]"
+                          );
+                          textH1Pengumuman[index].classList.add(
+                            "text-[13px]",
+                            "lg:text-sm",
+                            "xl:text-[15px]"
+                          );
+                          textPPengumuman[index].classList.add(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-1",
+                            "lg:mt-1.5"
+                          );
+                          textH2Pengumuman[index].classList.add(
+                            "text-[11px]",
+                            "lg:text-xs",
+                            "xl:text-sm",
+                            "mt-0.5",
+                            "lg:mt-1"
+                          );
+                          highPengumuman[index].classList.add(
+                            "h-[120px]",
+                            "lg:h-[140px]",
+                            "xl:h-[180px]"
+                          );
+      
+                          // Menonaktifkan tag <a>
+                          anchorTagPengumuman.removeAttribute("href");
+                        } else {
+                          // Menyembunyikan slide lainnya
+                          slidesPengumuman3[index].classList.add("hidden");
                         }
+                      }
                     }
-
+      
                     showSlidePrestasi3();
-                </script>
-
+                  </script>
             </div>
         </div>
     </div>
