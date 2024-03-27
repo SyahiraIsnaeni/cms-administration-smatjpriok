@@ -709,22 +709,24 @@
                     let currentSlideIDPengumuman3 = totalSlides - 2;
 
                     function nextPengumumanLarge() {
-                        currentSlideIDPengumuman3++;
-                        if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
-                            currentSlideIDPengumuman3 = 0; // Kembali ke slide pertama jika sudah mencapai slide terakhir
-                        }
-                        showSlidePengumuman3();
-                    }
-
-                    function prevPengumumanLarge() {
                         currentSlideIDPengumuman3--;
                         if (currentSlideIDPengumuman3 < 0) {
-                            currentSlideIDPengumuman3 = totalSlidesPengumuman3 - 1; // Pindah ke slide terakhir jika sudah berada di slide pertama
+                            currentSlideIDPengumuman3 = totalSlidesPengumuman3 - 2;
                         }
                         showSlidePengumuman3();
                     }
 
 
+                
+                    function prevPengumumanLarge() {
+                        currentSlideIDPengumuman3++;
+                        if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
+                            currentSlideIDPengumuman3 = 0;
+                        } else if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3 - 1) {
+                            currentSlideIDPengumuman3 = 1;
+                        }
+                        showSlidePengumuman3();
+                    }
 
 
                     function showSlidePengumuman3() {
@@ -777,8 +779,9 @@
                         }
                     }
 
-                    showSlidePengumuman3();
+                    showSlidePrestasi3();
                 </script>
+
             </div>
         </div>
     </div>
