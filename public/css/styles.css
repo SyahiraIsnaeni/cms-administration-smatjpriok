@@ -1003,6 +1003,18 @@ video {
   height: 100vh;
 }
 
+.h-\[1100px\]{
+  height: 1100px;
+}
+
+.h-\[1050px\]{
+  height: 1050px;
+}
+
+.h-\[1080px\]{
+  height: 1080px;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }

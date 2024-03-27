@@ -9,6 +9,18 @@
 
     <!-- PENTING!!!! -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link
+        rel="stylesheet"
+        href={{asset("../editor/richtexteditor/rte_theme_default.css")}}
+    />
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/rte.js")}}
+    ></script>
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
+    ></script>
 </head>
 <body class="font-cms bg-[#E5F3EF]">
 <!-- NAVBAR -->
@@ -616,7 +628,7 @@
                     </svg>
                 </button>
             </div>
-           
+
         </div>
         <!-- TAMPILAN LAPTOP DAN TABLET -->
         <div class="hidden md:block">
@@ -773,46 +785,32 @@
 </section>
 
 <!-- BERITA -->
-<section class="relative mt-16 sm:mt-20 h-[1150px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]">
+<section class="relative mt-16 sm:mt-20 h-[1080px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]">
     <!-- Div untuk overlay warna -->
     <div class="absolute top-0 left-0 w-full h-full bg-[#0D464B] bg-opacity-90 z-10"></div>
     <!-- Gambar Latar -->
-    <img src="../assets/school-AI2.png" alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1150px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]" />
+    <img src={{asset("images/school-AI2.png")}} alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1080px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]" />
     <div class="absolute top-0 left-0 w-full my-8 sm:my-12 md:my-12 lg:my-16 xl:my-20 z-20">
         <h1 class="text-white text-center font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Berita Terkini</h1>
         <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 mt-7 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 xxl:mt-12">
             <!-- TAMPILAN HP -->
             <div class="mx-5 md:hidden">
-                <div class="bg-white rounded-md w-full">
-                    <div class="w-full h-[180px]">
-                        <img src="../assets/carousel-profil.jpg" class="w-full rounded-t-md h-full object-cover object-center" />
-                    </div>
-                    <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
-                        <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">Berita Utama 1 SMA Tanjung Priok Jakarta Utara, DKI Jakarta</h1>
-                        <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">15 Oktober 2023</p>
-                        <p class="mt-0.5 text-[12.5px] sm:text-[13px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...</p>
-                    </div>
+                @foreach($beritasHp as $row)
+                <div>
+                    <a href="#">
+                        <div class="mt-6 bg-white rounded-md w-full">
+                            <div class="w-full h-[180px]">
+                                <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                            </div>
+                            <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
+                                <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">{{ $row->judul }}</h1>
+                                <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">{{ $row->updated_at->format('d M Y')}}</p>
+                                <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">By {{ $row->penulis}} </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="mt-5 sm:mt-7 bg-white rounded-md w-full">
-                    <div class="w-full h-[180px]">
-                        <img src="../assets/carousel-fix.jpg" class="w-full rounded-t-md h-full object-cover object-center" />
-                    </div>
-                    <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
-                        <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">Berita Utama 2 SMA Tanjung Priok Jakarta Utara, DKI Jakarta</h1>
-                        <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">15 Oktober 2023</p>
-                        <p class="mt-0.5 text-[12.5px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...</p>
-                    </div>
-                </div>
-                <div class="mt-5 sm:mt-7 bg-white rounded-md w-full">
-                    <div class="w-full h-[180px]">
-                        <img src="../assets/school-AI2.png" class="w-full rounded-t-md h-full object-cover object-center" />
-                    </div>
-                    <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
-                        <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">Berita Utama 3 SMA Tanjung Priok Jakarta Utara, DKI Jakarta</h1>
-                        <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">15 Oktober 2023</p>
-                        <p class="mt-0.5 text-[12.5px] sm:text-[13px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's...</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <!-- TAMPILAN TABLET DAN LAPTOP -->
             <div class="hidden md:block">
@@ -821,13 +819,13 @@
                         <a href="#">
                             <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
                                 <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
-                                    <img src="../assets/carousel-profil.jpg" class="w-full rounded-t-md h-full object-cover object-center" />
+                                    <img src="{{asset('storage/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
                                 </div>
                                 <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
-                                    <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">Berita Utama 1 SMA Tanjung Priok Jakarta Utara, DKI Jakarta Tanjung Priok Jakarta Utara, DKI Jakarta</h1>
-                                    <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">15 Oktober 2023</p>
+                                    <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">{{ $berita->judul }}</h1>
+                                    <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $berita->updated_at->format('d M Y')}}</p>
                                     <p class="mt-0.5 lg:mt-1 text-[13px] lg:text-sm xl:text-[15px]">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry. Lorem Ipsum has been the industry's Lorem Ipsum has been the industry's...
+                                        {!! strlen($berita->konten) > 180 ? substr($berita->konten, 0, 180) . '...' : $berita->konten !!}
                                     </p>
                                 </div>
                             </div>

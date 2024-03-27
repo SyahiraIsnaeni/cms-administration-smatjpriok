@@ -10,6 +10,18 @@
 
     <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
     <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link
+        rel="stylesheet"
+        href={{asset("../editor/richtexteditor/rte_theme_default.css")}}
+    />
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/rte.js")}}
+    ></script>
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
+    ></script>
 </head>
 
 <body>

@@ -4,6 +4,7 @@ namespace App\Services\Impl;
 
 use App\Models\Berita;
 use App\Services\BeritaService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -15,9 +16,33 @@ class BeritaServiceImpl implements BeritaService
         return Berita::orderBy('created_at', 'desc')->paginate(12);
     }
 
-    public function getFewData(): LengthAwarePaginator
+    public function getFewDataHp(): LengthAwarePaginator
     {
-        return Berita::orderBy('created_at', 'desc')->paginate(5);
+        $perPage = 3;
+        return Berita::where('is_active', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
+    }
+
+    public function getFewDataDekstop(): LengthAwarePaginator
+    {
+        $perPage = 3;
+        $latest = Berita::where('is_active', 1)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        // Mengambil data berita selain satu data paling terbaru
+        return Berita::where('is_active', 1)
+            ->where('id', '!=', $latest->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
+    }
+
+    public function getFirstData(): ?Berita
+    {
+        return Berita::where('is_active', 1)
+            ->orderBy('created_at', 'desc')
+            ->first();
     }
 
     public function add(array $data): Berita
