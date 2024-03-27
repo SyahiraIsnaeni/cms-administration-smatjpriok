@@ -19,7 +19,8 @@ class BeritaServiceImpl implements BeritaService
     public function getFewDataHp(): LengthAwarePaginator
     {
         $perPage = 3;
-        return Berita::where('is_active', 1)
+        return Berita::withTrashed()
+            ->where('is_active', 1)
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
     }
@@ -27,20 +28,22 @@ class BeritaServiceImpl implements BeritaService
     public function getFewDataDekstop(): LengthAwarePaginator
     {
         $perPage = 3;
-        $latest = Berita::where('is_active', 1)
+        $latest = Berita::withTrashed()
+            ->where('is_active', 1)
             ->orderBy('created_at', 'desc')
             ->first();
 
-        // Mengambil data berita selain satu data paling terbaru
-        return Berita::where('is_active', 1)
+        return Berita::withTrashed()
             ->where('id', '!=', $latest->id)
+            ->where('is_active', 1)
             ->orderBy('created_at', 'desc')
             ->paginate($perPage);
     }
 
     public function getFirstData(): ?Berita
     {
-        return Berita::where('is_active', 1)
+        return Berita::withTrashed()
+            ->where('is_active', 1)
             ->orderBy('created_at', 'desc')
             ->first();
     }

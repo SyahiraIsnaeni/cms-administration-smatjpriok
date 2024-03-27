@@ -18,7 +18,7 @@ class PengumumanServiceImpl implements PengumumanService
 
     public function getFewData(): LengthAwarePaginator
     {
-        return Pengumuman::orderBy('created_at', 'desc')->paginate(5);
+        return Pengumuman::withTrashed()->orderBy('created_at', 'desc')->where('is_active', 1)->paginate(5);
     }
 
     public function add(array $data): Pengumuman

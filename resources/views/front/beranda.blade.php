@@ -284,27 +284,27 @@
             <!-- INI YANG AKAN DIGESER -->
             <ul id="slider2" class="mt-3">
                 @foreach($ekstrakurikulers as $ekstrakurikuler)
-                <li class="flex w-full">
-                    <div class="flex w-full justify-center items-center my-3 sm:my-4">
-                        <img src="{{ asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
-                        <div class="ml-6 xl:ml-8 w-full">
-                            <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]">{{ $ekstrakurikuler->nama }}</h1>
-                            <p class="text-white font-light text-[14.5px] lg:text-base xl:text-lg mt-3 w-full">
-                                {!! strlen($ekstrakurikuler->deskripsi) > 300 ? substr($ekstrakurikuler->deskripsi, 0, 300) . '...' : $ekstrakurikuler->deskripsi !!}
-                            </p>
-                            <div class="mt-4 flex">
-                                <a href="#">
-                                    <p class="text-[14.5px] lg:text-base xl:text-[17px] font-medium text-white underline">Selengkapnya</p>
-                                </a>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[3px] ml-1 w-4 h-4" fill="#fff">
-                                    <path
-                                        d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                                    />
-                                </svg>
+                    <li class="flex w-full">
+                        <div class="flex w-full justify-center items-center my-3 sm:my-4">
+                            <img src="{{ asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
+                            <div class="ml-6 xl:ml-8 w-full">
+                                <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]">{{ $ekstrakurikuler->nama }}</h1>
+                                <p class="text-white font-light text-[14.5px] lg:text-base xl:text-lg mt-3 w-full">
+                                    {!! strlen($ekstrakurikuler->deskripsi) > 300 ? substr($ekstrakurikuler->deskripsi, 0, 300) . '...' : $ekstrakurikuler->deskripsi !!}
+                                </p>
+                                <div class="mt-4 flex">
+                                    <a href="#">
+                                        <p class="text-[14.5px] lg:text-base xl:text-[17px] font-medium text-white underline">Selengkapnya</p>
+                                    </a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[3px] ml-1 w-4 h-4" fill="#fff">
+                                        <path
+                                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 @endforeach
             </ul>
             <button onclick="next2()" class="rounded-full p-1 ml-4 lg:ml-6 xl:ml-8 transition ease-in-out hover:scale-110">
@@ -490,29 +490,25 @@
                     </div>
                 </div>
                 <script>
-                    const sliderElement = document.getElementById("sliderPrestasiLarge");
+                    const sliderElement = document.getElementById(
+                        "sliderPrestasiLarge"
+                    );
                     const totalSlides = sliderElement.childElementCount;
-                    let currentSlideID = totalSlides - 2;
+                    let currentSlideID = totalSlides - 1;
 
                     function nextPrestasiLarge() {
-                        currentSlideID--;
-                        if (currentSlideID < 0) {
-                            currentSlideID = totalSlides - 2;
+                        if (currentSlideID > 1) {
+                            currentSlideID--;
                         }
                         showSlidePrestasi3();
                     }
 
                     function prevPrestasiLarge() {
-                        currentSlideID++;
-                        if (currentSlideID >= totalSlides) {
-                            currentSlideID = 0;
-                        } else if (currentSlideID >= totalSlides - 1) {
-                            currentSlideID = 1;
+                        if (currentSlideID < totalSlides - 1) {
+                            currentSlideID++;
+                            showSlidePrestasi3();
                         }
-                        showSlidePrestasi3();
                     }
-
-
 
                     function showSlidePrestasi3() {
                         const slides = sliderElement.getElementsByTagName("li");
@@ -524,31 +520,113 @@
                             const element = slides[index];
                             const anchorTag = slides[index].querySelector("a"); // Mengambil tag <a> di dalam slide
 
-                            if (index === currentSlideID + 1 || (currentSlideID === totalSlides - 1 && index === 0)) {
+                            if (index === currentSlideID) {
                                 // Menampilkan slide saat ini
                                 slides[index].classList.remove("hidden");
-                                slides[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                slides[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                textH1[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textP[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                high[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-                                textH1[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textP[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                high[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+                                slides[index].classList.remove(
+                                    "w-[240px]",
+                                    "xl:w-[280px]",
+                                    "opacity-55",
+                                    "mt-5",
+                                    "lg:mt-6",
+                                    "xl:mt-7"
+                                );
+                                slides[index].classList.add(
+                                    "w-[330px]",
+                                    "xl:w-[380px]",
+                                    "opacity-100",
+                                    "mt-0"
+                                );
+                                textH1[index].classList.remove(
+                                    "text-[13px]",
+                                    "lg:text-sm",
+                                    "xl:text-[15px]"
+                                );
+                                textP[index].classList.remove(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-1",
+                                    "lg:mt-1.5"
+                                );
+                                high[index].classList.remove(
+                                    "h-[120px]",
+                                    "lg:h-[140px]",
+                                    "xl:h-[180px]"
+                                );
+                                textH1[index].classList.add(
+                                    "text-sm",
+                                    "lg:text-[15px]",
+                                    "xl:text-[17px]"
+                                );
+                                textP[index].classList.add(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                high[index].classList.add(
+                                    "h-[170px]",
+                                    "lg:h-[190px]",
+                                    "xl:h-[230px]"
+                                );
 
                                 // Menghilangkan kemampuan klik pada tag <a>
                                 anchorTag.setAttribute("href", "#");
-                            } else if (index === currentSlideID) {
+                            } else if (index === currentSlideID - 1) {
                                 // Menampilkan slide sebelumnya
                                 slides[index].classList.remove("hidden");
-                                slides[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                slides[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                textH1[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textP[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                high[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-                                textH1[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textP[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                high[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+                                slides[index].classList.remove(
+                                    "w-[330px]",
+                                    "xl:w-[380px]",
+                                    "opacity-100",
+                                    "mt-0"
+                                );
+                                slides[index].classList.add(
+                                    "w-[240px]",
+                                    "xl:w-[280px]",
+                                    "opacity-55",
+                                    "mt-5",
+                                    "lg:mt-6",
+                                    "xl:mt-7"
+                                );
+                                textH1[index].classList.remove(
+                                    "text-sm",
+                                    "lg:text-[15px]",
+                                    "xl:text-[17px]"
+                                );
+                                textP[index].classList.remove(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                high[index].classList.remove(
+                                    "h-[170px]",
+                                    "lg:h-[190px]",
+                                    "xl:h-[230px]"
+                                );
+                                textH1[index].classList.add(
+                                    "text-[13px]",
+                                    "lg:text-sm",
+                                    "xl:text-[15px]"
+                                );
+                                textP[index].classList.add(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-1",
+                                    "lg:mt-1.5"
+                                );
+                                high[index].classList.add(
+                                    "h-[120px]",
+                                    "lg:h-[140px]",
+                                    "xl:h-[180px]"
+                                );
 
                                 // Menonaktifkan tag <a>
                                 anchorTag.removeAttribute("href");
@@ -575,48 +653,99 @@
             <h1 class="font-bold text-xl sm:text-2xl text-center">Pengumuman Terbaru</h1>
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] sm:leading-relaxed font-normal text-center">Jelajahi pengumuman terkini untuk tetap terhubung dengan perkembangan terbaru SMA Tanjung Priok Jakarta.</p>
             <ul id="sliderPengumuman" class="flex gap-5">
+                @foreach($pengumumans as $pengumuman)
                 <li class="mx-5 w-full sm:w-[300px]">
                     <a href="#">
                         <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                             <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/paskib.jpg" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                             </div>
                             <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-justify">Pengumuman Utama 1 Terbaru SMA Tanjung Priok Jakarta Utara</h1>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">15 Oktober 2023</p>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By Admin SMA Tanjung Priok</p>
+                                <h1 class="text-sm font-semibold text-justify">{{ $pengumuman->judul }}</h1>
+                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
+                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By {{ $pengumuman->penulis }}</p>
                             </div>
                         </div>
                     </a>
                 </li>
-                <li class="hidden sm:block mx-5 w-full sm:w-[300px]">
-                    <a href="#">
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/school-AI1.jpg" class="rounded-t-md w-full h-[180px] object-cover object-center" />
-                            </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-justify">Pengumuman Utama 2 Terbaru SMA Tanjung Priok Jakarta Utara</h1>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">15 Oktober 2023</p>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By Admin SMA Tanjung Priok</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="hidden mx-5 w-full sm:w-[300px]">
-                    <a href="#">
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="../assets/school-AI3.png" class="rounded-t-md w-full h-[180px] object-cover object-center" />
-                            </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-justify">Pengumuman Utama 3 Terbaru SMA Tanjung Priok Jakarta Utara</h1>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">15 Oktober 2023</p>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By Admin SMA Tanjung Priok</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                @endforeach
+                    <script>
+                        if (window.innerWidth < 640) {
+                            currentSlideIDPengumuman = 1;
+                            sliderElementPengumuman =
+                                document.getElementById("sliderPengumuman");
+                            totalSlidesPengumuman = sliderElementPengumuman.childElementCount;
+
+                            function nextPengumuman() {
+                                if (currentSlideIDPengumuman < totalSlidesPengumuman) {
+                                    currentSlideIDPengumuman++;
+                                    showSlidePengumuman();
+                                }
+                            }
+                            function prevPengumuman() {
+                                if (currentSlideIDPengumuman > 1) {
+                                    currentSlideIDPengumuman--;
+                                    showSlidePengumuman();
+                                }
+                            }
+                            function showSlidePengumuman() {
+                                slidesPengumuman = document
+                                    .getElementById("sliderPengumuman")
+                                    .getElementsByTagName("li");
+                                for (let index = 0; index < totalSlidesPengumuman; index++) {
+                                    const elementPengumuman = slidesPengumuman[index];
+                                    if (currentSlideIDPengumuman === index + 1) {
+                                        elementPengumuman.classList.remove("hidden");
+                                    } else {
+                                        elementPengumuman.classList.add("hidden");
+                                    }
+                                }
+                            }
+                            showSlidePengumuman();
+                        }
+
+                        if (window.innerWidth >= 640) {
+                            currentSlideIDPengumuman2 = 0;
+                            sliderElementPengumuman2 =
+                                document.getElementById("sliderPengumuman");
+                            totalSlidesPengumuman2 =
+                                sliderElementPengumuman2.childElementCount;
+
+                            function nextPengumuman() {
+                                if (currentSlideIDPengumuman2 < totalSlidesPengumuman2 - 2) {
+                                    currentSlideIDPengumuman2++;
+                                    showSlidePengumuman2();
+                                }
+                            }
+                            function prevPengumuman() {
+                                if (currentSlideIDPengumuman2 > 0) {
+                                    currentSlideIDPengumuman2--;
+                                    showSlidePengumuman2();
+                                } else if (currentSlideIDPengumuman2 === 0) {
+                                    // Tambahkan kondisi ini untuk menangani slide pertama
+                                    currentSlideIDPengumuman2 = 0; // Ubah currentSlideID menjadi 0 untuk menghindari slide negatif
+                                    showSlidePengumuman2();
+                                }
+                            }
+                            function showSlidePengumuman2() {
+                                slidesPengumuman2 = document
+                                    .getElementById("sliderPengumuman")
+                                    .getElementsByTagName("li");
+                                for (let index = 0; index < totalSlidesPengumuman2; index++) {
+                                    const elementPengumuman2 = slidesPengumuman2[index];
+                                    if (
+                                        currentSlideIDPengumuman2 <= index &&
+                                        index < currentSlideIDPengumuman2 + 2
+                                    ) {
+                                        elementPengumuman2.classList.remove("hidden");
+                                    } else {
+                                        elementPengumuman2.classList.add("hidden");
+                                    }
+                                }
+                            }
+                            showSlidePengumuman2();
+                        }
+                    </script>
             </ul>
             <div class="flex justify-center items-center mt-5">
                 <button onclick="prevPengumuman()" class="rounded-full bg-[#0D464B] p-1.5 sm:p-2 mr-2">
@@ -655,122 +784,203 @@
                 </div>
                 <div class="w-2/3 ml-8">
                     <ul class="flex justify-end" id="sliderPengumumanLarge">
+                        @foreach($pengumumans as $pengumuman)
                         <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
                             <a href="#">
                                 <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/school-AI1.jpg" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                                    <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
                                     <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                        <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">Pengumuman Utama 1 SMA Tanjung Priok Jakarta Utara</h1>
-                                        <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">15 Oktober 2023</p>
-                                        <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By Admin SMA Tanjung Priok</h2>
+                                        <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">{{ $pengumuman->judul }}</h1>
+                                        <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
+                                        <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By {{ $pengumuman->penulis }}</h2>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="ml-7 lg:ml-12 xl:ml-20 w-[240px] xl:w-[280px] opacity-55 mt-5 lg:mt-6 xl:mt-7">
-                            <a href="#">
-                                <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                    <img src="../assets/redd-f-9o8YdYGTT64-unsplash.jpg" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-justify">Pengumuman Utama 2 SMA Tanjung Priok Jakarta Utara</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-left">15 Oktober 2023</p>
-                                        <h2 class="mt-0.5 lg:mt-1 text-[11px] lg:text-xs xl:text-sm font-normal text-left">By Admin SMA Tanjung Priok</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="hidden ml-7 lg:ml-12 xl:ml-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a href="#">
-                                <div class="penanda justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/school-AI2.png" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-justify">Pengumuman Utama 3 SMA Tanjung Priok Jakarta Utara</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-left">15 Oktober 2023</p>
-                                        <h2 class="mt-0.5 lg:mt-1 text-[11px] lg:text-xs xl:text-sm font-normal text-left">By Admin SMA Tanjung Priok</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="hidden ml-7 lg:ml-12 xl:ml-20 w-[240px] xl:w-[280px] opacity-55">
-                            <a href="#">
-                                <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="../assets/paskib.jpg" class="w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                        <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-justify">Pengumuman Utama 4 SMA Tanjung Priok Jakarta Utara</h1>
-                                        <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-left">15 Oktober 2023</p>
-                                        <h2 class="mt-0.5 lg:mt-1 text-[11px] lg:text-xs xl:text-sm font-normal text-left">By Admin SMA Tanjung Priok</h2>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <script>
-                    const sliderElementPengumuman = document.getElementById("sliderPengumumanLarge");
-                    const totalSlidesPengumuman3 = sliderElementPengumuman.childElementCount;
-                    let currentSlideIDPengumuman3 = totalSlides - 2;
+                    const sliderElementPengumuman = document.getElementById(
+                        "sliderPengumumanLarge"
+                    );
+                    const totalSlidesPengumuman3 =
+                        sliderElementPengumuman.childElementCount;
+                    let currentSlideIDPengumuman3 = 0;
 
                     function nextPengumumanLarge() {
-                        currentSlideIDPengumuman3--;
-                        if (currentSlideIDPengumuman3 < 0) {
-                            currentSlideIDPengumuman3 = totalSlidesPengumuman3 - 2;
+                        if (currentSlideIDPengumuman3 > 0) {
+                            currentSlideIDPengumuman3--;
+                        } else {
+                            // Jika sudah mencapai batas akhir, jangan lakukan apa-apa
+                            return;
                         }
                         showSlidePengumuman3();
                     }
-
-
-
                     function prevPengumumanLarge() {
-                        currentSlideIDPengumuman3++;
-                        if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
-                            currentSlideIDPengumuman3 = 0;
-                        } else if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3 - 1) {
-                            currentSlideIDPengumuman3 = 1;
+                        if (currentSlideIDPengumuman3 < totalSlidesPengumuman3 - 2) {
+                            currentSlideIDPengumuman3++;
+                        } else {
+                            // Jika sudah mencapai awal, jangan lakukan apa-apa
+                            return;
                         }
                         showSlidePengumuman3();
                     }
 
-                    
                     function showSlidePengumuman3() {
-                        const slidesPengumuman3 = sliderElementPengumuman.getElementsByTagName("li");
-                        const textH1Pengumuman = sliderElementPengumuman.getElementsByTagName("h1");
-                        const textH2Pengumuman = sliderElementPengumuman.getElementsByTagName("h2");
-                        const textPPengumuman = sliderElementPengumuman.getElementsByTagName("p");
-                        const highPengumuman = sliderElementPengumuman.getElementsByTagName("img");
+                        const slidesPengumuman3 =
+                            sliderElementPengumuman.getElementsByTagName("li");
+                        const textH1Pengumuman =
+                            sliderElementPengumuman.getElementsByTagName("h1");
+                        const textH2Pengumuman =
+                            sliderElementPengumuman.getElementsByTagName("h2");
+                        const textPPengumuman =
+                            sliderElementPengumuman.getElementsByTagName("p");
+                        const highPengumuman =
+                            sliderElementPengumuman.getElementsByTagName("img");
 
                         for (let index = 0; index <= totalSlidesPengumuman3; index++) {
                             const element = slidesPengumuman3[index];
-                            const anchorTagPengumuman = slidesPengumuman3[index].querySelector("a"); // Mengambil tag <a> di dalam slide
+                            const anchorTagPengumuman =
+                                slidesPengumuman3[index].querySelector("a"); // Mengambil tag <a> di dalam slide
 
                             if (index === currentSlideIDPengumuman3) {
                                 // Menampilkan slide saat ini
                                 slidesPengumuman3[index].classList.remove("hidden");
-                                slidesPengumuman3[index].classList.remove("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                slidesPengumuman3[index].classList.add("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                textH1Pengumuman[index].classList.remove("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textPPengumuman[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                textH2Pengumuman[index].classList.remove("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-0.5", "lg:mt-1");
-                                highPengumuman[index].classList.remove("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
-                                textH1Pengumuman[index].classList.add("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textPPengumuman[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                textH2Pengumuman[index].classList.add("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                highPengumuman[index].classList.add("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
+                                slidesPengumuman3[index].classList.remove(
+                                    "w-[240px]",
+                                    "xl:w-[280px]",
+                                    "opacity-55",
+                                    "mt-5",
+                                    "lg:mt-6",
+                                    "xl:mt-7"
+                                );
+                                slidesPengumuman3[index].classList.add(
+                                    "w-[330px]",
+                                    "xl:w-[380px]",
+                                    "opacity-100",
+                                    "mt-0"
+                                );
+                                textH1Pengumuman[index].classList.remove(
+                                    "text-[13px]",
+                                    "lg:text-sm",
+                                    "xl:text-[15px]"
+                                );
+                                textPPengumuman[index].classList.remove(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-1",
+                                    "lg:mt-1.5"
+                                );
+                                textH2Pengumuman[index].classList.remove(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-0.5",
+                                    "lg:mt-1"
+                                );
+                                highPengumuman[index].classList.remove(
+                                    "h-[120px]",
+                                    "lg:h-[140px]",
+                                    "xl:h-[180px]"
+                                );
+                                textH1Pengumuman[index].classList.add(
+                                    "text-sm",
+                                    "lg:text-[15px]",
+                                    "xl:text-[17px]"
+                                );
+                                textPPengumuman[index].classList.add(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                textH2Pengumuman[index].classList.add(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                highPengumuman[index].classList.add(
+                                    "h-[170px]",
+                                    "lg:h-[190px]",
+                                    "xl:h-[230px]"
+                                );
 
                                 // Menghilangkan kemampuan klik pada tag <a>
                                 anchorTagPengumuman.setAttribute("href", "#");
-                            } else if (index === currentSlideIDPengumuman3 + 1 || (currentSlideIDPengumuman3 === totalSlides - 1 && index === 0)) {
+                            } else if (index === currentSlideIDPengumuman3 + 1) {
                                 // Menampilkan slide sebelumnya
                                 slidesPengumuman3[index].classList.remove("hidden");
-                                slidesPengumuman3[index].classList.remove("w-[330px]", "xl:w-[380px]", "opacity-100", "mt-0");
-                                slidesPengumuman3[index].classList.add("w-[240px]", "xl:w-[280px]", "opacity-55", "mt-5", "lg:mt-6", "xl:mt-7");
-                                textH1Pengumuman[index].classList.remove("text-sm", "lg:text-[15px]", "xl:text-[17px]");
-                                textPPengumuman[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                textH2Pengumuman[index].classList.remove("text-xs", "lg:text-[13px]", "xl:text-[15px]", "mt-1", "lg:mt-1.5", "xl:mt-2");
-                                highPengumuman[index].classList.remove("h-[170px]", "lg:h-[190px]", "xl:h-[230px]");
-                                textH1Pengumuman[index].classList.add("text-[13px]", "lg:text-sm", "xl:text-[15px]");
-                                textPPengumuman[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-1", "lg:mt-1.5");
-                                textH2Pengumuman[index].classList.add("text-[11px]", "lg:text-xs", "xl:text-sm", "mt-0.5", "lg:mt-1");
-                                highPengumuman[index].classList.add("h-[120px]", "lg:h-[140px]", "xl:h-[180px]");
+                                slidesPengumuman3[index].classList.remove(
+                                    "w-[330px]",
+                                    "xl:w-[380px]",
+                                    "opacity-100",
+                                    "mt-0"
+                                );
+                                slidesPengumuman3[index].classList.add(
+                                    "w-[240px]",
+                                    "xl:w-[280px]",
+                                    "opacity-55",
+                                    "mt-5",
+                                    "lg:mt-6",
+                                    "xl:mt-7"
+                                );
+                                textH1Pengumuman[index].classList.remove(
+                                    "text-sm",
+                                    "lg:text-[15px]",
+                                    "xl:text-[17px]"
+                                );
+                                textPPengumuman[index].classList.remove(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                textH2Pengumuman[index].classList.remove(
+                                    "text-xs",
+                                    "lg:text-[13px]",
+                                    "xl:text-[15px]",
+                                    "mt-1",
+                                    "lg:mt-1.5",
+                                    "xl:mt-2"
+                                );
+                                highPengumuman[index].classList.remove(
+                                    "h-[170px]",
+                                    "lg:h-[190px]",
+                                    "xl:h-[230px]"
+                                );
+                                textH1Pengumuman[index].classList.add(
+                                    "text-[13px]",
+                                    "lg:text-sm",
+                                    "xl:text-[15px]"
+                                );
+                                textPPengumuman[index].classList.add(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-1",
+                                    "lg:mt-1.5"
+                                );
+                                textH2Pengumuman[index].classList.add(
+                                    "text-[11px]",
+                                    "lg:text-xs",
+                                    "xl:text-sm",
+                                    "mt-0.5",
+                                    "lg:mt-1"
+                                );
+                                highPengumuman[index].classList.add(
+                                    "h-[120px]",
+                                    "lg:h-[140px]",
+                                    "xl:h-[180px]"
+                                );
 
                                 // Menonaktifkan tag <a>
                                 anchorTagPengumuman.removeAttribute("href");
@@ -781,40 +991,39 @@
                         }
                     }
 
-                    showSlidePrestasi3();
+                    showSlidePengumuman3();
                 </script>
-
             </div>
         </div>
     </div>
 </section>
 
 <!-- BERITA -->
-<section class="relative mt-16 sm:mt-20 h-[1080px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]">
+<section class="relative mt-16 sm:mt-20 h-[1080px] sm:h-[1100px] md:h-[580px] lg:h-[650px] xl:h-[780px]">
     <!-- Div untuk overlay warna -->
     <div class="absolute top-0 left-0 w-full h-full bg-[#0D464B] bg-opacity-90 z-10"></div>
     <!-- Gambar Latar -->
-    <img src={{asset("images/school-AI2.png")}} alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1080px] sm:h-[1100px] md:h-[560px] lg:h-[620px] xl:h-[780px]" />
+    <img src={{asset("images/school-AI2.png")}} alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1080px] sm:h-[1100px] md:h-[580px] lg:h-[650px] xl:h-[780px]" />
     <div class="absolute top-0 left-0 w-full my-8 sm:my-12 md:my-12 lg:my-16 xl:my-20 z-20">
         <h1 class="text-white text-center font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Berita Terkini</h1>
         <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 mt-7 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 xxl:mt-12">
             <!-- TAMPILAN HP -->
             <div class="mx-5 md:hidden">
                 @foreach($beritasHp as $row)
-                <div>
-                    <a href="#">
-                        <div class="mt-6 bg-white rounded-md w-full">
-                            <div class="w-full h-[180px]">
-                                <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                    <div>
+                        <a href="#">
+                            <div class="mt-6 bg-white rounded-md w-full">
+                                <div class="w-full h-[180px]">
+                                    <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                </div>
+                                <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
+                                    <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">{{ $row->judul }}</h1>
+                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">{{ $row->updated_at->format('d M Y')}}</p>
+                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">By {{ $row->penulis}} </p>
+                                </div>
                             </div>
-                            <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
-                                <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">{{ $row->judul }}</h1>
-                                <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">{{ $row->updated_at->format('d M Y')}}</p>
-                                <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">By {{ $row->penulis}} </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 @endforeach
             </div>
             <!-- TAMPILAN TABLET DAN LAPTOP -->
@@ -837,48 +1046,24 @@
                         </a>
                     </div>
                     <div class="grid grid-rows-3 gap-3.5 justify-evenly ml-5">
-                        <a href="#">
-                            <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
-                                <div class="flex w-full h-full">
-                                    <div class="w-1/3 h-full">
-                                        <img src="../assets/carousel-profil.jpg" class="w-full rounded-l-md h-full object-cover object-center" />
-                                    </div>
-                                    <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
-                                        <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">Berita Utama 2 SMA Tanjung Priok Tanjung Priok Jakarta Jakarta Utara, DKI Jakarta</h1>
-                                        <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]">15 Oktober 2023</p>
-                                        <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By Admin SMA Tanjung Priok</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
-                                <div class="flex w-full h-full">
-                                    <div class="w-1/3 h-full">
-                                        <img src="../assets/carousel-profil.jpg" class="w-full rounded-l-md h-full object-cover object-center" />
-                                    </div>
-                                    <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
-                                        <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">Berita Utama 3 SMA Tanjung Priok Jakarta Tanjung Priok Jakarta Utara, DKI Jakarta</h1>
-                                        <p class="mt-1.5 lg:mt-3 font-normal xl:mt-2 text-[13px] lg:text-sm xl:text-[15px]">15 Oktober 2023</p>
-                                        <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By Admin SMA Tanjung Priok</p>
+                        @foreach($beritasDekstop as $row)
+                        <div>
+                            <a href="#">
+                                <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
+                                    <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
+                                        <div class="w-1/3 h-full">
+                                            <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
+                                        </div>
+                                        <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
+                                            <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">{!! strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul !!}</h1>
+                                            <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $row->updated_at->format('d M Y')}}</p>
+                                            <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By {{ $row->penulis }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
-                                <div class="flex w-full h-full">
-                                    <div class="w-1/3 h-full">
-                                        <img src="../assets/carousel-profil.jpg" class="w-full rounded-l-md h-full object-cover object-center" />
-                                    </div>
-                                    <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
-                                        <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">Berita Utama 4 SMA Tanjung Priok Tanjung Priok Jakarta Jakarta Utara, DKI Jakarta</h1>
-                                        <p class="mt-1.5 lg:mt-3 font-normal xl:mt-2 text-[13px] lg:text-sm xl:text-[15px]">15 Oktober 2023</p>
-                                        <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By Admin SMA Tanjung Priok</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

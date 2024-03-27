@@ -11,6 +11,7 @@ interface BeritaService
 
     public function getFewDataHp():LengthAwarePaginator;
     public function getFewDataDekstop():LengthAwarePaginator;
+
     public function getFirstData():?Berita;
 
     public function add(array $data): Berita;
