@@ -943,8 +943,8 @@ video {
   height: 100px;
 }
 
-.h-\[1150px\]{
-  height: 1150px;
+.h-\[1080px\]{
+  height: 1080px;
 }
 
 .h-\[120px\]{
@@ -1001,18 +1001,6 @@ video {
 
 .h-screen{
   height: 100vh;
-}
-
-.h-\[1100px\]{
-  height: 1100px;
-}
-
-.h-\[1050px\]{
-  height: 1050px;
-}
-
-.h-\[1080px\]{
-  height: 1080px;
 }
 
 .min-h-screen{

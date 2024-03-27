@@ -503,13 +503,14 @@
                     }
 
                     function prevPrestasiLarge() {
-                        currentSlideID--;
-                        if (currentSlideID < 0) {
-                            currentSlideID = totalSlides - 1;
+                        currentSlideID++;
+                        if (currentSlideID >= totalSlides) {
+                            currentSlideID = 0;
+                        } else if (currentSlideID >= totalSlides - 1) {
+                            currentSlideID = 1;
                         }
                         showSlidePrestasi3();
                     }
-
 
 
 
@@ -560,6 +561,7 @@
 
                     showSlidePrestasi3();
                 </script>
+
             </div>
         </div>
     </div>
@@ -717,7 +719,7 @@
                     }
 
 
-                
+
                     function prevPengumumanLarge() {
                         currentSlideIDPengumuman3++;
                         if (currentSlideIDPengumuman3 >= totalSlidesPengumuman3) {
@@ -728,7 +730,7 @@
                         showSlidePengumuman3();
                     }
 
-
+                    
                     function showSlidePengumuman3() {
                         const slidesPengumuman3 = sliderElementPengumuman.getElementsByTagName("li");
                         const textH1Pengumuman = sliderElementPengumuman.getElementsByTagName("h1");
