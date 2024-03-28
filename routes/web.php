@@ -5,12 +5,56 @@ use Illuminate\Support\Facades\Route;
 Route::controller(\App\Http\Controllers\BerandaController::class)->group(
     function (){
         Route::get("/", "index");
+        Route::post("/", "index");
     }
 );
 
-Route::get('/admin', function () {
-    return view('welcome');
-});
+Route::controller(\App\Http\Controllers\ProfilController::class)->group(
+    function (){
+        Route::get("/profil", "index");
+    }
+);
+
+Route::controller(\App\Http\Controllers\DataPendidikController::class)->group(
+    function (){
+        Route::get("/data-guru", "dataGuru");
+        Route::get("/data-staf", "dataStaf");
+    }
+);
+
+Route::controller(\App\Http\Controllers\KontenController::class)->group(
+    function (){
+        Route::get("/konten", "index");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FrontendPengumumanController::class)->group(
+    function (){
+        Route::get("/list-pengumuman", "list");
+        Route::get("/detail-pengumuman/{slug}", "detail");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FrontendBeritaController::class)->group(
+    function (){
+        Route::get("/list-berita", "list");
+        Route::get("/detail-berita/{slug}", "detail");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FrontendBlogController::class)->group(
+    function (){
+        Route::get("/list-blog", "list");
+        Route::get("/detail-blog/{slug}", "detail");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FrontendPrestasiController::class)->group(
+    function (){
+        Route::get("/prestasi", "index");
+    }
+);
+
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(
     function (){

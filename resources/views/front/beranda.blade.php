@@ -654,98 +654,98 @@
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] sm:leading-relaxed font-normal text-center">Jelajahi pengumuman terkini untuk tetap terhubung dengan perkembangan terbaru SMA Tanjung Priok Jakarta.</p>
             <ul id="sliderPengumuman" class="flex gap-5">
                 @foreach($pengumumans as $pengumuman)
-                <li class="mx-5 w-full sm:w-[300px]">
-                    <a href="#">
-                        <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
-                            <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                    <li class="mx-5 w-full sm:w-[300px]">
+                        <a href="#">
+                            <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
+                                <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
+                                    <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                </div>
+                                <div class="bg-white rounded-b-md py-3 px-3">
+                                    <h1 class="text-sm font-semibold text-justify">{{ $pengumuman->judul }}</h1>
+                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
+                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By {{ $pengumuman->penulis }}</p>
+                                </div>
                             </div>
-                            <div class="bg-white rounded-b-md py-3 px-3">
-                                <h1 class="text-sm font-semibold text-justify">{{ $pengumuman->judul }}</h1>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
-                                <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By {{ $pengumuman->penulis }}</p>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                        </a>
+                    </li>
                 @endforeach
-                    <script>
-                        if (window.innerWidth < 640) {
-                            currentSlideIDPengumuman = 1;
-                            sliderElementPengumuman =
-                                document.getElementById("sliderPengumuman");
-                            totalSlidesPengumuman = sliderElementPengumuman.childElementCount;
+                <script>
+                    if (window.innerWidth < 640) {
+                        currentSlideIDPengumuman = 1;
+                        sliderElementPengumuman =
+                            document.getElementById("sliderPengumuman");
+                        totalSlidesPengumuman = sliderElementPengumuman.childElementCount;
 
-                            function nextPengumuman() {
-                                if (currentSlideIDPengumuman < totalSlidesPengumuman) {
-                                    currentSlideIDPengumuman++;
-                                    showSlidePengumuman();
-                                }
+                        function nextPengumuman() {
+                            if (currentSlideIDPengumuman < totalSlidesPengumuman) {
+                                currentSlideIDPengumuman++;
+                                showSlidePengumuman();
                             }
-                            function prevPengumuman() {
-                                if (currentSlideIDPengumuman > 1) {
-                                    currentSlideIDPengumuman--;
-                                    showSlidePengumuman();
-                                }
-                            }
-                            function showSlidePengumuman() {
-                                slidesPengumuman = document
-                                    .getElementById("sliderPengumuman")
-                                    .getElementsByTagName("li");
-                                for (let index = 0; index < totalSlidesPengumuman; index++) {
-                                    const elementPengumuman = slidesPengumuman[index];
-                                    if (currentSlideIDPengumuman === index + 1) {
-                                        elementPengumuman.classList.remove("hidden");
-                                    } else {
-                                        elementPengumuman.classList.add("hidden");
-                                    }
-                                }
-                            }
-                            showSlidePengumuman();
                         }
-
-                        if (window.innerWidth >= 640) {
-                            currentSlideIDPengumuman2 = 0;
-                            sliderElementPengumuman2 =
-                                document.getElementById("sliderPengumuman");
-                            totalSlidesPengumuman2 =
-                                sliderElementPengumuman2.childElementCount;
-
-                            function nextPengumuman() {
-                                if (currentSlideIDPengumuman2 < totalSlidesPengumuman2 - 2) {
-                                    currentSlideIDPengumuman2++;
-                                    showSlidePengumuman2();
-                                }
+                        function prevPengumuman() {
+                            if (currentSlideIDPengumuman > 1) {
+                                currentSlideIDPengumuman--;
+                                showSlidePengumuman();
                             }
-                            function prevPengumuman() {
-                                if (currentSlideIDPengumuman2 > 0) {
-                                    currentSlideIDPengumuman2--;
-                                    showSlidePengumuman2();
-                                } else if (currentSlideIDPengumuman2 === 0) {
-                                    // Tambahkan kondisi ini untuk menangani slide pertama
-                                    currentSlideIDPengumuman2 = 0; // Ubah currentSlideID menjadi 0 untuk menghindari slide negatif
-                                    showSlidePengumuman2();
-                                }
-                            }
-                            function showSlidePengumuman2() {
-                                slidesPengumuman2 = document
-                                    .getElementById("sliderPengumuman")
-                                    .getElementsByTagName("li");
-                                for (let index = 0; index < totalSlidesPengumuman2; index++) {
-                                    const elementPengumuman2 = slidesPengumuman2[index];
-                                    if (
-                                        currentSlideIDPengumuman2 <= index &&
-                                        index < currentSlideIDPengumuman2 + 2
-                                    ) {
-                                        elementPengumuman2.classList.remove("hidden");
-                                    } else {
-                                        elementPengumuman2.classList.add("hidden");
-                                    }
-                                }
-                            }
-                            showSlidePengumuman2();
                         }
-                    </script>
+                        function showSlidePengumuman() {
+                            slidesPengumuman = document
+                                .getElementById("sliderPengumuman")
+                                .getElementsByTagName("li");
+                            for (let index = 0; index < totalSlidesPengumuman; index++) {
+                                const elementPengumuman = slidesPengumuman[index];
+                                if (currentSlideIDPengumuman === index + 1) {
+                                    elementPengumuman.classList.remove("hidden");
+                                } else {
+                                    elementPengumuman.classList.add("hidden");
+                                }
+                            }
+                        }
+                        showSlidePengumuman();
+                    }
+
+                    if (window.innerWidth >= 640) {
+                        currentSlideIDPengumuman2 = 0;
+                        sliderElementPengumuman2 =
+                            document.getElementById("sliderPengumuman");
+                        totalSlidesPengumuman2 =
+                            sliderElementPengumuman2.childElementCount;
+
+                        function nextPengumuman() {
+                            if (currentSlideIDPengumuman2 < totalSlidesPengumuman2 - 2) {
+                                currentSlideIDPengumuman2++;
+                                showSlidePengumuman2();
+                            }
+                        }
+                        function prevPengumuman() {
+                            if (currentSlideIDPengumuman2 > 0) {
+                                currentSlideIDPengumuman2--;
+                                showSlidePengumuman2();
+                            } else if (currentSlideIDPengumuman2 === 0) {
+                                // Tambahkan kondisi ini untuk menangani slide pertama
+                                currentSlideIDPengumuman2 = 0; // Ubah currentSlideID menjadi 0 untuk menghindari slide negatif
+                                showSlidePengumuman2();
+                            }
+                        }
+                        function showSlidePengumuman2() {
+                            slidesPengumuman2 = document
+                                .getElementById("sliderPengumuman")
+                                .getElementsByTagName("li");
+                            for (let index = 0; index < totalSlidesPengumuman2; index++) {
+                                const elementPengumuman2 = slidesPengumuman2[index];
+                                if (
+                                    currentSlideIDPengumuman2 <= index &&
+                                    index < currentSlideIDPengumuman2 + 2
+                                ) {
+                                    elementPengumuman2.classList.remove("hidden");
+                                } else {
+                                    elementPengumuman2.classList.add("hidden");
+                                }
+                            }
+                        }
+                        showSlidePengumuman2();
+                    }
+                </script>
             </ul>
             <div class="flex justify-center items-center mt-5">
                 <button onclick="prevPengumuman()" class="rounded-full bg-[#0D464B] p-1.5 sm:p-2 mr-2">
@@ -785,18 +785,18 @@
                 <div class="w-2/3 ml-8">
                     <ul class="flex justify-end" id="sliderPengumumanLarge">
                         @foreach($pengumumans as $pengumuman)
-                        <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
-                            <a href="#">
-                                <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
-                                    <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                        <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">{{ $pengumuman->judul }}</h1>
-                                        <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
-                                        <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By {{ $pengumuman->penulis }}</h2>
+                            <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
+                                <a href="#">
+                                    <div class="justify-center items-center border rounded-md border-black border-opacity-25">
+                                        <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                                        <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
+                                            <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">{{ $pengumuman->judul }}</h1>
+                                            <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
+                                            <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By {{ $pengumuman->penulis }}</h2>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -1047,22 +1047,22 @@
                     </div>
                     <div class="grid grid-rows-3 gap-3.5 justify-evenly ml-5">
                         @foreach($beritasDekstop as $row)
-                        <div>
-                            <a href="#">
-                                <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
-                                    <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
-                                        <div class="w-1/3 h-full">
-                                            <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
-                                        </div>
-                                        <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
-                                            <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">{!! strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul !!}</h1>
-                                            <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $row->updated_at->format('d M Y')}}</p>
-                                            <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By {{ $row->penulis }}</p>
+                            <div>
+                                <a href="#">
+                                    <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
+                                        <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
+                                            <div class="w-1/3 h-full">
+                                                <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
+                                            </div>
+                                            <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
+                                                <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">{!! strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul !!}</h1>
+                                                <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $row->updated_at->format('d M Y')}}</p>
+                                                <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By {{ $row->penulis }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -1170,35 +1170,54 @@
 <section class="my-12 sm:my-16 md:py-5">
     <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Kritik & Saran</h1>
-        <form class="mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12">
+        @if(isset($status))
+            <div class="rounded-md w-full px-2 mt-5 text-[13px] sm:text-sm md:text-[15px] xl:text-base font-normal bg-amber-300 text-black mb-4">
+                <p class="text-center">{{$status}}</p>
+            </div>
+        @endif
+        <form method="post" class="mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-12">
+            @csrf
             <div class="sm:flex">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Nama Lengkap</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
                     <input type="text" id="nama" name="nama" class="w-full px-2 py-1.5 lg:py-2 bg-white rounded-md border border-black border-opacity-30 text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base" />
                 </div>
             </div>
+            <!-- Tambahkan validasi error untuk nama -->
+            @error('nama')
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
+            @enderror
             <div class="sm:flex mt-2 md:mt-3 lg:mt-4">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Email</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
                     <input type="email" id="email" name="email" class="w-full px-2 py-1.5 lg:py-2 bg-white rounded-md border border-black border-opacity-30 text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base" />
                 </div>
             </div>
+            <!-- Tambahkan validasi error untuk email -->
+            @error('email')
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
+            @enderror
             <div class="sm:flex mt-2 md:mt-3 lg:mt-4">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Kritik dan Saran</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
-                    <textarea rows="5" id="konten" name="konten" class="w-full px-2 py-1 lg:py-2 bg-white rounded-md border border-black border-opacity-30 text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base"></textarea>
+                    <textarea rows="5" id="isi" name="isi" class="w-full px-2 py-1 lg:py-2 bg-white rounded-md border border-black border-opacity-30 text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base"></textarea>
                 </div>
             </div>
+            <!-- Tambahkan validasi error untuk isi -->
+            @error('isi')
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
+            @enderror
             <div class="ml-auto justify-end flex mt-4 md:mt-5">
                 <button
                     class="bg-[#0D464B] transition ease-in-out hover:scale-105 duration-300 py-2 lg:py-2.5 px-4 md:px-5 lg:px-6 xl:px-7 rounded-md text-white font-semibold text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base"
-                >
+                    type="submit">
                     Submit
                 </button>
             </div>
         </form>
     </div>
 </section>
+
 
 @include('front.footer')
 </body>

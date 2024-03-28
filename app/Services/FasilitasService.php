@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\Fasilitas;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Ramsey\Collection\Collection;
 
 interface FasilitasService
 {

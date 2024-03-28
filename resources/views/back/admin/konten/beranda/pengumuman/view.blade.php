@@ -56,7 +56,6 @@
                                                             <th>Penulis</th>
                                                             <th>Gambar</th>
                                                             <th>Dokumen</th>
-                                                            <th>Konten Pengumuman</th>
                                                             <th>Kategori</th>
                                                             <th>Status</th>
                                                             <th>Tanggal</th>
@@ -76,7 +75,6 @@
                                                                         Tidak ada
                                                                     @endif
                                                                 </td>
-                                                                <td class="text-bold-500">{!! strlen($pengumuman->konten) > 200 ? substr($pengumuman->konten, 0, 200) . '...' : $pengumuman->konten !!}</td>
                                                                 <td class="text-bold-500">{{ $pengumuman->kategoriPengumuman->kategori }}</td>
                                                                 <td>
                                                                     @if ($pengumuman->is_active == '1')

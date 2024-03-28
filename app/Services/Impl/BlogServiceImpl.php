@@ -17,9 +17,9 @@ class BlogServiceImpl implements BlogService
         return Blog::orderBy('created_at', 'desc')->paginate(12);
     }
 
-    public function getAll(): Collection
+    public function getAll(): LengthAwarePaginator
     {
-        return Blog::orderBy('created_at', 'desc')->get();
+        return Blog::withTrashed()->where('is_active', 1)->orderBy('created_at', 'desc')->paginate(8);
     }
 
     public function add(array $data): Blog

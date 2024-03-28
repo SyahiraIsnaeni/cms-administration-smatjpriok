@@ -18,7 +18,7 @@ class GaleriServiceImpl implements GaleriService
 
     public function getFewData(): LengthAwarePaginator
     {
-        return Galeri::orderBy('created_at', 'desc')->paginate(3);
+        return Galeri::orderBy('created_at', 'desc')->paginate(4);
     }
 
     public function add(array $data): Galeri

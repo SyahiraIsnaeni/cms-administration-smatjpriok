@@ -55,7 +55,6 @@
                                                             <th>Judul</th>
                                                             <th>Penulis</th>
                                                             <th>Gambar</th>
-                                                            <th>Konten Blog</th>
                                                             <th>Status</th>
                                                             <th>Tanggal</th>
                                                             <th>Aksi</th>
@@ -67,7 +66,6 @@
                                                                 <td class="text-bold-500">{{ $blog->judul }}</td>
                                                                 <td class="text-bold-500">{{ $blog->penulis }}</td>
                                                                 <td><img src={{asset('storage/blog/' . $blog->gambar) }} width="100" height="100"></td>
-                                                                <td class="text-bold-500">{!! strlen($blog->konten) > 200 ? substr($blog->konten, 0, 200) . '...' : $blog->konten !!}</td>
                                                                 <td>
                                                                     @if ($blog->is_active == '1')
                                                                         Diterbitkan

@@ -18,7 +18,7 @@ class PrestasiServiceImpl implements PrestasiService
 
     public function getFewData(): LengthAwarePaginator
     {
-        return Prestasi::orderBy('created_at', 'desc')->paginate(5);
+        return Prestasi::orderBy('created_at', 'asc')->paginate(5);
     }
 
     public function add(array $data): Prestasi

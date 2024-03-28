@@ -11,7 +11,7 @@ interface BlogService
 {
     public function get():LengthAwarePaginator;
 
-    public function getAll():Collection;
+    public function getAll():LengthAwarePaginator;
 
     public function add(array $data): Blog;
 

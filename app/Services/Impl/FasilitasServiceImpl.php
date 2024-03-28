@@ -4,10 +4,10 @@ namespace App\Services\Impl;
 
 use App\Models\Fasilitas;
 use App\Services\FasilitasService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Ramsey\Collection\Collection;
 
 class FasilitasServiceImpl implements FasilitasService
 {
