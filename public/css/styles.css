@@ -1590,6 +1590,11 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
+.via-\[\#13494D\]\/50{
+  --tw-gradient-to: rgb(19 73 77 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(19 73 77 / 0.5) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
 .to-\[\#737373\]\/10{
   --tw-gradient-to: rgb(115 115 115 / 0.1) var(--tw-gradient-to-position);
 }
@@ -2532,6 +2537,10 @@ video {
     line-height: 1rem;
   }
 
+  .sm\:text-\[17px\]{
+    font-size: 17px;
+  }
+
   .sm\:leading-relaxed{
     line-height: 1.625;
   }
@@ -3163,6 +3172,10 @@ video {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-none{
+    grid-template-columns: none;
+  }
+
   .lg\:flex-col{
     flex-direction: column;
   }
@@ -3193,6 +3206,10 @@ video {
 
   .lg\:gap-12{
     gap: 3rem;
+  }
+
+  .lg\:gap-5{
+    gap: 1.25rem;
   }
 
   .lg\:p-10{
@@ -3285,6 +3302,10 @@ video {
 
   .lg\:pt-20{
     padding-top: 5rem;
+  }
+
+  .lg\:pt-5{
+    padding-top: 1.25rem;
   }
 
   .lg\:text-2xl{
@@ -3637,6 +3658,10 @@ video {
 
   .xl\:gap-8{
     gap: 2rem;
+  }
+
+  .xl\:gap-5{
+    gap: 1.25rem;
   }
 
   .xl\:px-3{

@@ -123,7 +123,7 @@
     <!-- TAMPILAN HP -->
     <div class="block sm:hidden mx-5 mt-3">
         @foreach($galeris as $galeri)
-        <a href="galeri-detail.html">
+        <a href="{{ route('detail-galeri', ['id' => $galeri->id]) }}">
             <div class="relative mt-5">
                 <img
                     src="{{ asset('storage/galeri-thumbnail/' . $galeri->thumbnail) }}"
@@ -171,7 +171,7 @@
             class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 lg:gap-8"
         >
             @foreach($galeris as $galeri)
-            <a href="galeri-detail.html">
+            <a href="{{ route('detail-galeri', ['id' => $galeri->id]) }}">
                 <div class="relative">
                     <img
                         src="{{ asset('storage/galeri-thumbnail/' . $galeri->thumbnail) }}"

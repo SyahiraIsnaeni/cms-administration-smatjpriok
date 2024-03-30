@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Pengumuman Detail SMA Tanjung Priok Jakarta</title>
+    <title>Detail Galeri Kegiatan SMA Tanjung Priok Jakarta</title>
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
@@ -167,95 +167,43 @@
     </script>
 </nav>
 
-<!-- CONTENT -->
+<!-- GALERI CONTENT -->
 <section class="my-10 sm:my-12">
-    <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
-        <h1
-            class="font-bold leading-[1.5] md:leading-[1.4] text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl"
-        >
-            {{ $blog->judul}}
-        </h1>
-        <div class="lg:mt-4 mt-2 flex">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                class="lg:w-5 lg:h-5 md:h-4 md:w-4 w-3.5 h-4 mr-1 lg:mr-1.5"
-            >
-                <path
-                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-                />
-            </svg>
-            <p
-                class="text-[13px] sm:text-sm md:text-[14.5px] lg:text-[15px] xl:text-base font-light"
-            >
-                By {{ $blog->penulis}}
-            </p>
-        </div>
-        <div class="mt-0.5 md:mt-1 lg:mt-1.5 flex">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                class="lg:w-[18px] lg:h-[18px] md:h-4 md:w-4 w-3.5 h-4 mr-1 lg:mr-1.5"
-            >
-                <path
-                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"
-                />
-            </svg>
-            <p
-                class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[15px] xl:text-base font-light"
-            >
-                {{ \Carbon\Carbon::parse($blog->updated_at)->setTimezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
-            </p>
-        </div>
-        <img
-            src="{{ asset('storage/blog/' . $blog->gambar) }}"
-            class="w-full h-[250px] sm:h-[300px] md:h-[380px] lg:h-[550px] xl:h-[600px] mt-4 lg:mt-5 xl:mt-7 object-cover object-center"
-        />
-        <p
-            class="mt-5 lg:mt-7 sm:leading-relaxed lg:leading-[1.7] xl:leading-[1.8] text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px] text-justify"
-        >
-            {!!  $blog->konten !!}
-        </p>
-    </div>
-</section>
-
-<!-- OTHER CONTENT -->
-<section class="my-10 sm:my-12">
-    <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
-        <h1
-            class="font-bold text-[17px] sm:text-lg md:text-[19px] lg:text-[21px] xl:text-2xl underline underline-offset-8 lg:underline-offset-[10px] xl:underline-offset-[12px] decoration-4 decoration-[#FF8B42]"
-        >
-            Blog Lainnya
-        </h1>
-        <div
-            class="mt-6 sm:mt-8 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 md:gap-8 ms:gap-5 xl:gap-8"
-        >
-            @foreach($nextBlog as $row)
-            <a href="{{ route('detail-blog', ['slug' => $row->slug]) }}">
-                <div
-                    class="relative h-[250px] mt-5 sm:mt-0 hover:scale-105 ease-in-out duration-300"
-                >
-                    <img
-                        src="{{ asset('storage/blog/' . $row->gambar) }}"
-                        class="w-full object-cover object-center h-full"
-                    />
-                    <div
-                        class="bg-[#0D464B] text-white bg-gradient-to-t from-[#0D464B] via-[#13494D]/70 to-[#737373]/5 bg-opacity-20 absolute top-0 h-full w-full"
-                    >
-                        <div class="bottom-0 absolute mx-5 my-5">
-                            <h1 class="mt-auto text-[15px] sm:text-base font-medium">
-                                {{ $row->judul}}
-                            </h1>
-                            <p
-                                class="text-[13px] sm:text-sm md:text-[15px] font-light mt-1"
-                            >
-                                {{ $row->updated_at->format('d M Y')}}
-                            </p>
-                        </div>
-                    </div>
+    <div class="lg:pt-5 mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 lg:flex">
+        <div class="lg:w-2/3 xl:w-3/4">
+            <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl leading-[1.5]">
+                {{ $galeri->judul}}
+            </h1>
+            <div class="mt-7 md:mt-10 grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8 xl:gap-5">
+                @foreach($galeri->images as $image)
+                <div>
+                    <img src="{{ asset('storage/galeri-images/'.$image->image) }}" class="object-cover object-center w-full h-[250px]">
                 </div>
-            </a>
-            @endforeach
+                @endforeach
+            </div>
+        </div>
+        <div class="mt-10 lg:mt-0 lg:w-1/3 xl:w-1/4 lg:ml-12 xl:ml-16">
+            <div class="bg-white border border-black border-opacity-30 rounded-md px-2.5 py-1 xl:py-1.5 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5" fill="grey"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                <input class="ml-2 w-full py-0.5 placeholder:text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px]" placeholder="Cari galeri...">
+            </div>
+            <div class="mt-5">
+                <h1 class="font-bold text-[17px] sm:text-lg md:text-[19px] lg:text-xl xl:text-[21px] underline underline-offset-8 lg:underline-offset-[10px] decoration-4 decoration-[#FF8B42]">Galeri Lainnya</h1>
+                <div class="mt-3 lg:mt-6 sm:grid sm:grid-cols-2 lg:grid-cols-none sm:gap-5 md:gap-8 lg:gap-5">
+                    @foreach($nextGaleri as $row)
+                    <a href="{{ route('detail-galeri', ['id' => $row->id]) }}">
+                        <div class="relative h-[240px] mt-5 sm:mt-0  hover:scale-105 ease-in-out duration-300">
+                            <img src="{{ asset('storage/galeri-thumbnail/' . $row->thumbnail) }}" class="w-full object-cover object-center h-full">
+                            <div class="bg-[#0D464B]  text-white bg-gradient-to-t from-[#0D464B] via-[#13494D]/50 to-[#737373]/5 bg-opacity-25 absolute top-0 h-full w-full">
+                                <div class="bottom-0 absolute mx-5 my-5">
+                                    <h1 class="mt-auto text-base sm:text-[17px] font-medium leading-relaxed">{{ $row->judul}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </section>

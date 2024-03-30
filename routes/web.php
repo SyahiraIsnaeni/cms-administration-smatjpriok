@@ -28,6 +28,12 @@ Route::controller(\App\Http\Controllers\KontenController::class)->group(
     }
 );
 
+Route::controller(\App\Http\Controllers\FrontendGaleriController::class)->group(
+    function (){
+        Route::get("/detail-galeri/{id}", "detail")->name("detail-galeri");
+    }
+);
+
 Route::controller(\App\Http\Controllers\FrontendPengumumanController::class)->group(
     function (){
         Route::get("/list-pengumuman", "list")->name("list-pengumuman");
