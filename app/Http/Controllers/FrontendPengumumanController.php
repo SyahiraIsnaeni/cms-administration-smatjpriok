@@ -27,8 +27,8 @@ class FrontendPengumumanController
     }
 
     public function detail($slug):Response{
-        $pengumuman = Pengumuman::where('slug', $slug)->first();
-        $nextPengumuman = Pengumuman::whereNotIn('slug', [$slug])->where('is_active', '1')->limit(4)->orderByDesc('created_at')->get();
+        $pengumuman = Pengumuman::withTrashed()->where('slug', $slug)->first();
+        $nextPengumuman = Pengumuman::withTrashed()->whereNotIn('slug', [$slug])->where('is_active', '1')->limit(4)->orderByDesc('created_at')->get();
         return response()
             ->view("front.detail-pengumuman", [
                 "pengumuman" => $pengumuman,

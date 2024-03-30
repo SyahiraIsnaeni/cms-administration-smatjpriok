@@ -249,7 +249,7 @@
         </h1>
         <div class="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6 md:gap-8 ms:gap-5 xl:gap-8">
             @foreach($blogs as $blog)
-            <a href="blog-detail.html">
+            <a href="{{ route('detail-blog', ['slug' => $blog->slug]) }}">
                 <div class="relative h-[250px] mt-5 sm:mt-0  hover:scale-105 ease-in-out duration-300">
                     <img src="{{ asset('storage/blog/' . $blog->gambar) }}" class="w-full object-cover object-center h-full">
                     <div class="bg-[#0D464B]  text-white bg-gradient-to-t from-[#0D464B] via-[#13494D]/70 to-[#737373]/5 bg-opacity-20 absolute top-0 h-full w-full">

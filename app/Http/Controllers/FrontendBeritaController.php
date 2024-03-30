@@ -27,8 +27,8 @@ class FrontendBeritaController
     }
 
     public function detail($slug):Response{
-        $berita = Berita::where('slug', $slug)->first();
-        $nextBerita = Berita::whereNotIn('slug', [$slug])->where('is_active', '1')->limit(5)->orderByDesc('created_at')->get();
+        $berita = Berita::withTrashed()->where('slug', $slug)->first();
+        $nextBerita = Berita::withTrashed()->whereNotIn('slug', [$slug])->where('is_active', '1')->limit(5)->orderByDesc('created_at')->get();
         return response()
             ->view("front.detail-berita", [
                 "berita" => $berita,
