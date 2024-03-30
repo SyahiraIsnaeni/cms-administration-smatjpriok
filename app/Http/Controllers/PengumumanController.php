@@ -49,6 +49,7 @@ class PengumumanController
             'konten' => 'required',
             'kategori_pengumuman_id' => 'required',
             'gambar' => 'required|image|mimes:jpeg,jpg,png',
+            'dokumen' => 'mimes:pdf,xls,xlsx,doc,docx,jpg,png,jpeg',
             'is_active' => 'required',
 
         ]);
@@ -96,6 +97,7 @@ class PengumumanController
 
         $validator = Validator::make($request->all(), [
             'gambar' => 'image|mimes:jpeg,jpg,png',
+            'dokumen' => 'mimes:pdf,xls,xlsx,doc,docx,jpg,png,jpeg',
         ]);
 
         if ($validator->fails()) {

@@ -9,6 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 interface PengumumanService
 {
     public function get():LengthAwarePaginator;
+    public function getAll():Collection;
 
     public function getFewData():LengthAwarePaginator;
 

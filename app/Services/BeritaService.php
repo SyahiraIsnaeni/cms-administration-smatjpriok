@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Models\Berita;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface BeritaService
 {
     public function get():LengthAwarePaginator;
+    public function getAll():Collection;
 
     public function getFewDataHp():LengthAwarePaginator;
     public function getFewDataDekstop():LengthAwarePaginator;

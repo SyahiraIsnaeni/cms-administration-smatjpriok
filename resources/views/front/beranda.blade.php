@@ -158,7 +158,7 @@
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl text-center">Eksplorasi Terbaru</h1>
         <p class="mt-3 font-normal lg:mt-5 text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-lg italic text-center">Jelajahi update terbaru dari komunitas pendidikan kami!</p>
         <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 sm:mt-3">
-            <a href="prestasi.html">
+            <a href="{{route("list-prestasi")}}">
                 <div class="bg-[#00C59C] rounded-md bg-opacity-80 py-6 px-6 lg:px-7 lg:py-7 mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-10 h-10">
                         <path
@@ -169,7 +169,7 @@
                     <p class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15.5px] font-normal mt-1">Telusuri Pencapaian Gemilang Sekolah Kami.</p>
                 </div>
             </a>
-            <a href="berita.html">
+            <a href="{{route("list-berita")}}">
                 <div class="bg-[#FF8B42] rounded-md bg-opacity-85 py-6 px-6 lg:px-7 lg:py-7 mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-10 h-10">
                         <path

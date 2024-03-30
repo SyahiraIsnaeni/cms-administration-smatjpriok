@@ -16,6 +16,11 @@ class BeritaServiceImpl implements BeritaService
         return Berita::orderBy('created_at', 'desc')->paginate(12);
     }
 
+    public function getAll(): Collection
+    {
+        return Berita::withTrashed()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
+    }
+
     public function getFewDataHp(): LengthAwarePaginator
     {
         $perPage = 3;

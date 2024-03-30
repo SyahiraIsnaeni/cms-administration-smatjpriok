@@ -30,28 +30,28 @@ Route::controller(\App\Http\Controllers\KontenController::class)->group(
 
 Route::controller(\App\Http\Controllers\FrontendPengumumanController::class)->group(
     function (){
-        Route::get("/list-pengumuman", "list");
-        Route::get("/detail-pengumuman/{slug}", "detail");
+        Route::get("/list-pengumuman", "list")->name("list-pengumuman");
+        Route::get("/detail-pengumuman/{slug}", "detail")->name("detail-pengumuman");
     }
 );
 
 Route::controller(\App\Http\Controllers\FrontendBeritaController::class)->group(
     function (){
-        Route::get("/list-berita", "list");
-        Route::get("/detail-berita/{slug}", "detail");
+        Route::get("/list-berita", "list")->name("list-berita");
+        Route::get("/detail-berita/{slug}", "detail")->name("detail-berita");
     }
 );
 
 Route::controller(\App\Http\Controllers\FrontendBlogController::class)->group(
     function (){
         Route::get("/list-blog", "list");
-        Route::get("/detail-blog/{slug}", "detail");
+        Route::get("/detail-blog/{slug}", "detail")->name("detail-blog");
     }
 );
 
 Route::controller(\App\Http\Controllers\FrontendPrestasiController::class)->group(
     function (){
-        Route::get("/prestasi", "index");
+        Route::get("/prestasi", "index")->name("list-prestasi");
     }
 );
 

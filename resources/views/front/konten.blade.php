@@ -293,7 +293,7 @@
     <!-- TAMPILAN HP -->
     <div class="mx-5 sm:mx-8 pt-6 block md:hidden">
         <div class="flex">
-            <img src="../assets/logo.png" class="w-[52px] h-[50px]" />
+            <img src="{{ asset('images/logo.png') }}" class="w-[52px] h-[50px]" />
             <div class="ml-2">
                 <h1 class="text-white text-sm sm:text-[15px] font-semibold">
                     SMA Tanjung Priok Jakarta
@@ -381,9 +381,9 @@
                         />
                     </svg>
                 </a>
-                <a href="#">
+                <a href="https://www.instagram.com/smatanjungpriok_jkt/">
                     <svg
-                        xmlns="https://www.instagram.com/smatanjungpriok_jkt/"
+                        xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
                         class="w-5 h-5 sm:h-6 sm:w-6 ml-[9.5px]"
                         fill="#fff"
@@ -419,7 +419,7 @@
         <div class="flex">
             <div class="w-1/3">
                 <div class="flex">
-                    <img src="../assets/logo.png" class="w-12 h-12" />
+                    <img src="{{ asset('images/logo.png') }}" class="w-12 h-12" />
                     <div class="ml-3">
                         <h1
                             class="text-white text-[15px] lg:text-[15.5px] xl:text-base font-semibold"
@@ -523,9 +523,9 @@
                                 />
                             </svg>
                         </a>
-                        <a href="#">
+                        <a href="https://www.instagram.com/smatanjungpriok_jkt/">
                             <svg
-                                xmlns="https://www.instagram.com/smatanjungpriok_jkt/"
+                                xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"
                                 class="h-6 w-6 ml-[9.5px]"
                                 fill="#fff"
