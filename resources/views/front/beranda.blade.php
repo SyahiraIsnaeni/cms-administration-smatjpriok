@@ -180,7 +180,7 @@
                     <p class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15.5px] font-normal mt-1">Jelajahi Berita-Berita Terkini Sekolah Kami.</p>
                 </div>
             </a>
-            <a href="pengumuman.html">
+            <a href="{{route("list-pengumuman")}}">
                 <div class="bg-[#00A9C0] rounded-md bg-opacity-75 py-6 px-6 lg:px-7 lg:py-7 mt-5 sm:mt-0 lg:mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-10 h-10">
                         <path

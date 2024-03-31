@@ -2,16 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::fallback(function (){
+    return view("front.not-found");
+});
+
 Route::controller(\App\Http\Controllers\BerandaController::class)->group(
     function (){
-        Route::get("/", "index");
+        Route::get("/", "index")->name("home");
         Route::post("/", "index");
     }
 );
 
 Route::controller(\App\Http\Controllers\ProfilController::class)->group(
     function (){
-        Route::get("/profil", "index");
+        Route::get("/profil", "index")->name("profil-sekolah");
     }
 );
 
@@ -24,7 +28,7 @@ Route::controller(\App\Http\Controllers\DataPendidikController::class)->group(
 
 Route::controller(\App\Http\Controllers\KontenController::class)->group(
     function (){
-        Route::get("/konten", "index");
+        Route::get("/konten", "index")->name("konten-sekolah");
     }
 );
 

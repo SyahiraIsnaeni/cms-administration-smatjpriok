@@ -11,15 +11,15 @@
         </div>
         <div class="mt-7">
             <h1 class="text-white text-[13px] sm:text-sm font-medium underline underline-offset-8 decoration-[1.5px]">Konten Sekolah</h1>
-            <a href="prestasi.html"><p class="text-white text-xs sm:text-[13px] font-light mt-3">Prestasi</p></a>
-            <a href="pengumuman.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Pengumuman</p></a>
-            <a href="berita.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Berita</p></a>
-            <a href="konten.html" class="text-white text-xs sm:text-[13px] font-light mt-1"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Galeri dan Video</p></a>
+            <a href="{{route("list-prestasi")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-3">Prestasi</p></a>
+            <a href="{{route("list-pengumuman")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Pengumuman</p></a>
+            <a href="{{route("list-berita")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Berita</p></a>
+            <a href="{{route("konten-sekolah")}}" class="text-white text-xs sm:text-[13px] font-light mt-1"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Galeri dan Video</p></a>
         </div>
 
         <div class="mt-7">
             <h1 class="text-white text-[13px] sm:text-sm font-medium underline underline-offset-8 decoration-[1.5px]">Informasi Sekolah</h1>
-            <a href="profil.html"><p class="text-white text-xs sm:text-[13px] font-light mt-3">Profil</p></a>
+            <a href="{{route("profil-sekolah")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-3">Profil</p></a>
             <a href="guru.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Guru</p></a>
             <a href="staf.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Staf</p></a>
         </div>
@@ -86,14 +86,14 @@
             <div class="w-2/3 ml-10 lg:ml-16 xl:ml-20 grid grid-cols-3 gap-2">
                 <div>
                     <h1 class="text-white text-sm lg:text-[14.5px] xl:text-[15px] font-medium underline underline-offset-8 decoration-[1.5px]">Konten Sekolah</h1>
-                    <a href="prestasi.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-4 hover:text-[#FF8B42]">Prestasi</p></a>
-                    <a href="pengumuman.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Pengumuman</p></a>
-                    <a href="berita.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Berita</p></a>
-                    <a href="konten.html" class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-1"><p class="text-white text-xs sm:text-[13px] font-light mt-2 hover:text-[#FF8B42]">Galeri dan Video</p></a>
+                    <a href="{{route("list-prestasi")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-4 hover:text-[#FF8B42]">Prestasi</p></a>
+                    <a href="{{route("list-pengumuman")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Pengumuman</p></a>
+                    <a href="{{route("list-berita")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Berita</p></a>
+                    <a href="{{route("konten-sekolah")}}" class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-1"><p class="text-white text-xs sm:text-[13px] font-light mt-2 hover:text-[#FF8B42]">Galeri dan Video</p></a>
                 </div>
                 <div>
                     <h1 class="text-white text-sm lg:text-[14.5px] xl:text-[15px] font-medium underline underline-offset-8 decoration-[1.5px]">Informasi Sekolah</h1>
-                    <a href="profil.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-4 hover:text-[#FF8B42]">Profil</p></a>
+                    <a href="{{route("profil-sekolah")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-4 hover:text-[#FF8B42]">Profil</p></a>
                     <a href="guru.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Guru</p></a>
                     <a href="staf.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Staf</p></a>
                 </div>
