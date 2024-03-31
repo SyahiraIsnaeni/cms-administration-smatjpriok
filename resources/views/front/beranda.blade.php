@@ -216,7 +216,7 @@
                         {!! strlen($ekstrakurikuler->deskripsi) > 150 ? substr($ekstrakurikuler->deskripsi, 0, 150) . '...' : $ekstrakurikuler->deskripsi !!}
                     </p>
                     <div class="flex justify-center items-center mt-2 sm:mt-3">
-                        <a href="#">
+                        <a href="{{ route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id]) }}">
                             <p class="text-[12.5px] sm:text-sm font-medium text-white underline">Selengkapnya</p>
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[1px] ml-0.5 w-3.5 h-3.5" fill="#fff">
@@ -293,7 +293,7 @@
                                     {!! strlen($ekstrakurikuler->deskripsi) > 300 ? substr($ekstrakurikuler->deskripsi, 0, 300) . '...' : $ekstrakurikuler->deskripsi !!}
                                 </p>
                                 <div class="mt-4 flex">
-                                    <a href="#">
+                                    <a href="{{ route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id]) }}">
                                         <p class="text-[14.5px] lg:text-base xl:text-[17px] font-medium text-white underline">Selengkapnya</p>
                                     </a>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[3px] ml-1 w-4 h-4" fill="#fff">
