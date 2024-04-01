@@ -19,13 +19,6 @@ Route::controller(\App\Http\Controllers\ProfilController::class)->group(
     }
 );
 
-Route::controller(\App\Http\Controllers\DataPendidikController::class)->group(
-    function (){
-        Route::get("/data-guru", "dataGuru");
-        Route::get("/data-staf", "dataStaf");
-    }
-);
-
 Route::controller(\App\Http\Controllers\KontenController::class)->group(
     function (){
         Route::get("/konten", "index")->name("konten-sekolah");
