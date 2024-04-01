@@ -274,3 +274,16 @@ Route::controller(\App\Http\Controllers\RiwayatBlogController::class)->middlewar
     }
 );
 
+Route::controller(\App\Http\Controllers\GuruController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/guru", "guru")->name("guru");
+        Route::get("/dashboard/guru/add", "addGuru");
+        Route::get("/dashboard/guru/{id}/edit", "editGuru")->name("edit-guru");
+        Route::post("/dashboard/guru/add", "addDataGuru")->name("add-guru");
+        Route::patch("/dashboard/guru/{id}/edit", "editDataGuru")->name("edit-guru");
+        Route::delete("/dashboard/guru/{id}/delete", "deleteDataGuru")->name("delete-guru");
+        Route::post('/dashboard/guru/import', 'importDataGuru')->name('import-guru');
+        Route::get('/dashboard/guru/import', 'importGuru')->name('import-guru');
+    }
+);
+

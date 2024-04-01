@@ -191,8 +191,8 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/guru*') ? 'active' : '' }}">
+                    <a href="/dashboard/guru" class='sidebar-link'>
                         <i class="bi bi-file-earmark-medical-fill"></i>
                         <span>Data Guru</span>
                     </a>
