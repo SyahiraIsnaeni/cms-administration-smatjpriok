@@ -33,10 +33,18 @@ class BeritaServiceImpl implements BeritaService
     public function getFewDataDekstop(): LengthAwarePaginator
     {
         $perPage = 3;
+
         $latest = Berita::withTrashed()
             ->where('is_active', 1)
             ->orderBy('created_at', 'desc')
             ->first();
+
+        if (!$latest) {
+            return Berita::withTrashed()
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate($perPage);
+        }
 
         return Berita::withTrashed()
             ->where('id', '!=', $latest->id)

@@ -72,6 +72,11 @@
                                                 <input type="text" id="squareText" class="form-control square"
                                                        placeholder="NIP Guru" name="nip">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Jabatan</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       placeholder="Jabatan Guru" name="jabatan">
+                                            </div>
                                             <div class="form-group" style="margin-top: 20px">
                                                 <label for="formFile" class="form-label">Foto Guru (opsional) - format (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" type="file" id="formFile" name="foto">

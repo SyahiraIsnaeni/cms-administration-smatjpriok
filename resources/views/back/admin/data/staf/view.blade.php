@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Guru</h3>
+                        <h3>Data Staf</h3>
                     </div>
                 </div>
             </div>
@@ -42,17 +42,17 @@
                                 <div class="card-body">
                                     <div class="card-header" style="display: flex">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/guru/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="/dashboard/staf/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                         <div class="card-head-row" style="margin-left: 10px">
-                                            <a href="/dashboard/guru/import" class="btn btn-success btn=sm ml-auto">
+                                            <a href="/dashboard/staf/import" class="btn btn-success btn=sm ml-auto">
                                                 <i class="bi bi-plus-circle" style="margin-right: 4px">
 
                                                 </i>Import Data
                                             </a>
                                         </div>
                                         <div class="card-head-row" style="margin-left: 10px">
-                                            <form action="/dashboard/guru/reset" method="POST">
+                                            <form action="/dashboard/staf/reset" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger ml-auto">
@@ -76,24 +76,24 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($gurus as $guru)
+                                                        @forelse($stafs as $staf)
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $guru->nama }}</td>
-                                                                <td class="text-bold-500">{{ $guru->nip }}</td>
-                                                                <td class="text-bold-500">{{ $guru->jabatan }}</td>
+                                                                <td class="text-bold-500">{{ $staf->nama }}</td>
+                                                                <td class="text-bold-500">{{ $staf->nip }}</td>
+                                                                <td class="text-bold-500">{{ $staf->jabatan }}</td>
                                                                 <td>
-                                                                    @if($guru->foto)
-                                                                        <img src="{{ asset('storage/guru/' . $guru->foto) }}" width="100" height="100">
+                                                                    @if($staf->foto)
+                                                                        <img src="{{ asset('storage/staf/' . $staf->foto) }}" width="100" height="100">
                                                                     @else
                                                                         Tidak ada
                                                                     @endif
                                                                 </td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="{{ route('edit-guru', ['id' => $guru->id]) }}" class="btn icon btn-primary">
+                                                                    <a href="{{ route('edit-staf', ['id' => $staf->id]) }}" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
                                                                     <br>
-                                                                    <form method="post" action="{{ route('delete-guru', $guru->id) }}" class="d-inline">
+                                                                    <form method="post" action="{{ route('delete-staf', $staf->id) }}" class="d-inline">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
@@ -109,7 +109,7 @@
                                                         @endforelse
                                                         </tbody>
                                                     </table>
-                                                    {{$gurus->links()}}
+                                                    {{$stafs->links()}}
                                                 </div>
                                             </div>
                                         </div>

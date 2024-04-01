@@ -10,10 +10,13 @@ interface StafService
 {
     public function get():LengthAwarePaginator;
 
-
     public function add(array $data): Staf;
+
+    public function addFromExcel($file): void;
 
     public function edit(int $id, array $data): Staf;
 
     public function delete(int $id):bool;
+
+    public function deleteAll():bool;
 }

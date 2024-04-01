@@ -42,6 +42,7 @@ class GuruController
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'nip' => 'required',
+            'jabatan' => 'required',
             'foto' => 'image|mimes:jpeg,jpg,png',
         ]);
 
@@ -53,6 +54,7 @@ class GuruController
         $data = [
             'nama' => $request->input('nama'),
             'nip' => $request->input('nip'),
+            'jabatan' => $request->input('jabatan'),
             'foto' => $request->file('foto'),
             'email' => $request->input('email'),
         ];
@@ -78,8 +80,8 @@ class GuruController
 
     public function editDataGuru(int $id, Request $request): Response|RedirectResponse
     {
-        if (($request->input('nama') == null) || ($request->input('nip') == null)) {
-            Alert::error('Gagal', 'Pastikan Data Nama dan NIP Tidak Kosong');
+        if (($request->input('nama') == null) || ($request->input('nip') == null) || ($request->input('jabatan') == null)) {
+            Alert::error('Gagal', 'Pastikan Data Nama, NIP, dan Tidak Kosong');
             return redirect()->back();
         }
 
@@ -95,6 +97,7 @@ class GuruController
         $data = [
             'nama' => $request->input('nama'),
             'nip' => $request->input('nip'),
+            'jabatan' => $request->input('jabatan'),
             'email' => $request->input('email'),
             'foto' => $request->file('foto'),
         ];
@@ -114,6 +117,13 @@ class GuruController
     {
         $this->guruService->delete($id);
         Alert::success('Sukses', 'Berhasil Menghapus Data Guru');
+        return redirect()->route('guru');
+    }
+
+    public function deleteAllDataGuru(): Response|RedirectResponse
+    {
+        $this->guruService->deleteAll();
+        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Guru');
         return redirect()->route('guru');
     }
 

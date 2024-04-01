@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Guru</h3>
+                        <h3>Edit Data Staf</h3>
                     </div>
                 </div>
             </div>
@@ -41,41 +41,41 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("guru")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="{{route("staf")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-guru', $guru->id)}}" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('edit-staf', $staf->id)}}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
                                             <div class="form-group">
                                                 <label for="squareText">Nama Lengkap</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Nama Guru" name="nama" value="{{$guru->nama}}">
+                                                <input type="text" id="squareText" class="form-control square" placeholder="Nama Staf" name="nama" value="{{$staf->nama}}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">NIP</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="NIP Guru" name="nip" value="{{$guru->nip}}">
+                                                <input type="text" id="squareText" class="form-control square" placeholder="NIP Staf" name="nip" value="{{$staf->nip}}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Jabatan</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Jabatan Guru" name="jabatan" value="{{$guru->jabatan}}">
+                                                <input type="text" id="squareText" class="form-control square" placeholder="Jabatan Staf" name="jabatan" value="{{$staf->jabatan}}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="formFile" class="form-label">Foto Guru (.jpg, .png, .jpeg)</label>
+                                                <label for="formFile" class="form-label">Foto Staf (.jpg, .png, .jpeg)</label>
                                                 <input class="form-control" type="file" id="formFile" name="foto">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto saat ini</label> <br>
-                                                @if($guru->foto)
-                                                    <img src="{{ asset('storage/guru/'.$guru->foto) }}" width="100" style="margin-left: 10px">
+                                                @if($staf->foto)
+                                                    <img src="{{ asset('storage/staf/'.$staf->foto) }}" width="100" style="margin-left: 10px">
                                                 @else
                                                     <p>Belum ada foto</p>
                                                 @endif
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Email (opsional)</label>
-                                                <input type="email" id="squareText" class="form-control square" placeholder="Email Guru" name="email" value="{{$guru->email}}">
+                                                <input type="email" id="squareText" class="form-control square" placeholder="Email Guru" name="email" value="{{$staf->email}}">
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>

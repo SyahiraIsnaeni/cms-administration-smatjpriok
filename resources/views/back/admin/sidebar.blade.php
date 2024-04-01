@@ -199,8 +199,8 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/staf*') ? 'active' : '' }}">
+                    <a href="/dashboard/staf" class='sidebar-link'>
                         <i class="bi bi-journal-check"></i>
                         <span>Data Staf</span>
                     </a>

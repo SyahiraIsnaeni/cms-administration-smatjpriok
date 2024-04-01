@@ -71,6 +71,18 @@ Route::controller(\App\Http\Controllers\FrontendPrestasiController::class)->grou
     }
 );
 
+Route::controller(\App\Http\Controllers\FrontendGuruController::class)->group(
+    function (){
+        Route::get("/guru", "index")->name("list-guru");
+    }
+);
+
+Route::controller(\App\Http\Controllers\FrontendStafController::class)->group(
+    function (){
+        Route::get("/staf", "index")->name("list-staf");
+    }
+);
+
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(
     function (){
@@ -282,8 +294,23 @@ Route::controller(\App\Http\Controllers\GuruController::class)->middleware(\App\
         Route::post("/dashboard/guru/add", "addDataGuru")->name("add-guru");
         Route::patch("/dashboard/guru/{id}/edit", "editDataGuru")->name("edit-guru");
         Route::delete("/dashboard/guru/{id}/delete", "deleteDataGuru")->name("delete-guru");
+        Route::delete("/dashboard/guru/reset", "deleteAllDataGuru")->name("reset-guru");
         Route::post('/dashboard/guru/import', 'importDataGuru')->name('import-guru');
         Route::get('/dashboard/guru/import', 'importGuru')->name('import-guru');
+    }
+);
+
+Route::controller(\App\Http\Controllers\StafController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/staf", "staf")->name("staf");
+        Route::get("/dashboard/staf/add", "addStaf");
+        Route::get("/dashboard/staf/{id}/edit", "editStaf")->name("edit-staf");
+        Route::post("/dashboard/staf/add", "addDataStaf")->name("add-staf");
+        Route::patch("/dashboard/staf/{id}/edit", "editDataStaf")->name("edit-staf");
+        Route::delete("/dashboard/staf/{id}/delete", "deleteDataStaf")->name("delete-staf");
+        Route::delete("/dashboard/staf/reset", "deleteAllDataStaf")->name("reset-staf");
+        Route::post('/dashboard/staf/import', 'importDataStaf')->name('import-staf');
+        Route::get('/dashboard/staf/import', 'importStaf')->name('import-staf');
     }
 );
 

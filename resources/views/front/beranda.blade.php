@@ -655,7 +655,7 @@
             <ul id="sliderPengumuman" class="flex gap-5">
                 @foreach($pengumumans as $pengumuman)
                     <li class="mx-5 w-full sm:w-[300px]">
-                        <a href="#">
+                        <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
                                     <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
@@ -786,7 +786,7 @@
                     <ul class="flex justify-end" id="sliderPengumumanLarge">
                         @foreach($pengumumans as $pengumuman)
                             <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
-                                <a href="#">
+                                <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
                                     <div class="justify-center items-center border rounded-md border-black border-opacity-25">
                                         <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
@@ -1011,7 +1011,7 @@
             <div class="mx-5 md:hidden">
                 @foreach($beritasHp as $row)
                     <div>
-                        <a href="#">
+                        <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
                             <div class="mt-6 bg-white rounded-md w-full">
                                 <div class="w-full h-[180px]">
                                     <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
@@ -1029,26 +1029,29 @@
             <!-- TAMPILAN TABLET DAN LAPTOP -->
             <div class="hidden md:block">
                 <div class="grid grid-cols-2 gap-5 lg:gap-6 xl:gap-7">
-                    <div class="mr-5">
-                        <a href="#">
-                            <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
-                                <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
-                                    <img src="{{asset('storage/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                    @if($berita)
+                        <div class="mr-5">
+                            <a href="{{ route('detail-berita', ['slug' => $berita->slug]) }}">
+                                <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
+                                    <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
+                                        <img src="{{asset('storage/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                    </div>
+                                    <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
+                                        <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">{{ $berita->judul }}</h1>
+                                        <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $berita->updated_at->format('d M Y')}}</p>
+                                        <p class="mt-0.5 lg:mt-1 text-[13px] lg:text-sm xl:text-[15px]">
+                                            {!! strlen($berita->konten) > 180 ? substr($berita->konten, 0, 180) . '...' : $berita->konten !!}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
-                                    <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">{{ $berita->judul }}</h1>
-                                    <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $berita->updated_at->format('d M Y')}}</p>
-                                    <p class="mt-0.5 lg:mt-1 text-[13px] lg:text-sm xl:text-[15px]">
-                                        {!! strlen($berita->konten) > 180 ? substr($berita->konten, 0, 180) . '...' : $berita->konten !!}
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @else
+                    @endif
                     <div class="grid grid-rows-3 gap-3.5 justify-evenly ml-5">
                         @foreach($beritasDekstop as $row)
                             <div>
-                                <a href="#">
+                                <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
                                     <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
                                         <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
                                             <div class="w-1/3 h-full">

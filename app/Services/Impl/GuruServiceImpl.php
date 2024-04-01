@@ -24,6 +24,7 @@ class GuruServiceImpl implements GuruService
         $guru = new Guru();
         $guru->nama = $data['nama'];
         $guru->nip = $data['nip'];
+        $guru->jabatan = $data['jabatan'];
         $guru->email = $data['email'];
         $guru->password = Hash::make($data['nip']);
 
@@ -50,6 +51,7 @@ class GuruServiceImpl implements GuruService
 
         $guru->nama = $data['nama'];
         $guru->nip = $data['nip'];
+        $guru->jabatan = $data['jabatan'];
         $guru->email = $data['email'];
 
         if (isset($data['foto'])) {
@@ -73,5 +75,16 @@ class GuruServiceImpl implements GuruService
         $guru = Guru::findOrFail($id);
         Storage::delete('public/guru' . $guru->foto);
         return $guru->delete();
+    }
+
+    public function deleteAll(): bool
+    {
+        try {
+            Guru::truncate();
+            Storage::deleteDirectory('public/guru');
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

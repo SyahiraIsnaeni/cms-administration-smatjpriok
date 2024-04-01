@@ -10,6 +10,10 @@ class Guru extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'nip', 'foto', 'email', 'password'];
+    protected $table = "gurus";
+
+    protected $primaryKey = "id";
+
+    protected $fillable = ['nama', 'nip', 'jabatan', 'foto', 'email', 'password'];
 
 }

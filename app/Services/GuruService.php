@@ -17,4 +17,6 @@ interface GuruService
     public function edit(int $id, array $data): Guru;
 
     public function delete(int $id):bool;
+
+    public function deleteAll():bool;
 }

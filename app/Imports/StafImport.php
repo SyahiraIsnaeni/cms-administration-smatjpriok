@@ -2,13 +2,12 @@
 
 namespace App\Imports;
 
-use App\Models\Guru;
+use App\Models\Staf;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GuruImport implements ToModel, WithHeadingRow
+class StafImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -17,7 +16,7 @@ class GuruImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new Guru([
+        return new Staf([
             'nama' => $row['nama'],
             'nip' => $row['nip'],
             'jabatan' => $row['jabatan'],
