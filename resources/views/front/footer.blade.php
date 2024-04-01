@@ -20,8 +20,8 @@
         <div class="mt-7">
             <h1 class="text-white text-[13px] sm:text-sm font-medium underline underline-offset-8 decoration-[1.5px]">Informasi Sekolah</h1>
             <a href="{{route("profil-sekolah")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-3">Profil</p></a>
-            <a href="guru.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Guru</p></a>
-            <a href="staf.html"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Staf</p></a>
+            <a href="{{route("list-guru")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Guru</p></a>
+            <a href="{{route("list-staf")}}"><p class="text-white text-xs sm:text-[13px] font-light mt-2">Data Staf</p></a>
         </div>
 
         <div class="mt-7">
@@ -94,8 +94,8 @@
                 <div>
                     <h1 class="text-white text-sm lg:text-[14.5px] xl:text-[15px] font-medium underline underline-offset-8 decoration-[1.5px]">Informasi Sekolah</h1>
                     <a href="{{route("profil-sekolah")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-4 hover:text-[#FF8B42]">Profil</p></a>
-                    <a href="guru.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Guru</p></a>
-                    <a href="staf.html"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Staf</p></a>
+                    <a href="{{route("list-guru")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Guru</p></a>
+                    <a href="{{route("list-staf")}}"><p class="text-white text-[13px] lg:text-[13.5px] xl:text-sm font-light mt-2 hover:text-[#FF8B42]">Data Staf</p></a>
                 </div>
                 <div>
                     <h1 class="text-white text-sm lg:text-[14.5px] xl:text-[15px] font-medium underline underline-offset-8 decoration-[1.5px]">Media Sosial</h1>

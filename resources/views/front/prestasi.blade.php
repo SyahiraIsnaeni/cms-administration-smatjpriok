@@ -30,16 +30,16 @@
         </div>
         <!-- Navigasi Hamburger -->
         <div class="hidden md:flex flex-col items-start absolute mt-3 right-0 bg-[#0D464B] p-4 w-48 rounded-l-md rounded-t-none opacity-95 h-screen" id="mobileMenu">
-            <a href="beranda.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Beranda</a>
-            <a href="profil.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Profil</a>
+            <a href="{{route("home")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Beranda</a>
+            <a href="{{route("profil-sekolah")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Profil</a>
             <a href="#" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]" id="dataDropdownHP"
             >Data
                 <div class="hidden absolute -mt-12 -left-28 bg-[#FF8B42] p-2 w-28 rounded-l-md font-medium" id="dataDropdownContentHP">
-                    <a href="guru.html" class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center">Data Guru</a>
-                    <a href="staf.html" class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center">Data Staf</a>
+                    <a href="{{route("list-guru")}}" class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center">Data Guru</a>
+                    <a href="{{route("list-staf")}}" class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center">Data Staf</a>
                 </div>
             </a>
-            <a href="konten.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Konten</a>
+            <a href="{{route("konten-sekolah")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Konten</a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">E-Learning</a>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
@@ -52,20 +52,20 @@
             <h1 class="block my-auto ml-3 font-semibold tracking-wide text-white text-[14px] lg:text-base xl:text-[17px]">SMA Tanjung Priok Jakarta</h1>
         </div>
         <div class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal">
-            <a href="beranda.html">
+            <a href="{{route("home")}}">
                 <p class="hover:text-[#FF8B42]">Beranda</p>
             </a>
-            <a href="profil.html">
+            <a href="{{route("profil-sekolah")}}">
                 <p class="hover:text-[#FF8B42]">Profil</p>
             </a>
             <a href="#" id="dataDropdown1" class="relative block">
                 <p class="hover:text-[#FF8B42] f">Data Sekolah</p>
                 <div class="hidden font-medium absolute bg-[#FF8B42] xl:mt-[49px] text-center lg:mt-[48px] mt-[42px] px-4 py-4 w-[100px] lg:w-[120px] rounded-b-md shadow-md text-xs lg:text-[13px] xl:text-[14px] -ml-8" id="dataDropdownContent1">
-                    <a href="guru.html" class="block text-black hover:font-bold py-1">Data Guru</a>
-                    <a href="staf.html" class="block text-black hover:font-bold py-1 mt-2">Data Staf</a>
+                    <a href="{{route("list-guru")}}" class="block text-black hover:font-bold py-1">Data Guru</a>
+                    <a href="{{route("list-staf")}}" class="block text-black hover:font-bold py-1 mt-2">Data Staf</a>
                 </div>
             </a>
-            <a href="konten.html">
+            <a href="{{route("konten-sekolah")}}">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html">

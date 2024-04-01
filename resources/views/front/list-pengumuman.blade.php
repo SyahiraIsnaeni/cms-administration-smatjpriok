@@ -45,12 +45,12 @@
             id="mobileMenu"
         >
             <a
-                href="beranda.html"
+                href="{{route("home")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Beranda</a
             >
             <a
-                href="profil.html"
+                href="{{route("profil-sekolah")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Profil</a
             >
@@ -64,19 +64,19 @@
                     id="dataDropdownContentHP"
                 >
                     <a
-                        href="guru.html"
+                        href="{{route("list-guru")}}"
                         class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center"
                     >Data Guru</a
                     >
                     <a
-                        href="staf.html"
+                        href="{{route("list-staf")}}"
                         class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center"
                     >Data Staf</a
                     >
                 </div>
             </a>
             <a
-                href="konten.html"
+                href="{{route("konten-sekolah")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Konten</a
             >
@@ -105,10 +105,10 @@
         <div
             class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal"
         >
-            <a href="beranda.html">
+            <a href="{{route("home")}}">
                 <p class="hover:text-[#FF8B42]">Beranda</p>
             </a>
-            <a href="profil.html">
+            <a href="{{route("profil-sekolah")}}">
                 <p class="hover:text-[#FF8B42]">Profil</p>
             </a>
             <a href="#" id="dataDropdown1" class="relative block">
@@ -117,17 +117,17 @@
                     class="hidden font-medium absolute bg-[#FF8B42] xl:mt-[49px] text-center lg:mt-[48px] mt-[42px] px-4 py-4 w-[100px] lg:w-[120px] rounded-b-md shadow-md text-xs lg:text-[13px] xl:text-[14px] -ml-8"
                     id="dataDropdownContent1"
                 >
-                    <a href="guru.html" class="block text-black hover:font-bold py-1"
+                    <a href="{{route("list-guru")}}" class="block text-black hover:font-bold py-1"
                     >Data Guru</a
                     >
                     <a
-                        href="staf.html"
+                        href="{{route("list-staf")}}"
                         class="block text-black hover:font-bold py-1 mt-2"
                     >Data Staf</a
                     >
                 </div>
             </a>
-            <a href="konten.html">
+            <a href="{{route("konten-sekolah")}}">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html">
