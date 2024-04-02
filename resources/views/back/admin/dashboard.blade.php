@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold"><p><b>Berita</b></p></h6>
-{{--                                    <h6 class="font-extrabold mb-0">{{$berita->COUNT('id')}}</h6>--}}
+                                    <h6 class="font-extrabold mb-0">{{$berita->COUNT('id')}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold"><p><b>Pengumuman</b></p></h6>
-{{--                                    <h6 class="font-extrabold mb-0">{{$pengumuman->COUNT('id')}}</h6>--}}
+                                    <h6 class="font-extrabold mb-0">{{$pengumuman->COUNT('id')}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold"><p><b>Blog</b></p></h6>
-{{--                                    <h6 class="font-extrabold mb-0">{{$blog->COUNT('id')}}</h6>--}}
+                                    <h6 class="font-extrabold mb-0">{{$blog->COUNT('id')}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold"><p><b>Prestasi</b></p></h6>
-{{--                                    <h6 class="font-extrabold mb-0">{{$prestasi->COUNT('id')}}</h6>--}}
+                                    <h6 class="font-extrabold mb-0">{{$prestasi->COUNT('id')}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -109,24 +109,24 @@
                             </div>
                         </div>
                         <div class="card-body" style="margin-top: -25px">
-{{--                            @forelse ($drafPengumuman as $row)--}}
-{{--                                <div class="row fs-5" style="margin-bottom: -20px">--}}
-{{--                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">--}}
-{{--                                        <img src="{{asset('uploads/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">--}}
-{{--                                        <a class="text-black" style="text-decoration: none; font-size: small; ">--}}
-{{--                                            <p>{{$row->judul}}</p>--}}
-{{--                                        </a>--}}
+                            @forelse ($drafPengumuman as $row)
+                                <div class="row fs-5" style="margin-bottom: -20px">
+                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
+                                        <img src="{{asset('storage/pengumuman/gambar/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                    </div>
+                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
+                                        <a class="text-black" style="text-decoration: none; font-size: small; ">
+                                            <p>{{$row->judul}}</p>
+                                        </a>
 
-{{--                                    </div>--}}
-{{--                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">--}}
-{{--                                        <a href="{{route('pengumuman.edit', $row->id) }}"--}}
-{{--                                           class="btn btn-warning btn-sm">Edit</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @empty--}}
-{{--                            @endforelse--}}
+                                    </div>
+                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">
+                                        <a href="{{route('edit-pengumuman', $row->id) }}"
+                                           class="btn btn-warning btn-sm">Edit</a>
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -139,24 +139,24 @@
                             </div>
                         </div>
                         <div class="card-body" style="margin-top: -25px">
-{{--                            @forelse ($drafBerita as $row)--}}
-{{--                                <div class="row fs-5" style="margin-bottom: -20px">--}}
-{{--                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">--}}
-{{--                                        <img src="{{asset('uploads/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">--}}
-{{--                                        <a class="text-black" style="text-decoration: none; font-size: small; ">--}}
-{{--                                            <p>{{$row->judul}}</p>--}}
-{{--                                        </a>--}}
+                            @forelse ($drafBerita as $row)
+                                <div class="row fs-5" style="margin-bottom: -20px">
+                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
+                                        <img src="{{asset('storage/berita/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                    </div>
+                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
+                                        <a class="text-black" style="text-decoration: none; font-size: small; ">
+                                            <p>{{$row->judul}}</p>
+                                        </a>
 
-{{--                                    </div>--}}
-{{--                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">--}}
-{{--                                        <a href="{{route('berita.edit', $row->id) }}"--}}
-{{--                                           class="btn btn-warning btn-sm">Edit</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @empty--}}
-{{--                            @endforelse--}}
+                                    </div>
+                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">
+                                        <a href="{{route('edit-berita', $row->id) }}"
+                                           class="btn btn-warning btn-sm">Edit</a>
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -170,24 +170,24 @@
 
                         </div>
                         <div class="card-body" style="margin-top: -25px">
-{{--                            @forelse ($drafBlog as $row)--}}
-{{--                                <div class="row fs-5" style="margin-bottom: -20px">--}}
-{{--                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">--}}
-{{--                                        <img src="{{asset('uploads/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">--}}
-{{--                                        <a class="text-black" style="text-decoration: none; font-size: small; ">--}}
-{{--                                            <p>{{$row->judul}}</p>--}}
-{{--                                        </a>--}}
+                            @forelse ($drafBlog as $row)
+                                <div class="row fs-5" style="margin-bottom: -20px">
+                                    <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
+                                        <img src="{{asset('storage/blog/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                    </div>
+                                    <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
+                                        <a class="text-black" style="text-decoration: none; font-size: small; ">
+                                            <p>{{$row->judul}}</p>
+                                        </a>
 
-{{--                                    </div>--}}
-{{--                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">--}}
-{{--                                        <a href="{{route('blog.edit', $row->id) }}"--}}
-{{--                                           class="btn btn-warning btn-sm">Edit</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @empty--}}
-{{--                            @endforelse--}}
+                                    </div>
+                                    <div class="col-1 col-md-1 col-lg-1 mt-3 mb-3">
+                                        <a href="{{route('edit-blog', $row->id) }}"
+                                           class="btn btn-warning btn-sm">Edit</a>
+                                    </div>
+                                </div>
+                            @empty
+                            @endforelse
                         </div>
                     </div>
                 </div>
