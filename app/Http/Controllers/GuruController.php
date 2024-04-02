@@ -81,7 +81,7 @@ class GuruController
     public function editDataGuru(int $id, Request $request): Response|RedirectResponse
     {
         if (($request->input('nama') == null) || ($request->input('nip') == null) || ($request->input('jabatan') == null)) {
-            Alert::error('Gagal', 'Pastikan Data Nama, NIP, dan Tidak Kosong');
+            Alert::error('Gagal', 'Pastikan Data Nama, NIP, dan Jabatan Tidak Kosong');
             return redirect()->back();
         }
 

@@ -207,16 +207,16 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/kelas*') ? 'active' : '' }}">
+                    <a href="/dashboard/kelas" class='sidebar-link'>
                         <i class="bi bi-file-spreadsheet-fill"></i>
                         <span>Data Kelas</span>
                     </a>
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/mapel*') ? 'active' : '' }}">
+                    <a href="/dashboard/mapel/kelas" class='sidebar-link'>
                         <i class="bi bi-book-half"></i>
                         <span>Data Mata Pelajaran</span>
                     </a>

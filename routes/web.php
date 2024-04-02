@@ -307,3 +307,27 @@ Route::controller(\App\Http\Controllers\StafController::class)->middleware(\App\
     }
 );
 
+Route::controller(\App\Http\Controllers\KelasController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/kelas", "kelas")->name("kelas");
+        Route::get("/dashboard/kelas/add", "addKelas");
+        Route::get("/dashboard/kelas/{id}/edit", "editKelas")->name("edit-kelas");
+        Route::post("/dashboard/kelas/add", "addDataKelas")->name("add-kelas");
+        Route::patch("/dashboard/kelas/{id}/edit", "editDataKelas")->name("edit-kelas");
+        Route::delete("/dashboard/kelas/{id}/delete", "deleteDataKelas")->name("delete-kelas");
+    }
+);
+
+Route::controller(\App\Http\Controllers\MataPelajaranController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/mapel/kelas", "kelas")->name("mapel");
+        Route::get("/dashboard/mapel/{kelasId}/detail-mapel", "mapel")->name("detail-mapel");
+        Route::get("/dashboard/mapel/{kelasId}/add", "addMapel")->name("add-mapel");
+        Route::get("/dashboard/mapel/{kelasId}/{id}/edit", "editMapel")->name("edit-mapel");
+        Route::post("/dashboard/mapel/{kelasId}/add", "addDataMapel")->name("add-mapel");
+        Route::patch("/dashboard/mapel/{kelasId}/{id}/edit", "editDataMapel")->name("edit-mapel");
+        Route::delete("/dashboard/mapel/{kelasId}/{id}/delete", "deleteDataMapel")->name("delete-mapel");
+        Route::delete("/dashboard/mapel/{kelasId}/delete", "deleteAllDataMapel")->name("reset-mapel");
+    }
+);
+
