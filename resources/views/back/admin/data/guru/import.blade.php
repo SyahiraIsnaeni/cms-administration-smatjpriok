@@ -54,6 +54,9 @@
                                         </form>
                                     </div>
                                 </div>
+                                <div style="margin-top: 15px">
+                                    <a href="{{ asset('storage/template-guru.xlsx') }}" style="text-decoration: underline">Download Template Excel Data Guru</a>
+                                </div>
                             </div>
                         </div>
                     </div>

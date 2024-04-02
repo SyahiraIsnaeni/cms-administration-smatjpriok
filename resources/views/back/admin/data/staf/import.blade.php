@@ -54,6 +54,9 @@
                                         </form>
                                     </div>
                                 </div>
+                                <div style="margin-top: 15px">
+                                    <a href="{{ asset('storage/template-staf.xlsx') }}" style="text-decoration: underline">Download Template Excel Data Staf</a>
+                                </div>
                             </div>
                         </div>
                     </div>
