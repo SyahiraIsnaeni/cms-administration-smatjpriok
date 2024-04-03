@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ekstrakurikuler;
 use App\Services\BeritaService;
 use App\Services\EkstrakurikulerService;
 use App\Services\KritikSaranService;
 use App\Services\PengumumanService;
 use App\Services\PrestasiService;
+use App\Services\WelcomeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BerandaController
 {
@@ -20,12 +21,15 @@ class BerandaController
     protected $pengumumanService;
     protected $kritikSaranService;
 
+    protected $welcomeService;
+
     public function __construct(
         EkstrakurikulerService $ekstrakurikulerService,
         PrestasiService $prestasiService,
         BeritaService $beritaService,
         PengumumanService $pengumumanService,
-        KritikSaranService $kritikSaranService
+        KritikSaranService $kritikSaranService,
+        WelcomeService $welcomeService
     )
     {
         $this->ekstrakurikulerService = $ekstrakurikulerService;
@@ -33,6 +37,7 @@ class BerandaController
         $this->beritaService = $beritaService;
         $this->pengumumanService = $pengumumanService;
         $this->kritikSaranService = $kritikSaranService;
+        $this->welcomeService = $welcomeService;
     }
 
     public function index(Request $request): Response

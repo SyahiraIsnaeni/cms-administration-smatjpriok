@@ -43,7 +43,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Kelas</h3>
+                        <h3>Tambah Data Siswa Kelas {{$kelas->nama_kelas}}</h3>
                     </div>
                 </div>
             </div>
@@ -54,18 +54,35 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/kelas" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="{{ route('detail-siswa', ['kelasId' => $kelas->id]) }}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="{{ route('add-kelas') }}">
+                                        <form method="post" enctype="multipart/form-data" action="{{ route('add-siswa', ['kelasId' => $kelas->id]) }}">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="squareText">Nama Kelas</label>
+                                                <label for="squareText">Nama Lengkap</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Contoh: XII IPA 1" name="nama_kelas">
+                                                       placeholder="Nama Siswa" name="nama">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">NIS</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       placeholder="NIS Siswa" name="nis">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                <select name="jenis_kelamin" class="form-control">
+                                                    <option value="laki-laki">Laki-laki</option>
+                                                    <option value="perempuan">Perempuan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Email (opsional)</label>
+                                                <input type="email" id="squareText" class="form-control square"
+                                                       placeholder="Email Siswa" name="email">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>

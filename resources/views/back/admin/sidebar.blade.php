@@ -183,8 +183,8 @@
                 <li class="sidebar-title">Data Sekolah</li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/siswa*') ? 'active' : '' }}">
+                    <a href="/dashboard/siswa/kelas" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Data Siswa</span>
                     </a>

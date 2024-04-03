@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Kelas</h3>
+                        <h3>Edit Data Siswa Kelas {{$kelas->nama_kelas}}</h3>
                     </div>
                 </div>
             </div>
@@ -41,18 +41,33 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("kelas")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="{{ route('detail-siswa', ['kelasId' => $kelas->id]) }}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-kelas', $kelas->id)}}" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('edit-siswa', ['id' => $siswa->id, 'kelasId' => $kelas->id])}}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
                                             <div class="form-group">
-                                                <label for="squareText">Nama Kelas</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Contoh: XII IPA 1" name="nama_kelas" value="{{$kelas->nama_kelas}}">
+                                                <label for="squareText">Nama Lengkap</label>
+                                                <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama" value="{{$siswa->nama}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">NIS</label>
+                                                <input type="text" id="squareText" class="form-control square" placeholder="NIS Siswa" name="nis" value="{{$siswa->nis}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                <select name="jenis_kelamin" class="form-control">
+                                                    <option value="laki-laki" {{ $siswa->jenis_kelamin == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                    <option value="perempuan" {{ $siswa->jenis_kelamin == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Email (opsional)</label>
+                                                <input type="email" id="squareText" class="form-control square" placeholder="Email Siswa" name="email" value="{{$siswa->email}}">
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>

@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{$title}}</title>
+
+    <link rel="shortcut icon" href={{asset("../assets/image/logosma.png")}} type="image/x-icon">
     <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.snow.css")}}>
     <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.bubble.css")}}>
 
-    <link rel="shortcut icon" href={{asset("../../assets/image/logosma.png")}} type="image/x-icon">
-
-    <link rel="stylesheet" href={{asset("../../assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("../../assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href={{asset("../assets/compiled/css/app.css")}}>
+    <link rel="stylesheet" href={{asset("../assets/compiled/css/app-dark.css")}}>
 </head>
 
 <body>
-<script src={{asset("../../assets/static/js/initTheme.js")}}></script>
+<script src={{asset("../assets/static/js/initTheme.js")}}></script>
 <div id="app">
     @include('back.admin.sidebar')
     @include('sweetalert::alert')
@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Kelas</h3>
+                        <h3>Import Excel Data Siswa</h3>
                     </div>
                 </div>
             </div>
@@ -41,25 +41,21 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("kelas")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="{{ route('detail-siswa', ['kelasId' => $kelas->id]) }}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-kelas', $kelas->id)}}" enctype="multipart/form-data">
+                                        <form action="{{ route('add-siswa-import', ['kelasId' => $kelas->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf
-                                            @method('PATCH')
-                                            <div class="form-group">
-                                                <label for="squareText">Nama Kelas</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Contoh: XII IPA 1" name="nama_kelas" value="{{$kelas->nama_kelas}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
-                                                <button class="btn btn-danger btn-sm" type="reset"> Reset </button>
-                                            </div>
+                                            <input type="file" name="file">
+                                            <button type="submit"  class="btn btn-success">Import Data</button>
                                         </form>
                                     </div>
+                                </div>
+                                <div style="margin-top: 15px">
+                                    <a href="{{ asset('storage/template-siswa.xlsx') }}" style="text-decoration: underline">Download Template Excel Data Siswa</a>
                                 </div>
                             </div>
                         </div>
@@ -68,18 +64,17 @@
             </section>
             <!-- Input Style end -->
         </div>
-
     </div>
 </div>
-<script src={{asset("../../assets/static/js/components/dark.js")}}></script>
-<script src={{asset("../../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src={{asset("../assets/static/js/components/dark.js")}}></script>
+<script src={{asset("../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
 
 {{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
+@include('back.admin.footer')
+<script src={{asset("../assets/compiled/js/app.js")}}></script>
+
 <script src={{asset("../assets/extensions/quill/quill.min.js")}}></script>
 <script src={{asset("../assets/static/js/pages/quill.js")}}></script>
-
-@include('back.admin.footer')
-<script src={{asset("../../assets/compiled/js/app.js")}}></script>
 
 
 </body>

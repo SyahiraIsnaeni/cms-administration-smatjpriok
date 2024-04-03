@@ -331,3 +331,18 @@ Route::controller(\App\Http\Controllers\MataPelajaranController::class)->middlew
     }
 );
 
+Route::controller(\App\Http\Controllers\SiswaController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/siswa/kelas", "kelas")->name("siswa");
+        Route::get("/dashboard/siswa/{kelasId}/detail-siswa", "siswa")->name("detail-siswa");
+        Route::get("/dashboard/siswa/{kelasId}/add", "addSiswa")->name("add-siswa");
+        Route::get("/dashboard/siswa/{kelasId}/import", "importSiswa")->name("add-siswa-import");
+        Route::post("/dashboard/siswa/{kelasId}/import", "importDataSiswa")->name("add-siswa-import");
+        Route::get("/dashboard/siswa/{kelasId}/{id}/edit", "editSiswa")->name("edit-siswa");
+        Route::post("/dashboard/siswa/{kelasId}/add", "addDataSiswa")->name("add-siswa");
+        Route::patch("/dashboard/siswa/{kelasId}/{id}/edit", "editDataSiswa")->name("edit-siswa");
+        Route::delete("/dashboard/siswa/{kelasId}/{id}/delete", "deleteDataSiswa")->name("delete-siswa");
+        Route::delete("/dashboard/siswa/{kelasId}/delete", "deleteAllDataSiswa")->name("reset-siswa");
+    }
+);
+
