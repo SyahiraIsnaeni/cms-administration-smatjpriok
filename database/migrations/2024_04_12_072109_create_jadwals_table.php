@@ -15,14 +15,14 @@ class CreateJadwalsTable extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mapel_id')->nullable();   
-            $table->unsignedBigInteger('day_id');
+            $table->unsignedBigInteger('mapel_id')->nullable(false);   
+            $table->unsignedBigInteger('day_id')->nullable(false);
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
 
-            $table->foreign('mapel_id')->references('id')->on('mapel');
-            $table->foreign('day_id')->references('id')->on('days');
+            $table->foreign("mapel_id")->references("id")->on("mapel");
+            $table->foreign("day_id")->references("id")->on("days");
         });
     }
 
