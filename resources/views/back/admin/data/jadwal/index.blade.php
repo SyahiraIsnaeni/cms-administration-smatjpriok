@@ -80,8 +80,8 @@
                                                                 <td>{{ $jadwal->end_time }}</td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
-                                                                    <a href="{{ route('edit-jadwal', ['jadwal' => $jadwal->id]) }}" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
-                                                                    <form action="{{ route('deleteJadwal', $jadwal->id) }}" method="POST">
+                                                                    <a href="{{ route('edit-jadwal', ['id' => $jadwal->id]) }}" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
+                                                                    <form action="{{ route('delete-jadwal', $jadwal->id) }}" method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="submit" class='btn btn-danger btn-delete'><i class="bi bi-trash"></i></button>

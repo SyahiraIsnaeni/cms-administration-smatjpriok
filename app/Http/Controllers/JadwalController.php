@@ -58,9 +58,26 @@ class JadwalController
         'mapel' => 'required|exists:mapel,id',
         'day' => 'required|exists:days,id',
         'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
-        'end_time' => 'required|date_format:H:i|after:start_time',
+        'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
+        // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
+        'start_time' => [
+            'required',
+            function ($attribute, $value, $fail) use ($request) {
+                $existingJadwals = Jadwal::where('day_id', $request->day)
+                    ->where(function ($query) use ($request) {
+                        $query->whereBetween('start_time', [$request->start_time, $request->end_time])
+                            ->orWhereBetween('end_time', [$request->start_time, $request->end_time]);
+                    })
+                    ->exists();
+
+                if ($existingJadwals) {
+                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
+                }
+            }
+        ],
+        'end_time' => 'required|after:start_time',
     ]);
-    
+
     // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();

@@ -80,8 +80,8 @@
                                                                 <td><?php echo e($jadwal->end_time); ?></td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
-                                                                    <a href="<?php echo e(route('edit-jadwal', ['jadwal' => $jadwal->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
-                                                                    <form action="<?php echo e(route('deleteJadwal', $jadwal->id)); ?>" method="POST">
+                                                                    <a href="<?php echo e(route('edit-jadwal', ['id' => $jadwal->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
+                                                                    <form action="<?php echo e(route('delete-jadwal', $jadwal->id)); ?>" method="POST">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
                                                                         <button type="submit" class='btn btn-danger btn-delete'><i class="bi bi-trash"></i></button>
