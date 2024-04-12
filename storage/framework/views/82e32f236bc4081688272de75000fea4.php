@@ -47,9 +47,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="<?php echo e(route('edit-jadwal', $jadwals->id)); ?>" enctype="multipart/form-data">
+                                    <form method="post" action="<?php echo e(route('update-jadwal', ['id' => $jadwals->id])); ?>" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
-                                            <?php echo method_field('PATCH'); ?>
+                                            <?php echo method_field('PUT'); ?>
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">

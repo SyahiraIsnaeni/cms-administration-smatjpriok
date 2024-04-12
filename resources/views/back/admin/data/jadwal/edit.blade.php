@@ -47,9 +47,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-jadwal', $jadwals->id)}}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('update-jadwal', ['id' => $jadwals->id]) }}" enctype="multipart/form-data">
                                             @csrf
-                                            @method('PATCH')
+                                            @method('PUT')
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">

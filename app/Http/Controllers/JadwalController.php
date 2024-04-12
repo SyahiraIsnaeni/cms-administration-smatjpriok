@@ -121,21 +121,6 @@ class JadwalController
         return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels'));
     }
 
-    public function editDataJadwal($id)
-    {
-        // Mendapatkan data jadwal berdasarkan ID
-        $jadwals = Jadwal::findOrFail($id);
-
-        // Mendapatkan daftar mata pelajaran
-        $mapels = MataPelajaran::all();
-
-        // Mendapatkan daftar hari
-        $days = Day::all();
-
-        // Mengembalikan view untuk mengedit data jadwal dengan data yang ditemukan
-        return view('back.admin.data.jadwal.edit', compact('jadwals', 'mapels', 'days'))->with('success', 'Data jadwal berhasil diubah.');
-    }
-
 
 
     /**
@@ -145,26 +130,49 @@ class JadwalController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateJadwal(Request $request, $id)
     {
-        $request->validate([
-            'mapel' => 'required|exists:mapel,id',
-            'day' => 'required|exists:days,id',
-            "start_time" => 'required',
-            'end_time' => 'required'
-        ]);
+        $validator = Validator::make($request->all(), [
+        'mapel' => 'required|exists:mapel,id',
+        'day' => 'required|exists:days,id',
+        'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
+        'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
+        // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
+        'start_time' => [
+            'required',
+            function ($attribute, $value, $fail) use ($request) {
+                $existingJadwals = Jadwal::where('day_id', $request->day)
+                    ->where(function ($query) use ($request) {
+                        $query->whereBetween('start_time', [$request->start_time, $request->end_time])
+                            ->orWhereBetween('end_time', [$request->start_time, $request->end_time]);
+                    })
+                    ->exists();
 
-        $create = Jadwal::findOrFail($id)->update([
-            'mapel_id' => $request->mapel,
-            'day_id' => $request->day,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time
-        ]);
+                if ($existingJadwals) {
+                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
+                }
+            }
+        ],
+        'end_time' => 'required|after:start_time',
+    ]);
 
-        session()->flash('success',"Sukses ubah jadwal pelajaran $request->nama");
-        return redirect()->route('back.admin.data.jadwal.index');
+    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
     }
-
+    
+    // Buat jadwal baru jika validasi berhasil
+    $jadwals = Jadwal::findOrFail($id)->update([
+        'mapel_id' => $request->mapel,
+        'day_id' => $request->day,
+        'start_time' => $request->start_time,
+        'end_time' => $request->end_time
+    ]);
+    
+    // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
+    session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
+    return redirect()->route('jadwal');
+}
     /**
      * Remove the specified resource from storage.
      *
