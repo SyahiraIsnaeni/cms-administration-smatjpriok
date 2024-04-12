@@ -84,7 +84,7 @@ class JadwalController
     }
     
     // Buat jadwal baru jika validasi berhasil
-    $jadwal = Jadwal::create([
+    $jadwals = Jadwal::create([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
         'start_time' => $request->start_time,
@@ -117,9 +117,26 @@ class JadwalController
     {
         $mapels = MataPelajaran::all();
         $days = Day::all();
-        $jadwal = Jadwal::findOrFail($id);
-        return view('back.admin.data.jadwal.edit', compact('jadwal', 'days','mapels'));
+        $jadwals = Jadwal::findOrFail($id);
+        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels'));
     }
+
+    public function editDataJadwal($id)
+    {
+        // Mendapatkan data jadwal berdasarkan ID
+        $jadwals = Jadwal::findOrFail($id);
+
+        // Mendapatkan daftar mata pelajaran
+        $mapels = MataPelajaran::all();
+
+        // Mendapatkan daftar hari
+        $days = Day::all();
+
+        // Mengembalikan view untuk mengedit data jadwal dengan data yang ditemukan
+        return view('back.admin.data.jadwal.edit', compact('jadwals', 'mapels', 'days'))->with('success', 'Data jadwal berhasil diubah.');
+    }
+
+
 
     /**
      * Update the specified resource in storage.

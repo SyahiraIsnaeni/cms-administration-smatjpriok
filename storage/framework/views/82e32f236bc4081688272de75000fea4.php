@@ -1,36 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.snow.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.bubble.css")); ?>>
 
-<?php $__env->startSection('title', 'Tambah Jadwal Pelajaran'); ?>
+    <link rel="shortcut icon" href=<?php echo e(asset("../../assets/image/logosma.png")); ?> type="image/x-icon">
 
-<?php $__env->startSection('content'); ?>
-            <div class="container-fluid">
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app-dark.css")); ?>>
+</head>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">Jadwal Pelajaran</h4>
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0);">Jadwal Pelajaran</a></li>
-                                        <li class="breadcrumb-item">Tambah</li>
-                                    </ol>
-            
-                                  
+<body>
+<script src=<?php echo e(asset("../../assets/static/js/initTheme.js")); ?>></script>
+<div id="app">
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <div id="main">
+        <header class="mb-3">
+            <a href="#" class="burger-btn d-block d-xl-none">
+                <i class="bi bi-justify fs-3"></i>
+            </a>
+        </header>
+
+        <div class="page-heading">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Edit Data Jadwal</h3>
+                    </div>
+                </div>
+            </div>
+
+            <section id="input-style" style="margin-top: 30px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-head-row">
+                                    <a href="<?php echo e(route("jadwal")); ?>" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card m-b-20">
-                                    <div class="card-body">
-        
-                                        <h4 class="mt-0 header-title">Tambah Jadwal Pelajaran</h4>
-                                    
-                                        <form action="<?php echo e(route('storeJadwal')); ?>" method="POST" class='mt-3' >
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form method="post" action="<?php echo e(route('edit-jadwal', $jadwals->id)); ?>" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
+                                            <?php echo method_field('PATCH'); ?>
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">
@@ -44,7 +63,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($mapel->id); ?>" <?php echo e($mapel->id == $jadwal->mapel_id ? 'selected' : ''); ?>><?php echo e($mapel->name); ?></option>
+                                                        <option value="<?php echo e($mapel->id); ?>" <?php echo e($mapel->id == $jadwals->mapel_id ? 'selected' : ''); ?>><?php echo e($mapel->nama); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['mapel'];
@@ -74,7 +93,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih hari..</option>
                                                         <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($day->id); ?>" <?php echo e($day->id == $jadwal->day_id ? 'selected' : ''); ?>><?php echo e($day->name); ?></option>
+                                                        <option value="<?php echo e($day->id); ?>" <?php echo e($day->id == $jadwals->day_id ? 'selected' : ''); ?>><?php echo e($day->name); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['day'];
@@ -101,7 +120,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>' value="<?php echo e($jadwal->start_time); ?>">
+unset($__errorArgs, $__bag); ?>' value="<?php echo e($jadwals->start_time); ?>">
                                                     <?php $__errorArgs = ['start_time'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -126,7 +145,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>' value="<?php echo e($jadwal->end_time); ?>">
+unset($__errorArgs, $__bag); ?>' value="<?php echo e($jadwals->end_time); ?>">
                                                     <?php $__errorArgs = ['end_time'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -143,15 +162,30 @@ unset($__errorArgs, $__bag); ?>
                                             </div>
                                             <button type="submit" class='btn btn-primary float-right'>Submit</button>
                                         </form>
-        
                                     </div>
                                 </div>
-        
-                            </div> <!-- end col -->
-        
-                        </div> <!-- end row -->        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Input Style end -->
+        </div>
 
-                    </div> <!-- container-fluid -->
-<?php $__env->stopSection(); ?>
+    </div>
+</div>
+<script src=<?php echo e(asset("../../assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("../../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/jadwal/edit.blade.php ENDPATH**/ ?>
+
+<script src=<?php echo e(asset("../assets/extensions/quill/quill.min.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/static/js/pages/quill.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<script src=<?php echo e(asset("../../assets/compiled/js/app.js")); ?>></script>
+
+
+</body>
+
+</html>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/jadwal/edit.blade.php ENDPATH**/ ?>
