@@ -3,91 +3,146 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use App\Services\JadwalService;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
+use App\Models\MataPelajaran;
 use App\Models\Day;
 
-class JadwalController
+class JadwalController 
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function jadwal(Request $request)
-    {
-        $search = $request->get('search');
-        $jadwals = Jadwal::whereHas('mapel', function ($q) use ($search) {
-                $q->where('nama', 'LIKE', "%$search%");
-            })
-            ->orderBy('day_id', 'asc')
-            ->orderBy('start_time', 'asc')
-            ->paginate(10);
+{
+    $search = $request->get('search');
+    $jadwals = Jadwal::whereHas('mapel', function($q) use ($search) {
+        $q->where('nama','LIKE',"%$search%");
+    })
+    ->orderBy('day_id', 'asc') // Urutkan berdasarkan day_id secara naik
+    ->orderBy('start_time', 'asc') // Kemudian, urutkan berdasarkan start_time secara naik
+    ->paginate(10);
 
-        $jadwals->appends(['search' => $search]);
+    $jadwals->appends(['search' => $search]);
 
-        $days = Day::all();
+    $days = Day::all();
+    
+    return view('back.admin.data.jadwal.index', compact('jadwals', 'days'));
+}
 
-        return view('back.admin.data.jadwal.index', compact('jadwals', 'days'));
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function addJadwal()
     {
+        $mapels = MataPelajaran::all();
         $days = Day::all();
-        return view('back.admin.data.jadwal.add', compact('days'));
+        return view('back.admin.data.jadwal.add', compact('mapels', 'days'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function storeJadwal(Request $request)
+{
+    // Validasi tambahan untuk memastikan jadwal tidak tumpang tindih
+    $validator = Validator::make($request->all(), [
+        'mapel' => 'required|exists:mapel,id',
+        'day' => 'required|exists:days,id',
+        'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
+        'end_time' => 'required|date_format:H:i|after:start_time',
+    ]);
+    
+    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+    
+    // Buat jadwal baru jika validasi berhasil
+    $jadwal = Jadwal::create([
+        'mapel_id' => $request->mapel,
+        'day_id' => $request->day,
+        'start_time' => $request->start_time,
+        'end_time' => $request->end_time
+    ]);
+    
+    // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
+    session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
+    return redirect()->route('jadwal');
+}
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $validator = Validator::make($request->all(), [
-            'mapel' => 'required|exists:mapels,id',
-            'day' => 'required|exists:days,id',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        Jadwal::create([
-            'mapel_id' => $request->mapel,
-            'day_id' => $request->day,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time
-        ]);
-
-        session()->flash('success', 'Sukses tambah jadwal pelajaran');
-        return redirect()->route('back.admin.data.jadwal.index');
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function editJadwal($id)
     {
+        $mapels = MataPelajaran::all();
         $days = Day::all();
-        $jadwals = Jadwal::findOrFail($id);
-        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days'));
+        $jadwal = Jadwal::findOrFail($id);
+        return view('back.admin.data.jadwal.edit', compact('jadwal', 'days','mapels'));
     }
 
-    public function updateJadwal(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'mapel' => 'required|exists:mapels,id',
+            'mapel' => 'required|exists:mapel,id',
             'day' => 'required|exists:days,id',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i|after:start_time',
+            "start_time" => 'required',
+            'end_time' => 'required'
         ]);
 
-        Jadwal::findOrFail($id)->update([
+        $create = Jadwal::findOrFail($id)->update([
             'mapel_id' => $request->mapel,
             'day_id' => $request->day,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time
         ]);
 
-        session()->flash('success', 'Sukses ubah jadwal pelajaran');
+        session()->flash('success',"Sukses ubah jadwal pelajaran $request->nama");
         return redirect()->route('back.admin.data.jadwal.index');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function deleteJadwal($id)
     {
-        Jadwal::findOrFail($id)->delete();
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->delete();
 
-        session()->flash('success', 'Sukses menghapus data');
-        return redirect()->route('back.admin.data.jadwal.index');
+        session()->flash('success', 'Sukses Menghapus Data');
+        return redirect()->back();
     }
 }
