@@ -346,3 +346,15 @@ Route::controller(\App\Http\Controllers\SiswaController::class)->middleware(\App
     }
 );
 
+
+Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/jadwal", "jadwal")->name("jadwal");
+        Route::get("/dashboard/jadwal/add", "addJadwal")->name("add-jadwal");
+        Route::get("/dashboard/jadwal/{id}/edit", "editJadwal")->name("edit-jadwal");
+        Route::post("/dashboard/kelas/store", "storeJadwal")->name("store-jadwal");
+        Route::put("/dashboard/{id}/update", "updateJadwal")->name("update-jadwal");
+        Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
+
+    }
+);

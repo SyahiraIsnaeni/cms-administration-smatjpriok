@@ -8,6 +8,7 @@ return [
     App\Providers\FasilitasServiceProvider::class,
     App\Providers\GaleriServiceProvider::class,
     App\Providers\GuruServiceProvider::class,
+    App\Providers\JadwalServiceProvider::class,
     App\Providers\KategoriBeritaServiceProvider::class,
     App\Providers\KategoriPengumumanServiceProvider::class,
     App\Providers\KelasServiceProvider::class,
