@@ -63,7 +63,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($mapel->id); ?>" <?php echo e($mapel->id == $jadwals->mapel_id ? 'selected' : ''); ?>><?php echo e($mapel->nama); ?></option>
+                                                        <option value="<?php echo e($mapel->id); ?>" <?php echo e($mapel->id == $jadwals->mapel_id ? 'selected' : ''); ?>> <?php echo e($mapel->nama); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['mapel'];
@@ -93,7 +93,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih kelas..</option>
                                                         <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kelas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($kelas->id); ?>"><?php echo e($kelas->nama_kelas); ?></option>
+                                                        <option value="<?php echo e($kelas->id); ?>" <?php echo e($kelas->id == $jadwals->kelas_id ? 'selected' : ''); ?>> <?php echo e($kelas->nama_kelas); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['kelas'];

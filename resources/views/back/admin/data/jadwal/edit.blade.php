@@ -56,7 +56,7 @@
                                                     <select name="mapel" id="mapels" class="form-control @error('mapel') is-invalid @enderror">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         @foreach($mapels as $mapel)
-                                                        <option value="{{ $mapel->id }}" {{$mapel->id == $jadwals->mapel_id ? 'selected' : ''}}>{{ $mapel->nama }}</option>
+                                                        <option value="{{ $mapel->id }}" {{$mapel->id == $jadwals->mapel_id ? 'selected' : ''}}> {{ $mapel->nama }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('mapel')
@@ -72,7 +72,7 @@
                                                     <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
                                                         <option value="">Pilih kelas..</option>
                                                         @foreach($kelas as $kelas)
-                                                        <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                                        <option value="{{ $kelas->id }}" {{$kelas->id == $jadwals->kelas_id ? 'selected' : ''}}> {{ $kelas->nama_kelas }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('kelas')

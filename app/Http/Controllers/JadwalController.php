@@ -20,23 +20,17 @@ class JadwalController
      * @return \Illuminate\Http\Response
      */
     public function jadwal(Request $request)
-{
-    $search = $request->get('search');
-    $jadwals = Jadwal::whereHas('mapel', function($q) use ($search) {
-        $q->where('nama','LIKE',"%$search%");
-    })
-    ->orderBy('day_id', 'asc') // Urutkan berdasarkan day_id secara naik
-    ->orderBy('start_time', 'asc') // Kemudian, urutkan berdasarkan start_time secara naik
-    ->paginate(10);
+    {
+        $jadwals = Jadwal::orderBy('day_id', 'asc')
+                     ->orderBy('start_time', 'asc')
+                     ->paginate(10);
 
-    $jadwals->appends(['search' => $search]);
+        $days = Day::all();
 
-    $days = Day::all();
+        $kelas = Kelas::all();
 
-    $kelas = Kelas::all();
-
-    return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'kelas'));
-}
+        return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'kelas'));
+    }
 
     /**
      * Show the form for creating a new resource.
