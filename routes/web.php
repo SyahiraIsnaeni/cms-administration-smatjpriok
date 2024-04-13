@@ -355,6 +355,7 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
         Route::post("/dashboard/jadwal/store", "storeJadwal")->name("store-jadwal");
         Route::put("/dashboard/{id}/update", "updateJadwal")->name("update-jadwal");
         Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
+        Route::delete("/dashboard/jadwal/reset", "resetJadwal")->name("reset-jadwal");
 
     }
 );

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\RedirectResponse;
 use App\Services\JadwalService;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
@@ -29,8 +31,8 @@ class JadwalController
     $jadwals->appends(['search' => $search]);
 
     $days = Day::all();
-    
-    return view('back.admin.data.jadwal.index', compact('jadwals', 'days'));
+
+    return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request'));
 }
 
     /**
@@ -187,4 +189,18 @@ class JadwalController
         session()->flash('success', 'Sukses Menghapus Data');
         return redirect()->back();
     }
+
+    public function resetJadwal(): Response|RedirectResponse
+{
+    // Mendapatkan semua data jadwal
+    $jadwals = Jadwal::all();
+
+    // Menghapus semua data jadwal
+    foreach ($jadwals as $jadwal) {
+        $jadwal->delete();
+    }
+
+    Alert::success('Sukses', 'Berhasil Menghapus Semua Data Jadwal');
+    return redirect()->route('jadwal');
+}
 }

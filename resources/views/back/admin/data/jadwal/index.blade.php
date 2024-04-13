@@ -54,6 +54,21 @@
                                                 </button>
                                             </form>
                                         </div>
+                                        <div class="card-tools" style="margin-left: 250px" >
+                                            <form action="/dashboard/jadwal" method="GET">
+                                                <div class="input-group input-group-sm" style="width: 200px;">
+                                                        <input type="text" name="table_search" class="form-control" placeholder="Contoh: X IPA 1" value="{{ $request->get('search') }}">
+
+                                                        <div class="input-group-append">
+                                                            <button type="submit" class="btn btn-default">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                            </form>
+                                            
+                                        </div>
+
                                     </div>
                                     <section class="section">
                                         <div class="card" >
