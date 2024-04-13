@@ -68,7 +68,7 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">
-                                                    <select name="mapel" id="mapels" class="form-control <?php $__errorArgs = ['subject'];
+                                                    <select name="mapel" id="mapels" class="form-control <?php $__errorArgs = ['mapel'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -82,6 +82,36 @@ unset($__errorArgs, $__bag); ?>">
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['mapel'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong><?php echo e($message); ?></strong>
+                                                        </span>
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
+                                                <div class="col-md-10">
+                                                    <select name="kelas" id="kelas" class="form-control <?php $__errorArgs = ['kelas'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                        <option value="">Pilih kelas..</option>
+                                                        <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kelas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($kelas->id); ?>"><?php echo e($kelas->nama_kelas); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                    <?php $__errorArgs = ['kelas'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

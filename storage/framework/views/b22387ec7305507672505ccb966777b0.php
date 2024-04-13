@@ -54,21 +54,6 @@
                                                 </button>
                                             </form>
                                         </div>
-                                        <div class="card-tools" style="margin-left: 250px" >
-                                            <form action="/dashboard/jadwal" method="GET">
-                                                <div class="input-group input-group-sm" style="width: 200px;">
-                                                        <input type="text" name="table_search" class="form-control" placeholder="Contoh: X IPA 1" value="<?php echo e($request->get('search')); ?>">
-
-                                                        <div class="input-group-append">
-                                                            <button type="submit" class="btn btn-default">
-                                                                <i class="fas fa-search"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                            </form>
-                                            
-                                        </div>
-
                                     </div>
                                     <section class="section">
                                         <div class="card" >
@@ -77,9 +62,9 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>#</th>
                                                             <th>Hari</th>
                                                             <th>Mata Pelajaran</th>
+                                                            <th>Kelas</th>
                                                             <th>Waktu Mulai</th>
                                                             <th>Waktu Selesai</th>
                                                             <th>Action</th>
@@ -88,9 +73,9 @@
                                                         <tbody>
                                                         <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <th scope="row"><?php echo e($loop->iteration); ?></th>
                                                                 <td><?php echo e($jadwal->day->name); ?></td>
                                                                 <td><?php echo e($jadwal->mapel->nama); ?></td>
+                                                                <td><?php echo e($jadwal->kelas->nama_kelas); ?></td>
                                                                 <td><?php echo e($jadwal->start_time); ?></td>
                                                                 <td><?php echo e($jadwal->end_time); ?></td>
                                                                 <td>

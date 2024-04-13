@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use App\Models\MataPelajaran;
 use App\Models\Day;
+use App\Models\Kelas;
 
 class JadwalController 
 {
@@ -32,7 +33,9 @@ class JadwalController
 
     $days = Day::all();
 
-    return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request'));
+    $kelas = Kelas::all();
+
+    return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'kelas'));
 }
 
     /**
@@ -44,7 +47,9 @@ class JadwalController
     {
         $mapels = MataPelajaran::all();
         $days = Day::all();
-        return view('back.admin.data.jadwal.add', compact('mapels', 'days'));
+        $kelas = Kelas::all();
+
+        return view('back.admin.data.jadwal.add', compact('mapels', 'days', 'kelas'));
     }
 
     /**
@@ -59,6 +64,7 @@ class JadwalController
     $validator = Validator::make($request->all(), [
         'mapel' => 'required|exists:mapel,id',
         'day' => 'required|exists:days,id',
+        'kelas' => 'required|exists:kelas,id',
         'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
         'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
         // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
@@ -89,6 +95,7 @@ class JadwalController
     $jadwals = Jadwal::create([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
+        'kelas_id' => $request->kelas,
         'start_time' => $request->start_time,
         'end_time' => $request->end_time
     ]);
@@ -119,8 +126,9 @@ class JadwalController
     {
         $mapels = MataPelajaran::all();
         $days = Day::all();
+        $kelas = Kelas::all();
         $jadwals = Jadwal::findOrFail($id);
-        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels'));
+        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels', 'kelas'));
     }
 
 
@@ -137,6 +145,7 @@ class JadwalController
         $validator = Validator::make($request->all(), [
         'mapel' => 'required|exists:mapel,id',
         'day' => 'required|exists:days,id',
+        'kelas' => 'required|exists:kelas,id',
         'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
         'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
         // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
@@ -167,6 +176,7 @@ class JadwalController
     $jadwals = Jadwal::findOrFail($id)->update([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
+        'kelas_id' => $request->kelas,
         'start_time' => $request->start_time,
         'end_time' => $request->end_time
     ]);

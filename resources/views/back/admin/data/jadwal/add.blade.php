@@ -65,13 +65,29 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">
-                                                    <select name="mapel" id="mapels" class="form-control @error('subject') is-invalid @enderror">
+                                                    <select name="mapel" id="mapels" class="form-control @error('mapel') is-invalid @enderror">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         @foreach($mapels as $mapel)
                                                         <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('mapel')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
+                                                <div class="col-md-10">
+                                                    <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
+                                                        <option value="">Pilih kelas..</option>
+                                                        @foreach($kelas as $kelas)
+                                                        <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('kelas')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
