@@ -84,7 +84,9 @@
                                                                     <form action="{{ route('delete-jadwal', $jadwal->id) }}" method="POST">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <button type="submit" class='btn btn-danger btn-delete'><i class="bi bi-trash"></i></button>
+                                                                        <button type="submit" style="margin-left: 8px" class='btn btn-danger btn-delete'>
+                                                                            <i class="bi bi-trash"></i>
+                                                                        </button>
                                                                     </form>
                                                                 </div>
                                                                 </td>
