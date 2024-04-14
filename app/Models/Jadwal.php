@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jadwal extends Model
 {
-    protected $fillable = ['jadwal_id', 'mapel_id', 'day_id', 'kelas_id', 'start_time','end_time'];
+    protected $fillable = ['jadwal_id', 'mapel_id', 'day_id', 'guru_id', 'start_time','end_time'];
 
     public function mapel() {
         return $this->belongsTo('App\Models\MataPelajaran');
     }
 
-    public function kelas() {
-        return $this->belongsTo('App\Models\Kelas');
+    public function guru() {
+        return $this->belongsTo('App\Models\Guru');
     }
 
     public function day() {

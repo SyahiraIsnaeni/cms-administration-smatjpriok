@@ -64,7 +64,7 @@
                                                         <tr>
                                                             <th>Hari</th>
                                                             <th>Mata Pelajaran</th>
-                                                            <th>Kelas</th>
+                                                            <th>Guru</th>
                                                             <th>Waktu Mulai</th>
                                                             <th>Waktu Selesai</th>
                                                             <th>Action</th>
@@ -74,10 +74,10 @@
                                                         @forelse($jadwals as $jadwal)
                                                             <tr>
                                                                 <td>{{ $jadwal->day->name }}</td>
-                                                                <td>{{ $jadwal->mapel->nama }}</td>
-                                                                <td>{{ $jadwal->kelas->nama_kelas }}</td>
-                                                                <td>{{ $jadwal->start_time }}</td>
-                                                                <td>{{ $jadwal->end_time }}</td>
+                                                                <td>{{ $jadwal->mapel->nama }} {{ $jadwal->mapel->kelas->nama_kelas }}</td>
+                                                                <td>{{ $jadwal->guru->nama }}</td>
+                                                                <td>{{ $jadwal->start_time ? substr($jadwal->start_time, 0, 5) : '' }}</td>
+                                                                <td>{{ $jadwal->end_time ? substr($jadwal->end_time, 0, 5) : '' }}</td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
                                                                     <a href="{{ route('edit-jadwal', ['id' => $jadwal->id]) }}" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>

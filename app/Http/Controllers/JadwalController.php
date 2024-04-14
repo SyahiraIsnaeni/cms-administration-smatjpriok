@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use App\Models\MataPelajaran;
 use App\Models\Day;
-use App\Models\Kelas;
+use App\Models\Guru;
 
 class JadwalController 
 {
@@ -27,9 +27,9 @@ class JadwalController
 
         $days = Day::all();
 
-        $kelas = Kelas::all();
+        $gurus = Guru::all();
 
-        return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'kelas'));
+        return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'gurus'));
     }
 
     /**
@@ -41,9 +41,9 @@ class JadwalController
     {
         $mapels = MataPelajaran::all();
         $days = Day::all();
-        $kelas = Kelas::all();
+        $gurus = Guru::all();
 
-        return view('back.admin.data.jadwal.add', compact('mapels', 'days', 'kelas'));
+        return view('back.admin.data.jadwal.add', compact('mapels', 'days', 'gurus'));
     }
 
     /**
@@ -58,26 +58,10 @@ class JadwalController
     $validator = Validator::make($request->all(), [
         'mapel' => 'required|exists:mapel,id',
         'day' => 'required|exists:days,id',
-        'kelas' => 'required|exists:kelas,id',
-        'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
-        'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
+        'guru' => 'required|exists:gurus,id',
+        'start_time' => 'required', // Format: Jam:Menit (24-jam)
+        'end_time' => 'required|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
         // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
-        'start_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                $existingJadwals = Jadwal::where('day_id', $request->day)
-                    ->where(function ($query) use ($request) {
-                        $query->whereBetween('start_time', [$request->start_time, $request->end_time])
-                            ->orWhereBetween('end_time', [$request->start_time, $request->end_time]);
-                    })
-                    ->exists();
-
-                if ($existingJadwals) {
-                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
-                }
-            }
-        ],
-        'end_time' => 'required|after:start_time',
     ]);
 
     // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
@@ -89,7 +73,7 @@ class JadwalController
     $jadwals = Jadwal::create([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
-        'kelas_id' => $request->kelas,
+        'guru_id' => $request->guru,
         'start_time' => $request->start_time,
         'end_time' => $request->end_time
     ]);
@@ -120,9 +104,9 @@ class JadwalController
     {
         $mapels = MataPelajaran::all();
         $days = Day::all();
-        $kelas = Kelas::all();
+        $gurus = Guru::all();
         $jadwals = Jadwal::findOrFail($id);
-        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels', 'kelas'));
+        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels', 'gurus'));
     }
 
 
@@ -139,26 +123,10 @@ class JadwalController
         $validator = Validator::make($request->all(), [
         'mapel' => 'required|exists:mapel,id',
         'day' => 'required|exists:days,id',
-        'kelas' => 'required|exists:kelas,id',
+        'guru' => 'required|exists:gurus,id',
         'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
         'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
         // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
-        'start_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                $existingJadwals = Jadwal::where('day_id', $request->day)
-                    ->where(function ($query) use ($request) {
-                        $query->whereBetween('start_time', [$request->start_time, $request->end_time])
-                            ->orWhereBetween('end_time', [$request->start_time, $request->end_time]);
-                    })
-                    ->exists();
-
-                if ($existingJadwals) {
-                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
-                }
-            }
-        ],
-        'end_time' => 'required|after:start_time',
     ]);
 
     // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
@@ -170,7 +138,7 @@ class JadwalController
     $jadwals = Jadwal::findOrFail($id)->update([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
-        'kelas_id' => $request->kelas,
+        'guru_id' => $request->guru,
         'start_time' => $request->start_time,
         'end_time' => $request->end_time
     ]);

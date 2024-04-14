@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title><?php echo e($title); ?></title>
 
     <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Jadwal Pelajaran</h3>
+                        <h3>Data Siswa Kelas <?php echo e($kelas->nama_kelas); ?></h3>
                     </div>
                 </div>
             </div>
@@ -40,13 +40,22 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="card-header" style="display: flex">
-                                        <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/jadwal/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                    <div class="card-header" style="display: flex;margin-left: -20px">
+                                        <div class="card-head-row">
+                                            <a href="<?php echo e(route("siswa")); ?>" class="btn btn-warning ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                         </div>
-
                                         <div class="card-head-row" style="margin-left: 10px">
-                                            <form action="/dashboard/jadwal/reset" method="POST">
+                                            <a href="<?php echo e(route('add-siswa', ['kelasId' => $kelas->id])); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                        <div class="card-head-row" style="margin-left: 10px">
+                                            <a href="<?php echo e(route('add-siswa-import', ['kelasId' => $kelas->id])); ?>" class="btn btn-success btn=sm ml-auto">
+                                                <i class="bi bi-plus-circle" style="margin-right: 4px">
+
+                                                </i>Import Data
+                                            </a>
+                                        </div>
+                                        <div class="card-head-row" style="margin-left: 10px">
+                                            <form action="<?php echo e(route('reset-siswa', ['kelasId' => $kelas->id])); ?>" method="POST">
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" class="btn btn-danger ml-auto">
@@ -62,39 +71,40 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Hari</th>
-                                                            <th>Mata Pelajaran</th>
-                                                            <th>Guru</th>
-                                                            <th>Waktu Mulai</th>
-                                                            <th>Waktu Selesai</th>
-                                                            <th>Action</th>
+                                                            <th>Nama Siswa</th>
+                                                            <th>NIS</th>
+                                                            <th>Jenis Kelamin</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $siswas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td><?php echo e($jadwal->day->name); ?></td>
-                                                                <td><?php echo e($jadwal->mapel->nama); ?> <?php echo e($jadwal->mapel->kelas->nama_kelas); ?></td>
-                                                                <td><?php echo e($jadwal->guru->nama); ?></td>
-                                                                <td><?php echo e($jadwal->start_time ? substr($jadwal->start_time, 0, 5) : ''); ?></td>
-                                                                <td><?php echo e($jadwal->end_time ? substr($jadwal->end_time, 0, 5) : ''); ?></td>
-                                                                <td>
-                                                                <div class='d-inline-flex'>
-                                                                    <a href="<?php echo e(route('edit-jadwal', ['id' => $jadwal->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
-                                                                    <form action="<?php echo e(route('delete-jadwal', $jadwal->id)); ?>" method="POST">
+                                                                <td class="text-bold-500"><?php echo e($row->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($row->nis); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($row->jenis_kelamin); ?></td>
+                                                                <td class="text-bold-500">
+                                                                    <a href="<?php echo e(route('edit-siswa', ['id' => $row->id, 'kelasId' => $kelas->id])); ?>" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
+                                                                    <br>
+                                                                    <form method="post" action="<?php echo e(route('delete-siswa', ['id' => $row->id, 'kelasId' => $kelas->id])); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
-                                                                        <button type="submit" style="margin-left: 8px" class='btn btn-danger btn-delete'>
+                                                                        <button class="btn icon btn-danger" style="margin-top: 10px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                </div>
                                                                 </td>
                                                             </tr>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                            <tr>
+                                                                <td colspan="7" class="text-center">Data Masih Kosong</td>
+                                                            </tr>
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    <?php echo e($jadwals->links()); ?>
+                                                    <?php echo e($siswas->links()); ?>
 
                                                 </div>
                                             </div>
@@ -135,4 +145,5 @@
 <?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/jadwal/index.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/siswa/view-siswa.blade.php ENDPATH**/ ?>

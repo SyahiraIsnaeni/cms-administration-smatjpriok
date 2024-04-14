@@ -56,7 +56,7 @@
                                                     <select name="mapel" id="mapels" class="form-control @error('mapel') is-invalid @enderror">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         @foreach($mapels as $mapel)
-                                                        <option value="{{ $mapel->id }}" {{$mapel->id == $jadwals->mapel_id ? 'selected' : ''}}> {{ $mapel->nama }}</option>
+                                                        <option value="{{ $mapel->id }}" {{ $mapel->id == $jadwals->mapel_id ? 'selected' : '' }}> {{ $mapel->nama }} {{ $mapel->kelas->nama_kelas }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('mapel')
@@ -67,15 +67,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
+                                                <label for="" class='col-md-2 col-form-label'>Guru</label>
                                                 <div class="col-md-10">
-                                                    <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
-                                                        <option value="">Pilih kelas..</option>
-                                                        @foreach($kelas as $kelas)
-                                                        <option value="{{ $kelas->id }}" {{$kelas->id == $jadwals->kelas_id ? 'selected' : ''}}> {{ $kelas->nama_kelas }}</option>
+                                                    <select name="guru" id="gurus" class="form-control @error('guru') is-invalid @enderror">
+                                                        <option value="">Pilih guru..</option>
+                                                        @foreach($gurus as $guru)
+                                                        <option value="{{ $guru->id }}" {{$guru->id == $jadwals->guru_id ? 'selected' : ''}}> {{ $guru->nama }}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('kelas')
+                                                    @error('guru')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -101,7 +101,7 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Waktu Mulai</label>
                                                 <div class="col-md-10">
-                                                    <input type="time" name="start_time" class='form-control  @error('start_time') is-invalid @enderror' value="{{$jadwals->start_time}}">
+                                                <input type="time" name="start_time" class='form-control @error('start_time') is-invalid @enderror' value="{{ $jadwals->start_time ? date('H:i', strtotime($jadwals->start_time)) : '' }}">
                                                     @error('start_time')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -112,7 +112,7 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Waktu Selesai</label>
                                                 <div class="col-md-10">
-                                                    <input type="time" name="end_time" class='form-control  @error('end_time') is-invalid @enderror' value="{{$jadwals->end_time}}">
+                                                <input type="time" name="end_time" class='form-control @error('end_time') is-invalid @enderror' value="{{ $jadwals->end_time ? date('H:i', strtotime($jadwals->end_time)) : '' }}">
                                                     @error('end_time')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
