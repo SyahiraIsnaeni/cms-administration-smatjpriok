@@ -55,7 +55,7 @@ class StafServiceImpl implements StafService
 
         if (isset($data['foto'])) {
             if ($guru->foto) {
-                Storage::delete('public/staf' . $guru->foto);
+                Storage::delete('public/staf/' . $guru->foto);
             }
 
             $originalName = $data['foto']->getClientOriginalName();
@@ -72,7 +72,7 @@ class StafServiceImpl implements StafService
     public function delete(int $id): bool
     {
         $guru = Staf::findOrFail($id);
-        Storage::delete('public/staf' . $guru->foto);
+        Storage::delete('public/staf/' . $guru->foto);
         return $guru->delete();
     }
 

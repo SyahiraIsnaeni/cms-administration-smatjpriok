@@ -60,7 +60,7 @@ class BlogServiceImpl implements BlogService
 
             $originalName = $data['gambar']->getClientOriginalName();
             $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_');
-            $gambarPath = $data['gambar']->storeAs('public/blog', $namaFile);
+            $gambarPath = $data['gambar']->storeAs('public/blog/', $namaFile);
             $blog->gambar = $namaFile;
         }
 
@@ -80,7 +80,7 @@ class BlogServiceImpl implements BlogService
     public function hardDelete(int $id): bool
     {
         $blog = Blog::onlyTrashed()->findOrFail($id);
-        Storage::delete('public/blog' . $blog->gambar);
+        Storage::delete('public/blog/' . $blog->gambar);
         $blog->forceDelete();
         return true;
     }

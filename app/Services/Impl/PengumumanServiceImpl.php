@@ -69,7 +69,7 @@ class PengumumanServiceImpl implements PengumumanService
 
         if (isset($data['gambar'])) {
             if ($pengumuman->gambar) {
-                Storage::delete('public/pengumuman/gambar' . $pengumuman->gambar);
+                Storage::delete('public/pengumuman/gambar/' . $pengumuman->gambar);
             }
 
             $originalName = $data['gambar']->getClientOriginalName();
@@ -80,7 +80,7 @@ class PengumumanServiceImpl implements PengumumanService
 
         if (isset($data['dokumen'])) {
             if ($pengumuman->dokumen) {
-                Storage::delete('public/pengumuman/dokumen' . $pengumuman->gambar);
+                Storage::delete('public/pengumuman/dokumen/' . $pengumuman->gambar);
             }
 
             $originalName = $data['dokumen']->getClientOriginalName();
@@ -105,8 +105,8 @@ class PengumumanServiceImpl implements PengumumanService
     public function hardDelete(int $id): bool
     {
         $pengumuman = Pengumuman::onlyTrashed()->findOrFail($id);
-        Storage::delete('public/pengumuman/gambar' . $pengumuman->gambar);
-        Storage::delete('public/pengumuman/dokumen' . $pengumuman->dokumen);
+        Storage::delete('public/pengumuman/gambar/' . $pengumuman->gambar);
+        Storage::delete('public/pengumuman/dokumen/' . $pengumuman->dokumen);
         $pengumuman->forceDelete();
         return true;
     }
