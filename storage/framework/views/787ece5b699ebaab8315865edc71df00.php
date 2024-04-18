@@ -243,10 +243,10 @@
                 <li class="sidebar-title">Penjadwalan</li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item <?php echo e(request()->is('dashboard/jadwal*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/jadwal" class='sidebar-link'>
                         <i class="bi bi-calendar2-week-fill"></i>
-                        <span>Jadwal Guru</span>
+                        <span>Jadwal Pelajaran</span>
                     </a>
                 </li>
 
