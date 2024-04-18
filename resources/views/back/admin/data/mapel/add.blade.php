@@ -65,7 +65,7 @@
                                             <div class="form-group">
                                                 <label for="squareText">Nama Mata Pelajaran</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Contoh: Matematika XII IPA 1" name="nama">
+                                                       placeholder="Contoh: Matematika" name="nama">
                                             </div>
                                             <div class="form-group">
                                                 <label for="guru">Guru Pengajar</label>

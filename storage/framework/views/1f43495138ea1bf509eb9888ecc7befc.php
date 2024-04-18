@@ -78,7 +78,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($mapel->id); ?>"><?php echo e($mapel->nama); ?></option>
+                                                        <option value="<?php echo e($mapel->id); ?>"><?php echo e($mapel->nama); ?> <?php echo e($mapel->kelas->nama_kelas); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['mapel'];
@@ -96,9 +96,9 @@ unset($__errorArgs, $__bag); ?>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
+                                                <label for="" class='col-md-2 col-form-label'>Guru</label>
                                                 <div class="col-md-10">
-                                                    <select name="kelas" id="kelas" class="form-control <?php $__errorArgs = ['kelas'];
+                                                    <select name="guru" id="gurus" class="form-control <?php $__errorArgs = ['guru'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -106,12 +106,12 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                                        <option value="">Pilih kelas..</option>
-                                                        <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kelas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($kelas->id); ?>"><?php echo e($kelas->nama_kelas); ?></option>
+                                                        <option value="">Pilih guru..</option>
+                                                        <?php $__currentLoopData = $gurus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guru): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($guru->id); ?>"><?php echo e($guru->nama); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
-                                                    <?php $__errorArgs = ['kelas'];
+                                                    <?php $__errorArgs = ['guru'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -231,5 +231,4 @@ unset($__errorArgs, $__bag); ?>
 
 </body>
 
-</html>
-<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/data/jadwal/add.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/data/jadwal/add.blade.php ENDPATH**/ ?>

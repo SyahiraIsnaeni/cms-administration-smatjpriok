@@ -64,7 +64,7 @@
                                                         <tr>
                                                             <th>Hari</th>
                                                             <th>Mata Pelajaran</th>
-                                                            <th>Kelas</th>
+                                                            <th>Guru</th>
                                                             <th>Waktu Mulai</th>
                                                             <th>Waktu Selesai</th>
                                                             <th>Action</th>
@@ -74,10 +74,10 @@
                                                         <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
                                                                 <td><?php echo e($jadwal->day->name); ?></td>
-                                                                <td><?php echo e($jadwal->mapel->nama); ?></td>
-                                                                <td><?php echo e($jadwal->kelas->nama_kelas); ?></td>
-                                                                <td><?php echo e($jadwal->start_time); ?></td>
-                                                                <td><?php echo e($jadwal->end_time); ?></td>
+                                                                <td><?php echo e($jadwal->mapel->nama); ?> <?php echo e($jadwal->mapel->kelas->nama_kelas); ?></td>
+                                                                <td><?php echo e($jadwal->guru->nama); ?></td>
+                                                                <td><?php echo e($jadwal->start_time ? substr($jadwal->start_time, 0, 5) : ''); ?></td>
+                                                                <td><?php echo e($jadwal->end_time ? substr($jadwal->end_time, 0, 5) : ''); ?></td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
                                                                     <a href="<?php echo e(route('edit-jadwal', ['id' => $jadwal->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
@@ -135,5 +135,4 @@
 <?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
-</html>
-<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/data/jadwal/index.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/data/jadwal/index.blade.php ENDPATH**/ ?>
