@@ -83,7 +83,7 @@
                                                                 <td class="text-bold-500"><?php echo e($staf->jabatan); ?></td>
                                                                 <td>
                                                                     <?php if($staf->foto): ?>
-                                                                        <img src="<?php echo e(asset('storage/staf/' . $staf->foto)); ?>" width="100" height="100">
+                                                                        <img src="<?php echo e(asset('storage/public/staf/' . $staf->foto)); ?>" width="100" height="100">
                                                                     <?php else: ?>
                                                                         Tidak ada
                                                                     <?php endif; ?>
