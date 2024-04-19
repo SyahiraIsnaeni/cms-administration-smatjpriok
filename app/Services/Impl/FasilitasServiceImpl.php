@@ -46,7 +46,7 @@ class FasilitasServiceImpl implements FasilitasService
 
         if (isset($data['gambar'])) {
             if ($fasilitas->gambar) {
-                Storage::delete('public/fasilitas' . $fasilitas->gambar);
+                Storage::delete('public/fasilitas/' . $fasilitas->gambar);
             }
 
             $originalName = $data['gambar']->getClientOriginalName();
@@ -63,7 +63,7 @@ class FasilitasServiceImpl implements FasilitasService
     public function delete(int $id): bool
     {
         $fasilitas = Fasilitas::findOrFail($id);
-        Storage::delete('public/fasilitas' . $fasilitas->gambar);
+        Storage::delete('public/fasilitas/' . $fasilitas->gambar);
         $fasilitas->delete();
 
         return true;

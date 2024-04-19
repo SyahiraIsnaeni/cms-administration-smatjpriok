@@ -83,7 +83,7 @@
                                                                 <td class="text-bold-500">{{ $guru->jabatan }}</td>
                                                                 <td>
                                                                     @if($guru->foto)
-                                                                        <img src="{{ asset('storage/guru/' . $guru->foto) }}" width="100" height="100">
+                                                                        <img src="{{ asset('storage/public/guru/' . $guru->foto) }}" width="100" height="100">
                                                                     @else
                                                                         Tidak ada
                                                                     @endif

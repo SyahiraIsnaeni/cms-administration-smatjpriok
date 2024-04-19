@@ -78,7 +78,7 @@
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $berita->judul }}</td>
                                                                 <td class="text-bold-500">{{ $berita->penulis }}</td>
-                                                                <td><img src={{asset('storage/berita/' . $berita->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/berita/' . $berita->gambar) }} width="100" height="100"></td>
                                                                 <td class="text-bold-500">{{ $berita->kategoriBerita->kategori }}</td>
                                                                 <td>
                                                                     @if ($berita->is_active == '1')

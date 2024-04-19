@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("./assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.admin.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Riwayat Berita</h3>
+                        <h3>Data Galeri Kegiatan</h3>
                     </div>
                 </div>
             </div>
@@ -40,6 +40,11 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
+                                    <div class="card-header">
+                                        <div class="card-head-row" style="margin-left: -20px">
+                                            <a href="/dashboard/galeri/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                    </div>
                                     <section class="section">
                                         <div class="card" >
                                             <div class="card-body" >
@@ -47,54 +52,39 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Judul</th>
-                                                            <th>Penulis</th>
-                                                            <th>Gambar</th>
-                                                            <th>Status</th>
-                                                            <th>Tanggal</th>
+                                                            <th>Judul Galeri Kegiatan</th>
+                                                            <th>Thumbnail</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($beritas as $berita)
+                                                        <?php $__empty_1 = true; $__currentLoopData = $galeris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $berita->judul }}</td>
-                                                                <td class="text-bold-500">{{ $berita->penulis }}</td>
-                                                                <td><img src={{asset('storage/public/berita/' . $berita->gambar) }} width="100" height="100"></td>
-                                                                <td>
-                                                                    @if ($berita->is_active == '1')
-                                                                        Diterbitkan
-                                                                    @else
-                                                                        Draf
-                                                                    @endif
-                                                                </td>
-                                                                <td>{{ $berita->updated_at->format('d M Y')}}</td>
+                                                                <td class="text-bold-500"><?php echo e($galeri->judul); ?></td>
+                                                                <td><img src=<?php echo e(asset('storage/galeri-thumbnail/' . $galeri->thumbnail)); ?> width="100" height="100"></td>
                                                                 <td class="text-bold-500">
-                                                                    <form method="post" action="{{ route('restore-riwayat-berita', $berita->id) }}" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button class="btn icon btn-primary" style="margin-top: 10px">
-                                                                            Restore Data
-                                                                        </button>
-                                                                    </form>
+                                                                    <a href="<?php echo e(route('edit-galeri', ['id' => $galeri->id])); ?>" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
                                                                     <br>
-                                                                    <form method="post" action="{{ route('delete-riwayat-berita', $berita->id) }}" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
+                                                                    <form method="post" action="<?php echo e(route('delete-galeri', $galeri->id)); ?>" class="d-inline">
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
-                                                                            Hapus Permanen
+                                                                            <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
                                                                 </td>
                                                             </tr>
-                                                        @empty
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                             <tr>
                                                                 <td colspan="7" class="text-center">Data Masih Kosong</td>
                                                             </tr>
-                                                        @endforelse
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    {{$beritas->links()}}
+                                                    <?php echo e($galeris->links()); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -124,14 +114,15 @@
 
     </div>
 </div>
-<script src={{asset("assets/static/js/components/dark.js")}}></script>
-<script src={{asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
 
-<script src={{asset("assets/compiled/js/app.js")}}></script>
 
-@include('back.admin.footer')
+<script src=<?php echo e(asset("assets/compiled/js/app.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/konten/galeri/view.blade.php ENDPATH**/ ?>

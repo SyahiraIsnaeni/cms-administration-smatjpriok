@@ -59,7 +59,7 @@
                                                 <input class="form-control" type="file" id="formFile" name="logo">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Logo saat ini</label> <br>
-                                                <img src="{{ asset('storage/galeri-thumbnail/'.$galeri->thumbnail) }}" width="100" style="margin-left: 10px">
+                                                <img src="{{ asset('storage/public/galeri-thumbnail/'.$galeri->thumbnail) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             <div class="form-group">
                                                 <label for="formFile" class="form-label">Foto-Foto Galeri Kegiatan(.jpg, .png, .jpeg)</label>
@@ -67,7 +67,7 @@
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto Kegiatan saat ini</label> <br>
                                                 @foreach($galeri->images as $image)
-                                                    <img src="{{ asset('storage/galeri-images/'.$image->image) }}" width="100" style="margin-left: 10px">
+                                                    <img src="{{ asset('storage/public/galeri-images/'.$image->image) }}" width="100" style="margin-left: 10px">
                                                 @endforeach
                                             </div>
                                             <div class="form-group">

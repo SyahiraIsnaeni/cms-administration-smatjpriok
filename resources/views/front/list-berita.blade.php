@@ -273,7 +273,7 @@
                 class="rounded-md border border-black border-opacity-25 hover:scale-105 ease-in-out duration-300"
             >
                 <img
-                    src="{{ asset('storage/berita/' . $berita->gambar) }}"
+                    src="{{ asset('storage/public/berita/' . $berita->gambar) }}"
                     class="rounded-t-md object-cover object-center h-[200px] w-full"
                 />
                 <div class="py-2.5 xl:py-3 px-3 bg-white rounded-b-md">

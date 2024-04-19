@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("./assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.admin.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -63,49 +63,50 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($pengumumans as $pengumuman)
+                                                        <?php $__empty_1 = true; $__currentLoopData = $pengumumans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pengumuman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $pengumuman->judul }}</td>
-                                                                <td class="text-bold-500">{{ $pengumuman->penulis }}</td>
-                                                                <td><img src={{asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }} width="100" height="100"></td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->judul); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->penulis); ?></td>
+                                                                <td><img src=<?php echo e(asset('storage/pengumuman/gambar/' . $pengumuman->gambar)); ?> width="100" height="100"></td>
                                                                 <td>
-                                                                    @if ($pengumuman->dokumen != null)
-                                                                        <a href="{{asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen) }}" class="btn icon btn-success">Lihat dokumen</a>
-                                                                    @else
+                                                                    <?php if($pengumuman->dokumen != null): ?>
+                                                                        <a href="<?php echo e(asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen)); ?>" class="btn icon btn-success">Lihat dokumen</a>
+                                                                    <?php else: ?>
                                                                         Tidak ada
-                                                                    @endif
+                                                                    <?php endif; ?>
                                                                 </td>
-                                                                <td class="text-bold-500">{{ $pengumuman->kategoriPengumuman->kategori }}</td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->kategoriPengumuman->kategori); ?></td>
                                                                 <td>
-                                                                    @if ($pengumuman->is_active == '1')
+                                                                    <?php if($pengumuman->is_active == '1'): ?>
                                                                         Diterbitkan
-                                                                    @else
+                                                                    <?php else: ?>
                                                                         Draf
-                                                                    @endif
+                                                                    <?php endif; ?>
                                                                 </td>
-                                                                <td>{{ $pengumuman->updated_at->format('d M Y')}}</td>
+                                                                <td><?php echo e($pengumuman->updated_at->format('d M Y')); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="{{ route('edit-pengumuman', ['id' => $pengumuman->id]) }}" class="btn icon btn-primary">
+                                                                    <a href="<?php echo e(route('edit-pengumuman', ['id' => $pengumuman->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
                                                                     <br>
-                                                                    <form method="post" action="{{ route('delete-pengumuman', $pengumuman->id) }}" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
+                                                                    <form method="post" action="<?php echo e(route('delete-pengumuman', $pengumuman->id)); ?>" class="d-inline">
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
                                                                 </td>
                                                             </tr>
-                                                        @empty
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                             <tr>
                                                                 <td colspan="7" class="text-center">Data Masih Kosong</td>
                                                             </tr>
-                                                        @endforelse
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    {{$pengumumans->links()}}
+                                                    <?php echo e($pengumumans->links()); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -135,14 +136,15 @@
 
     </div>
 </div>
-<script src={{asset("assets/static/js/components/dark.js")}}></script>
-<script src={{asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
 
-<script src={{asset("assets/compiled/js/app.js")}}></script>
 
-@include('back.admin.footer')
+<script src=<?php echo e(asset("assets/compiled/js/app.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/konten/beranda/pengumuman/view.blade.php ENDPATH**/ ?>

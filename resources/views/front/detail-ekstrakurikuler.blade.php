@@ -182,7 +182,7 @@
         <!-- TAMPILAN TABLET DAN DEKSTOP -->
         <div class="hidden sm:block mt-5 md:mt-7 lg:mt-10 xl:mt-12">
             <div class="float-left">
-                <img src="{{ asset('storage/ekstrakurikuler-logos/' . $ekskul->logo) }}" class="w-[250px] h-[250px] md:w-[270px] md:h-[270px] lg:h-[300px] lg:w-[300px] xl:h-[320px] xl:w-[320px] mr-5 md:mr-10 lg:mr-12 xl:mr-16" >
+                <img src="{{ asset('storage/public/ekstrakurikuler-logos/' . $ekskul->logo) }}" class="w-[250px] h-[250px] md:w-[270px] md:h-[270px] lg:h-[300px] lg:w-[300px] xl:h-[320px] xl:w-[320px] mr-5 md:mr-10 lg:mr-12 xl:mr-16" >
             </div>
             <div class="">
                 <p class="indent-[45px] lg:indent-[55px] text-justify mt-5 sm:text-[14.5px] text-[15px] lg:text-base xl:text-[17px] md:leading-relaxed xl:leading-[1.8]">
@@ -201,7 +201,7 @@
     </div>
     <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 mt-5 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-5 md:gap-7 lg:gap-10">
         @foreach($ekskul->images as $image)
-        <img src="{{ asset('storage/ekstrakurikuler-images/' . $image->image) }}" class="rounded-md h-[250px] w-full object-cover object-center">
+        <img src="{{ asset('storage/public/ekstrakurikuler-images/' . $image->image) }}" class="rounded-md h-[250px] w-full object-cover object-center">
         @endforeach
     </div>
 </section>

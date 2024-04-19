@@ -97,14 +97,14 @@
                                                 <input class="form-control" type="file" id="formFile" name="gambar">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Gambar saat ini</label> <br>
-                                                <img src="{{ asset('storage/pengumuman/gambar/'.$pengumuman->gambar) }}" width="100" style="margin-left: 10px">
+                                                <img src="{{ asset('storage/public/pengumuman/gambar/'.$pengumuman->gambar) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             @if ($pengumuman->dokumen != null)
                                                 <div class="form-group">
                                                     <label for="dokumen">Dokumen Pengumuman (opsional)</label>
                                                     <input class="form-control" type="file" id="formFile" name="dokumen" style="margin-bottom: 10px">
                                                     <label for="dokumen">Dokumen Saat Ini</label><br>
-                                                    <a href="{{asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen) }}">{{asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen) }}</a>
+                                                    <a href="{{asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen) }}">{{asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen) }}</a>
                                                 </div>
                                             @else
                                                 <div class="form-group">

@@ -177,7 +177,7 @@
             <div class="mt-7 md:mt-10 grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8 xl:gap-5">
                 @foreach($galeri->images as $image)
                 <div>
-                    <img src="{{ asset('storage/galeri-images/'.$image->image) }}" class="object-cover object-center w-full h-[250px]">
+                    <img src="{{ asset('storage/public/galeri-images/'.$image->image) }}" class="object-cover object-center w-full h-[250px]">
                 </div>
                 @endforeach
             </div>
@@ -193,7 +193,7 @@
                     @foreach($nextGaleri as $row)
                     <a href="{{ route('detail-galeri', ['id' => $row->id]) }}">
                         <div class="relative h-[240px] mt-5 sm:mt-0  hover:scale-105 ease-in-out duration-300">
-                            <img src="{{ asset('storage/galeri-thumbnail/' . $row->thumbnail) }}" class="w-full object-cover object-center h-full">
+                            <img src="{{ asset('storage/public/galeri-thumbnail/' . $row->thumbnail) }}" class="w-full object-cover object-center h-full">
                             <div class="bg-[#0D464B]  text-white bg-gradient-to-t from-[#0D464B] via-[#13494D]/50 to-[#737373]/5 bg-opacity-25 absolute top-0 h-full w-full">
                                 <div class="bottom-0 absolute mx-5 my-5">
                                     <h1 class="mt-auto text-base sm:text-[17px] font-medium leading-relaxed">{{ $row->judul}}</h1>

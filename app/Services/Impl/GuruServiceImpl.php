@@ -56,7 +56,7 @@ class GuruServiceImpl implements GuruService
 
         if (isset($data['foto'])) {
             if ($guru->foto) {
-                Storage::delete('public/guru' . $guru->foto);
+                Storage::delete('public/guru/' . $guru->foto);
             }
 
             $originalName = $data['foto']->getClientOriginalName();
@@ -73,7 +73,7 @@ class GuruServiceImpl implements GuruService
     public function delete(int $id): bool
     {
         $guru = Guru::findOrFail($id);
-        Storage::delete('public/guru' . $guru->foto);
+        Storage::delete('public/guru/' . $guru->foto);
         return $guru->delete();
     }
 

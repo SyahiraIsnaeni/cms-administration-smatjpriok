@@ -115,7 +115,7 @@
                 <div class="w-full">
                     <div class="relative ">
                         <div class="w-full">
-                            <img src="{{ asset('storage/guru/' . $guru->foto) }}" class="object-cover rounded-md w-full h-[370px] min-[400px]:h-[500px] min-[500px]:h-[320px] sm:h-[330px] md:h-[300px] lg:h-[300px] xl:h-[350px] object-top" />
+                            <img src="{{ asset('storage/public/guru/' . $guru->foto) }}" class="object-cover rounded-md w-full h-[370px] min-[400px]:h-[500px] min-[500px]:h-[320px] sm:h-[330px] md:h-[300px] lg:h-[300px] xl:h-[350px] object-top" />
                         </div>
                         <div class="absolute inset-x-0 -bottom-7 flex justify-center items-center">
                             <div class="bg-[#FF8B42] rounded-xl py-2.5 px-3 w-4/5 lg:px-3 lg:py-3 xl:px-3 xl:py-3">

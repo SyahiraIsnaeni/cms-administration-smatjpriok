@@ -60,7 +60,7 @@
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $pengumuman->judul }}</td>
                                                                 <td class="text-bold-500">{{ $pengumuman->penulis }}</td>
-                                                                <td><img src={{asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @if ($pengumuman->is_active == '1')
                                                                         Diterbitkan

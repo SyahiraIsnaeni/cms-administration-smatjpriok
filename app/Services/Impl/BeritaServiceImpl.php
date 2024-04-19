@@ -96,7 +96,7 @@ class BeritaServiceImpl implements BeritaService
 
         if (isset($data['gambar'])) {
             if ($berita->gambar) {
-                Storage::delete('public/berita' . $berita->gambar);
+                Storage::delete('public/berita/' . $berita->gambar);
             }
 
             $originalName = $data['gambar']->getClientOriginalName();
@@ -121,7 +121,7 @@ class BeritaServiceImpl implements BeritaService
     public function hardDelete(int $id): bool
     {
         $berita = Berita::onlyTrashed()->findOrFail($id);
-        Storage::delete('public/berita' . $berita->gambar);
+        Storage::delete('public/berita/' . $berita->gambar);
         $berita->forceDelete();
         return true;
     }
