@@ -61,7 +61,7 @@
                                                         <?php $__empty_1 = true; $__currentLoopData = $galeris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
                                                                 <td class="text-bold-500"><?php echo e($galeri->judul); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/public/galeri-thumbnail/' . $galeri->thumbnail)); ?> width="100" height="100"></td>
+                                                                <td><img src=<?php echo e(asset('storage/galeri-thumbnail/' . $galeri->thumbnail)); ?> width="100" height="100"></td>
                                                                 <td class="text-bold-500">
                                                                     <a href="<?php echo e(route('edit-galeri', ['id' => $galeri->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
@@ -125,4 +125,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/konten/galeri/view.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/galeri/view.blade.php ENDPATH**/ ?>

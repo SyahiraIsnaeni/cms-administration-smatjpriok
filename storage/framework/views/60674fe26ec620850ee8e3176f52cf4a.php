@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8" />
     <title>SMA Tanjung Priok Jakarta</title>
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" />
+    <link rel="icon" href="<?php echo e(asset('images/logo.png')); ?>" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link href="<?php echo e(asset('css/styles.css')); ?>" rel="stylesheet" />
 
     <!-- PENTING!!!! -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link
         rel="stylesheet"
-        href={{asset("../editor/richtexteditor/rte_theme_default.css")}}
+        href=<?php echo e(asset("../editor/richtexteditor/rte_theme_default.css")); ?>
+
     />
     <script
         type="text/javascript"
-        src={{asset("../editor/richtexteditor/rte.js")}}
+        src=<?php echo e(asset("../editor/richtexteditor/rte.js")); ?>
+
     ></script>
     <script
         type="text/javascript"
-        src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
+        src=<?php echo e(asset("../editor/richtexteditor/plugins/all_plugins.js")); ?>
+
     ></script>
 </head>
 <body class="font-cms bg-[#E5F3EF]">
@@ -28,7 +31,7 @@
     <!-- TAMPILAN HP -->
     <div class="md:hidden relative">
         <div class="ml-5 sm:ml-8 flex items-center">
-            <img src="{{ asset('images/logo.png') }}" class="w-10 my-auto" />
+            <img src="<?php echo e(asset('images/logo.png')); ?>" class="w-10 my-auto" />
             <h1 class="font-semibold text-sm text-white block my-auto ml-2 tracking-normal">SMA Tanjung Priok Jakarta</h1>
             <!-- button hamburger -->
             <div class="w-9 h-8 bg-[#ffffff] rounded-md flex ml-auto mr-5 sm:mr-8 mt-1 cursor-pointer" id="toggleButton">
@@ -42,16 +45,16 @@
         </div>
         <!-- Navigasi Hamburger -->
         <div class="hidden md:flex flex-col items-start absolute mt-3 right-0 bg-[#0D464B] p-4 w-48 rounded-l-md rounded-t-none opacity-95 h-screen" id="mobileMenu">
-            <a href="{{route("home")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42] font-semibold underline underline-offset-8 decoration-2 decoration-[#FF8B42]">Beranda</a>
-            <a href="{{route("profil-sekolah")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Profil</a>
+            <a href="<?php echo e(route("home")); ?>" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42] font-semibold underline underline-offset-8 decoration-2 decoration-[#FF8B42]">Beranda</a>
+            <a href="<?php echo e(route("profil-sekolah")); ?>" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Profil</a>
             <a href="#" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]" id="dataDropdownHP">
                 Data
                 <div class="hidden absolute -mt-12 -left-28 bg-[#FF8B42] p-2 w-28 rounded-l-md font-medium" id="dataDropdownContentHP">
-                    <a href="{{route("list-guru")}}" class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center">Data Guru</a>
-                    <a href="{{route("list-staf")}}" class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center">Data Staf</a>
+                    <a href="<?php echo e(route("list-guru")); ?>" class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center">Data Guru</a>
+                    <a href="<?php echo e(route("list-staf")); ?>" class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center">Data Staf</a>
                 </div>
             </a>
-            <a href="{{route("konten-sekolah")}}" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Konten</a>
+            <a href="<?php echo e(route("konten-sekolah")); ?>" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Konten</a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">E-Learning</a>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
@@ -60,24 +63,24 @@
     <!-- TAMPILAN TABLET DAN KOMPUTER -->
     <div class="hidden mx-5 sm:mx-8 lg:mx-10 xl:mx-20 md:grid grid-cols-2">
         <div class="flex">
-            <img src="{{ asset('images/logo.png') }}" class="md:w-[40px] md:h-[40px] lg:w-[48px] lg:h-[47px]" />
+            <img src="<?php echo e(asset('images/logo.png')); ?>" class="md:w-[40px] md:h-[40px] lg:w-[48px] lg:h-[47px]" />
             <h1 class="block my-auto ml-3 font-semibold tracking-wide text-white text-[14px] lg:text-base xl:text-[17px]">SMA Tanjung Priok Jakarta</h1>
         </div>
         <div class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal">
-            <a href="{{route("home")}}">
+            <a href="<?php echo e(route("home")); ?>">
                 <p class="hover:text-[#FF8B42] font-semibold underline underline-offset-8 decoration-2 decoration-[#FF8B42]">Beranda</p>
             </a>
-            <a href="{{route("profil-sekolah")}}">
+            <a href="<?php echo e(route("profil-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Profil</p>
             </a>
             <a href="#" id="dataDropdown1" class="relative block">
                 <p class="hover:text-[#FF8B42]">Data Sekolah</p>
                 <div class="hidden font-medium absolute bg-[#FF8B42] xl:mt-[49px] text-center lg:mt-[48px] mt-[42px] px-4 py-4 w-[100px] lg:w-[120px] rounded-b-md shadow-md text-xs lg:text-[13px] xl:text-[14px] -ml-8" id="dataDropdownContent1">
-                    <a href="{{route("list-guru")}}" class="block text-black hover:font-bold py-1">Data Guru</a>
-                    <a href="{{route("list-staf")}}" class="block text-black hover:font-bold py-1 mt-2">Data Staf</a>
+                    <a href="<?php echo e(route("list-guru")); ?>" class="block text-black hover:font-bold py-1">Data Guru</a>
+                    <a href="<?php echo e(route("list-staf")); ?>" class="block text-black hover:font-bold py-1 mt-2">Data Staf</a>
                 </div>
             </a>
-            <a href="{{route("konten-sekolah")}}">
+            <a href="<?php echo e(route("konten-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html">
@@ -109,7 +112,7 @@
 <section>
     <div class="w-full bg-[#001A1C] bg-opacity-95">
         <div class="sm:flex pb-5 sm:pb-0">
-            <img class="w-full mb-5 sm:mb-0 sm:w-1/2 rounded-br-[400px] xl:h-[600px] lg:h-[500px] md:h-[430px] sm:h-[380px] h-[280px] object-cover object-center" src={{ asset('images/carousel-fix.jpg') }} />
+            <img class="w-full mb-5 sm:mb-0 sm:w-1/2 rounded-br-[400px] xl:h-[600px] lg:h-[500px] md:h-[430px] sm:h-[380px] h-[280px] object-cover object-center" src=<?php echo e(asset('images/carousel-fix.jpg')); ?> />
             <div class="sm:w-1/2 my-auto mr-5 sm:mr-7 md:mr-10 lg:mr-12 xl:mr-16 xl:ml-0 sm:ml-3 ml-2 text-white">
                 <p class="font-semibold text-[22px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-right tracking-wide">SMA Tanjung Priok Jakarta</p>
                 <p class="font-medium text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-2xl text-right tracking-wide mt-1.5 sm:mt-3 md:mt-4 lg:mt-6 xl:mt-7">Unggul Dalam Mutu Berpijak pada Budaya Bangsa</p>
@@ -158,7 +161,7 @@
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl text-center">Eksplorasi Terbaru</h1>
         <p class="mt-3 font-normal lg:mt-5 text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-lg italic text-center">Jelajahi update terbaru dari komunitas pendidikan kami!</p>
         <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 sm:mt-3">
-            <a href="{{route("list-prestasi")}}">
+            <a href="<?php echo e(route("list-prestasi")); ?>">
                 <div class="bg-[#00C59C] rounded-md bg-opacity-80 py-6 px-6 lg:px-7 lg:py-7 mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-10 h-10">
                         <path
@@ -169,7 +172,7 @@
                     <p class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15.5px] font-normal mt-1">Telusuri Pencapaian Gemilang Sekolah Kami.</p>
                 </div>
             </a>
-            <a href="{{route("list-berita")}}">
+            <a href="<?php echo e(route("list-berita")); ?>">
                 <div class="bg-[#FF8B42] rounded-md bg-opacity-85 py-6 px-6 lg:px-7 lg:py-7 mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-10 h-10">
                         <path
@@ -180,7 +183,7 @@
                     <p class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15.5px] font-normal mt-1">Jelajahi Berita-Berita Terkini Sekolah Kami.</p>
                 </div>
             </a>
-            <a href="{{route("list-pengumuman")}}">
+            <a href="<?php echo e(route("list-pengumuman")); ?>">
                 <div class="bg-[#00A9C0] rounded-md bg-opacity-75 py-6 px-6 lg:px-7 lg:py-7 mt-5 sm:mt-0 lg:mt-5 hover:transition hover:scale-105 ease-in-out duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-10 h-10">
                         <path
@@ -200,23 +203,24 @@
     <!-- Div untuk overlay warna -->
     <div class="absolute top-0 left-0 w-full h-full bg-[#0D464B] bg-opacity-90 z-10"></div>
     <!-- Gambar Latar -->
-    <img src="{{ asset('images/school-AI1.jpg') }}" alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[430px] sm:h-[450px] md:h-[400px] lg:h-[440px] xl:h-[520px]" />
+    <img src="<?php echo e(asset('images/school-AI1.jpg')); ?>" alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[430px] sm:h-[450px] md:h-[400px] lg:h-[440px] xl:h-[520px]" />
     <!-- TAMPILAN HP -->
     <div class="block md:hidden absolute top-0 left-0 w-full my-8 z-20">
         <h1 class="text-white text-center font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Kegiatan Ekstrakurikuler</h1>
         <!-- INI YANG AKAN DIGESER -->
         <ul id="slider" class="flex">
-            @foreach($ekstrakurikulers as $ekstrakurikuler)
+            <?php $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="mx-5 sm:mx-8">
                     <div class="flex justify-center items-center my-3 sm:my-4">
-                        <img src="{{ asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
+                        <img src="<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
                     </div>
-                    <h1 class="text-white text-center font-semibold text-[17px] sm:text-lg">{{ $ekstrakurikuler->nama }}</h1>
+                    <h1 class="text-white text-center font-semibold text-[17px] sm:text-lg"><?php echo e($ekstrakurikuler->nama); ?></h1>
                     <p class="text-center text-white font-light text-[12.5px] sm:text-sm mt-2">
-                        {!! strlen($ekstrakurikuler->deskripsi) > 150 ? substr($ekstrakurikuler->deskripsi, 0, 150) . '...' : $ekstrakurikuler->deskripsi !!}
+                        <?php echo strlen($ekstrakurikuler->deskripsi) > 150 ? substr($ekstrakurikuler->deskripsi, 0, 150) . '...' : $ekstrakurikuler->deskripsi; ?>
+
                     </p>
                     <div class="flex justify-center items-center mt-2 sm:mt-3">
-                        <a href="{{ route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id]) }}">
+                        <a href="<?php echo e(route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id])); ?>">
                             <p class="text-[12.5px] sm:text-sm font-medium text-white underline">Selengkapnya</p>
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[1px] ml-0.5 w-3.5 h-3.5" fill="#fff">
@@ -226,7 +230,7 @@
                         </svg>
                     </div>
                 </li>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
         <!-- INI UNTUK PANAH KANAN DAN KIRI -->
         <div class="flex justify-center items-center mt-5">
@@ -283,17 +287,18 @@
             </button>
             <!-- INI YANG AKAN DIGESER -->
             <ul id="slider2" class="mt-3">
-                @foreach($ekstrakurikulers as $ekstrakurikuler)
+                <?php $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li class="flex w-full">
                         <div class="flex w-full justify-center items-center my-3 sm:my-4">
-                            <img src="{{ asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
+                            <img src="<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
                             <div class="ml-6 xl:ml-8 w-full">
-                                <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]">{{ $ekstrakurikuler->nama }}</h1>
+                                <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]"><?php echo e($ekstrakurikuler->nama); ?></h1>
                                 <p class="text-white font-light text-[14.5px] lg:text-base xl:text-lg mt-3 w-full">
-                                    {!! strlen($ekstrakurikuler->deskripsi) > 300 ? substr($ekstrakurikuler->deskripsi, 0, 300) . '...' : $ekstrakurikuler->deskripsi !!}
+                                    <?php echo strlen($ekstrakurikuler->deskripsi) > 300 ? substr($ekstrakurikuler->deskripsi, 0, 300) . '...' : $ekstrakurikuler->deskripsi; ?>
+
                                 </p>
                                 <div class="mt-4 flex">
-                                    <a href="{{ route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id]) }}">
+                                    <a href="<?php echo e(route('detail-ekstrakurikuler', ['id' => $ekstrakurikuler->id])); ?>">
                                         <p class="text-[14.5px] lg:text-base xl:text-[17px] font-medium text-white underline">Selengkapnya</p>
                                     </a>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="mt-[3px] ml-1 w-4 h-4" fill="#fff">
@@ -305,7 +310,7 @@
                             </div>
                         </div>
                     </li>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
             <button onclick="next2()" class="rounded-full p-1 ml-4 lg:ml-6 xl:ml-8 transition ease-in-out hover:scale-110">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="w-8 h-8 lg:w-10 lg:h-10" fill="white">
@@ -354,21 +359,21 @@
             <h1 class="font-bold text-xl sm:text-2xl text-center">Prestasi Sekolah</h1>
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] font-normal text-center">Telusuri pencapaian gemilang SMA Tanjung Priok Jakarta, sumber inspirasi bagi para siswa.</p>
             <ul id="sliderPrestasi" class="flex gap-5">
-                @foreach($prestasis as $prestasi)
+                <?php $__currentLoopData = $prestasis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prestasi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li class="mx-5 w-full sm:w-[300px]">
                         <a>
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
-                                    <h1 class="text-sm font-semibold text-center">{{ $prestasi->nama }}</h1>
-                                    <p class="mt-1 text-[12.5px] font-normal text-center">{{ $prestasi->kejuaraan }}</p>
+                                    <h1 class="text-sm font-semibold text-center"><?php echo e($prestasi->nama); ?></h1>
+                                    <p class="mt-1 text-[12.5px] font-normal text-center"><?php echo e($prestasi->kejuaraan); ?></p>
                                 </div>
                             </div>
                         </a>
                     </li>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
             <div class="flex justify-center items-center mt-5">
                 <button onclick="prevPrestasi()" class="rounded-full bg-[#0D464B] p-1.5 sm:p-2 mr-2">
@@ -456,19 +461,19 @@
             <div class="flex">
                 <div class="w-2/3 mr-8">
                     <ul class="flex" id="sliderPrestasiLarge">
-                        @foreach($prestasis as $prestasi)
+                        <?php $__currentLoopData = $prestasis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prestasi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
                                 <a>
                                     <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                        <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
+                                        <img src="<?php echo e(asset('storage/public/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
-                                            <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">{{ $prestasi->nama }}</h1>
-                                            <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">{{ $prestasi->kejuaraan }}</p>
+                                            <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center"><?php echo e($prestasi->nama); ?></h1>
+                                            <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center"><?php echo e($prestasi->kejuaraan); ?></p>
                                         </div>
                                     </div>
                                 </a>
                             </li>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
                 <div class="w-1/3 ml-8">
@@ -653,22 +658,22 @@
             <h1 class="font-bold text-xl sm:text-2xl text-center">Pengumuman Terbaru</h1>
             <p class="mt-3 sm:mt-4 text-sm sm:text-[15px] sm:leading-relaxed font-normal text-center">Jelajahi pengumuman terkini untuk tetap terhubung dengan perkembangan terbaru SMA Tanjung Priok Jakarta.</p>
             <ul id="sliderPengumuman" class="flex gap-5">
-                @foreach($pengumumans as $pengumuman)
+                <?php $__currentLoopData = $pengumumans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pengumuman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li class="mx-5 w-full sm:w-[300px]">
-                        <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
+                        <a href="<?php echo e(route('detail-pengumuman', ['slug' => $pengumuman->slug])); ?>">
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
-                                    <h1 class="text-sm font-semibold text-justify">{{ $pengumuman->judul }}</h1>
-                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
-                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By {{ $pengumuman->penulis }}</p>
+                                    <h1 class="text-sm font-semibold text-justify"><?php echo e($pengumuman->judul); ?></h1>
+                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left"><?php echo e($pengumuman->updated_at->format('d M Y')); ?></p>
+                                    <p class="mt-1 text-xs sm:text-[12.5px] font-normal text-left">By <?php echo e($pengumuman->penulis); ?></p>
                                 </div>
                             </div>
                         </a>
                     </li>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <script>
                     if (window.innerWidth < 640) {
                         currentSlideIDPengumuman = 1;
@@ -784,20 +789,20 @@
                 </div>
                 <div class="w-2/3 ml-8">
                     <ul class="flex justify-end" id="sliderPengumumanLarge">
-                        @foreach($pengumumans as $pengumuman)
+                        <?php $__currentLoopData = $pengumumans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pengumuman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
-                                <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
+                                <a href="<?php echo e(route('detail-pengumuman', ['slug' => $pengumuman->slug])); ?>">
                                     <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                        <img src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                                        <img src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
-                                            <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">{{ $pengumuman->judul }}</h1>
-                                            <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
-                                            <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By {{ $pengumuman->penulis }}</h2>
+                                            <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify"><?php echo e($pengumuman->judul); ?></h1>
+                                            <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left"><?php echo e($pengumuman->updated_at->format('d M Y')); ?></p>
+                                            <h2 class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">By <?php echo e($pengumuman->penulis); ?></h2>
                                         </div>
                                     </div>
                                 </a>
                             </li>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
                 <script>
@@ -1003,70 +1008,71 @@
     <!-- Div untuk overlay warna -->
     <div class="absolute top-0 left-0 w-full h-full bg-[#0D464B] bg-opacity-90 z-10"></div>
     <!-- Gambar Latar -->
-    <img src={{asset("images/school-AI2.png")}} alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1080px] sm:h-[1100px] md:h-[580px] lg:h-[650px] xl:h-[780px]" />
+    <img src=<?php echo e(asset("images/school-AI2.png")); ?> alt="School" class="top-0 left-0 w-full z-0 opacity-80 object-cover object-center h-[1080px] sm:h-[1100px] md:h-[580px] lg:h-[650px] xl:h-[780px]" />
     <div class="absolute top-0 left-0 w-full my-8 sm:my-12 md:my-12 lg:my-16 xl:my-20 z-20">
         <h1 class="text-white text-center font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Berita Terkini</h1>
         <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 mt-7 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 xxl:mt-12">
             <!-- TAMPILAN HP -->
             <div class="mx-5 md:hidden">
-                @foreach($beritasHp as $row)
+                <?php $__currentLoopData = $beritasHp; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div>
-                        <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
+                        <a href="<?php echo e(route('detail-berita', ['slug' => $row->slug])); ?>">
                             <div class="mt-6 bg-white rounded-md w-full">
                                 <div class="w-full h-[180px]">
-                                    <img src="{{asset('storage/public/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
                                 </div>
                                 <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
-                                    <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">{{ $row->judul }}</h1>
-                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">{{ $row->updated_at->format('d M Y')}}</p>
-                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">By {{ $row->penulis}} </p>
+                                    <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2"><?php echo e($row->judul); ?></h1>
+                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]"><?php echo e($row->updated_at->format('d M Y')); ?></p>
+                                    <p class="mt-0.5 font-normal text-[12.5px] sm:text-[13px]">By <?php echo e($row->penulis); ?> </p>
                                 </div>
                             </div>
                         </a>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             <!-- TAMPILAN TABLET DAN LAPTOP -->
             <div class="hidden md:block">
                 <div class="grid grid-cols-2 gap-5 lg:gap-6 xl:gap-7">
-                    @if($berita)
+                    <?php if($berita): ?>
                         <div class="mr-5">
-                            <a href="{{ route('detail-berita', ['slug' => $berita->slug]) }}">
+                            <a href="<?php echo e(route('detail-berita', ['slug' => $berita->slug])); ?>">
                                 <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
                                     <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
-                                        <img src="{{asset('storage/public/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                        <img src="<?php echo e(asset('storage/public/berita/' . $berita->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
                                     </div>
                                     <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
-                                        <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">{{ $berita->judul }}</h1>
-                                        <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $berita->updated_at->format('d M Y')}}</p>
+                                        <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2"><?php echo e($berita->judul); ?></h1>
+                                        <p class="mt-0.5 lg:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]"><?php echo e($berita->updated_at->format('d M Y')); ?></p>
                                         <p class="mt-0.5 lg:mt-1 text-[13px] lg:text-sm xl:text-[15px]">
-                                            {!! strlen($berita->konten) > 180 ? substr($berita->konten, 0, 180) . '...' : $berita->konten !!}
+                                            <?php echo strlen($berita->konten) > 180 ? substr($berita->konten, 0, 180) . '...' : $berita->konten; ?>
+
                                         </p>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @else
-                    @endif
+                    <?php else: ?>
+                    <?php endif; ?>
                     <div class="grid grid-rows-3 gap-3.5 justify-evenly ml-5">
-                        @foreach($beritasDekstop as $row)
+                        <?php $__currentLoopData = $beritasDekstop; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div>
-                                <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
+                                <a href="<?php echo e(route('detail-berita', ['slug' => $row->slug])); ?>">
                                     <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
                                         <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
                                             <div class="w-1/3 h-full">
-                                                <img src="{{asset('storage/public/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
+                                                <img src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>" class="w-full rounded-l-md h-full object-cover object-center" />
                                             </div>
                                             <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
-                                                <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">{!! strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul !!}</h1>
-                                                <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]">{{ $row->updated_at->format('d M Y')}}</p>
-                                                <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By {{ $row->penulis }}</p>
+                                                <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2"><?php echo strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul; ?></h1>
+                                                <p class="mt-1.5 lg:mt-3 xl:mt-2 font-normal text-[13px] lg:text-sm xl:text-[15px]"><?php echo e($row->updated_at->format('d M Y')); ?></p>
+                                                <p class="hidden xl:block mt-1.5 lg:mt-3 xl:mt-1.5 font-normal text-[13px] lg:text-sm xl:text-[15px]">By <?php echo e($row->penulis); ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -1173,13 +1179,13 @@
 <section class="my-12 sm:my-16 md:py-5">
     <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl">Kritik & Saran</h1>
-        @if(isset($status))
+        <?php if(isset($status)): ?>
             <div class="rounded-md w-full px-2 mt-5 text-[13px] sm:text-sm md:text-[15px] xl:text-base font-normal bg-amber-300 text-black mb-4">
-                <p class="text-center">{{$status}}</p>
+                <p class="text-center"><?php echo e($status); ?></p>
             </div>
-        @endif
+        <?php endif; ?>
         <form method="post" class="mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-12">
-            @csrf
+            <?php echo csrf_field(); ?>
             <div class="sm:flex">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Nama Lengkap</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
@@ -1187,9 +1193,16 @@
                 </div>
             </div>
             <!-- Tambahkan validasi error untuk nama -->
-            @error('nama')
-            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
-            @enderror
+            <?php $__errorArgs = ['nama'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> <?php echo e($message); ?> </p>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             <div class="sm:flex mt-2 md:mt-3 lg:mt-4">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Email</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
@@ -1197,9 +1210,16 @@
                 </div>
             </div>
             <!-- Tambahkan validasi error untuk email -->
-            @error('email')
-            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
-            @enderror
+            <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> <?php echo e($message); ?> </p>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             <div class="sm:flex mt-2 md:mt-3 lg:mt-4">
                 <div class="sm:w-1/3 font-normal text-sm sm:text-[15px] md:text-[15.5px] lg:text-base xl:text-[17px] sm:mt-2.5 md:mt-0">Kritik dan Saran</div>
                 <div class="sm:w-2/3 w-full mt-1.5 sm:mt-2 md:mt-0">
@@ -1207,9 +1227,16 @@
                 </div>
             </div>
             <!-- Tambahkan validasi error untuk isi -->
-            @error('isi')
-            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> {{ $message }} </p>
-            @enderror
+            <?php $__errorArgs = ['isi'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+            <p class="text-red-500 text-[13px] sm:text-sm md:text-[15px] font-normal"> <?php echo e($message); ?> </p>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             <div class="ml-auto justify-end flex mt-4 md:mt-5">
                 <button
                     class="bg-[#0D464B] transition ease-in-out hover:scale-105 duration-300 py-2 lg:py-2.5 px-4 md:px-5 lg:px-6 xl:px-7 rounded-md text-white font-semibold text-[13px] sm:text-sm md:text-[15px] lg:text-[15.5px] xl:text-base"
@@ -1221,7 +1248,7 @@
     </div>
 </section>
 
-{{-- pop up --}}
+
 <div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
     <div class="relative bg-[#E5F3EF] rounded-lg overflow-hidden h-[90%] w-full max-w-2xl">
       <!-- Modal content -->
@@ -1238,7 +1265,7 @@
         </div>
 
         <div class="flex-grow p-4 md:p-5 overflow-auto">
-            <img src="{{asset('storage/public/welcome/' . $row->gambar) }}"class="w-full h-full rounded-t-md object-cover object-center" />  
+            <img src="<?php echo e(asset('storage/public/welcome/' . $row->gambar)); ?>"class="w-full h-full rounded-t-md object-cover object-center" />  
         </div>
         <div class="mt-auto">
             <!-- Modal footer -->
@@ -1265,6 +1292,7 @@
 
 
 </div>
-@include('front.footer')
+<?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/front/beranda.blade.php ENDPATH**/ ?>
