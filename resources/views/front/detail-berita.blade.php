@@ -249,7 +249,7 @@
                         class="bg-white mt-3 hover:scale-105 ease-in-out duration-300 h-[100px] flex border border-black border-opacity-30 rounded-md items-center"
                     >
                         <img
-                            src="{{ asset('storage/berita/' . $row->gambar) }}"
+                            src="{{ asset('storage/public/berita/' . $row->gambar) }}"
                             class="w-1/3 h-full object-cover rounded-l-md object-center"
                         />
                         <!-- bikinin ini ke tengah -->

@@ -62,7 +62,7 @@
                                                         @forelse($fasilitas as $data)
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $data->nama }}</td>
-                                                                <td><img src={{asset('storage/fasilitas/' . $data->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/fasilitas/' . $data->gambar) }} width="100" height="100"></td>
                                                                 <td>{{ $data->updated_at->format('d M Y')}}</td>
                                                                 <td class="text-bold-500">
                                                                     <a href="{{ route('edit-fasilitas', ['id' => $data->id]) }}" class="btn icon btn-primary">

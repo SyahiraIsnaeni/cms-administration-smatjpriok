@@ -65,7 +65,7 @@
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $blog->judul }}</td>
                                                                 <td class="text-bold-500">{{ $blog->penulis }}</td>
-                                                                <td><img src={{asset('storage/blog/' . $blog->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/blog/' . $blog->gambar) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @if ($blog->is_active == '1')
                                                                         Diterbitkan

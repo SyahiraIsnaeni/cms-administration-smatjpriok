@@ -61,7 +61,7 @@
                                                         @forelse($galeris as $galeri)
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $galeri->judul }}</td>
-                                                                <td><img src={{asset('storage/galeri-thumbnail/' . $galeri->thumbnail) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/galeri-thumbnail/' . $galeri->thumbnail) }} width="100" height="100"></td>
                                                                 <td class="text-bold-500">
                                                                     <a href="{{ route('edit-galeri', ['id' => $galeri->id]) }}" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>

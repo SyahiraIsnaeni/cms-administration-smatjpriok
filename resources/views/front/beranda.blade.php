@@ -209,7 +209,7 @@
             @foreach($ekstrakurikulers as $ekstrakurikuler)
                 <li class="mx-5 sm:mx-8">
                     <div class="flex justify-center items-center my-3 sm:my-4">
-                        <img src="{{ asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
+                        <img src="{{ asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
                     </div>
                     <h1 class="text-white text-center font-semibold text-[17px] sm:text-lg">{{ $ekstrakurikuler->nama }}</h1>
                     <p class="text-center text-white font-light text-[12.5px] sm:text-sm mt-2">
@@ -286,7 +286,7 @@
                 @foreach($ekstrakurikulers as $ekstrakurikuler)
                     <li class="flex w-full">
                         <div class="flex w-full justify-center items-center my-3 sm:my-4">
-                            <img src="{{ asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
+                            <img src="{{ asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }}" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
                             <div class="ml-6 xl:ml-8 w-full">
                                 <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]">{{ $ekstrakurikuler->nama }}</h1>
                                 <p class="text-white font-light text-[14.5px] lg:text-base xl:text-lg mt-3 w-full">
@@ -359,7 +359,7 @@
                         <a>
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
                                     <h1 class="text-sm font-semibold text-center">{{ $prestasi->nama }}</h1>
@@ -460,7 +460,7 @@
                             <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
                                 <a>
                                     <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                        <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
+                                        <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
                                             <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center">{{ $prestasi->nama }}</h1>
                                             <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center">{{ $prestasi->kejuaraan }}</p>
@@ -658,7 +658,7 @@
                         <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
                                     <h1 class="text-sm font-semibold text-justify">{{ $pengumuman->judul }}</h1>
@@ -788,7 +788,7 @@
                             <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
                                 <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
                                     <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                        <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                                        <img src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
                                             <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify">{{ $pengumuman->judul }}</h1>
                                             <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left">{{ $pengumuman->updated_at->format('d M Y')}}</p>
@@ -1014,7 +1014,7 @@
                         <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
                             <div class="mt-6 bg-white rounded-md w-full">
                                 <div class="w-full h-[180px]">
-                                    <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                    <img src="{{asset('storage/public/berita/' . $row->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
                                 </div>
                                 <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
                                     <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2">{{ $row->judul }}</h1>
@@ -1034,7 +1034,7 @@
                             <a href="{{ route('detail-berita', ['slug' => $berita->slug]) }}">
                                 <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
                                     <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
-                                        <img src="{{asset('storage/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
+                                        <img src="{{asset('storage/public/berita/' . $berita->gambar) }}" class="w-full rounded-t-md h-full object-cover object-center" />
                                     </div>
                                     <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
                                         <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2">{{ $berita->judul }}</h1>
@@ -1055,7 +1055,7 @@
                                     <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
                                         <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
                                             <div class="w-1/3 h-full">
-                                                <img src="{{asset('storage/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
+                                                <img src="{{asset('storage/public/berita/' . $row->gambar) }}" class="w-full rounded-l-md h-full object-cover object-center" />
                                             </div>
                                             <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
                                                 <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2">{!! strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul !!}</h1>

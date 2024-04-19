@@ -126,7 +126,7 @@
         <a href="{{ route('detail-galeri', ['id' => $galeri->id]) }}">
             <div class="relative mt-5">
                 <img
-                    src="{{ asset('storage/galeri-thumbnail/' . $galeri->thumbnail) }}"
+                    src="{{ asset('storage/public/galeri-thumbnail/' . $galeri->thumbnail) }}"
                     class="w-full h-[250px] object-cover object-center"
                 />
                 <div
@@ -174,7 +174,7 @@
             <a href="{{ route('detail-galeri', ['id' => $galeri->id]) }}">
                 <div class="relative">
                     <img
-                        src="{{ asset('storage/galeri-thumbnail/' . $galeri->thumbnail) }}"
+                        src="{{ asset('storage/public/galeri-thumbnail/' . $galeri->thumbnail) }}"
                         class="w-full h-[250px] object-cover object-center"
                     />
                     <div class="opacity-0 hover:opacity-100">
@@ -251,7 +251,7 @@
             @foreach($blogs as $blog)
             <a href="{{ route('detail-blog', ['slug' => $blog->slug]) }}">
                 <div class="relative h-[250px] mt-5 sm:mt-0  hover:scale-105 ease-in-out duration-300">
-                    <img src="{{ asset('storage/blog/' . $blog->gambar) }}" class="w-full object-cover object-center h-full">
+                    <img src="{{ asset('storage/public/blog/' . $blog->gambar) }}" class="w-full object-cover object-center h-full">
                     <div class="bg-[#0D464B]  text-white bg-gradient-to-t from-[#0D464B] via-[#13494D]/70 to-[#737373]/5 bg-opacity-20 absolute top-0 h-full w-full">
                         <div class="bottom-0 absolute mx-5 my-5">
                             <h1 class="mt-auto text-[15px] sm:text-base font-medium">{!! strlen($blog->judul) > 60 ? substr($blog->judul, 0, 60) . '...' : $blog->judul !!}</h1>

@@ -67,7 +67,7 @@
                                                 <input class="form-control" type="file" id="formFile" name="gambar">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto saat ini</label> <br>
-                                                <img src="{{ asset('storage/prestasi/'.$prestasi->gambar) }}" width="100" style="margin-left: 10px">
+                                                <img src="{{ asset('storage/public/prestasi/'.$prestasi->gambar) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             <div class="form-group">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>

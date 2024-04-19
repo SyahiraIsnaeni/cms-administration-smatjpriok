@@ -66,7 +66,7 @@
                                                                 <td><img src={{asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @foreach($ekstrakurikuler->images as $image)
-                                                                        <img src="{{asset('storage/ekstrakurikuler-images/' . $image->image) }}" width="150" height="100">
+                                                                        <img src="{{asset('storage/public/ekstrakurikuler-images/' . $image->image) }}" width="150" height="100">
                                                                     @endforeach
                                                                 </td>
                                                                 <td class="text-bold-500">{!! strlen($ekstrakurikuler->deskripsi) > 200 ? substr($ekstrakurikuler->deskripsi, 0, 200) . '...' : $ekstrakurikuler->deskripsi !!}</td>

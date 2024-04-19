@@ -67,10 +67,10 @@
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $pengumuman->judul }}</td>
                                                                 <td class="text-bold-500">{{ $pengumuman->penulis }}</td>
-                                                                <td><img src={{asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @if ($pengumuman->dokumen != null)
-                                                                        <a href="{{asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen) }}" class="btn icon btn-success">Lihat dokumen</a>
+                                                                        <a href="{{asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen) }}" class="btn icon btn-success">Lihat dokumen</a>
                                                                     @else
                                                                         Tidak ada
                                                                     @endif

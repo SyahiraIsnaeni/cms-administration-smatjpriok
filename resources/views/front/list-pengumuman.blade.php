@@ -247,7 +247,7 @@
         @foreach($pengumumans as $pengumuman)
         <a href="{{ route('detail-pengumuman', ['slug' => $pengumuman->slug]) }}">
             <div class="rounded-md border border-black border-opacity-25 hover:scale-105 ease-in-out duration-300 ">
-                <img src="{{ asset('storage/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md object-cover object-center h-[200px] w-full">
+                <img src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}" class="rounded-t-md object-cover object-center h-[200px] w-full">
                 <div class="py-2.5 xl:py-3 px-3 bg-white rounded-b-md">
                     <h1 class="text-sm font-semibold lg:text-[14.5px] xl:text-[15px]">
                         {{ $pengumuman->judul}}

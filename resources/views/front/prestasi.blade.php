@@ -114,7 +114,7 @@
     <div class="block sm:hidden mx-5 mt-3">
         @foreach($prestasis as $prestasi)
         <div class="relative mt-5">
-            <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="w-full h-[250px] object-cover object-center" />
+            <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="w-full h-[250px] object-cover object-center" />
             <div class="bg-[#0D464B] bg-gradient-to-t from-[#0D464B] via-[#13494D]/75 to-[#737373]/20 bg-opacity-25 absolute top-0 h-full w-full items-center flex">
                 <h1 class="text-base font-medium w-full text-white text-end mt-auto mx-auto px-5 pb-5 leading-relaxed">
                     {{ $prestasi->nama}}
@@ -150,7 +150,7 @@
         <div class="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 lg:gap-8">
             @foreach($prestasis as $prestasi)
             <div class="relative">
-                <img src="{{ asset('storage/prestasi/' . $prestasi->gambar) }}" class="w-full h-[270px] xl:h-[300px] object-cover rounded-md object-center" />
+                <img src="{{ asset('storage/public/prestasi/' . $prestasi->gambar) }}" class="w-full h-[270px] xl:h-[300px] object-cover rounded-md object-center" />
                 <div class="bg-[#0D464B] bg-gradient-to-t from-[#0D464B] via-[#13494D]/20 to-[#737373]/10 bg-opacity-25 absolute top-0 h-full w-full items-center flex">
                     <h1 class="text-base font-medium text-white w-full text-end mr-5 mt-auto pb-2 leading-relaxed z-10">
                         {{ $prestasi->nama}}

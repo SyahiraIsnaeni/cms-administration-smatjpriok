@@ -217,7 +217,7 @@
             {!!  $pengumuman->konten !!}
         </p>
 
-        <a href="{{asset('storage/pengumuman/dokumen/'.$pengumuman->dokumen) }}">
+        <a href="{{asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen) }}">
             <div class="flex mt-5">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +244,7 @@
             @foreach($nextPengumuman as $row)
             <a href="{{ route('detail-pengumuman', ['slug' => $row->slug]) }}">
                 <div class="bg-white rounded-md border border-black border-opacity-30 hover:scale-105 ease-in-out duration-300 w-full">
-                    <img class="w-full h-[210px] object-cover object-center rounded-t-md" src="{{ asset('storage/pengumuman/gambar/' . $row->gambar) }}">
+                    <img class="w-full h-[210px] object-cover object-center rounded-t-md" src="{{ asset('storage/public/pengumuman/gambar/' . $row->gambar) }}">
                     <div class="bg-white rounded-b-md py-2 xl:py-2.5 px-3 xl:px-3.5">
                         <h1 class="font-semibold text-[15px] sm:text-[15.5px] md:text-base lg:text-[15px] xl:text-[15.5px]">
                             {{$row->judul}}

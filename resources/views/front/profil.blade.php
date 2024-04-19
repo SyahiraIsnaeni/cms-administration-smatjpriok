@@ -270,7 +270,7 @@
                 <li class=" mx-5 w-full sm:w-[300px]">
                     <div class="relative">
                         <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                            <img src="{{ asset('storage/fasilitas/' . $row->gambar) }}" class="rounded-md w-full h-[180px] object-cover object-center" />
+                            <img src="{{ asset('storage/public/fasilitas/' . $row->gambar) }}" class="rounded-md w-full h-[180px] object-cover object-center" />
                         </div>
                         <div class="absolute inset-x-0 -bottom-5 flex justify-center items-center">
                             <div class="bg-[#FF8B42] rounded-xl w-3/4 py-3 px-3">
@@ -372,7 +372,7 @@
                         <li class="hidden w-[330px] xl:w-[380px]">
                             <div class="relative">
                                 <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                    <img src="{{ asset('storage/fasilitas/' . $row->gambar) }}" class="w-full h-[200px] lg:h-[220px] xl:h-[260px] object-cover object-center border-b border-black border-opacity-25 rounded-md" />
+                                    <img src="{{ asset('storage/public/fasilitas/' . $row->gambar) }}" class="w-full h-[200px] lg:h-[220px] xl:h-[260px] object-cover object-center border-b border-black border-opacity-25 rounded-md" />
                                 </div>
                                 <div class="absolute inset-x-0 -bottom-5 flex justify-center items-center">
                                     <div class="bg-[#FF8B42] rounded-xl py-2 px-3 w-3/4  lg:px-3 lg:py-3 xl:px-3 xl:py-3">

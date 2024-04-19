@@ -71,7 +71,7 @@
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto kegiatan saat ini</label> <br>
                                                 @foreach($ekstrakurikuler->images as $image)
-                                                    <img src="{{ asset('storage/ekstrakurikuler-images/'.$image->image) }}" width="100" style="margin-left: 10px">
+                                                    <img src="{{ asset('storage/public/ekstrakurikuler-images/'.$image->image) }}" width="100" style="margin-left: 10px">
                                                 @endforeach
                                             </div>
                                             <div class="form-group">

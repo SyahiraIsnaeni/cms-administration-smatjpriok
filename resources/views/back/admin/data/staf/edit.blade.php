@@ -68,7 +68,7 @@
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Foto saat ini</label> <br>
                                                 @if($staf->foto)
-                                                    <img src="{{ asset('storage/staf/'.$staf->foto) }}" width="100" style="margin-left: 10px">
+                                                    <img src="{{ asset('storage/public/staf/'.$staf->foto) }}" width="100" style="margin-left: 10px">
                                                 @else
                                                     <p>Belum ada foto</p>
                                                 @endif

@@ -64,7 +64,7 @@
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $prestasi->nama }}</td>
                                                                 <td class="text-bold-500">{{ $prestasi->kejuaraan }}</td>
-                                                                <td><img src={{asset('storage/prestasi/' . $prestasi->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/prestasi/' . $prestasi->gambar) }} width="100" height="100"></td>
                                                                 <td class="text-bold-500">{!! $prestasi->deskripsi !!}</td>
                                                                 <td class="text-bold-500">
                                                                     <a href="{{ route('edit-prestasi', ['id' => $prestasi->id]) }}" class="btn icon btn-primary">

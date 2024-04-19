@@ -208,7 +208,7 @@
             </p>
         </div>
         <img
-            src="{{ asset('storage/blog/' . $blog->gambar) }}"
+            src="{{ asset('storage/public/blog/' . $blog->gambar) }}"
             class="w-full h-[250px] sm:h-[300px] md:h-[380px] lg:h-[550px] xl:h-[600px] mt-4 lg:mt-5 xl:mt-7 object-cover object-center"
         />
         <p
