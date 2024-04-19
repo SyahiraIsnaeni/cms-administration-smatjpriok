@@ -28,6 +28,13 @@
         src=<?php echo e(asset("../editor/richtexteditor/plugins/all_plugins.js")); ?>
 
     ></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
 </head>
 
 <body>
@@ -68,7 +75,7 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Nama Siswa</label>
                                                 <div class="col-md-10">
-                                                    <select name="mapel" id="mapels" class="form-control <?php $__errorArgs = ['mapel'];
+                                                    <select name="siswa" id="siswas" class="form-control <?php $__errorArgs = ['siswa'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

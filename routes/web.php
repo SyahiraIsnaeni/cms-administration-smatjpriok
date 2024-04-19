@@ -364,17 +364,18 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
 Route::controller(\App\Http\Controllers\PdfController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
-    });
+    }
+);
 
-    Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
-        function (){
-            Route::get("/dashboard/kunjungan", "kunjungan")->name("kunjungan");
-            Route::get("/dashboard/kunjungan/add", "addKunjungan")->name("add-kunjungan");
-            Route::get("/dashboard/kunjungan/{id}/edit", "editKunjungan")->name("edit-kunjungan");
-            Route::post("/dashboard/kunjungan/store", "storeKunjungan")->name("store-kunjungan");
-            Route::put("/dashboard/{id}/update", "updateKunjungan")->name("update-kunjungan");
-            Route::delete("/dashboard/kunjungan/{id}/delete", "deleteKunjungan")->name("delete-kunjungan");
-            Route::delete("/dashboard/kunjungan/reset", "resetKunjungan")->name("reset-kunjungan");
+Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/kunjungan", "kunjungan")->name("kunjungan");
+        Route::get("/dashboard/kunjungan/add", "addKunjungan")->name("add-kunjungan");
+        Route::get("/dashboard/kunjungan/{id}/edit", "editKunjungan")->name("edit-kunjungan");
+        Route::post("/dashboard/kunjungan/store", "storeKunjungan")->name("store-kunjungan");
+        Route::put("/dashboard/{id}/update", "updateKunjungan")->name("update-kunjungan");
+        Route::delete("/dashboard/kunjungan/{id}/delete", "deleteKunjungan")->name("delete-kunjungan");
+        Route::delete("/dashboard/kunjungan/reset", "resetKunjungan")->name("reset-kunjungan");
     
-        }
-    );
+    }
+);

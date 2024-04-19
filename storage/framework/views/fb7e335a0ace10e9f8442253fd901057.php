@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title><?php echo e($title); ?></title>
 
     <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Kunjungan Perpustakaan</h3>
+                        <h3>Data Kategori Berita</h3>
                     </div>
                 </div>
             </div>
@@ -40,19 +40,9 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="card-header" style="display: flex">
+                                    <div class="card-header">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/kunjungan/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
-                                        </div>
-
-                                        <div class="card-head-row" style="margin-left: 10px">
-                                            <form action="/dashboard/kunjungan/reset" method="POST">
-                                                <?php echo csrf_field(); ?>
-                                                <?php echo method_field('DELETE'); ?>
-                                                <button type="submit" class="btn btn-danger ml-auto">
-                                                    <i class="bi bi-arrow-clockwise" style="margin-right: 4px"></i> Reset Data
-                                                </button>
-                                            </form>
+                                            <a href="/dashboard/kategori/kategori-berita/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -62,34 +52,37 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama Siswa</th>
-                                                            <th>Tanggal Kunjungan</th>
-                                                            <th>Action</th>
+                                                            <th>Nama Kategori</th>
+                                                            <th>Slug</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $kunjungans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kunjungan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $kategori_beritas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kategori): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td><?php echo e($kunjungan->siswa->nama); ?> <?php echo e($kunjungan->siswa->kelas->nama_kelas); ?></td>
-                                                                <td><?php echo e($kunjungan->tanggal ? \Carbon\Carbon::parse($kunjungan->tanggal)->format('d/m/Y') : ''); ?></td>
-                                                                <td>
-                                                                <div class='d-inline-flex'>
-                                                                    <a href="<?php echo e(route('edit-kunjungan', ['id' => $kunjungan->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
-                                                                    <form action="<?php echo e(route('delete-kunjungan', $kunjungan->id)); ?>" method="POST">
+                                                                <td class="text-bold-500"><?php echo e($kategori->kategori); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($kategori->slug); ?></td>
+                                                                <td class="text-bold-500">
+                                                                    <a href="<?php echo e(route('edit-kategori-berita', ['id' => $kategori->id])); ?>" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
+                                                                    <br>
+                                                                    <form method="post" action="<?php echo e(route('delete-kategori-berita', $kategori->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
-                                                                        <button type="submit" style="margin-left: 8px" class='btn btn-danger btn-delete'>
+                                                                        <button class="btn icon btn-danger" style="margin-top: 10px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                </div>
                                                                 </td>
                                                             </tr>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                                            <tr>
+                                                                <td colspan="7" class="text-center">Data Masih Kosong</td>
+                                                            </tr>
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    <?php echo e($kunjungans->links()); ?>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -129,4 +122,5 @@
 <?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/kunjungan/index.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/konten/kategori/kategori-berita/view.blade.php ENDPATH**/ ?>

@@ -71,7 +71,7 @@
                                                         @forelse($kunjungans as $kunjungan)
                                                             <tr>
                                                                 <td>{{ $kunjungan->siswa->nama }} {{ $kunjungan->siswa->kelas->nama_kelas }}</td>
-                                                                <td>{{ \Carbon\Carbon::parse($kunjungan->tanggal)->format('d/m/Y') }}</td>
+                                                                <td>{{ $kunjungan->tanggal ? \Carbon\Carbon::parse($kunjungan->tanggal)->format('d/m/Y') : '' }}</td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
                                                                     <a href="{{ route('edit-kunjungan', ['id' => $kunjungan->id]) }}" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
