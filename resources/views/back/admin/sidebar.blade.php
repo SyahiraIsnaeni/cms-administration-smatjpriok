@@ -225,8 +225,8 @@
                 <li class="sidebar-title">Perpustakaan</li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item {{ request()->is('dashboard/kunjungan*') ? 'active' : '' }}">
+                    <a href="/dashboard/kunjungan" class='sidebar-link'>
                         <i class="bi bi-file-earmark-person-fill"></i>
                         <span>Data Kunjungan</span>
                     </a>

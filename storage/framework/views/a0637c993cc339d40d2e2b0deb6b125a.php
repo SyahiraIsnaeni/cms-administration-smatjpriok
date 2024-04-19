@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="shortcut icon" href={{asset("./assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.admin.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Jadwal Pelajaran</h3>
+                        <h3>Kunjungan Perpustakaan</h3>
                     </div>
                 </div>
             </div>
@@ -42,21 +42,17 @@
                                 <div class="card-body">
                                     <div class="card-header" style="display: flex">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/jadwal/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="/dashboard/kunjungan/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
 
                                         <div class="card-head-row" style="margin-left: 10px">
-                                            <form action="/dashboard/jadwal/reset" method="POST">
-                                                @csrf
-                                                @method('DELETE')
+                                            <form action="/dashboard/kunjungan/reset" method="POST">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" class="btn btn-danger ml-auto">
                                                     <i class="bi bi-arrow-clockwise" style="margin-right: 4px"></i> Reset Data
                                                 </button>
                                             </form>
-                                        </div>
-
-                                        <div class="card-head-row" style="margin-left: 10px">
-                                            <a href="/dashboard/jadwal/cetak" class="btn btn-danger btn-sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Cetak PDF</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -66,28 +62,22 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Hari</th>
-                                                            <th>Mata Pelajaran</th>
-                                                            <th>Guru</th>
-                                                            <th>Waktu Mulai</th>
-                                                            <th>Waktu Selesai</th>
+                                                            <th>Nama Siswa</th>
+                                                            <th>Tanggal Kunjungan</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($jadwals as $jadwal)
+                                                        <?php $__empty_1 = true; $__currentLoopData = $kunjungans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kunjungan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td>{{ $jadwal->day->name }}</td>
-                                                                <td>{{ $jadwal->mapel->nama }} {{ $jadwal->mapel->kelas->nama_kelas }}</td>
-                                                                <td>{{ $jadwal->guru->nama }}</td>
-                                                                <td>{{ $jadwal->start_time ? substr($jadwal->start_time, 0, 5) : '' }}</td>
-                                                                <td>{{ $jadwal->end_time ? substr($jadwal->end_time, 0, 5) : '' }}</td>
+                                                                <td><?php echo e($kunjungan->siswa->nama); ?> <?php echo e($kunjungan->siswa->kelas->nama_kelas); ?></td>
+                                                                <td><?php echo e(\Carbon\Carbon::parse($kunjungan->tanggal)->format('d/m/Y')); ?></td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>
-                                                                    <a href="{{ route('edit-jadwal', ['id' => $jadwal->id]) }}" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
-                                                                    <form action="{{ route('delete-jadwal', $jadwal->id) }}" method="POST">
-                                                                        @csrf
-                                                                        @method('DELETE')
+                                                                    <a href="<?php echo e(route('edit-kunjungan', ['id' => $kunjungan->id])); ?>" class='btn btn-warning mr-2'><i class="bi bi-pencil-fill"></i></a>
+                                                                    <form action="<?php echo e(route('delete-kunjungan', $kunjungan->id)); ?>" method="POST">
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <?php echo method_field('DELETE'); ?>
                                                                         <button type="submit" style="margin-left: 8px" class='btn btn-danger btn-delete'>
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
@@ -95,10 +85,11 @@
                                                                 </div>
                                                                 </td>
                                                             </tr>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </tbody>
                                                     </table>
-                                                    {{$jadwals->links()}}
+                                                    <?php echo e($kunjungans->links()); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -128,14 +119,14 @@
 
     </div>
 </div>
-<script src={{asset("assets/static/js/components/dark.js")}}></script>
-<script src={{asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
 
-<script src={{asset("assets/compiled/js/app.js")}}></script>
 
-@include('back.admin.footer')
+<script src=<?php echo e(asset("assets/compiled/js/app.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/kunjungan/index.blade.php ENDPATH**/ ?>

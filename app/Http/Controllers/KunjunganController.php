@@ -4,33 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
-use App\Services\JadwalService;
 use Illuminate\Http\Request;
-use App\Models\Jadwal;
-use App\Models\MataPelajaran;
-use App\Models\Day;
-use App\Models\Guru;
+use App\Models\Siswa;
+use App\Models\Kunjungan;
+use Illuminate\Support\Carbon;
 
-class JadwalController 
+class KunjunganController 
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function jadwal(Request $request)
+    public function kunjungan(Request $request)
     {
-        $jadwals = Jadwal::orderBy('day_id', 'asc')
+        $kunjungans = Kunjungan::orderBy('siswa_id', 'asc')
                      ->orderBy('start_time', 'asc')
                      ->paginate(10);
 
-        $days = Day::all();
+        $siswas = Siswa::all();
 
-        $gurus = Guru::all();
-
-        return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request', 'gurus'));
+        return view('back.admin.data.kunjungan.index', compact('kunjungans', 'siswas', 'request'));
     }
 
     /**
@@ -38,13 +33,11 @@ class JadwalController
      *
      * @return \Illuminate\Http\Response
      */
-    public function addJadwal()
+    public function addKunjungan()
     {
-        $mapels = MataPelajaran::all();
-        $days = Day::all();
-        $gurus = Guru::all();
+        $siswas = Siswa::all();
 
-        return view('back.admin.data.jadwal.add', compact('mapels', 'days', 'gurus'));
+        return view('back.admin.data.kunjungan.add', compact('siswas'));
     }
 
     /**
@@ -53,36 +46,32 @@ class JadwalController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeJadwal(Request $request)
-{
-    // Validasi tambahan untuk memastikan jadwal tidak tumpang tindih
-    $validator = Validator::make($request->all(), [
-        'mapel' => 'required|exists:mapel,id',
-        'day' => 'required|exists:days,id',
-        'guru' => 'required|exists:gurus,id',
-        'start_time' => 'required', // Format: Jam:Menit (24-jam)
-        'end_time' => 'required|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
-        // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
-    ]);
+    public function storeKunjungan(Request $request)
+    {
+        // Validasi data
+        $validator = Validator::make($request->all(), [
+            'siswa_id' => 'required|exists:siswas,id', // Sesuaikan dengan nama kolom yang benar
+            'tanggal' => 'required|date', // Tambahkan validasi untuk tanggal
+        ]);
 
-    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
+        // Buat objek Carbon untuk tanggal
+        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
+
+        // Buat kunjungan baru jika validasi berhasil
+        $kunjungan = Kunjungan::create([
+            'siswa_id' => $request->siswa_id, // Sesuaikan dengan nama kolom yang benar
+            'tanggal' => $tanggal
+        ]);
+        
+        // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
+        session()->flash('success', "Sukses menambahkan kunjungan perpustakaan");
+        return redirect()->route('kunjungan'); // Sesuaikan dengan nama rute yang benar
     }
-    
-    // Buat jadwal baru jika validasi berhasil
-    $jadwals = Jadwal::create([
-        'mapel_id' => $request->mapel,
-        'day_id' => $request->day,
-        'guru_id' => $request->guru,
-        'start_time' => $request->start_time,
-        'end_time' => $request->end_time
-    ]);
-    
-    // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
-    session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
-    return redirect()->route('jadwal');
-}
 
     /**
      * Display the specified resource.
