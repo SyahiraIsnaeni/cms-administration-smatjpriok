@@ -61,7 +61,7 @@
                                                         <?php $__empty_1 = true; $__currentLoopData = $galeris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $galeri): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
                                                                 <td class="text-bold-500"><?php echo e($galeri->judul); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/galeri-thumbnail/' . $galeri->thumbnail)); ?> width="100" height="100"></td>
+                                                                <td><img src=<?php echo e(asset('storage/public/galeri-thumbnail/' . $galeri->thumbnail)); ?> width="100" height="100"></td>
                                                                 <td class="text-bold-500">
                                                                     <a href="<?php echo e(route('edit-galeri', ['id' => $galeri->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
