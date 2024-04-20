@@ -60,7 +60,7 @@
                                                         <tbody>
                                                         @forelse($welcomes as $welcome)
                                                             <tr>
-                                                                <td><img src={{asset('storage/public/welcome/' . $welcome->gambar) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/welcome/' . $welcome->gambar) }} width="100" height="100"></td>
                                                                 <td>{{ $welcome->updated_at->format('d M Y')}}</td>
                                                                 <td class="text-bold-500">
                                                                     <form method="post" action="{{ route('delete-welcome', $welcome->id) }}" class="d-inline">

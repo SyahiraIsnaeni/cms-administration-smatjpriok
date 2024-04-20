@@ -1236,10 +1236,11 @@
                 <span class="sr-only">Close modal</span>
             </button>
         </div>
-
+        @foreach($welcomes as $welcome)
         <div class="flex-grow p-4 md:p-5 overflow-auto">
-            <img src="{{asset('storage/public/welcome/' . $row->gambar) }}"class="w-full h-full rounded-t-md object-cover object-center" />  
+            <img src="src={{asset('storage/welcome/' . $welcome->gambar) }} "class="w-full h-full rounded-t-md object-cover object-center" />  
         </div>
+        @endforeach
         <div class="mt-auto">
             <!-- Modal footer -->
             <div class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 dark:border-gray-600">

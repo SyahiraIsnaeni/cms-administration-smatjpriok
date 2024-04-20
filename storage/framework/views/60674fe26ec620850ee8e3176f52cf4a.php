@@ -1263,10 +1263,11 @@ unset($__errorArgs, $__bag); ?>
                 <span class="sr-only">Close modal</span>
             </button>
         </div>
-
+        <?php $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="flex-grow p-4 md:p-5 overflow-auto">
-            <img src="<?php echo e(asset('storage/public/welcome/' . $row->gambar)); ?>"class="w-full h-full rounded-t-md object-cover object-center" />  
+            <img src="src=<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?> "class="w-full h-full rounded-t-md object-cover object-center" />  
         </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <div class="mt-auto">
             <!-- Modal footer -->
             <div class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 dark:border-gray-600">

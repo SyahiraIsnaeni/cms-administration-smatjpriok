@@ -36,12 +36,17 @@ class BerandaController
         $this->prestasiService = $prestasiService;
         $this->beritaService = $beritaService;
         $this->pengumumanService = $pengumumanService;
-        $this->kritikSaranService = $kritikSaranService;
+        $this->kritikSaranService = $kritikSaranService; 
         $this->welcomeService = $welcomeService;
     }
 
+    
+
     public function index(Request $request): Response
     {
+        $welcome = $this->welcomeService->get();
+
+    
         $ekstrakurikulers = $this->ekstrakurikulerService->getAll();
         $prestasis = $this->prestasiService->getFewData();
         $pengumumans = $this->pengumumanService->getFewData();
@@ -81,7 +86,8 @@ class BerandaController
                 "beritasHp" => $beritaHp,
                 "beritasDekstop" => $beritaDekstop,
                 "berita" => $berita,
-                "status" => $status
+                "status" => $status,
+                "welcomes" => $welcome,
             ]);
     }
 }

@@ -204,7 +204,7 @@ Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\
         Route::patch("/dashboard/beranda/blog/{id}/edit", "editDataBlog")->name("edit-blog");
         Route::delete("/dashboard/beranda/blog/{id}/delete", "deleteDataBlog")->name("delete-blog");
     }
-);
+); 
 
 Route::controller(\App\Http\Controllers\WelcomeController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
