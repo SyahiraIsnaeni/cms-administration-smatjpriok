@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Welcome Popup</h3>
+                        <h3>Data Pengumuman</h3>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="card-header">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/beranda/welcome/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="/dashboard/beranda/pengumuman/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -52,18 +52,44 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
+                                                            <th>Judul</th>
+                                                            <th>Penulis</th>
                                                             <th>Gambar</th>
+                                                            <th>Dokumen</th>
+                                                            <th>Kategori</th>
+                                                            <th>Status</th>
                                                             <th>Tanggal</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $pengumumans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pengumuman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td><img src=<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?> width="100" height="100"></td>
-                                                                <td><?php echo e($welcome->updated_at->format('d M Y')); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->judul); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->penulis); ?></td>
+                                                                <td><img src=<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?> width="100" height="100"></td>
+                                                                <td>
+                                                                    <?php if($pengumuman->dokumen != null): ?>
+                                                                        <a href="<?php echo e(asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen)); ?>" class="btn icon btn-success">Lihat dokumen</a>
+                                                                    <?php else: ?>
+                                                                        Tidak ada
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                                <td class="text-bold-500"><?php echo e($pengumuman->kategoriPengumuman->kategori); ?></td>
+                                                                <td>
+                                                                    <?php if($pengumuman->is_active == '1'): ?>
+                                                                        Diterbitkan
+                                                                    <?php else: ?>
+                                                                        Draf
+                                                                    <?php endif; ?>
+                                                                </td>
+                                                                <td><?php echo e($pengumuman->updated_at->format('d M Y')); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <form method="post" action="<?php echo e(route('delete-welcome', $welcome->id)); ?>" class="d-inline">
+                                                                    <a href="<?php echo e(route('edit-pengumuman', ['id' => $pengumuman->id])); ?>" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
+                                                                    <br>
+                                                                    <form method="post" action="<?php echo e(route('delete-pengumuman', $pengumuman->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
@@ -79,6 +105,8 @@
                                                         <?php endif; ?>
                                                         </tbody>
                                                     </table>
+                                                    <?php echo e($pengumumans->links()); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -119,4 +147,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/welcome-popup/view.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/pengumuman/view.blade.php ENDPATH**/ ?>
