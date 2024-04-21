@@ -379,3 +379,16 @@ Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(
     
     }
 );
+
+Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/peminjaman", "peminjaman")->name("peminjaman");
+        Route::get("/dashboard/peminjaman/add", "addPeminjaman")->name("add-peminjaman");
+        Route::get("/dashboard/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman");
+        Route::post("/dashboard/peminjaman/store", "storePeminjaman")->name("store-peminjaman");
+        Route::put("/dashboard/{id}/update", "updatePeminjaman")->name("update-peminjaman");
+        Route::delete("/dashboard/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman");
+        Route::delete("/dashboard/peminjaman/reset", "resetPeminjaman")->name("reset-peminjaman");
+
+    }
+);

@@ -233,7 +233,7 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
+                    class="sidebar-item {{ request()->is('dashboard/peminjaman*') ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-clipboard-fill"></i>
                         <span>Data Peminjaman</span>
