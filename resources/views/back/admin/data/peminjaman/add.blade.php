@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Guru</label>
+                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
                                                 <div class="col-md-10">
                                                     <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
                                                         <option value="">Pilih kelas..</option>
@@ -82,6 +82,12 @@
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="squareText" class="col-sm-2 col-form-label">Judul Buku</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="squareText" class="form-control square" placeholder="Judul Buku" name="judul_buku">
                                                 </div>
                                             </div>
                                             <div class="form-group row">

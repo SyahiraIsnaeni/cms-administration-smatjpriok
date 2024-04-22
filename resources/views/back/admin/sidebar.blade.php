@@ -234,7 +234,7 @@
 
                 <li
                     class="sidebar-item {{ request()->is('dashboard/peminjaman*') ? 'active' : '' }}">
-                    <a href="#" class='sidebar-link'>
+                    <a href="/dashboard/peminjaman" class='sidebar-link'>
                         <i class="bi bi-clipboard-fill"></i>
                         <span>Data Peminjaman</span>
                     </a>

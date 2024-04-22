@@ -64,8 +64,9 @@
                                                         <tr>
                                                             <th>Nama</th>
                                                             <th>Kelas</th>
-                                                            <th>Tanggal Peminjaman</th>
-                                                            <th>Tanggal Pengembalian</th>
+                                                            <th>Judul Buku</th>
+                                                            <th>Tanggal Pinjam</th>
+                                                            <th>Tanggal Kembali</th>
                                                             <th>Action</th>
                                                         </tr>
                                                         </thead>
@@ -74,6 +75,7 @@
                                                             <tr>
                                                                 <td class="text-bold-500"><?php echo e($peminjaman->nama); ?></td>
                                                                 <td><?php echo e($peminjaman->kelas->nama_kelas); ?> </td>
+                                                                <td class="text-bold-500"><?php echo e($peminjaman->judul_buku); ?></td>
                                                                 <td><?php echo e($peminjaman->tanggal_pinjam ? \Carbon\Carbon::parse($peminjaman->tanggal_pinjam)->format('d/m/Y') : ''); ?></td>
                                                                 <td><?php echo e($peminjaman->tanggal_kembali ? \Carbon\Carbon::parse($peminjaman->tanggal_kembali)->format('d/m/Y') : ''); ?></td>
                                                                 <td>

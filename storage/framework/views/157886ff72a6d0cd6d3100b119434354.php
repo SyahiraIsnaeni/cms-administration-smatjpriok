@@ -1249,6 +1249,50 @@ unset($__errorArgs, $__bag); ?>
 </section>
 
 
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+    <div class="relative bg-[#E5F3EF] rounded-lg overflow-hidden h-[90%] w-full max-w-2xl">
+      <!-- Modal content -->
+      <div class="relative flex flex-col h-full">
+        <!-- Modal header -->
+        <div class="p-2 md:p-2 border-b rounded-t dark:border-gray-600">
+                            
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+        <?php $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="flex-grow p-4 md:p-5 overflow-auto">
+            <img src="src=<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?> "class="w-full h-full rounded-t-md object-cover object-center" />  
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <div class="mt-auto">
+            <!-- Modal footer -->
+            <div class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 dark:border-gray-600">
+          
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('default-modal');
+    const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
+    
+    closeButton.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+    });
+});
+
+    </script>
+</div>
+
+
+
+
+</div>
 <?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>

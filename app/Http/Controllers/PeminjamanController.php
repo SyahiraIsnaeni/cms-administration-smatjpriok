@@ -51,6 +51,7 @@ class PeminjamanController
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'kelas' => 'required|exists:kelas,id',
+            'judul_buku' => 'required',
             'tanggal_pinjam' => 'required|date',
             'tanggal_kembali' => 'required|date',
         ]);
@@ -65,6 +66,7 @@ class PeminjamanController
         $peminjamans = Peminjaman::create([
             'nama' => $request->input('nama'),
             'kelas_id' => $request->kelas,
+            'judul_buku' => $request->input('judul_buku'),
             'tanggal_pinjam' => $tanggal_pinjam,
             'tanggal_kembali' => $tanggal_kembali
         ]);
@@ -112,6 +114,7 @@ class PeminjamanController
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'kelas' => 'required|exists:kelas,id',
+            'judul_buku' => 'required',
             'tanggal_pinjam' => 'required|date',
             'tanggal_kembali' => 'required|date',
         ]);
@@ -126,6 +129,7 @@ class PeminjamanController
         $peminjamans = Peminjaman::findOrFail($id)->update([
             'nama' => $request->input('nama'),
             'kelas_id' => $request->kelas,
+            'judul_buku' => $request->input('judul_buku'),
             'tanggal_pinjam' => $tanggal_pinjam,
             'tanggal_kembali' => $tanggal_kembali
         ]);

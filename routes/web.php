@@ -354,7 +354,7 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
         Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
         Route::get("/dashboard/jadwal/{id}/edit", "editJadwal")->name("edit-jadwal");
         Route::post("/dashboard/jadwal/store", "storeJadwal")->name("store-jadwal");
-        Route::put("/dashboard/{id}/update", "updateJadwal")->name("update-jadwal");
+        Route::put("/dashboard/jadwal/{id}/update", "updateJadwal")->name("update-jadwal");
         Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
         Route::delete("/dashboard/jadwal/reset", "resetJadwal")->name("reset-jadwal");
 
@@ -373,7 +373,7 @@ Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(
         Route::get("/dashboard/kunjungan/add", "addKunjungan")->name("add-kunjungan");
         Route::get("/dashboard/kunjungan/{id}/edit", "editKunjungan")->name("edit-kunjungan");
         Route::post("/dashboard/kunjungan/store", "storeKunjungan")->name("store-kunjungan");
-        Route::put("/dashboard/{id}/update", "updateKunjungan")->name("update-kunjungan");
+        Route::put("/dashboard/kunjungan/{id}/update", "updateKunjungan")->name("update-kunjungan");
         Route::delete("/dashboard/kunjungan/{id}/delete", "deleteKunjungan")->name("delete-kunjungan");
         Route::delete("/dashboard/kunjungan/reset", "resetKunjungan")->name("reset-kunjungan");
     
@@ -386,7 +386,7 @@ Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware
         Route::get("/dashboard/peminjaman/add", "addPeminjaman")->name("add-peminjaman");
         Route::get("/dashboard/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman");
         Route::post("/dashboard/peminjaman/store", "storePeminjaman")->name("store-peminjaman");
-        Route::put("/dashboard/{id}/update", "updatePeminjaman")->name("update-peminjaman");
+        Route::put("/dashboard/peminjaman/{id}/update", "updatePeminjaman")->name("update-peminjaman");
         Route::delete("/dashboard/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman");
         Route::delete("/dashboard/peminjaman/reset", "resetPeminjaman")->name("reset-peminjaman");
 
