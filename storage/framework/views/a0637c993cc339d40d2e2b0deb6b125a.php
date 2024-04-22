@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Kunjungan Perpustakaan</h3>
+                        <h3>Data Kunjungan</h3>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,7 @@
                                                         <thead>
                                                         <tr>
                                                             <th>Nama Siswa</th>
+                                                            <th>Kelas</th>
                                                             <th>Tanggal Kunjungan</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -70,7 +71,8 @@
                                                         <tbody>
                                                         <?php $__empty_1 = true; $__currentLoopData = $kunjungans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kunjungan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td><?php echo e($kunjungan->siswa->nama); ?> <?php echo e($kunjungan->siswa->kelas->nama_kelas); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($kunjungan->nama); ?></td>
+                                                                <td><?php echo e($kunjungan->kelas->nama_kelas); ?> </td>
                                                                 <td><?php echo e($kunjungan->tanggal ? \Carbon\Carbon::parse($kunjungan->tanggal)->format('d/m/Y') : ''); ?></td>
                                                                 <td>
                                                                 <div class='d-inline-flex'>

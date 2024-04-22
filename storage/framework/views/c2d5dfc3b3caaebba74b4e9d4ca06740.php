@@ -5,33 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <link rel="shortcut icon" href=<?php echo e(asset("../assets/image/logosma.png")); ?> type="image/x-icon">
     <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.snow.css")); ?>>
     <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.bubble.css")); ?>>
 
-    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app.css")); ?>>
-    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app-dark.css")); ?>>
+    <link rel="shortcut icon" href=<?php echo e(asset("../../assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link
-        rel="stylesheet"
-        href=<?php echo e(asset("../editor/richtexteditor/rte_theme_default.css")); ?>
-
-    />
-    <script
-        type="text/javascript"
-        src=<?php echo e(asset("../editor/richtexteditor/rte.js")); ?>
-
-    ></script>
-    <script
-        type="text/javascript"
-        src=<?php echo e(asset("../editor/richtexteditor/plugins/all_plugins.js")); ?>
-
-    ></script>
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src=<?php echo e(asset("../assets/static/js/initTheme.js")); ?>></script>
+<script src=<?php echo e(asset("../../assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
     <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -46,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Kunjungan</h3>
+                        <h3>Edit Data Kunjungan</h3>
                     </div>
                 </div>
             </div>
@@ -57,18 +41,19 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/kunjungan" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="<?php echo e(route("kunjungan")); ?>" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <form action="<?php echo e(route('store-kunjungan')); ?>" method="POST" class='mt-3' >
+                                    <form method="post" action="<?php echo e(route('update-kunjungan', ['id' => $kunjungans->id])); ?>" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
+                                            <?php echo method_field('PUT'); ?>
                                             <div class="form-group row">
                                                 <label for="squareText" class="col-sm-2 col-form-label">Nama Lengkap</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama">
+                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama" value="<?php echo e(old('nama', $kunjungans->nama ?? '')); ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -84,7 +69,7 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih kelas..</option>
                                                         <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kelas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($kelas->id); ?>"><?php echo e($kelas->nama_kelas); ?></option>
+                                                        <option value="<?php echo e($kelas->id); ?>" <?php echo e($kelas->id == $kunjungans->kelas_id ? 'selected' : ''); ?>><?php echo e($kelas->nama_kelas); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['kelas'];
@@ -111,7 +96,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>">
+unset($__errorArgs, $__bag); ?>" value="<?php echo e(old('tanggal', isset($kunjungans) ? $kunjungans->tanggal : '')); ?>">
                                                     <?php $__errorArgs = ['tanggal'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -137,19 +122,21 @@ unset($__errorArgs, $__bag); ?>
             </section>
             <!-- Input Style end -->
         </div>
+
     </div>
 </div>
-<script src=<?php echo e(asset("../assets/static/js/components/dark.js")); ?>></script>
-<script src=<?php echo e(asset("../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
+<script src=<?php echo e(asset("../../assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("../../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-
-<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<script src=<?php echo e(asset("../assets/compiled/js/app.js")); ?>></script>
 
 <script src=<?php echo e(asset("../assets/extensions/quill/quill.min.js")); ?>></script>
 <script src=<?php echo e(asset("../assets/static/js/pages/quill.js")); ?>></script>
 
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<script src=<?php echo e(asset("../../assets/compiled/js/app.js")); ?>></script>
+
 
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/kunjungan/add.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok-2\resources\views/back/admin/data/kunjungan/edit.blade.php ENDPATH**/ ?>

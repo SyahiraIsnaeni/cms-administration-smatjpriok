@@ -25,13 +25,6 @@
         type="text/javascript"
         src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
     ></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Select2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
-
 </head>
 
 <body>
@@ -70,15 +63,21 @@
                                     <form action="{{ route('store-kunjungan') }}" method="POST" class='mt-3' >
                                             @csrf
                                             <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Nama Siswa</label>
+                                                <label for="squareText" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
                                                 <div class="col-md-10">
-                                                    <select name="siswa" id="siswas" class="form-control @error('siswa') is-invalid @enderror">
-                                                        <option value="">Pilih nama siswa..</option>
-                                                        @foreach($siswas as $siswa)
-                                                        <option value="{{ $siswa->id }}">{{ $siswa->nama }} {{ $siswa->kelas->nama_kelas }}</option>
+                                                    <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
+                                                        <option value="">Pilih kelas..</option>
+                                                        @foreach($kelas as $kelas)
+                                                        <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('siswa')
+                                                    @error('kelas')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

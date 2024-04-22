@@ -64,11 +64,10 @@
                                                                     <a href="<?php echo e(route('edit-kelas', ['id' => $row->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
-                                                                    <br>
                                                                     <form method="post" action="<?php echo e(route('delete-kelas', $row->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
-                                                                        <button class="btn icon btn-danger" style="margin-top: 10px">
+                                                                        <button class="btn icon btn-danger" style="margin-left: 5px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>

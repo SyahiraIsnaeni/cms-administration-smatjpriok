@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Peminjaman</h3>
+                        <h3>Edit Data Kunjungan</h3>
                     </div>
                 </div>
             </div>
@@ -41,19 +41,19 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("peminjaman")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="{{route("kunjungan")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <form method="post" action="{{ route('update-peminjaman', ['id' => $peminjamans->id]) }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('update-kunjungan', ['id' => $kunjungans->id]) }}" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group row">
                                                 <label for="squareText" class="col-sm-2 col-form-label">Nama Lengkap</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama" value="{{ old('nama', $peminjamans->nama ?? '') }}">
+                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama" value="{{ old('nama', $kunjungans->nama ?? '') }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -62,7 +62,7 @@
                                                     <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
                                                         <option value="">Pilih kelas..</option>
                                                         @foreach($kelas as $kelas)
-                                                        <option value="{{ $kelas->id }}" {{$kelas->id == $peminjamans->kelas_id ? 'selected' : ''}}>{{ $kelas->nama_kelas }}</option>
+                                                        <option value="{{ $kelas->id }}" {{$kelas->id == $kunjungans->kelas_id ? 'selected' : ''}}>{{ $kelas->nama_kelas }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('kelas')
@@ -73,27 +73,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="squareText" class="col-sm-2 col-form-label">Judul Buku</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" id="squareText" class="form-control square" placeholder="Judul Buku" name="judul_buku" value="{{ old('judul_buku', $peminjamans->judul_buku ?? '') }}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="tanggal_pinjam" class="col-md-2 col-form-label">Tanggal Peminjaman</label>
+                                                <label for="tanggal" class="col-md-2 col-form-label">Tanggal Kunjungan</label>
                                                 <div class="col-md-10">
-                                                    <input type="date" name="tanggal_pinjam" class="form-control @error('tanggal_pinjam') is-invalid @enderror" value="{{ old('tanggal_pinjam', isset($peminjamans) ? $peminjamans->tanggal_pinjam : '') }}">
-                                                    @error('tanggal_pinjam')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="tanggal_kembali" class="col-md-2 col-form-label">Tanggal Pengembalian</label>
-                                                <div class="col-md-10">
-                                                    <input type="date" name="tanggal_kembali" class="form-control @error('tanggal_kembali') is-invalid @enderror" value="{{ old('tanggal_kembali', isset($peminjamans) ? $peminjamans->tanggal_kembali : '') }}">
-                                                    @error('tanggal_kembali')
+                                                    <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal', isset($kunjungans) ? $kunjungans->tanggal : '') }}">
+                                                    @error('tanggal')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

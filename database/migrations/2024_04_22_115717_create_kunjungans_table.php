@@ -15,11 +15,12 @@ class CreateKunjungansTable extends Migration
     {
         Schema::create('kunjungans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('siswa_id')->nullable(false);   
+            $table->string("nama")->nullable(false);
+            $table->unsignedBigInteger('kelas_id')->nullable(false);  
             $table->date('tanggal');
             $table->timestamps();
 
-            $table->foreign("siswa_id")->references("id")->on("siswas");
+            $table->foreign("kelas_id")->references("id")->on("kelas");
         });
     }
 

@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Siswa;
 use App\Models\Kunjungan;
+use App\Models\Kelas;
 use Illuminate\Support\Carbon;
+
 
 class KunjunganController 
 {
@@ -19,12 +20,12 @@ class KunjunganController
      */
     public function kunjungan(Request $request)
     {
-        $kunjungans = Kunjungan::orderBy('tanggal', 'asc')
+        $kunjungans = Kunjungan::orderBy('id', 'asc')
                      ->paginate(10);
 
-        $siswas = Siswa::all();
+        $kelas = Kelas::all();
 
-        return view('back.admin.data.kunjungan.index', compact('kunjungans', 'siswas', 'request'));
+        return view('back.admin.data.kunjungan.index', compact('kunjungans', 'kelas'));
     }
 
     /**
@@ -34,9 +35,9 @@ class KunjunganController
      */
     public function addKunjungan()
     {
-        $siswas = Siswa::all();
+        $kelas = Kelas::all();
 
-        return view('back.admin.data.kunjungan.add', compact('siswas'));
+        return view('back.admin.data.kunjungan.add', compact('kelas'));
     }
 
     /**
@@ -47,10 +48,10 @@ class KunjunganController
      */
     public function storeKunjungan(Request $request)
     {
-        // Validasi data
         $validator = Validator::make($request->all(), [
-            'siswa_id' => 'required|exists:siswas,id', // Sesuaikan dengan nama kolom yang benar
-            'tanggal' => 'required|date', // Tambahkan validasi untuk tanggal
+            'nama' => 'required',
+            'kelas' => 'required|exists:kelas,id',
+            'tanggal' => 'required|date',
         ]);
 
         // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
@@ -58,17 +59,16 @@ class KunjunganController
             return redirect()->back()->withErrors($validator)->withInput();
         }
         
-        // Buat objek Carbon untuk tanggal
         $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
-
-        // Buat kunjungan baru jika validasi berhasil
         $kunjungans = Kunjungan::create([
-            'siswa_id' => $request->siswa, // Sesuaikan dengan nama kolom yang benar
+            'nama' => $request->input('nama'),
+            'kelas_id' => $request->kelas,
             'tanggal' => $tanggal
         ]);
         
-        session()->flash('success', "Sukses menambahkan kunjungan perpustakaan");
-        return redirect()->route('kunjungan'); // Sesuaikan dengan nama rute yang benar
+
+        session()->flash('success', "Sukses tambah data kunjungan");
+        return redirect()->route('kunjungan');
     }
 
     /**
@@ -90,9 +90,9 @@ class KunjunganController
      */
     public function editKunjungan($id)
     {
-        $siswas = Siswa::all();
+        $kelas = Kelas::all();
         $kunjungans = Kunjungan::findOrFail($id);
-        return view('back.admin.data.kunjungan.edit', compact('kunjungans', 'siswas'));
+        return view('back.admin.data.kunjungan.edit', compact('kunjungans', 'kelas'));
     }
 
 
@@ -107,25 +107,27 @@ class KunjunganController
     public function updateKunjungan(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-        'siswa' => 'required|exists:siswas,id',
-        'tanggal' => 'required|date',
-    ]);
+            'nama' => 'required',
+            'kelas' => 'required|exists:kelas,id',
+            'tanggal' => 'required|date',
+        ]);
 
-    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
+        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
+        $kunjungans = Kunjungan::findOrFail($id)->update([
+            'nama' => $request->input('nama'),
+            'kelas_id' => $request->kelas,
+            'tanggal' => $tanggal
+        ]);
+        
+
+        session()->flash('success', "Sukses edit data kunjungan");
+        return redirect()->route('kunjungan');
     }
-
-    $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
-    
-    $kunjungans = Kunjungan::findOrFail($id)->update([
-        'siswa_id' => $request->siswa,
-        'tanggal' => $tanggal,
-    ]);
-    
-    session()->flash('success', "Sukses tambah kunjungan perpustakaan");
-    return redirect()->route('kunjungan');
-}
     /**
      * Remove the specified resource from storage.
      *
@@ -134,8 +136,8 @@ class KunjunganController
      */
     public function deleteKunjungan($id)
     {
-        $kunjungan = Kunjungan::findOrFail($id);
-        $kunjungan->delete();
+        $kunjungans = Kunjungan::findOrFail($id);
+        $kunjungans->delete();
 
         session()->flash('success', 'Sukses Menghapus Data');
         return redirect()->back();
@@ -146,7 +148,7 @@ class KunjunganController
 
         $kunjungans = Kunjungan::all();
 
- 
+
         foreach ($kunjungans as $kunjungan) {
             $kunjungan->delete();
         }
@@ -154,11 +156,5 @@ class KunjunganController
         Alert::success('Sukses', 'Berhasil Menghapus Semua Data Kunjungan');
         return redirect()->route('kunjungan');
     }
-
-    
-
-
-    
-
 
 }

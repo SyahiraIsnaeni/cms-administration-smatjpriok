@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kunjungan extends Model
 {
-    protected $fillable = ['kunjungan_id', 'siswa_id', 'tanggal'];
+    protected $table = 'kunjungans';
+    protected $fillable = ['kunjungan_id', 'nama', 'kelas_id', 'tanggal'];
 
-    public function siswa() {
-        return $this->belongsTo('App\Models\Siswa');
+    public function kelas() {
+        return $this->belongsTo('App\Models\Kelas');
     }
 
-
+ 
 }
