@@ -212,7 +212,7 @@
             <?php $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="mx-5 sm:mx-8">
                     <div class="flex justify-center items-center my-3 sm:my-4">
-                        <img src="<?php echo e(asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
+                        <img src="<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] items-center object-cover object-center" />
                     </div>
                     <h1 class="text-white text-center font-semibold text-[17px] sm:text-lg"><?php echo e($ekstrakurikuler->nama); ?></h1>
                     <p class="text-center text-white font-light text-[12.5px] sm:text-sm mt-2">
@@ -290,7 +290,7 @@
                 <?php $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li class="flex w-full">
                         <div class="flex w-full justify-center items-center my-3 sm:my-4">
-                            <img src="<?php echo e(asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
+                            <img src="<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?>" class="w-[210px] h-[210px] lg:w-[230px] lg:h-[230px] xl:w-[260px] xl:h-[260px] items-center object-cover object-center" />
                             <div class="ml-6 xl:ml-8 w-full">
                                 <h1 class="text-white font-semibold text-[19px] lg:text-[22px] xl:text-[26px]"><?php echo e($ekstrakurikuler->nama); ?></h1>
                                 <p class="text-white font-light text-[14.5px] lg:text-base xl:text-lg mt-3 w-full">
@@ -364,7 +364,7 @@
                         <a>
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="<?php echo e(asset('storage/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
                                     <h1 class="text-sm font-semibold text-center"><?php echo e($prestasi->nama); ?></h1>
@@ -465,7 +465,7 @@
                             <li class="mr-7 lg:mr-12 xl:mr-20 w-[240px] xl:w-[280px] opacity-55">
                                 <a>
                                     <div class="penanda justify-center items-center rounded-md border border-black border-opacity-25">
-                                        <img src="<?php echo e(asset('storage/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
+                                        <img src="<?php echo e(asset('storage/public/prestasi/' . $prestasi->gambar)); ?>" class="rounded-t-md w-full h-[120px] lg:h-[140px] xl:h-[180px] object-cover object-center border-black border-opacity-25" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4 xl:py-5">
                                             <h1 class="text-[13px] lg:text-sm xl:text-[15px] font-semibold text-center"><?php echo e($prestasi->nama); ?></h1>
                                             <p class="mt-1 lg:mt-1.5 text-[11px] lg:text-xs xl:text-sm font-normal text-center"><?php echo e($prestasi->kejuaraan); ?></p>
@@ -663,7 +663,7 @@
                         <a href="<?php echo e(route('detail-pengumuman', ['slug' => $pengumuman->slug])); ?>">
                             <div class="justify-center items-center mt-5 border rounded-md border-black border-opacity-25">
                                 <div class="border-b h-[180px] border-black border-opacity-25 rounded-md">
-                                    <img src="<?php echo e(asset('storage/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="rounded-t-md w-full h-[180px] object-cover object-center" />
                                 </div>
                                 <div class="bg-white rounded-b-md py-3 px-3">
                                     <h1 class="text-sm font-semibold text-justify"><?php echo e($pengumuman->judul); ?></h1>
@@ -793,7 +793,7 @@
                             <li class="ml-7 lg:ml-12 xl:ml-20 w-[330px] xl:w-[380px]">
                                 <a href="<?php echo e(route('detail-pengumuman', ['slug' => $pengumuman->slug])); ?>">
                                     <div class="justify-center items-center border rounded-md border-black border-opacity-25">
-                                        <img src="<?php echo e(asset('storage/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
+                                        <img src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="w-full h-[170px] lg:h-[190px] xl:h-[230px] object-cover object-center border-b border-black border-opacity-25 rounded-t-md" />
                                         <div class="bg-white rounded-b-md py-3 px-3 lg:px-4 lg:py-4">
                                             <h1 class="text-sm lg:text-[15px] xl:text-[17px] font-semibold text-justify"><?php echo e($pengumuman->judul); ?></h1>
                                             <p class="mt-1 lg:mt-1.5 xl:mt-2 text-xs lg:text-[13px] xl:text-[15px] font-normal text-left"><?php echo e($pengumuman->updated_at->format('d M Y')); ?></p>
@@ -1019,7 +1019,7 @@
                         <a href="<?php echo e(route('detail-berita', ['slug' => $row->slug])); ?>">
                             <div class="mt-6 bg-white rounded-md w-full">
                                 <div class="w-full h-[180px]">
-                                    <img src="<?php echo e(asset('storage/berita/' . $row->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
+                                    <img src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
                                 </div>
                                 <div class="border border-black border-opacity-30 px-3 py-2.5 text-justify">
                                     <h1 class="font-semibold text-sm sm:text-[15px] leading-relaxed underline underline-offset-2"><?php echo e($row->judul); ?></h1>
@@ -1039,7 +1039,7 @@
                             <a href="<?php echo e(route('detail-berita', ['slug' => $berita->slug])); ?>">
                                 <div class="bg-white rounded-md w-full transition hover:scale-[1.03] duration-300 ease-in-out">
                                     <div class="w-full h-[200px] lg:h-[250px] xl:h-[350px]">
-                                        <img src="<?php echo e(asset('storage/berita/' . $berita->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
+                                        <img src="<?php echo e(asset('storage/public/berita/' . $berita->gambar)); ?>" class="w-full rounded-t-md h-full object-cover object-center" />
                                     </div>
                                     <div class="border border-black border-opacity-30 px-3 py-2.5 lg:px-4 lg:py-3 text-justify">
                                         <h1 class="font-semibold text-[15px] lg:text-base xl:text-[17px] leading-relaxed underline underline-offset-2"><?php echo e($berita->judul); ?></h1>
@@ -1061,7 +1061,7 @@
                                     <div class="bg-white rounded-md w-full transition hover:scale-[1.02] duration-300 ease-in-out">
                                         <div class="flex w-full h-[120px] lg:h-[130px] xl:h-[150px]">
                                             <div class="w-1/3 h-full">
-                                                <img src="<?php echo e(asset('storage/berita/' . $row->gambar)); ?>" class="w-full rounded-l-md h-full object-cover object-center" />
+                                                <img src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>" class="w-full rounded-l-md h-full object-cover object-center" />
                                             </div>
                                             <div class="w-2/3 border border-black border-opacity-30 px-3 py-3 xl:py-5 text-justify">
                                                 <h1 class="font-semibold text-sm lg:text-[15px] xl:text-base leading-relaxed underline underline-offset-2"><?php echo strlen($row->judul) > 70 ? substr($row->judul, 0, 70) . '...' : $row->judul; ?></h1>
@@ -1249,6 +1249,50 @@ unset($__errorArgs, $__bag); ?>
 </section>
 
 
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+    <div class="relative bg-[#E5F3EF] rounded-lg overflow-hidden h-[90%] w-full max-w-2xl">
+      <!-- Modal content -->
+      <div class="relative flex flex-col h-full">
+        <!-- Modal header -->
+        <div class="p-2 md:p-2 border-b rounded-t dark:border-gray-600">
+
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+        <?php $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <div class="flex-grow p-4 md:p-5 overflow-auto">
+            <img src="<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?>" class="w-full h-full rounded-t-md object-cover object-center" />
+        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <div class="mt-auto">
+            <!-- Modal footer -->
+            <div class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 dark:border-gray-600">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('default-modal');
+    const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
+
+    closeButton.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+    });
+});
+
+    </script>
+</div>
+
+
+
+
+</div>
 <?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>
