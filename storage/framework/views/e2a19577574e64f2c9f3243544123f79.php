@@ -233,8 +233,8 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item <?php echo e(request()->is('dashboard/peminjaman*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/peminjaman" class='sidebar-link'>
                         <i class="bi bi-clipboard-fill"></i>
                         <span>Data Peminjaman</span>
                     </a>
