@@ -64,7 +64,6 @@
                                                         <tr>
                                                             <th>Hari</th>
                                                             <th>Mata Pelajaran</th>
-                                                            <th>Guru</th>
                                                             <th>Waktu Mulai</th>
                                                             <th>Waktu Selesai</th>
                                                             <th>Action</th>
@@ -74,8 +73,7 @@
                                                         <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
                                                                 <td><?php echo e($jadwal->day->name); ?></td>
-                                                                <td><?php echo e($jadwal->mapel->nama); ?> <?php echo e($jadwal->mapel->kelas->nama_kelas); ?></td>
-                                                                <td><?php echo e($jadwal->guru->nama); ?></td>
+                                                                <td><?php echo e($jadwal->mapel->nama); ?> <?php echo e($jadwal->mapel->kelas->nama_kelas); ?> (<?php echo e($jadwal->mapel->guru->nama); ?>)</td>
                                                                 <td><?php echo e($jadwal->start_time ? substr($jadwal->start_time, 0, 5) : ''); ?></td>
                                                                 <td><?php echo e($jadwal->end_time ? substr($jadwal->end_time, 0, 5) : ''); ?></td>
                                                                 <td>

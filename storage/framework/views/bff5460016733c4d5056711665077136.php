@@ -78,40 +78,10 @@ endif;
 unset($__errorArgs, $__bag); ?>">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($mapel->id); ?>"><?php echo e($mapel->nama); ?> <?php echo e($mapel->kelas->nama_kelas); ?></option>
+                                                        <option value="<?php echo e($mapel->id); ?>"><?php echo e($mapel->nama); ?> <?php echo e($mapel->kelas->nama_kelas); ?> (<?php echo e($mapel->guru->nama); ?>)</option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                     <?php $__errorArgs = ['mapel'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong><?php echo e($message); ?></strong>
-                                                        </span>
-                                                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Guru</label>
-                                                <div class="col-md-10">
-                                                    <select name="guru" id="gurus" class="form-control <?php $__errorArgs = ['guru'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>">
-                                                        <option value="">Pilih guru..</option>
-                                                        <?php $__currentLoopData = $gurus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guru): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($guru->id); ?>"><?php echo e($guru->nama); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                    <?php $__errorArgs = ['guru'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

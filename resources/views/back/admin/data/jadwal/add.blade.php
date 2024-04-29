@@ -68,26 +68,10 @@
                                                     <select name="mapel" id="mapels" class="form-control @error('mapel') is-invalid @enderror">
                                                         <option value="">Pilih mata pelajaran..</option>
                                                         @foreach($mapels as $mapel)
-                                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }} {{ $mapel->kelas->nama_kelas }}</option>
+                                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }} {{ $mapel->kelas->nama_kelas }} ({{ $mapel->guru->nama }})</option>
                                                         @endforeach
                                                     </select>
                                                     @error('mapel')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Guru</label>
-                                                <div class="col-md-10">
-                                                    <select name="guru" id="gurus" class="form-control @error('guru') is-invalid @enderror">
-                                                        <option value="">Pilih guru..</option>
-                                                        @foreach($gurus as $guru)
-                                                        <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('guru')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
