@@ -219,7 +219,7 @@
             </p>
         </div>
         <div class="mt-10 lg:mt-0 lg:w-1/3 xl:w-1/4 lg:ml-12 xl:ml-16">
-            <div
+            {{-- <div
                 class="bg-white mt-3 border border-black border-opacity-30 rounded-md px-2.5 py-1 xl:py-1.5 flex"
             >
                 <svg
@@ -236,7 +236,7 @@
                     class="ml-2 w-full py-0.5 placeholder:text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px]"
                     placeholder="Cari berita..."
                 />
-            </div>
+            </div> --}}
             <h1
                 class="font-bold mt-4 text-[17px] md:text-lg underline underline-offset-8 decoration-4 decoration-[#FF8B42]"
             >

@@ -8,7 +8,7 @@ use App\Services\PengumumanService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; 
 
 class PengumumanServiceImpl implements PengumumanService
 {
@@ -17,10 +17,19 @@ class PengumumanServiceImpl implements PengumumanService
         return Pengumuman::orderBy('created_at', 'desc')->paginate(12);
     }
 
-    public function getAll(): Collection
+    public function getAll(?string $keyword = null): Collection
     {
-        return Pengumuman::withTrashed()->where('is_active', 1)->orderBy('created_at', 'desc')->get();
+        $query = Pengumuman::withTrashed()->where('is_active', 1);
+    
+        if ($keyword) {
+            $query->where(function ($query) use ($keyword) {
+                $query->where('judul', 'like', '%' . $keyword . '%');
+            });
+        }
+    
+        return $query->orderBy('created_at', 'desc')->get();
     }
+    
 
     public function getFewData(): LengthAwarePaginator
     {

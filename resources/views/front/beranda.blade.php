@@ -1250,16 +1250,24 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('default-modal');
-    const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
-
-    closeButton.addEventListener('click', function() {
-        modal.classList.add('hidden');
-        modal.setAttribute('aria-hidden', 'true');
-    });
-});
-
-    </script>
+         const modal = document.getElementById('default-modal');
+         const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
+         
+         // Periksa apakah popup sudah ditutup sebelumnya
+         if (sessionStorage.getItem('popupClosed') === 'true') {
+             modal.classList.add('hidden');
+             modal.setAttribute('aria-hidden', 'true');
+         }
+         
+         closeButton.addEventListener('click', function() {
+             modal.classList.add('hidden');
+             modal.setAttribute('aria-hidden', 'true');
+             sessionStorage.setItem('popupClosed', 'true');
+         });
+     });
+     
+         </script>
+     
 </div>
 
 

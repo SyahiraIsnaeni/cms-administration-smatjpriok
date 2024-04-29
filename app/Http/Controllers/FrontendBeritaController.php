@@ -18,13 +18,17 @@ class FrontendBeritaController
         $this->beritaService = $beritaService;
     }
 
-    public function list():Response{
-        $beritas = $this->beritaService->getAll();
-        return response()
-            ->view("front.list-berita", [
-                "beritas" => $beritas,
-            ]);
-    }
+    public function list(Request $request): Response
+{
+    $keyword = $request->input('search');
+    $beritas = $this->beritaService->getAll($keyword);
+
+    return response()
+        ->view("front.list-berita", [
+            "beritas" => $beritas,
+        ]);
+}
+
 
     public function detail($slug):Response{
         $berita = Berita::withTrashed()->where('slug', $slug)->first();

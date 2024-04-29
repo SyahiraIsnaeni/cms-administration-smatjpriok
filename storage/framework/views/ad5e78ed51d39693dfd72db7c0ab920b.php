@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Berita SMA Tanjung Priok Jakarta</title>
+    <title>Pengumuman SMA Tanjung Priok Jakarta</title>
     <link rel="icon" href="<?php echo e(asset('images/logo.png')); ?>" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
     <link href="<?php echo e(asset('css/styles.css')); ?>" rel="stylesheet" />
@@ -175,25 +175,25 @@
         <h1
             class="text-center text-white font-semibold text-[22px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
         >
-            Berita SMA Tanjung Priok Jakarta
+            Pengumuman SMA Tanjung Priok Jakarta
         </h1>
         <p
             class="text-center text-white font-medium text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-2xl mt-3 md:mt-4 lg:mt-5 xl:mt-6"
         >
-            Temukan berita-berita peristiwa menarik seputar SMA Tanjung Priok
+            Temukan pengumuman seputar informasi penting SMA Tanjung Priok
             Jakarta!
         </p>
     </div>
 </section>
 
-<!-- KATEGORI BERITA dan SEARCH -->
+<!-- KATEGORI PENGUMUMAN dan SEARCH -->
 <section class="mt-12">
     <div class="sm:flex mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
         <div class="sm:w-1/2 md:w-2/3 sm:mr-10 lg:mr-16 xl:mr-20">
             <h1
                 class="font-semibold text-[15px] sm:text-[15.5px] md:text-base lg:text-[17px] xl:text-lg"
             >
-                Kategori Berita
+                Kategori Pengumuman
             </h1>
             <div class="mt-2 md:mt-2.5 lg:mt-3 flex">
                 <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
@@ -224,80 +224,49 @@
                         Siswa
                     </div>
                 </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Sekolah
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Kejuaraan
-                    </div>
-                </a>
             </div>
         </div>
         <div class="sm:w-1/2 md:w-1/3 mt-5 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7">
-            <form action="<?php echo e(route('list-berita')); ?>" method="GET" >
+            <form action="<?php echo e(route('list-pengumuman')); ?>" method="GET" >
             <div
                 class="rounded-md bg-white flex pl-3 border border-black border-opacity-30"
             >
             <button type="submit">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    class="w-5 h-5 mt-2 xl:mt-2.5 mr-2.5"
-                    fill="#616161"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 mt-2 xl:mt-2.5 mr-2.5" fill="#616161">
                     <path
                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
                     />
                 </svg>
             </button>
                 
-                <input
-                    class="rounded-md w-full py-2 placeholder:text-[13px] placeholder:lg:text-[14px] placeholder:xl:text-[15px] text-sm lg:text-[15px] xl:text-base"
-                    type="text"
-                    name="search"
-                    placeholder="Cari berita..."
-                />
+                <input class="rounded-md w-full py-2 placeholder:text-[13px] placeholder:lg:text-[14px] placeholder:xl:text-[15px] text-sm lg:text-[15px] xl:text-base" 
+                type="text"
+                name="search"
+                placeholder="Cari pengumuman..." />
             </div>
             </form>
         </div>
     </div>
 </section>
 
-<!-- DATA BERITA -->
+<!-- DATA PENGUMUMAN -->
 <section class="my-10">
-    <div
-        class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 sm:gap-8 md:gap-10"
-    >   <?php $__currentLoopData = $beritas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $berita): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <a href="<?php echo e(route('detail-berita', ['slug' => $berita->slug])); ?>">
-            <div
-                class="rounded-md border border-black border-opacity-25 hover:scale-105 ease-in-out duration-300"
-            >
-                <img
-                    src="<?php echo e(asset('storage/berita/' . $berita->gambar)); ?>"
-                    class="rounded-t-md object-cover object-center h-[200px] w-full"
-                />
+    <div class="mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 sm:gap-8 md:gap-10">
+        <?php $__currentLoopData = $pengumumans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pengumuman): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <a href="<?php echo e(route('detail-pengumuman', ['slug' => $pengumuman->slug])); ?>">
+            <div class="rounded-md border border-black border-opacity-25 hover:scale-105 ease-in-out duration-300 ">
+                <img src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>" class="rounded-t-md object-cover object-center h-[200px] w-full">
                 <div class="py-2.5 xl:py-3 px-3 bg-white rounded-b-md">
                     <h1 class="text-sm font-semibold lg:text-[14.5px] xl:text-[15px]">
-                        <?php echo e($berita->judul); ?>
+                        <?php echo e($pengumuman->judul); ?>
 
                     </h1>
-                    <p
-                        class="mt-1 lg:mt-[5px] text-[13px] lg:text-[13.5px] xl:text-sm font-light"
-                    >
-                        <?php echo e($berita->updated_at->format('d M Y')); ?> | <?php echo e($berita->kategoriBerita->kategori); ?>
+                    <p class="mt-1 lg:mt-[5px] text-[13px] lg:text-[13.5px] xl:text-sm font-light">
+                        <?php echo e($pengumuman->updated_at->format('d M Y')); ?> | <?php echo e($pengumuman->kategoriPengumuman->kategori); ?>
 
                     </p>
-                    <p
-                        class="mt-0.5 text-[13px] lg:text-[13.5px] xl:text-sm font-light"
-                    >
-                        By <?php echo e($berita->penulis); ?>
+                    <p class="mt-0.5 text-[13px] lg:text-[13.5px] xl:text-sm font-light">
+                        By <?php echo e($pengumuman->penulis); ?>
 
                     </p>
                 </div>
@@ -311,4 +280,4 @@
 <?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/front/list-berita.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/front/list-pengumuman.blade.php ENDPATH**/ ?>
