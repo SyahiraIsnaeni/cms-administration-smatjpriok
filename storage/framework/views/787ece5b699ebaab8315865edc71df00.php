@@ -225,16 +225,16 @@
                 <li class="sidebar-title">Perpustakaan</li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item <?php echo e(request()->is('dashboard/kunjungan*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/kunjungan" class='sidebar-link'>
                         <i class="bi bi-file-earmark-person-fill"></i>
                         <span>Data Kunjungan</span>
                     </a>
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item <?php echo e(request()->is('dashboard/peminjaman*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/peminjaman" class='sidebar-link'>
                         <i class="bi bi-clipboard-fill"></i>
                         <span>Data Peminjaman</span>
                     </a>

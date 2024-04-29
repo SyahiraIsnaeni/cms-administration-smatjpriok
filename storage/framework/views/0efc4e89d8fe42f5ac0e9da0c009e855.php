@@ -222,24 +222,7 @@
             </p>
         </div>
         <div class="mt-10 lg:mt-0 lg:w-1/3 xl:w-1/4 lg:ml-12 xl:ml-16">
-            <div
-                class="bg-white mt-3 border border-black border-opacity-30 rounded-md px-2.5 py-1 xl:py-1.5 flex"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    class="w-5"
-                    fill="grey"
-                >
-                    <path
-                        d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
-                    />
-                </svg>
-                <input
-                    class="ml-2 w-full py-0.5 placeholder:text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px]"
-                    placeholder="Cari berita..."
-                />
-            </div>
+            
             <h1
                 class="font-bold mt-4 text-[17px] md:text-lg underline underline-offset-8 decoration-4 decoration-[#FF8B42]"
             >
@@ -252,7 +235,7 @@
                         class="bg-white mt-3 hover:scale-105 ease-in-out duration-300 h-[100px] flex border border-black border-opacity-30 rounded-md items-center"
                     >
                         <img
-                            src="<?php echo e(asset('storage/berita/' . $row->gambar)); ?>"
+                            src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>"
                             class="w-1/3 h-full object-cover rounded-l-md object-center"
                         />
                         <!-- bikinin ini ke tengah -->

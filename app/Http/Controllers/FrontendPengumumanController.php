@@ -12,14 +12,18 @@ class FrontendPengumumanController
 
     protected $pengumumanService;
 
-    public function __construct(
+    public function __construct( 
         PengumumanService $pengumumanService,
     )
     {
         $this->pengumumanService = $pengumumanService;
     }
-    public function list():Response{
-        $pengumumans = $this->pengumumanService->getAll();
+   
+        public function list(Request $request): Response
+    {
+            $keyword = $request->input('search');
+            $pengumumans = $this->pengumumanService->getAll($keyword);
+        
         return response()
             ->view("front.list-pengumuman", [
                 "pengumumans" => $pengumumans,

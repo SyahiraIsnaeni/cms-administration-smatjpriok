@@ -59,12 +59,8 @@ class SiswaServiceImpl implements SiswaService
 
     public function deleteAll(int $kelasId): bool
     {
-        try {
-            Siswa::where('kelas_id', $kelasId)->delete();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
+        Siswa::where('kelas_id', $kelasId)->delete();
+        return true;
     }
 
     public function addFromExcel(int $kelasId, $file): void
