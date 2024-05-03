@@ -54,10 +54,6 @@
                                                 </button>
                                             </form>
                                         </div>
-
-                                        <div class="card-head-row" style="margin-left: 10px">
-                                            <a href="/dashboard/jadwal/cetak" class="btn btn-danger btn-sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Cetak PDF</a>
-                                        </div>
                                     </div>
                                     <section class="section">
                                         <div class="card" >

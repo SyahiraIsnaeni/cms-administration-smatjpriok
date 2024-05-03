@@ -112,7 +112,7 @@
                             @forelse ($drafPengumuman as $row)
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="{{asset('storage/pengumuman/gambar/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                        <img src="{{asset('storage/public/pengumuman/gambar/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">
@@ -142,7 +142,7 @@
                             @forelse ($drafBerita as $row)
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="{{asset('storage/berita/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                        <img src="{{asset('storage/public/berita/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">
@@ -173,7 +173,7 @@
                             @forelse ($drafBlog as $row)
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="{{asset('storage/blog/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
+                                        <img src="{{asset('storage/public/blog/'.$row->gambar) }}"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">

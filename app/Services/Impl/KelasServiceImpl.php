@@ -14,7 +14,7 @@ class KelasServiceImpl implements KelasService
 {
     public function get(): LengthAwarePaginator
     {
-        return Kelas::orderBy('created_at', 'desc')->paginate(10);
+        return Kelas::orderBy('nama_kelas', 'asc')->paginate(10);
     }
 
     public function getId($id): Kelas

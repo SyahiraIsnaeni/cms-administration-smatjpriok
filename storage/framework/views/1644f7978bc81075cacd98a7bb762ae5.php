@@ -112,7 +112,7 @@
                             <?php $__empty_1 = true; $__currentLoopData = $drafPengumuman; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="<?php echo e(asset('storage/pengumuman/gambar/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
+                                        <img src="<?php echo e(asset('storage/public/pengumuman/gambar/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">
@@ -142,7 +142,7 @@
                             <?php $__empty_1 = true; $__currentLoopData = $drafBerita; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="<?php echo e(asset('storage/berita/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
+                                        <img src="<?php echo e(asset('storage/public/berita/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">
@@ -173,7 +173,7 @@
                             <?php $__empty_1 = true; $__currentLoopData = $drafBlog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <div class="row fs-5" style="margin-bottom: -20px">
                                     <div class="col-2 col-md-2 col-lg-2 ml-3 mt-2 mb-2">
-                                        <img src="<?php echo e(asset('storage/blog/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
+                                        <img src="<?php echo e(asset('storage/public/blog/'.$row->gambar)); ?>"  class="img-fluid" alt="bg" width="90">
                                     </div>
                                     <div class="col-8 col-md-8 col-lg-8 mt-3 mb-3">
                                         <a class="text-black" style="text-decoration: none; font-size: small; ">
