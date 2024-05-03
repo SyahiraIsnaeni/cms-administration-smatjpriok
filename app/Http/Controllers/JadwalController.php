@@ -59,48 +59,35 @@ class JadwalController
         'day' => 'required|exists:days,id',
         'start_time' => 'required', // Format: Jam:Menit (24-jam)
         'end_time' => 'required|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
-        // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
-        'start_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                $existingSchedules = Jadwal::where('day_id', $request->day)
-                ->where(function ($query) use ($request) {
-                    $query->whereHas('mapel', function ($query) use ($request) {
-                        $query->where('mapel_id', $request->mapel); // Memastikan hanya memeriksa jadwal untuk kelas yang sama
-                            
-                    })
-                    ->orWhereDoesntHave('mapel'); // Menambahkan kondisi untuk memastikan bahwa jadwal tidak terkait dengan mapel jika tidak ada mapel yang sesuai
-                })
-                ->exists();
-
-                if ($existingSchedules) {
-                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
-                }
-            }
-        ],
-        'end_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                if ($request->start_time >= $request->end_time) {
-                    $fail('Waktu selesai harus setelah waktu mulai.');
-                }
-            },
-            'after:start_time',
-        ],
     ]);
-
+    
+    $validator->after(function ($validator) use ($request) {
+        $existingSchedules = Jadwal::where('day_id', $request->day)
+            ->where(function ($query) use ($request) {
+                $query->whereHas('mapel', function ($query) use ($request) {
+                    $query->where('id', $request->mapel); // Memastikan hanya memeriksa jadwal untuk mapel yang dipilih
+                });
+            })
+            ->exists();
+    
+        if ($existingSchedules) {
+            $validator->errors()->add('mapel', 'Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
+        }
+    });
+    
     // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
     if ($validator->fails()) {
         return redirect()->back()->withErrors($validator)->withInput();
     }
     
     // Buat jadwal baru jika validasi berhasil
-    $jadwals = Jadwal::create([
+    $jadwal = Jadwal::create([
         'mapel_id' => $request->mapel,
         'day_id' => $request->day,
         'start_time' => $request->start_time,
         'end_time' => $request->end_time
     ]);
+    
     
     // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
     session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
