@@ -15,6 +15,11 @@ class MataPelajaranServiceImpl implements MataPelajaranService
             ->paginate(10);
     }
 
+    public function getAll()
+    {
+        return MataPelajaran::orderBy('created_at', 'desc')->get();
+    }
+
     public function add(array $data): MataPelajaran
     {
         $mapel = new MataPelajaran();

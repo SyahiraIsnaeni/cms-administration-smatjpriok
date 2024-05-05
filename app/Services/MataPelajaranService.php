@@ -9,6 +9,8 @@ interface MataPelajaranService
 {
     public function get(int $kelasId):LengthAwarePaginator;
 
+    public function getAll();
+
     public function add(array $data): MataPelajaran;
 
     public function edit(int $id, array $data): MataPelajaran;

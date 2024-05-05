@@ -16,8 +16,9 @@ class CreatePeminjamansTable extends Migration
         Schema::create('peminjamans', function (Blueprint $table) {
             $table->id();
             $table->string("nama")->nullable(false);
-            $table->unsignedBigInteger('kelas_id')->nullable(false); 
-            $table->string("judul_buku")->nullable(false);  
+            $table->unsignedBigInteger('kelas_id')->nullable(false);
+            $table->string("judul_buku")->nullable(false);
+            $table->enum('status', ['dipinjam', 'dikembalikan'])->nullable(true);
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
             $table->timestamps();

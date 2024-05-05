@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>{{$title}}</title>
 
     <link rel="shortcut icon" href={{asset("../assets/image/logosma.png")}} type="image/x-icon">
     <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.snow.css")}}>
@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href={{asset("../assets/compiled/css/app.css")}}>
     <link rel="stylesheet" href={{asset("../assets/compiled/css/app-dark.css")}}>
-
 </head>
 
 <body>
@@ -42,21 +41,21 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/jadwal" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="{{route("jadwal")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <form action="{{ route('add-data-jadwal') }}" method="POST" class='mt-3' >
+                                        <form method="post" enctype="multipart/form-data" action="{{ route('add-data-jadwal') }}">
                                             @csrf
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
                                                 <div class="col-md-10">
-                                                    <select name="mapel" id="mapels" class="form-control @error('mapel') is-invalid @enderror">
-                                                        <option value="">Pilih mata pelajaran..</option>
+                                                    <select name="mapel" id="mapels" class="form-control">
+                                                        <option value="">Pilih mata pelajaran</option>
                                                         @foreach($mapels as $mapel)
-                                                        <option value="{{ $mapel->id }}">{{ $mapel->nama }} {{ $mapel->kelas->nama_kelas }} ({{ $mapel->guru->nama }})</option>
+                                                            <option value="{{ $mapel->id }}">{{ $mapel->nama }} {{ $mapel->kelas->nama_kelas }} ({{ $mapel->guru->nama }})</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -64,42 +63,30 @@
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Hari</label>
                                                 <div class="col-md-10">
-                                                    <select name="day" id="mapels" class="form-control @error('day') is-invalid @enderror">
+                                                    <select name="day" class="form-control">
                                                         <option value="">Pilih hari..</option>
                                                         @foreach($days as $day)
-                                                        <option value="{{ $day->id }}">{{ $day->name }}</option>
+                                                            <option value="{{ $day->id }}">{{ $day->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    @error('day')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="" class='col-md-2 col-form-label'>Waktu Mulai</label>
                                                 <div class="col-md-10">
-                                                    <input type="time" name="start_time" class='form-control  @error('start_time') is-invalid @enderror'>
-                                                    @error('start_time')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <input type="time" name="start" class='form-control'>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Waktu Selesai</label>
+                                                <label for="" class='col-md-2 col-form-label'>Waktu Berakhir</label>
                                                 <div class="col-md-10">
-                                                    <input type="time" name="end_time" class='form-control  @error('end_time') is-invalid @enderror'>
-                                                    @error('end_time')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <input type="time" name="end" class='form-control'>
                                                 </div>
                                             </div>
-                                            <button type="submit" class='btn btn-primary float-right'>Submit</button>
+                                            <div class="form-group" style="margin-top: 20px">
+                                                <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
+                                                <button class="btn btn-danger btn-sm" type="reset"> Reset </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

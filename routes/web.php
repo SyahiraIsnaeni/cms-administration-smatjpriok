@@ -204,7 +204,7 @@ Route::controller(\App\Http\Controllers\BlogController::class)->middleware(\App\
         Route::patch("/dashboard/beranda/blog/{id}/edit", "editDataBlog")->name("edit-blog");
         Route::delete("/dashboard/beranda/blog/{id}/delete", "deleteDataBlog")->name("delete-blog");
     }
-); 
+);
 
 Route::controller(\App\Http\Controllers\WelcomeController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
@@ -351,19 +351,16 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
     function (){
         Route::get("/dashboard/jadwal", "jadwal")->name("jadwal");
         Route::get("/dashboard/jadwal/add", "addJadwal")->name("add-jadwal");
-        Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
+        Route::post("/dashboard/jadwal/add/data", "addDataJadwal")->name("add-data-jadwal");
         Route::get("/dashboard/jadwal/{id}/edit", "editJadwal")->name("edit-jadwal");
-        Route::post("/dashboard/jadwal/store", "storeJadwal")->name("store-jadwal");
-        Route::put("/dashboard/jadwal/{id}/update", "updateJadwal")->name("update-jadwal");
-        Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
-        Route::delete("/dashboard/jadwal/reset", "resetJadwal")->name("reset-jadwal");
+        Route::post("/dashboard/jadwal/{id}/edit/data", "editDataJadwal")->name("edit-data-jadwal");
+        Route::delete("/dashboard/jadwal/delete/{id}", "delete")->name("delete-jadwal");
+//        Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
+//        Route::post("/dashboard/jadwal/store", "storeJadwal")->name("store-jadwal");
+//        Route::put("/dashboard/jadwal/{id}/update", "updateJadwal")->name("update-jadwal");
+//        Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
+//        Route::delete("/dashboard/jadwal/reset", "resetJadwal")->name("reset-jadwal");
 
-    }
-);
-
-Route::controller(\App\Http\Controllers\PdfController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
-    function (){
-        Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
     }
 );
 
@@ -376,7 +373,7 @@ Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(
         Route::put("/dashboard/kunjungan/{id}/update", "updateKunjungan")->name("update-kunjungan");
         Route::delete("/dashboard/kunjungan/{id}/delete", "deleteKunjungan")->name("delete-kunjungan");
         Route::delete("/dashboard/kunjungan/reset", "resetKunjungan")->name("reset-kunjungan");
-    
+
     }
 );
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo e($title); ?></title>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.snow.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.bubble.css")); ?>>
+
+    <link rel="shortcut icon" href=<?php echo e(asset("../../assets/image/logosma.png")); ?> type="image/x-icon">
+
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../../assets/compiled/css/app-dark.css")); ?>>
+</head>
+
+<body>
+<script src=<?php echo e(asset("../../assets/static/js/initTheme.js")); ?>></script>
+<div id="app">
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <div id="main">
+        <header class="mb-3">
+            <a href="#" class="burger-btn d-block d-xl-none">
+                <i class="bi bi-justify fs-3"></i>
+            </a>
+        </header>
+
+        <div class="page-heading">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Edit Data Jadwal</h3>
+                    </div>
+                </div>
+            </div>
+
+            <section id="input-style" style="margin-top: 30px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-head-row">
+                                    <a href="<?php echo e(route("jadwal")); ?>" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form method="post" action="<?php echo e(route('edit-data-jadwal', $jadwal->id)); ?>" enctype="multipart/form-data">
+                                            <?php echo csrf_field(); ?>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
+                                                <div class="col-md-10">
+                                                    <select name="mapel" id="mapels" class="form-control">
+                                                        <option value="">Pilih mata pelajaran</option>
+                                                        <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($mapel->id); ?> " <?php echo e($mapel->id == $jadwal->mapel_id ? 'selected' : ''); ?>><?php echo e($mapel->nama); ?> <?php echo e($mapel->kelas->nama_kelas); ?> (<?php echo e($mapel->guru->nama); ?>)</option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Hari</label>
+                                                <div class="col-md-10">
+                                                    <select name="day" class="form-control">
+                                                        <option value="">Pilih hari..</option>
+                                                        <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($day->id); ?>" <?php echo e($day->id == $jadwal->day_id ? 'selected' : ''); ?>><?php echo e($day->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Waktu Mulai</label>
+                                                <div class="col-md-10">
+                                                    <input type="time" name="start" value="<?php echo e($jadwal->start_time); ?>" class='form-control'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Waktu Berakhir</label>
+                                                <div class="col-md-10">
+                                                    <input type="time" name="end" value="<?php echo e($jadwal->end_time); ?>" class='form-control'>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Input Style end -->
+        </div>
+
+    </div>
+</div>
+<script src=<?php echo e(asset("../../assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("../../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
+
+
+<script src=<?php echo e(asset("../assets/extensions/quill/quill.min.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/static/js/pages/quill.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<script src=<?php echo e(asset("../../assets/compiled/js/app.js")); ?>></script>
+
+
+</body>
+
+</html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/penjadwalan/edit.blade.php ENDPATH**/ ?>

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Day extends Model
 {
     protected $fillable = ['nama'];
 
-    public function jadwals() {
-        return $this->hasMany('App\Models\Jadwal','day_id');
+    public function jadwals(): HasMany {
+        return $this->hasMany(Jadwal::class,'day_id', "id");
     }
 }

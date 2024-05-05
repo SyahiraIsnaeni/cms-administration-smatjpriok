@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MataPelajaranService;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use App\Services\JadwalService;
 use Illuminate\Http\Request;
@@ -13,202 +14,111 @@ use App\Models\MataPelajaran;
 use App\Models\Day;
 use App\Models\Guru;
 
-class JadwalController 
+class JadwalController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function jadwal(Request $request)
+
+    protected $jadwalService;
+
+    protected $mapelServices;
+
+    public function __construct(JadwalService $jadwalService, MataPelajaranService $mapelServices)
     {
-        $jadwals = Jadwal::orderBy('day_id', 'asc')
-                     ->orderBy('start_time', 'asc')
-                     ->paginate(10);
-
-        $days = Day::all();
-
-
-        return view('back.admin.data.jadwal.index', compact('jadwals', 'days', 'request'));
+        $this->jadwalService = $jadwalService;
+        $this->mapelServices = $mapelServices;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addJadwal()
+    public function jadwal():Response
     {
-        $mapels = MataPelajaran::all();
-        $days = Day::all();
+        $jadwals = $this->jadwalService->get();
 
-        return view('back.admin.data.jadwal.add', compact('mapels', 'days'));
+        return response()
+            ->view("back.admin.penjadwalan.view", [
+                "title" => "Data Jadwal",
+                "jadwals" => $jadwals
+            ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeJadwal(Request $request)
-{
-    // Validasi tambahan untuk memastikan jadwal tidak tumpang tindih
-    $validator = Validator::make($request->all(), [
-        'mapel' => 'required|exists:mapel,id',
-        'day' => 'required|exists:days,id',
-        'start_time' => 'required', // Format: Jam:Menit (24-jam)
-        'end_time' => 'required|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
-    ]);
-    
-    $validator->after(function ($validator) use ($request) {
-        $existingSchedules = Jadwal::where('day_id', $request->day)
-            ->where(function ($query) use ($request) {
-                $query->whereHas('mapel', function ($query) use ($request) {
-                    $query->where('id', $request->mapel); // Memastikan hanya memeriksa jadwal untuk mapel yang dipilih
-                });
-            })
-            ->exists();
-    
-        if ($existingSchedules) {
-            $validator->errors()->add('mapel', 'Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
-        }
-    });
-    
-    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-    
-    // Buat jadwal baru jika validasi berhasil
-    $jadwal = Jadwal::create([
-        'mapel_id' => $request->mapel,
-        'day_id' => $request->day,
-        'start_time' => $request->start_time,
-        'end_time' => $request->end_time
-    ]);
-    
-    
-    // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
-    session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
-    return redirect()->route('jadwal');
-}
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function addJadwal(): Response
     {
-        //
+        $mapels = $this->mapelServices->getAll();
+        $days = $this->jadwalService->getDay();
+
+        return response()
+            ->view("back.admin.penjadwalan.add", [
+                "title" => "Add Data Jadwal",
+                "mapels" => $mapels,
+                "days" => $days,
+            ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editJadwal($id)
-    {
-        $mapels = MataPelajaran::all();
-        $days = Day::all();
-        $gurus = Guru::all();
-        $jadwals = Jadwal::findOrFail($id);
-        return view('back.admin.data.jadwal.edit', compact('jadwals', 'days','mapels', 'gurus'));
-    }
-
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateJadwal(Request $request, $id)
+    public function addDataJadwal(Request $request):Response | RedirectResponse
     {
         $validator = Validator::make($request->all(), [
-        'mapel' => 'required|exists:mapel,id',
-        'day' => 'required|exists:days,id',
-        'start_time' => 'required|date_format:H:i', // Format: Jam:Menit (24-jam)
-        'end_time' => 'required|date_format:H:i|after:start_time', // Format: Jam:Menit (24-jam) dan setelah start_time
-        // Validasi tambahan untuk memeriksa tumpang tindih dengan jadwal yang sudah ada
-        'start_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                $existingSchedules = Jadwal::where('day_id', $request->day)
-                ->where(function ($query) use ($request) {
-                    $query->whereHas('mapel', function ($query) use ($request) {
-                        $query->where('mapel_id', $request->mapel); // Memastikan hanya memeriksa jadwal untuk kelas yang sama
-                            
-                    })
-                    ->orWhereDoesntHave('mapel'); // Menambahkan kondisi untuk memastikan bahwa jadwal tidak terkait dengan mapel jika tidak ada mapel yang sesuai
-                })
-                ->exists();
+            'mapel' => 'required',
+            'day' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+        ]);
 
-                if ($existingSchedules) {
-                    $fail('Jadwal ini bertabrakan dengan jadwal yang sudah ada.');
-                }
-            }
-        ],
-        'end_time' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                if ($request->start_time >= $request->end_time) {
-                    $fail('Waktu selesai harus setelah waktu mulai.');
-                }
-            },
-            'after:start_time',
-        ],
-    ]);
-
-    // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-    
-    // Buat jadwal baru jika validasi berhasil
-    $jadwals = Jadwal::findOrFail($id)->update([
-        'mapel_id' => $request->mapel,
-        'day_id' => $request->day,
-        'start_time' => $request->start_time,
-        'end_time' => $request->end_time
-    ]);
-    
-    // Tampilkan pesan sukses dan redirect ke halaman jadwal pelajaran
-    session()->flash('success', "Sukses tambah jadwal pelajaran $request->nama");
-    return redirect()->route('jadwal');
-}
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteJadwal($id)
-    {
-        $jadwal = Jadwal::findOrFail($id);
-        $jadwal->delete();
-
-        session()->flash('success', 'Sukses Menghapus Data');
-        return redirect()->back();
-    }
-
-    public function resetJadwal(): Response|RedirectResponse
-    {
-        // Mendapatkan semua data jadwal
-        $jadwals = Jadwal::all();
-
-        // Menghapus semua data jadwal
-        foreach ($jadwals as $jadwal) {
-            $jadwal->delete();
+        if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan Semua Data Terisi');
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Jadwal');
+        $data = [
+            'mapel' => $request->input('mapel'),
+            'day' => $request->input('day'),
+            'start' => $request->input('start'),
+            'end' => $request->input('end'),
+        ];
+
+        if ($this->jadwalService->add($data) == false){
+            Alert::error('Gagal', 'Pastikan jadwal tidak bertabrakan dengan jadwal lain');
+            return redirect()->back();
+        }else{
+            Alert::success('Sukses', 'Berhasil Menambah Data Jadwal');
+
+        }
+        return redirect()->route('jadwal');
+    }
+
+    public function editJadwal($id):Response
+    {
+        $jadwal = Jadwal::findOrFail($id);
+        $mapels = $this->mapelServices->getAll();
+        $days = $this->jadwalService->getDay();
+        return response()
+            ->view("back.admin.penjadwalan.edit", [
+                "title" => "Edit Data Jadwal",
+                "jadwal" => $jadwal,
+                "mapels" => $mapels,
+                "days" => $days,
+            ]);
+    }
+
+    public function editDataJadwal($id, Request $request):Response | RedirectResponse
+    {
+
+        $data = [
+            'mapel' => $request->input('mapel'),
+            'day' => $request->input('day'),
+            'start' => $request->input('start'),
+            'end' => $request->input('end'),
+        ];
+
+        if ($this->jadwalService->edit($id, $data) == false){
+            Alert::error('Gagal', 'Pastikan jadwal tidak bertabrakan dengan jadwal lain');
+            return redirect()->back();
+        }else{
+            Alert::success('Sukses', 'Berhasil Mengubah Data Jadwal');
+
+        }
+        return redirect()->route('jadwal');
+    }
+
+    public function delete($id):Response | RedirectResponse
+    {
+        $this->jadwalService->delete($id);
+        Alert::success('Sukses', 'Berhasil Menghapus Jadwal');
         return redirect()->route('jadwal');
     }
 

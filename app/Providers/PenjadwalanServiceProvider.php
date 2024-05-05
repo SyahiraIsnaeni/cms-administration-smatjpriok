@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use App\Services\JadwalService;
 use App\Services\Impl\JadwalServiceImpl;
+use App\Services\JadwalService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class JadwalServiceProvider extends ServiceProvider implements DeferrableProvider
+class PenjadwalanServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-
     public array $singletons = [
         JadwalService::class => JadwalServiceImpl::class
     ];
@@ -18,7 +17,6 @@ class JadwalServiceProvider extends ServiceProvider implements DeferrableProvide
     {
         return [JadwalService::class];
     }
-
     public function register(): void
     {
         //
