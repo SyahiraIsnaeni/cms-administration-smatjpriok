@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Day extends Model
 {
-    protected $fillable = ['nama'];
+    protected $fillable = ['name'];
 
     public function jadwals(): HasMany {
         return $this->hasMany(Jadwal::class,'day_id', "id");

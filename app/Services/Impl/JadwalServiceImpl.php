@@ -4,20 +4,27 @@ namespace App\Services\Impl;
 
 use App\Models\Day;
 use App\Models\Jadwal;
+use App\Models\MataPelajaran;
 use App\Services\JadwalService;
+use App\Services\MataPelajaranService;
+use Illuminate\Support\Facades\DB;
 
 class JadwalServiceImpl implements JadwalService
 {
 
     public function get()
     {
-        $jadwals = Jadwal::with(['mapel', 'day'])
+        $jadwals = Jadwal::with(['mapel.kelas', 'day'])
             ->orderBy('day_id')
             ->get();
 
         $sortedJadwals = $jadwals->sortBy(function ($jadwal) {
             $dayNames = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             return array_search($jadwal->day->nama, $dayNames);
+        })->sortBy(function ($jadwal) {
+            return $jadwal->start_time;
+        })->sortBy(function ($jadwal) {
+            return $jadwal->mapel->kelas->nama_kelas;
         });
 
         return $sortedJadwals;
@@ -32,13 +39,29 @@ class JadwalServiceImpl implements JadwalService
 
     public function add(array $data)
     {
-        $existingJadwal = Jadwal::where('mapel_id', $data['mapel'])
+        $mapel = MataPelajaran::findOrFail($data['mapel']);
+
+        $existingJadwal = Jadwal::where('day_id', $data['day'])
+            ->whereHas('mapel', function ($query) use ($mapel) {
+                $query->where('kelas_id', $mapel->kelas_id);
+            })
             ->where(function ($query) use ($data) {
                 $query->whereBetween('start_time', [$data['start'], $data['end']])
                     ->orWhereBetween('end_time', [$data['start'], $data['end']])
                     ->orWhere(function ($query) use ($data) {
                         $query->where('start_time', '<', $data['end'])
                             ->where('end_time', '>', $data['start']);
+                    });
+            })
+            ->orWhere(function ($query) use ($data, $mapel) {
+                $query->where('day_id', '!=', $data['day'])
+                    ->whereExists(function ($query) use ($data, $mapel) {
+                        $query->select(DB::raw(1))
+                            ->from('jadwals as j')
+                            ->whereColumn('j.day_id', 'jadwals.day_id')
+                            ->where('j.mapel_id', $mapel->id)
+                            ->whereBetween('j.start_time', [$data['start'], $data['end']])
+                            ->whereBetween('j.end_time', [$data['start'], $data['end']]);
                     });
             })
             ->first();
@@ -48,38 +71,7 @@ class JadwalServiceImpl implements JadwalService
         }
 
         $jadwal = new Jadwal();
-        $jadwal->mapel_id = $data['mapel'];
-        $jadwal->day_id = $data['day'];
-        $jadwal->start_time = $data['start'];
-        $jadwal->end_time = $data['end'];
-
-        $jadwal->save();
-
-        return true;
-    }
-
-    public function edit($id, array $data)
-    {
-        $existingJadwal = Jadwal::where('mapel_id', $data['mapel'])
-            ->where('day_id', $data['day'])
-            ->where('id', '!=', $id)
-            ->where(function ($query) use ($data) {
-                $query->whereBetween('start_time', [$data['start'], $data['end']])
-                    ->orWhereBetween('end_time', [$data['start'], $data['end']])
-                    ->orWhere(function ($query) use ($data) {
-                        $query->where('start_time', '<', $data['end'])
-                            ->where('end_time', '>', $data['start']);
-                    });
-            })
-            ->first();
-
-        if ($existingJadwal) {
-            return false;
-        }
-
-        $jadwal = Jadwal::findOrFail($id);
-
-        $jadwal->mapel_id = $data['mapel'];
+        $jadwal->mapel_id = $mapel->id;
         $jadwal->day_id = $data['day'];
         $jadwal->start_time = $data['start'];
         $jadwal->end_time = $data['end'];

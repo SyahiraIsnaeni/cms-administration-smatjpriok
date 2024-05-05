@@ -81,44 +81,17 @@ class JadwalController
         return redirect()->route('jadwal');
     }
 
-    public function editJadwal($id):Response
-    {
-        $jadwal = Jadwal::findOrFail($id);
-        $mapels = $this->mapelServices->getAll();
-        $days = $this->jadwalService->getDay();
-        return response()
-            ->view("back.admin.penjadwalan.edit", [
-                "title" => "Edit Data Jadwal",
-                "jadwal" => $jadwal,
-                "mapels" => $mapels,
-                "days" => $days,
-            ]);
-    }
-
-    public function editDataJadwal($id, Request $request):Response | RedirectResponse
-    {
-
-        $data = [
-            'mapel' => $request->input('mapel'),
-            'day' => $request->input('day'),
-            'start' => $request->input('start'),
-            'end' => $request->input('end'),
-        ];
-
-        if ($this->jadwalService->edit($id, $data) == false){
-            Alert::error('Gagal', 'Pastikan jadwal tidak bertabrakan dengan jadwal lain');
-            return redirect()->back();
-        }else{
-            Alert::success('Sukses', 'Berhasil Mengubah Data Jadwal');
-
-        }
-        return redirect()->route('jadwal');
-    }
-
     public function delete($id):Response | RedirectResponse
     {
         $this->jadwalService->delete($id);
         Alert::success('Sukses', 'Berhasil Menghapus Jadwal');
+        return redirect()->route('jadwal');
+    }
+
+    public function deleteAllDataJadwal(): Response|RedirectResponse
+    {
+        $this->jadwalService->deleteAll();
+        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Jadwal');
         return redirect()->route('jadwal');
     }
 

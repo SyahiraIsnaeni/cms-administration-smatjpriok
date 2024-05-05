@@ -40,9 +40,18 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="card-header">
+                                    <div class="card-header" style="display: flex">
                                         <div class="card-head-row" style="margin-left: -20px">
                                             <a href="<?php echo e(route("add-jadwal")); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                        <div class="card-head-row" style="margin-left: 10px">
+                                            <form action="<?php echo e(route("delete-all-jadwal")); ?>" method="POST" >
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" class="btn btn-danger ml-auto">
+                                                    <i class="bi bi-arrow-clockwise" style="margin-right: 4px"></i> Reset Data
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -71,10 +80,6 @@
                                                                 <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->start_time)->format('H:i')); ?></td>
                                                                 <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->end_time)->format('H:i')); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="<?php echo e(route('edit-jadwal', ['id' => $jadwal->id])); ?>" class="btn icon btn-primary">
-                                                                        <i class="bi bi-pencil"></i>
-                                                                    </a>
-                                                                    <br>
                                                                     <form method="post" action="<?php echo e(route('delete-jadwal', $jadwal->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>

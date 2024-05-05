@@ -352,15 +352,8 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
         Route::get("/dashboard/jadwal", "jadwal")->name("jadwal");
         Route::get("/dashboard/jadwal/add", "addJadwal")->name("add-jadwal");
         Route::post("/dashboard/jadwal/add/data", "addDataJadwal")->name("add-data-jadwal");
-        Route::get("/dashboard/jadwal/{id}/edit", "editJadwal")->name("edit-jadwal");
-        Route::post("/dashboard/jadwal/{id}/edit/data", "editDataJadwal")->name("edit-data-jadwal");
         Route::delete("/dashboard/jadwal/delete/{id}", "delete")->name("delete-jadwal");
-//        Route::get("/dashboard/jadwal/cetak", "cetakJadwal")->name("cetak-jadwal");
-//        Route::post("/dashboard/jadwal/store", "storeJadwal")->name("store-jadwal");
-//        Route::put("/dashboard/jadwal/{id}/update", "updateJadwal")->name("update-jadwal");
-//        Route::delete("/dashboard/jadwal/{id}/delete", "deleteJadwal")->name("delete-jadwal");
-//        Route::delete("/dashboard/jadwal/reset", "resetJadwal")->name("reset-jadwal");
-
+        Route::delete("/dashboard/jadwal/delete/all/data", "deleteAllDataJadwal")->name("delete-all-jadwal");
     }
 );
 
