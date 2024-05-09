@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Penjadwalan Sekolah</h3>
+                        <h3>Data Penjadwalan Masing-Masing Guru</h3>
                     </div>
                 </div>
             </div>
@@ -42,31 +42,25 @@
                                 <div class="card-body">
                                     <section class="section">
                                         <div class="card" >
-                                            <div class="card-header">
-                                                <div class="card-head-row">
-                                                    <a href="{{route("view-jadwal-kelas")}}" style="margin-left: -20px; margin-bottom: 10px" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
-                                                </div>
-                                            </div>
                                             <div class="card-body" >
                                                 <div class="table-responsive" style="margin-left: -20px;margin-top: -20px;">
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Hari</th>
-                                                            <th>Mata Pelajaran</th>
-                                                            <th>Guru</th>
-                                                            <th>Jam Mulai</th>
-                                                            <th>Jam Selesai</th>
+                                                            <th>Nama Guru</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($jadwals as $jadwal)
+                                                        @forelse($gurus as $row)
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $jadwal->day->name }}</td>
-                                                                <td class="text-bold-500">{{ $jadwal->mapel->nama }}</td>
-                                                                <td class="text-bold-500">{{ $jadwal->mapel->guru->nama }}</td>
-                                                                <td class="text-bold-500">{{ \Carbon\Carbon::parse($jadwal->start_time)->format('H:i') }}</td>
-                                                                <td class="text-bold-500">{{ \Carbon\Carbon::parse($jadwal->end_time)->format('H:i') }}</td>
+                                                                <td class="text-bold-500">{{ $row->nama }}</td>
+                                                                <td class="text-bold-500">
+                                                                    <a href="{{ route('get-jadwal-guru', ['guruId' => $row->id]) }}" class="btn icon btn=sm btn-primary">
+                                                                        Lihat Jadwal
+                                                                    </a>
+                                                                    <br>
+                                                                </td>
                                                             </tr>
                                                         @empty
                                                             <tr>
@@ -75,6 +69,7 @@
                                                         @endforelse
                                                         </tbody>
                                                     </table>
+                                                    {{$gurus->links()}}
                                                 </div>
                                             </div>
                                         </div>

@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("./assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.admin.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -44,7 +44,7 @@
                                         <div class="card" >
                                             <div class="card-header">
                                                 <div class="card-head-row">
-                                                    <a href="{{route("view-jadwal-kelas")}}" style="margin-left: -20px; margin-bottom: 10px" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                                    <a href="<?php echo e(route("view-jadwal-kelas")); ?>" style="margin-left: -20px; margin-bottom: 10px" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                                 </div>
                                             </div>
                                             <div class="card-body" >
@@ -60,19 +60,19 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($jadwals as $jadwal)
+                                                        <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $jadwal->day->name }}</td>
-                                                                <td class="text-bold-500">{{ $jadwal->mapel->nama }}</td>
-                                                                <td class="text-bold-500">{{ $jadwal->mapel->guru->nama }}</td>
-                                                                <td class="text-bold-500">{{ \Carbon\Carbon::parse($jadwal->start_time)->format('H:i') }}</td>
-                                                                <td class="text-bold-500">{{ \Carbon\Carbon::parse($jadwal->end_time)->format('H:i') }}</td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->day->name); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->mapel->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->mapel->guru->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->start_time)->format('H:i')); ?></td>
+                                                                <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->end_time)->format('H:i')); ?></td>
                                                             </tr>
-                                                        @empty
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                             <tr>
                                                                 <td colspan="7" class="text-center">Data Masih Kosong</td>
                                                             </tr>
-                                                        @endforelse
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -104,14 +104,15 @@
 
     </div>
 </div>
-<script src={{asset("assets/static/js/components/dark.js")}}></script>
-<script src={{asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
 
-<script src={{asset("assets/compiled/js/app.js")}}></script>
 
-@include('back.admin.footer')
+<script src=<?php echo e(asset("assets/compiled/js/app.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/admin/penjadwalan/jadwal-kelas.blade.php ENDPATH**/ ?>

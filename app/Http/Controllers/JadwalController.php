@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\GuruService;
+use App\Services\KelasService;
 use App\Services\MataPelajaranService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -21,10 +23,17 @@ class JadwalController
 
     protected $mapelServices;
 
-    public function __construct(JadwalService $jadwalService, MataPelajaranService $mapelServices)
+    protected $kelasServices;
+
+    protected $guruServices;
+
+    public function __construct(JadwalService $jadwalService, MataPelajaranService $mapelServices,
+                                KelasService $kelasServices, GuruService $guruServices)
     {
         $this->jadwalService = $jadwalService;
         $this->mapelServices = $mapelServices;
+        $this->kelasServices = $kelasServices;
+        $this->guruServices = $guruServices;
     }
     public function jadwal():Response
     {
@@ -93,6 +102,48 @@ class JadwalController
         $this->jadwalService->deleteAll();
         Alert::success('Sukses', 'Berhasil Menghapus Semua Data Jadwal');
         return redirect()->route('jadwal');
+    }
+
+    public function viewJadwalKelas():Response
+    {
+        $kelas = $this->kelasServices->get();
+
+        return response()
+            ->view("back.admin.penjadwalan.view-kelas", [
+                "title" => "Data Penjadwalan Siswa Masing-Masing Kelas",
+                "kelas" => $kelas
+            ]);
+    }
+
+    public function getJadwalKelas($kelasId):Response
+    {
+        $jadwals = $this->jadwalService->getJadwalKelas($kelasId);
+        return response()
+            ->view("back.admin.penjadwalan.jadwal-kelas", [
+                "title" => "Data Penjadwalan Siswa Masing-Masing Kelas",
+                "jadwals" => $jadwals
+            ]);
+    }
+
+    public function viewJadwalGuru():Response
+    {
+        $gurus = $this->guruServices->get();
+
+        return response()
+            ->view("back.admin.penjadwalan.view-guru", [
+                "title" => "Data Penjadwalan Masing-Masing Guru",
+                "gurus" => $gurus
+            ]);
+    }
+
+    public function getJadwalGuru($guruId):Response
+    {
+        $jadwals = $this->jadwalService->getJadwalGuru($guruId);
+        return response()
+            ->view("back.admin.penjadwalan.jadwal-guru", [
+                "title" => "Data Penjadwalan Guru",
+                "jadwals" => $jadwals
+            ]);
     }
 
 }

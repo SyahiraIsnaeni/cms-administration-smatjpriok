@@ -251,10 +251,18 @@
                 </li>
 
                 <li
-                    class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                    class="sidebar-item <?php echo e(request()->is('dashboard/penjadwalan/kelas*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/penjadwalan/kelas" class='sidebar-link'>
                         <i class="bi bi-calendar-range-fill"></i>
                         <span>Jadwal Kelas</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item <?php echo e(request()->is('dashboard/penjadwalan/guru*') ? 'active' : ''); ?>">
+                    <a href="/dashboard/penjadwalan/guru" class='sidebar-link'>
+                        <i class="bi bi-calendar-range-fill"></i>
+                        <span>Jadwal Guru</span>
                     </a>
                 </li>
 

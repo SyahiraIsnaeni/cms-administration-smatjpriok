@@ -96,4 +96,30 @@ class JadwalServiceImpl implements JadwalService
             return false;
         }
     }
+
+    public function getJadwalKelas($kelasId)
+    {
+        $jadwal = Jadwal::with(['mapel.kelas'])
+            ->whereHas('mapel.kelas', function ($query) use ($kelasId) {
+                $query->where('id', $kelasId);
+            })
+            ->orderBy('day_id')
+            ->orderBy('start_time')
+            ->get();
+
+        return $jadwal;
+    }
+
+    public function getJadwalGuru($guruId)
+    {
+        $jadwal = Jadwal::with(['mapel.guru'])
+            ->whereHas('mapel.guru', function ($query) use ($guruId) {
+                $query->where('id', $guruId);
+            })
+            ->orderBy('day_id')
+            ->orderBy('start_time')
+            ->get();
+
+        return $jadwal;
+    }
 }

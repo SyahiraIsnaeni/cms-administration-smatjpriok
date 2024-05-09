@@ -14,4 +14,8 @@ interface JadwalService
 
     public function deleteAll();
 
+    public function getJadwalKelas($kelasId);
+
+    public function getJadwalGuru($guruId);
+
 }

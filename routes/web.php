@@ -357,6 +357,20 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
     }
 );
 
+Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/penjadwalan/kelas", "viewJadwalKelas")->name("view-jadwal-kelas");
+        Route::get("/dashboard/penjadwalan/kelas/{kelasId}", "getJadwalKelas")->name("get-jadwal-kelas");
+    }
+);
+
+Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard/penjadwalan/guru", "viewJadwalGuru")->name("view-jadwal-guru");
+        Route::get("/dashboard/penjadwalan/guru/{guruId}", "getJadwalGuru")->name("get-jadwal-guru");
+    }
+);
+
 Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/kunjungan", "kunjungan")->name("kunjungan");
