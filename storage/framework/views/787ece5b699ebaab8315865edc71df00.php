@@ -254,7 +254,7 @@
                     class="sidebar-item">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-calendar-range-fill"></i>
-                        <span>Jadwal Siswa</span>
+                        <span>Jadwal Kelas</span>
                     </a>
                 </li>
 

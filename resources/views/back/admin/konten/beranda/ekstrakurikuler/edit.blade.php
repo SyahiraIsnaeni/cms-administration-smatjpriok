@@ -63,7 +63,7 @@
                                                 <input class="form-control" type="file" id="formFile" name="logo">
                                                 <br>
                                                 <label for="formFile" class="form-label" style="color: red">Logo saat ini</label> <br>
-                                                <img src="{{ asset('storage/ekstrakurikuler-logos/'.$ekstrakurikuler->logo) }}" width="100" style="margin-left: 10px">
+                                                <img src="{{ asset('storage/public/ekstrakurikuler-logos/'.$ekstrakurikuler->logo) }}" width="100" style="margin-left: 10px">
                                             </div>
                                             <div class="form-group">
                                                 <label for="formFile" class="form-label">Foto Kegiatan Ekstrakurikuler (.jpg, .png, .jpeg)</label>

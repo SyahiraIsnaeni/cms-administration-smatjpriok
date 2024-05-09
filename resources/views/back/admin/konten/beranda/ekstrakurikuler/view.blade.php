@@ -63,7 +63,7 @@
                                                         @forelse($ekstrakurikulers as $ekstrakurikuler)
                                                             <tr>
                                                                 <td class="text-bold-500">{{ $ekstrakurikuler->nama }}</td>
-                                                                <td><img src={{asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }} width="100" height="100"></td>
+                                                                <td><img src={{asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo) }} width="100" height="100"></td>
                                                                 <td>
                                                                     @foreach($ekstrakurikuler->images as $image)
                                                                         <img src="{{asset('storage/public/ekstrakurikuler-images/' . $image->image) }}" width="150" height="100">

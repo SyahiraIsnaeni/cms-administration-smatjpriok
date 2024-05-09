@@ -18,13 +18,13 @@ class JadwalServiceImpl implements JadwalService
             ->orderBy('day_id')
             ->get();
 
+        $dayOrder = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         $sortedJadwals = $jadwals->sortBy(function ($jadwal) {
-            $dayNames = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
-            return array_search($jadwal->day->nama, $dayNames);
-        })->sortBy(function ($jadwal) {
             return $jadwal->start_time;
         })->sortBy(function ($jadwal) {
             return $jadwal->mapel->kelas->nama_kelas;
+        })->sortBy(function ($jadwal) use ($dayOrder) {
+            return array_search($jadwal->day->nama, $dayOrder);
         });
 
         return $sortedJadwals;

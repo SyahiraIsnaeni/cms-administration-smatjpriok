@@ -63,7 +63,7 @@
                                                         <?php $__empty_1 = true; $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
                                                                 <td class="text-bold-500"><?php echo e($ekstrakurikuler->nama); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?> width="100" height="100"></td>
+                                                                <td><img src=<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?> width="100" height="100"></td>
                                                                 <td>
                                                                     <?php $__currentLoopData = $ekstrakurikuler->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <img src="<?php echo e(asset('storage/public/ekstrakurikuler-images/' . $image->image)); ?>" width="150" height="100">

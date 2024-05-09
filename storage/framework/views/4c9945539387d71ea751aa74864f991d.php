@@ -60,7 +60,7 @@
                                                         <tbody>
                                                         <?php $__empty_1 = true; $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td><img src=<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?> width="100" height="100"></td>
+                                                                <td><img src=<?php echo e(asset('storage/public/welcome/' . $welcome->gambar)); ?> width="100" height="100"></td>
                                                                 <td><?php echo e($welcome->updated_at->format('d M Y')); ?></td>
                                                                 <td class="text-bold-500">
                                                                     <form method="post" action="<?php echo e(route('delete-welcome', $welcome->id)); ?>" class="d-inline">
