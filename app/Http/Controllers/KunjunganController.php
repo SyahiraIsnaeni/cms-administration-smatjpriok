@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PerpustakaanService;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
@@ -11,150 +13,66 @@ use App\Models\Kelas;
 use Illuminate\Support\Carbon;
 
 
-class KunjunganController 
+class KunjunganController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function kunjungan(Request $request)
+    protected $kunjunganService;
+
+    public function __construct(PerpustakaanService $kunjunganService)
     {
-        $kunjungans = Kunjungan::orderBy('id', 'asc')
-                     ->paginate(10);
+        $this->kunjunganService = $kunjunganService;
+    }
+    public function kunjungan():Response
+    {
+        $kunjungan = $this->kunjunganService->getKunjungan();
 
-        $kelas = Kelas::all();
-
-        return view('back.admin.data.kunjungan.index', compact('kunjungans', 'kelas'));
+        return response()
+            ->view("back.admin.perpustakaan.kunjungan.kunjungan", [
+                "title" => "Data Kunjungan",
+                "kunjungan" => $kunjungan
+            ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addKunjungan()
-    {
-        $kelas = Kelas::all();
-
-        return view('back.admin.data.kunjungan.add', compact('kelas'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeKunjungan(Request $request)
+    public function searchNama(Request $request):Response
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'kelas' => 'required|exists:kelas,id',
-            'tanggal' => 'required|date',
         ]);
 
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
         if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan nama terisi');
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
-        $kunjungans = Kunjungan::create([
-            'nama' => $request->input('nama'),
-            'kelas_id' => $request->kelas,
-            'tanggal' => $tanggal
-        ]);
-        
 
-        session()->flash('success', "Sukses tambah data kunjungan");
-        return redirect()->route('kunjungan');
+        $nama = $this->kunjunganService->searchSiswaOrGuru($request->input('nama'));
+
+        return response()
+            ->view("back.admin.perpustakaan.kunjungan.detail", [
+                "title" => "Data Kunjungan",
+                "nama" => $nama
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function berkunjung($id, $type, Request $request):Response | RedirectResponse
     {
-        //
-    }
+        try {
+            if ($type == "siswa") {
+                $this->kunjunganService->addKunjunganSiswa($id);
+            } elseif($type == "guru") {
+                $this->kunjunganService->addKunjunganGuru($id);
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editKunjungan($id)
-    {
-        $kelas = Kelas::all();
-        $kunjungans = Kunjungan::findOrFail($id);
-        return view('back.admin.data.kunjungan.edit', compact('kunjungans', 'kelas'));
-    }
-
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updateKunjungan(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'kelas' => 'required|exists:kelas,id',
-            'tanggal' => 'required|date',
-        ]);
-
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            Alert::success('Sukses', 'Berhasil Menambah Data Kunjungan');
+            return redirect()->route('kunjungan');
+        } catch (\Exception $e) {
+            Alert::error('Gagal', $e->getMessage());
+            return redirect()->route('kunjungan');
         }
-        
-        $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal)->toDateString();
-        $kunjungans = Kunjungan::findOrFail($id)->update([
-            'nama' => $request->input('nama'),
-            'kelas_id' => $request->kelas,
-            'tanggal' => $tanggal
-        ]);
-        
+    }
 
-        session()->flash('success', "Sukses edit data kunjungan");
+    public function deleteKunjungan($id):Response | RedirectResponse
+    {
+        $this->kunjunganService->deleteKunjungan($id);
+        Alert::success('Sukses', 'Berhasil Menghapus Data Kunjungan');
         return redirect()->route('kunjungan');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteKunjungan($id)
-    {
-        $kunjungans = Kunjungan::findOrFail($id);
-        $kunjungans->delete();
-
-        session()->flash('success', 'Sukses Menghapus Data');
-        return redirect()->back();
-    }
-
-    public function resetKunjungan(): Response|RedirectResponse
-    {
-
-        $kunjungans = Kunjungan::all();
-
-
-        foreach ($kunjungans as $kunjungan) {
-            $kunjungan->delete();
-        }
-
-        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Kunjungan');
-        return redirect()->route('kunjungan');
-    }
-
 }

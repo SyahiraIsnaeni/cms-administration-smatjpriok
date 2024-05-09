@@ -15,6 +15,7 @@ return [
     App\Providers\MataPelajaranServiceProvider::class,
     App\Providers\PengumumanServiceProvider::class,
     App\Providers\PenjadwalanServiceProvider::class,
+    App\Providers\PerpustakaanServiceProvider::class,
     App\Providers\PrestasiServiceProvider::class,
     App\Providers\SiswaServiceProvider::class,
     App\Providers\StafServiceProvider::class,
