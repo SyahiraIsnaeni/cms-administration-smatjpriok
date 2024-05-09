@@ -384,11 +384,15 @@ Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware
     function (){
         Route::get("/dashboard/peminjaman", "peminjaman")->name("peminjaman");
         Route::get("/dashboard/peminjaman/add", "addPeminjaman")->name("add-peminjaman");
-        Route::get("/dashboard/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman");
-        Route::post("/dashboard/peminjaman/store", "storePeminjaman")->name("store-peminjaman");
-        Route::put("/dashboard/peminjaman/{id}/update", "updatePeminjaman")->name("update-peminjaman");
-        Route::delete("/dashboard/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman");
-        Route::delete("/dashboard/peminjaman/reset", "resetPeminjaman")->name("reset-peminjaman");
-
+        Route::post("/dashboard/peminjaman/add/data", "addDataPeminjaman")->name("add-data-peminjaman");
+        Route::get("/dashboard/peminjaman/edit/{id}", "editPeminjaman")->name("edit-peminjaman");
+        Route::post("/dashboard/peminjaman/edit-data/{id}", "editDataPeminjaman")->name("edit-data-peminjaman");
+        Route::delete("/dashboard/peminjaman/delete/{id}", "deletePeminjaman")->name("delete-peminjaman");
+        Route::post("/dashboard/peminjaman/dikembalikan/{id}", "dikembalikanPeminjaman")->name("dikembalikan-peminjaman");
+//        Route::get("/dashboard/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman");
+//        Route::post("/dashboard/peminjaman/store", "storePeminjaman")->name("store-peminjaman");
+//        Route::put("/dashboard/peminjaman/{id}/update", "updatePeminjaman")->name("update-peminjaman");
+//        Route::delete("/dashboard/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman");
+//        Route::delete("/dashboard/peminjaman/reset", "resetPeminjaman")->name("reset-peminjaman");
     }
 );

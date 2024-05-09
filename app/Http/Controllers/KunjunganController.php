@@ -32,7 +32,7 @@ class KunjunganController
             ]);
     }
 
-    public function searchNama(Request $request):Response
+    public function searchNama(Request $request):Response | RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',

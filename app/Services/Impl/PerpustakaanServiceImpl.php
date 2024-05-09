@@ -68,18 +68,47 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         return Peminjaman::orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function addPeminjaman()
+    public function addPeminjaman(array $data)
     {
-        // TODO: Implement addPeminjaman() method.
+        $peminjaman = new Peminjaman();
+        $peminjaman->nama = $data['nama'];
+        $peminjaman->kelas_id = $data['kelas_id'];
+        $peminjaman->judul_buku = $data['judul_buku'];
+        $peminjaman->status = "dipinjam";
+        $peminjaman->tanggal_pinjam = Carbon::now('Asia/Jakarta');
+        $peminjaman->tanggal_kembali = null;
+
+        $peminjaman->save();
+
+        return $peminjaman;
     }
 
-    public function editPeminjaman()
+    public function editPeminjaman($id, array $data)
     {
-        // TODO: Implement editPeminjaman() method.
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        $peminjaman->nama = $data['nama'];
+        $peminjaman->kelas_id = $data['kelas_id'];
+        $peminjaman->judul_buku = $data['judul_buku'];
+
+        $peminjaman->save();
+
+        return $peminjaman;
     }
 
-    public function deletePeminjaman()
+    public function deletePeminjaman($id)
     {
-        // TODO: Implement deletePeminjaman() method.
+        $peminjaman = Peminjaman::findOrFail($id);
+        return $peminjaman->delete();
     }
+
+    public function dikembalikan($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->status = "dikembalikan";
+        $peminjaman->tanggal_kembali = Carbon::now('Asia/Jakarta');
+        $peminjaman->save();
+        return $peminjaman;
+    }
+
 }

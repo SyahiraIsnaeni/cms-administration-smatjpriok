@@ -13,5 +13,4 @@ class Peminjaman extends Model
     public function kelas(): BelongsTo {
         return $this->belongsTo(Kelas::class, "kelas_id", "id");
     }
-
 }

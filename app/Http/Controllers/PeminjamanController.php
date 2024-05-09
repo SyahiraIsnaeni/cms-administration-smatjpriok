@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\KelasService;
+use App\Services\PerpustakaanService;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\RedirectResponse;
@@ -11,159 +14,111 @@ use App\Models\Kelas;
 use Illuminate\Support\Carbon;
 
 
-class PeminjamanController 
+class PeminjamanController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function peminjaman(Request $request)
+    protected $peminjamanService;
+
+    protected $kelasService;
+
+
+    public function __construct(PerpustakaanService $peminjamanService, KelasService $kelasService)
     {
-        $peminjamans = Peminjaman::orderBy('id', 'asc')
-                     ->paginate(10);
-
-        $kelas = Kelas::all();
-
-        return view('back.admin.data.peminjaman.index', compact('peminjamans', 'kelas'));
+        $this->peminjamanService = $peminjamanService;
+        $this->kelasService = $kelasService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function addPeminjaman()
-    {
-        $kelas = Kelas::all();
 
-        return view('back.admin.data.peminjaman.add', compact('kelas'));
+    public function peminjaman():Response
+    {
+        $peminjaman = $this->peminjamanService->getPeminjaman();
+        return response()
+            ->view("back.admin.perpustakaan.peminjaman.view", [
+                "title" => "Data Peminjaman Buku",
+                "peminjaman" => $peminjaman
+            ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storePeminjaman(Request $request)
+    public function addPeminjaman():Response
     {
+        $kelas = $this->kelasService->get();
+        return response()
+            ->view("back.admin.perpustakaan.peminjaman.add", [
+                "title" => "Tambah Data Peminjaman Buku",
+                "kelas" => $kelas
+            ]);
+    }
+
+    public function addDataPeminjaman(Request $request):Response | RedirectResponse
+    {
+        $kelas = $this->kelasService->get();
+
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
-            'kelas' => 'required|exists:kelas,id',
+            'kelas_id' => 'required',
             'judul_buku' => 'required',
-            'tanggal_pinjam' => 'required|date',
-            'tanggal_kembali' => 'required|date',
         ]);
 
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
         if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan semua data terisi');
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
-        $tanggal_pinjam = Carbon::createFromFormat('Y-m-d', $request->tanggal_pinjam)->toDateString();
-        $tanggal_kembali = Carbon::createFromFormat('Y-m-d', $request->tanggal_kembali)->toDateString();
-        $peminjamans = Peminjaman::create([
-            'nama' => $request->input('nama'),
-            'kelas_id' => $request->kelas,
-            'judul_buku' => $request->input('judul_buku'),
-            'tanggal_pinjam' => $tanggal_pinjam,
-            'tanggal_kembali' => $tanggal_kembali
-        ]);
-        
 
-        session()->flash('success', "Sukses tambah data peminjaman");
+        $data = [
+            "nama" => $request->input("nama"),
+            "kelas_id" => $request->input("kelas_id"),
+            "judul_buku" => $request->input("judul_buku"),
+        ];
+
+        $this->peminjamanService->addPeminjaman($data);
+
+        Alert::success('Sukses', 'Berhasil Menambah Data Peminjaman');
         return redirect()->route('peminjaman');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function editPeminjaman($id):Response
     {
-        //
+        $kelas = $this->kelasService->get();
+        $peminjaman = Peminjaman::findOrFail($id);
+        $kelasTerpilih = $peminjaman->kelas->id;
+        return response()
+            ->view("back.admin.perpustakaan.peminjaman.edit", [
+                "title" => "Tambah Data Peminjaman Buku",
+                "kelas" => $kelas,
+                "peminjaman" => $peminjaman,
+                "kelasTerpilih" => $kelasTerpilih
+            ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editPeminjaman($id)
+    public function editDataPeminjaman($id, Request $request):Response | RedirectResponse
     {
-        $kelas = Kelas::all();
-        $peminjamans = Peminjaman::findOrFail($id);
-        return view('back.admin.data.peminjaman.edit', compact('peminjamans', 'kelas'));
-    }
-
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function updatePeminjaman(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'kelas' => 'required|exists:kelas,id',
-            'judul_buku' => 'required',
-            'tanggal_pinjam' => 'required|date',
-            'tanggal_kembali' => 'required|date',
-        ]);
-
-        // Jika validasi gagal, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        if ($request->input("nama") == null || $request->input("judul_buku") == null){
+            Alert::error('Gagal', 'Pastikan semua data terisi');
+            return redirect()->back();
         }
-        
-        $tanggal_pinjam = Carbon::createFromFormat('Y-m-d', $request->tanggal_pinjam)->toDateString();
-        $tanggal_kembali = Carbon::createFromFormat('Y-m-d', $request->tanggal_kembali)->toDateString();
-        $peminjamans = Peminjaman::findOrFail($id)->update([
-            'nama' => $request->input('nama'),
-            'kelas_id' => $request->kelas,
-            'judul_buku' => $request->input('judul_buku'),
-            'tanggal_pinjam' => $tanggal_pinjam,
-            'tanggal_kembali' => $tanggal_kembali
-        ]);
-        
 
-        session()->flash('success', "Sukses edit data peminjaman");
+        $data = [
+            "nama" => $request->input("nama"),
+            "kelas_id" => $request->input("kelas_id"),
+            "judul_buku" => $request->input("judul_buku"),
+        ];
+
+        $this->peminjamanService->editPeminjaman($id, $data);
+
+        Alert::success('Sukses', 'Berhasil Mengubah Data Peminjaman');
         return redirect()->route('peminjaman');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deletePeminjaman($id)
-    {
-        $peminjamans = Peminjaman::findOrFail($id);
-        $peminjamans->delete();
 
-        session()->flash('success', 'Sukses Menghapus Data');
-        return redirect()->back();
+    public function deletePeminjaman($id):Response | RedirectResponse
+    {
+        $this->peminjamanService->deletePeminjaman($id);
+        Alert::success('Sukses', 'Berhasil Menghapus Data Peminjaman');
+        return redirect()->route('peminjaman');
     }
 
-    public function resetPeminjaman(): Response|RedirectResponse
+    public function dikembalikanPeminjaman($id):Response | RedirectResponse
     {
-
-        $peminjamans = Peminjaman::all();
-
-
-        foreach ($peminjamans as $peminjaman) {
-            $peminjaman->delete();
-        }
-
-        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Peminjaman');
+        $this->peminjamanService->dikembalikan($id);
+        Alert::success('Sukses', 'Berhasil Mengubah Status Data Peminjaman');
         return redirect()->route('peminjaman');
     }
 

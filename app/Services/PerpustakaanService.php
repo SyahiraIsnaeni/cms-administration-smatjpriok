@@ -17,10 +17,13 @@ interface PerpustakaanService
 
     public function getPeminjaman();
 
-    public function addPeminjaman();
+    public function addPeminjaman(array $data);
 
-    public function editPeminjaman();
+    public function editPeminjaman($id, array $data);
 
-    public function deletePeminjaman();
+    public function deletePeminjaman($id);
+
+    public function dikembalikan($id);
+
 
 }

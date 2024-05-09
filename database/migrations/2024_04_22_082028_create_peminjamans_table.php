@@ -20,7 +20,7 @@ class CreatePeminjamansTable extends Migration
             $table->string("judul_buku")->nullable(false);
             $table->enum('status', ['dipinjam', 'dikembalikan'])->nullable(true);
             $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali');
+            $table->date('tanggal_kembali')->nullable(true);
             $table->timestamps();
 
             $table->foreign("kelas_id")->references("id")->on("kelas");
