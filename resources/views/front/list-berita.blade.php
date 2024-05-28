@@ -189,68 +189,17 @@
 <!-- KATEGORI BERITA dan SEARCH -->
 <section class="mt-12">
     <div class="sm:flex mx-5 sm:mx-8 md:mx-10 lg:mx-16 xl:mx-20">
-        <div class="sm:w-1/2 md:w-2/3 sm:mr-10 lg:mr-16 xl:mr-20">
-            <h1
-                class="font-semibold text-[15px] sm:text-[15.5px] md:text-base lg:text-[17px] xl:text-lg"
-            >
-                Kategori Berita
-            </h1>
-            <div class="mt-2 md:mt-2.5 lg:mt-3 flex">
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] rounded-md hover:scale-105 ease-in-out duration-150 text-center text-white font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Semua
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Umum
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Guru
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Siswa
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Sekolah
-                    </div>
-                </a>
-                <a href="#" class="mr-1.5 sm:mr-2 md:mr-2.5 lg:mr-3 mt-0.5">
-                    <div
-                        class="bg-[#0D464B] bg-opacity-30 hover:scale-105 ease-in-out duration-150 rounded-md text-center text-black font-medium text-xs sm:text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm px-3 py-1.5 lg:py-2 w-fit"
-                    >
-                        Kejuaraan
-                    </div>
-                </a>
-            </div>
-        </div>
         <div class="sm:w-1/2 md:w-1/3 mt-5 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7">
             <form action="{{ route('list-berita') }}" method="GET" >
             <div
-                class="rounded-md bg-white flex pl-3 border border-black border-opacity-30"
+                class="rounded-md bg-white flex border border-black border-opacity-30"
             >
-            <button type="submit">
+            <button type="submit" class="bg-[#0D464B] px-2 rounded-l-md">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"
-                    class="w-5 h-5 mt-2 xl:mt-2.5 mr-2.5"
-                    fill="#616161"
+                    class="w-5 h-5 mr-2.5 ml-2"
+                    fill="#fff"
                 >
                     <path
                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
@@ -259,7 +208,7 @@
             </button>
 
                 <input
-                    class="rounded-md w-full py-2 placeholder:text-[13px] placeholder:lg:text-[14px] placeholder:xl:text-[15px] text-sm lg:text-[15px] xl:text-base"
+                    class="rounded-md w-full py-2 px-2 placeholder:text-[13px] placeholder:lg:text-[14px] placeholder:xl:text-[15px] text-sm lg:text-[15px] xl:text-base"
                     type="text"
                     name="search"
                     placeholder="Cari berita..."
