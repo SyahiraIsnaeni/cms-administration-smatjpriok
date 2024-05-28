@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>{{$title}}</title>
 
     <link rel="shortcut icon" href={{asset("../assets/image/logosma.png")}} type="image/x-icon">
     <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.snow.css")}}>
@@ -43,7 +43,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Kunjungan</h3>
+                        <h3>Tambah Data Kunjungan Perpustakaan</h3>
                     </div>
                 </div>
             </div>
@@ -60,42 +60,17 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <form action="{{ route('store-kunjungan') }}" method="POST" class='mt-3' >
+                                        <form method="post" enctype="multipart/form-data" action="{{ route('add-data-kunjungan') }}">
                                             @csrf
-                                            <div class="form-group row">
-                                                <label for="squareText" class="col-sm-2 col-form-label">Nama Lengkap</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" id="squareText" class="form-control square" placeholder="Nama Siswa" name="nama">
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Nama Pengunjung</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       name="nama">
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="" class='col-md-2 col-form-label'>Kelas</label>
-                                                <div class="col-md-10">
-                                                    <select name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror">
-                                                        <option value="">Pilih kelas..</option>
-                                                        @foreach($kelas as $kelas)
-                                                        <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('kelas')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
+                                            <div class="form-group" style="margin-top: 20px">
+                                                <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
+                                                <button class="btn btn-danger btn-sm" type="reset"> Reset </button>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="tanggal" class="col-md-2 col-form-label">Tanggal Kunjungan</label>
-                                                <div class="col-md-10">
-                                                    <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror">
-                                                    @error('tanggal')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <button type="submit" class='btn btn-primary float-right'>Submit</button>
                                         </form>
                                     </div>
                                 </div>

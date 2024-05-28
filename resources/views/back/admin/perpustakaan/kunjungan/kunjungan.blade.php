@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Kunjungan Perpustakaan Sekolah</h3>
+                        <h3>Data Kunjungan Perpustakaan</h3>
                     </div>
                 </div>
             </div>
@@ -40,24 +40,19 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
+                                    <div class="card-header" style="display: flex">
+                                        <div class="card-head-row" style="margin-left: -20px">
+                                            <a href="{{route("add-kunjungan")}}" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                    </div>
                                     <section class="section">
                                         <div class="card" >
-                                            <div class="card-header">
-                                                <div class="card-head-row">
-                                                    <form style="display: flex;margin-bottom: 20px" action="{{route("nama-kunjungan")}}" method="post" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="text" id="squareText" class="form-control square" style="margin-left: -20px; width: 90%"
-                                                               placeholder="Masukkan nama siswa atau guru" name="nama">
-                                                        <button class="btn btn-info btn-sm" type="submit" style="margin-left: 10px;width: 10%"> Cari </button>
-                                                    </form>
-                                                </div>
-                                            </div>
                                             <div class="card-body" >
                                                 <div class="table-responsive" style="margin-left: -20px;margin-top: -20px;">
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama</th>
+                                                            <th>Nama Kelas</th>
                                                             <th>Tanggal Berkunjung</th>
                                                             <th>Aksi</th>
                                                         </tr>
@@ -65,21 +60,16 @@
                                                         <tbody>
                                                         @forelse($kunjungan as $row)
                                                             <tr>
-                                                                @if($row->guru_id != null)
-                                                                    <td class="text-bold-500">{{ $row->guru->nama }}</td>
-                                                                @else
-                                                                    @if($row->siswa_id != null)
-                                                                        <td class="text-bold-500">{{ $row->siswa->nama }}</td>
-                                                                    @else
-                                                                        <td class="text-bold-500">N/A</td>
-                                                                    @endif
-                                                                @endif
+                                                                <td class="text-bold-500">{{ $row->nama }}</td>
                                                                 <td class="text-bold-500">{{ \Carbon\Carbon::parse($row->tanggal)->format('d-m-Y') }}</td>
                                                                 <td class="text-bold-500">
+                                                                    <a href="{{ route('edit-kunjungan', ['id' => $row->id]) }}" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
                                                                     <form method="post" action="{{ route('delete-kunjungan', $row->id) }}" class="d-inline">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <button class="btn icon btn-danger">
+                                                                        <button class="btn icon btn-danger" style="margin-left: 5px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>

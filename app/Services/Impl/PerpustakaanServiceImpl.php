@@ -41,26 +41,25 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         return null;
     }
 
-    public function addKunjunganGuru($id)
+    public function addKunjungan(array $data)
     {
         $kunjungan = new Kunjungan();
         $kunjungan->tanggal = Carbon::now('Asia/Jakarta');
 
-        $guru = Guru::find($id);
-        $kunjungan->guru_id = $id;
+        $kunjungan->nama = $data['nama'];
 
         $kunjungan->save();
     }
 
-    public function addKunjunganSiswa($id)
+    public function editKunjungan($id, array $data)
     {
-        $kunjungan = new Kunjungan();
-        $kunjungan->tanggal = Carbon::now('Asia/Jakarta');
+        $kunjungan = Kunjungan::findOrFail($id);
 
-        $siswa = Siswa::find($id);
-        $kunjungan->siswa_id = $id;
+        $kunjungan->nama = $data['nama'];
 
         $kunjungan->save();
+
+        return $kunjungan;
     }
 
     public function getPeminjaman()

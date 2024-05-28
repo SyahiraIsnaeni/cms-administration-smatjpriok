@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Kunjungan Perpustakaan Sekolah</h3>
+                        <h3>Data Kunjungan Perpustakaan</h3>
                     </div>
                 </div>
             </div>
@@ -40,24 +40,19 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
+                                    <div class="card-header" style="display: flex">
+                                        <div class="card-head-row" style="margin-left: -20px">
+                                            <a href="<?php echo e(route("add-kunjungan")); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                    </div>
                                     <section class="section">
                                         <div class="card" >
-                                            <div class="card-header">
-                                                <div class="card-head-row">
-                                                    <form style="display: flex;margin-bottom: 20px" action="<?php echo e(route("nama-kunjungan")); ?>" method="post" enctype="multipart/form-data">
-                                                        <?php echo csrf_field(); ?>
-                                                        <input type="text" id="squareText" class="form-control square" style="margin-left: -20px; width: 90%"
-                                                               placeholder="Masukkan nama siswa atau guru" name="nama">
-                                                        <button class="btn btn-info btn-sm" type="submit" style="margin-left: 10px;width: 10%"> Cari </button>
-                                                    </form>
-                                                </div>
-                                            </div>
                                             <div class="card-body" >
                                                 <div class="table-responsive" style="margin-left: -20px;margin-top: -20px;">
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama</th>
+                                                            <th>Nama Kelas</th>
                                                             <th>Tanggal Berkunjung</th>
                                                             <th>Aksi</th>
                                                         </tr>
@@ -65,21 +60,16 @@
                                                         <tbody>
                                                         <?php $__empty_1 = true; $__currentLoopData = $kunjungan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <?php if($row->guru_id != null): ?>
-                                                                    <td class="text-bold-500"><?php echo e($row->guru->nama); ?></td>
-                                                                <?php else: ?>
-                                                                    <?php if($row->siswa_id != null): ?>
-                                                                        <td class="text-bold-500"><?php echo e($row->siswa->nama); ?></td>
-                                                                    <?php else: ?>
-                                                                        <td class="text-bold-500">N/A</td>
-                                                                    <?php endif; ?>
-                                                                <?php endif; ?>
+                                                                <td class="text-bold-500"><?php echo e($row->nama); ?></td>
                                                                 <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($row->tanggal)->format('d-m-Y')); ?></td>
                                                                 <td class="text-bold-500">
+                                                                    <a href="<?php echo e(route('edit-kunjungan', ['id' => $row->id])); ?>" class="btn icon btn-primary">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </a>
                                                                     <form method="post" action="<?php echo e(route('delete-kunjungan', $row->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
-                                                                        <button class="btn icon btn-danger">
+                                                                        <button class="btn icon btn-danger" style="margin-left: 5px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>

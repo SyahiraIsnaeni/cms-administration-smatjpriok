@@ -120,7 +120,7 @@ class GuruController
             Alert::success('Sukses', 'Berhasil Menghapus Data Guru');
             return redirect()->route('guru');
         }catch (\Exception $e){
-            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada sistem e-learning.');
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada data mata pelajaran dan sistem e-learning.');
             return redirect()->back();
         }
     }
@@ -132,7 +132,7 @@ class GuruController
             Alert::success('Sukses', 'Berhasil Menghapus Semua Data Guru');
             return redirect()->route('guru');
         }catch (\Exception $e){
-            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada sistem e-learning.');
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada data mata pelajaran dan sistem e-learning.');
             return redirect()->back();
         }
     }

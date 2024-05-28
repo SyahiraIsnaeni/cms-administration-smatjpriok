@@ -374,9 +374,11 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
 Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
         Route::get("/dashboard/kunjungan", "kunjungan")->name("kunjungan");
-        Route::post("/dashboard/kunjungan/nama", "searchNama")->name("nama-kunjungan");
+        Route::get("/dashboard/add/kunjungan", "addKunjungan")->name("add-kunjungan");
+        Route::post("/dashboard/add/data/kunjungan", "addDataKunjungan")->name("add-data-kunjungan");
+        Route::get("/dashboard/edit/kunjungan/{id}", "editKunjungan")->name("edit-kunjungan");
+        Route::post("/dashboard/edit/data/kunjungan/{id}", "editDataKunjungan")->name("edit-data-kunjungan");
         Route::delete("/dashboard/kunjungan/delete/{id}", "deleteKunjungan")->name("delete-kunjungan");
-        Route::post("/dashboard/kunjungan/{id}/berkunjung/{type}", "berkunjung")->name("nama-data-kunjungan");
     }
 );
 
@@ -389,10 +391,5 @@ Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware
         Route::post("/dashboard/peminjaman/edit-data/{id}", "editDataPeminjaman")->name("edit-data-peminjaman");
         Route::delete("/dashboard/peminjaman/delete/{id}", "deletePeminjaman")->name("delete-peminjaman");
         Route::post("/dashboard/peminjaman/dikembalikan/{id}", "dikembalikanPeminjaman")->name("dikembalikan-peminjaman");
-//        Route::get("/dashboard/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman");
-//        Route::post("/dashboard/peminjaman/store", "storePeminjaman")->name("store-peminjaman");
-//        Route::put("/dashboard/peminjaman/{id}/update", "updatePeminjaman")->name("update-peminjaman");
-//        Route::delete("/dashboard/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman");
-//        Route::delete("/dashboard/peminjaman/reset", "resetPeminjaman")->name("reset-peminjaman");
     }
 );

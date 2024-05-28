@@ -32,41 +32,67 @@ class KunjunganController
             ]);
     }
 
-    public function searchNama(Request $request):Response | RedirectResponse
+    public function addKunjungan():Response{
+        return response()
+            ->view("back.admin.perpustakaan.kunjungan.add", [
+                "title" => "Tambah Data Kunjungan Perpustakaan",
+            ]);
+    }
+
+    public function editKunjungan($id):Response{
+        $kunjungan = Kunjungan::findOrFail($id);
+        return response()
+            ->view("back.admin.perpustakaan.kunjungan.edit", [
+                "title" => "Edit Data Kunjungan Perpustakaan",
+                "kunjungan" => $kunjungan
+            ]);
+    }
+
+    public function addDataKunjungan(Request $request):Response | RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
         ]);
 
         if ($validator->fails()) {
-            Alert::error('Gagal', 'Pastikan nama terisi');
+            Alert::error('Gagal', 'Pastikan Data Terisi');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $nama = $this->kunjunganService->searchSiswaOrGuru($request->input('nama'));
+        $data = [
+            'nama' => $request->input('nama'),
+        ];
 
-        return response()
-            ->view("back.admin.perpustakaan.kunjungan.detail", [
-                "title" => "Data Kunjungan",
-                "nama" => $nama
-            ]);
-    }
-
-    public function berkunjung($id, $type, Request $request):Response | RedirectResponse
-    {
         try {
-            if ($type == "siswa") {
-                $this->kunjunganService->addKunjunganSiswa($id);
-            } elseif($type == "guru") {
-                $this->kunjunganService->addKunjunganGuru($id);
-            }
-
+            $this->kunjunganService->addKunjungan($data);
             Alert::success('Sukses', 'Berhasil Menambah Data Kunjungan');
             return redirect()->route('kunjungan');
         } catch (\Exception $e) {
-            Alert::error('Gagal', $e->getMessage());
-            return redirect()->route('kunjungan');
+            Alert::error('Gagal', 'Terjadi kesalahan saat menambah data kunjungan');
+            return redirect()->back();
         }
+    }
+
+    public function editDataKunjungan(int $id, Request $request): Response|RedirectResponse
+    {
+        if (($request->input('nama') == null)) {
+            Alert::error('Gagal', 'Pastikan Data Nama Tidak Kosong');
+            return redirect()->back();
+        }
+
+        $data = [
+            'nama' => $request->input('nama'),
+        ];
+
+        try {
+            $this->kunjunganService->editKunjungan($id, $data);
+            Alert::success('Sukses', 'Berhasil Mengubah Data Kunjungan');
+            return redirect()->route('kunjungan');
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terjadi kesalahan saat mengedit data kunjungan');
+            return redirect()->back();
+        }
+
     }
 
     public function deleteKunjungan($id):Response | RedirectResponse

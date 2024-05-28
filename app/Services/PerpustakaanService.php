@@ -9,11 +9,9 @@ interface PerpustakaanService
 
     public function deleteKunjungan($kunjunganId);
 
-    public function searchSiswaOrGuru($name);
+    public function addKunjungan(array $data);
 
-    public function addKunjunganGuru($id);
-
-    public function addKunjunganSiswa($id);
+    public function editKunjungan($id, array $data);
 
     public function getPeminjaman();
 
