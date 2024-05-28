@@ -7,6 +7,7 @@ use App\Services\KelasService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -94,8 +95,18 @@ class KelasController
 
     public function deleteDataKelas($id): Response|RedirectResponse
     {
-        $this->kelasService->delete($id);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Kelas');
-        return redirect()->route('kelas');
+        try {
+            DB::beginTransaction();
+            $this->kelasService->delete($id);
+            DB::commit();
+
+            Alert::success('Sukses', 'Berhasil Menghapus Data Kelas');
+            return redirect()->route('kelas');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Alert::error('Gagal', 'Pastikan data kelas tidak dipakai pada data siswa, mata pelajaran, dan sistem e-learning.');
+            return redirect()->back();
+        }
     }
 }

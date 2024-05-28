@@ -79,12 +79,8 @@ class GuruServiceImpl implements GuruService
 
     public function deleteAll(): bool
     {
-        try {
-            Guru::truncate();
-            Storage::deleteDirectory('public/guru');
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
+        Guru::truncate();
+        Storage::deleteDirectory('public/guru');
+        return true;
     }
 }

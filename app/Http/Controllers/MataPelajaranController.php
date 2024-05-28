@@ -126,15 +126,25 @@ class MataPelajaranController
 
     public function deleteDataMapel($kelasId, $id): Response|RedirectResponse
     {
-        $this->mapelService->delete($id);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Mata Pelajaran');
-        return redirect()->route('detail-mapel', ['kelasId' => $kelasId]);
+        try {
+            $this->mapelService->delete($id);
+            Alert::success('Sukses', 'Berhasil Menghapus Data Mata Pelajaran');
+            return redirect()->route('detail-mapel', ['kelasId' => $kelasId]);
+        }catch (\Exception $e){
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Pelajaran. Pastikan data mapel tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 
     public function deleteAllDataMapel(int $kelasId): Response|RedirectResponse
     {
-        $this->mapelService->deleteAll($kelasId);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Mata Pelajaran');
-        return redirect()->route('detail-mapel', ['kelasId' => $kelasId]);
+        try {
+            $this->mapelService->deleteAll($kelasId);
+            Alert::success('Sukses', 'Berhasil Menghapus Data Mata Pelajaran');
+            return redirect()->route('detail-mapel', ['kelasId' => $kelasId]);
+        }catch (\Exception $e){
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Pelajaran. Pastikan data mapel tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 }

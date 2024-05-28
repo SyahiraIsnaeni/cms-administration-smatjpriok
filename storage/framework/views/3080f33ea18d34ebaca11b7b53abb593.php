@@ -257,7 +257,7 @@
                     />
                 </svg>
             </button>
-                
+
                 <input
                     class="rounded-md w-full py-2 placeholder:text-[13px] placeholder:lg:text-[14px] placeholder:xl:text-[15px] text-sm lg:text-[15px] xl:text-base"
                     type="text"
@@ -280,7 +280,7 @@
                 class="rounded-md border border-black border-opacity-25 hover:scale-105 ease-in-out duration-300"
             >
                 <img
-                    src="<?php echo e(asset('storage/berita/' . $berita->gambar)); ?>"
+                    src="<?php echo e(asset('storage/public/berita/' . $berita->gambar)); ?>"
                     class="rounded-t-md object-cover object-center h-[200px] w-full"
                 />
                 <div class="py-2.5 xl:py-3 px-3 bg-white rounded-b-md">

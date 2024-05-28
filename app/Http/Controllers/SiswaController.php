@@ -124,16 +124,28 @@ class SiswaController
 
     public function deleteDataSiswa($kelasId, $id): Response|RedirectResponse
     {
-        $this->siswaService->delete($id);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Siswa');
-        return redirect()->route('detail-siswa', ['kelasId' => $kelasId]);
+        try {
+            $this->siswaService->delete($id);
+            Alert::success('Sukses', 'Berhasil Menghapus Data Siswa');
+            return redirect()->route('detail-siswa', ['kelasId' => $kelasId]);
+        }catch (\Exception $e){
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Siswa. Pastikan data siswa tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 
     public function deleteAllDataSiswa(int $kelasId): Response|RedirectResponse
     {
-        $this->siswaService->deleteAll($kelasId);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Siswa');
-        return redirect()->route('detail-siswa', ['kelasId' => $kelasId]);
+        try {
+            $this->siswaService->deleteAll($kelasId);
+
+            Alert::success('Sukses', 'Berhasil Menghapus Data Siswa');
+            return redirect()->route('detail-siswa', ['kelasId' => $kelasId]);
+
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Siswa. Pastikan data siswa tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 
     public function importSiswa(int $kelasId):Response{
@@ -166,5 +178,5 @@ class SiswaController
         }
     }
 
-    
+
 }

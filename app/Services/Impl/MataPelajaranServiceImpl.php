@@ -53,11 +53,7 @@ class MataPelajaranServiceImpl implements MataPelajaranService
 
     public function deleteAll(int $kelasId): bool
     {
-        try {
-            MataPelajaran::where('kelas_id', $kelasId)->delete();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
+        MataPelajaran::where('kelas_id', $kelasId)->delete();
+        return true;
     }
 }

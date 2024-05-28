@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Berita Detail SMA Tanjung Priok Jakarta</title>
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" />
+    <link rel="icon" href="<?php echo e(asset('images/logo.png')); ?>" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link href="<?php echo e(asset('css/styles.css')); ?>" rel="stylesheet" />
 
     <!-- PENTING!!!! -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -16,7 +16,7 @@
     <!-- TAMPILAN HP -->
     <div class="md:hidden relative">
         <div class="ml-5 sm:ml-8 flex items-center">
-            <img src="{{ asset('images/logo.png') }}" class="w-10 my-auto" />
+            <img src="<?php echo e(asset('images/logo.png')); ?>" class="w-10 my-auto" />
             <h1
                 class="font-semibold text-sm text-white block my-auto ml-2 tracking-normal"
             >
@@ -45,12 +45,12 @@
             id="mobileMenu"
         >
             <a
-                href="{{route("home")}}"
+                href="<?php echo e(route("home")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Beranda</a
             >
             <a
-                href="{{route("profil-sekolah")}}"
+                href="<?php echo e(route("profil-sekolah")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Profil</a
             >
@@ -64,19 +64,19 @@
                     id="dataDropdownContentHP"
                 >
                     <a
-                        href="{{route("list-guru")}}"
+                        href="<?php echo e(route("list-guru")); ?>"
                         class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center"
                     >Data Guru</a
                     >
                     <a
-                        href="{{route("list-staf")}}"
+                        href="<?php echo e(route("list-staf")); ?>"
                         class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center"
                     >Data Staf</a
                     >
                 </div>
             </a>
             <a
-                href="{{route("konten-sekolah")}}"
+                href="<?php echo e(route("konten-sekolah")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Konten</a
             >
@@ -93,7 +93,7 @@
     <div class="hidden mx-5 sm:mx-8 lg:mx-10 xl:mx-20 md:grid grid-cols-2">
         <div class="flex">
             <img
-                src="{{ asset('images/logo.png') }}"
+                src="<?php echo e(asset('images/logo.png')); ?>"
                 class="md:w-[40px] md:h-[40px] lg:w-[48px] lg:h-[47px]"
             />
             <h1
@@ -105,10 +105,10 @@
         <div
             class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal"
         >
-            <a href="{{route("home")}}">
+            <a href="<?php echo e(route("home")); ?>">
                 <p class="hover:text-[#FF8B42]">Beranda</p>
             </a>
-            <a href="{{route("profil-sekolah")}}">
+            <a href="<?php echo e(route("profil-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Profil</p>
             </a>
             <a href="#" id="dataDropdown1" class="relative block">
@@ -117,17 +117,17 @@
                     class="hidden font-medium absolute bg-[#FF8B42] xl:mt-[49px] text-center lg:mt-[48px] mt-[42px] px-4 py-4 w-[100px] lg:w-[120px] rounded-b-md shadow-md text-xs lg:text-[13px] xl:text-[14px] -ml-8"
                     id="dataDropdownContent1"
                 >
-                    <a href="{{route("list-guru")}}" class="block text-black hover:font-bold py-1"
+                    <a href="<?php echo e(route("list-guru")); ?>" class="block text-black hover:font-bold py-1"
                     >Data Guru</a
                     >
                     <a
-                        href="{{route("list-staf")}}"
+                        href="<?php echo e(route("list-staf")); ?>"
                         class="block text-black hover:font-bold py-1 mt-2"
                     >Data Staf</a
                     >
                 </div>
             </a>
-            <a href="{{route("konten-sekolah")}}">
+            <a href="<?php echo e(route("konten-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
             <a href="https://frontend-e-learning.web.app/view/login/siswa.html">
@@ -174,7 +174,8 @@
             <h1
                 class="font-bold leading-[1.5] md:leading-[1.4] text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl"
             >
-                {{ $berita->judul}}
+                <?php echo e($berita->judul); ?>
+
             </h1>
             <div class="lg:mt-4 mt-2 flex">
                 <svg
@@ -189,7 +190,8 @@
                 <p
                     class="text-[13px] sm:text-sm md:text-[14.5px] lg:text-[15px] xl:text-base font-light"
                 >
-                    By {{ $berita->penulis}}
+                    By <?php echo e($berita->penulis); ?>
+
                 </p>
             </div>
             <div class="mt-0.5 md:mt-1 lg:mt-1.5 flex">
@@ -205,69 +207,55 @@
                 <p
                     class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[15px] xl:text-base font-light"
                 >
-                    {{ \Carbon\Carbon::parse($berita->updated_at)->setTimezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
+                    <?php echo e(\Carbon\Carbon::parse($berita->updated_at)->setTimezone('Asia/Jakarta')->translatedFormat('d F Y, H:i')); ?> WIB
                 </p>
             </div>
             <img
-                src="{{ asset('storage/public/berita/' . $berita->gambar) }}"
+                src="<?php echo e(asset('storage/public/berita/' . $berita->gambar)); ?>"
                 class="w-full h-[250px] sm:h-[300px] md:h-[380px] lg:h-[550px] xl:h-[600px] mt-4 lg:mt-5 xl:mt-7 object-cover object-center"
             />
             <p
                 class="mt-5 lg:mt-7 sm:leading-relaxed lg:leading-[1.7] xl:leading-[1.8] text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px] text-justify"
             >
-                {!!  $berita->konten !!}
+                <?php echo $berita->konten; ?>
+
             </p>
         </div>
         <div class="mt-10 lg:mt-0 lg:w-1/3 xl:w-1/4 lg:ml-12 xl:ml-16">
-            {{-- <div
-                class="bg-white mt-3 border border-black border-opacity-30 rounded-md px-2.5 py-1 xl:py-1.5 flex"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    class="w-5"
-                    fill="grey"
-                >
-                    <path
-                        d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
-                    />
-                </svg>
-                <input
-                    class="ml-2 w-full py-0.5 placeholder:text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px]"
-                    placeholder="Cari berita..."
-                />
-            </div> --}}
+            
             <h1
                 class="font-bold mt-4 text-[17px] md:text-lg underline underline-offset-8 decoration-4 decoration-[#FF8B42]"
             >
                 Berita Lainnya
             </h1>
             <div class="mt-[18px]">
-                @foreach($nextBerita as $row)
-                <a href="{{ route('detail-berita', ['slug' => $row->slug]) }}">
+                <?php $__currentLoopData = $nextBerita; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <a href="<?php echo e(route('detail-berita', ['slug' => $row->slug])); ?>">
                     <div
                         class="bg-white mt-3 hover:scale-105 ease-in-out duration-300 h-[100px] flex border border-black border-opacity-30 rounded-md items-center"
                     >
                         <img
-                            src="{{ asset('storage/public/berita/' . $row->gambar) }}"
+                            src="<?php echo e(asset('storage/public/berita/' . $row->gambar)); ?>"
                             class="w-1/3 h-full object-cover rounded-l-md object-center"
                         />
                         <!-- bikinin ini ke tengah -->
                         <div class="w-2/3 px-2 py-2">
                             <h1 class="font-semibold text-[15px]">
-                                {{ strlen($row->judul) > 50 ? substr($row->judul, 0, 50) . '...' : $row->judul }}
+                                <?php echo e(strlen($row->judul) > 50 ? substr($row->judul, 0, 50) . '...' : $row->judul); ?>
+
                             </h1>
-                            <p class="text-[13.5px] mt-1 font-light">{{ $row->updated_at->format('d M Y')}}</p>
+                            <p class="text-[13.5px] mt-1 font-light"><?php echo e($row->updated_at->format('d M Y')); ?></p>
                         </div>
                     </div>
                 </a>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
-@include('front.footer')
+<?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/front/detail-berita.blade.php ENDPATH**/ ?>

@@ -1265,7 +1265,7 @@ unset($__errorArgs, $__bag); ?>
         </div>
         <?php $__currentLoopData = $welcomes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $welcome): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="flex-grow p-4 md:p-5 overflow-auto">
-            <img src="<?php echo e(asset('storage/welcome/' . $welcome->gambar)); ?>" class="w-full h-full rounded-t-md object-cover object-center" />
+            <img src="<?php echo e(asset('storage/public/welcome/' . $welcome->gambar)); ?>" class="w-full h-full rounded-t-md object-cover object-center" />
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <div class="mt-auto">
@@ -1279,22 +1279,22 @@ unset($__errorArgs, $__bag); ?>
         document.addEventListener('DOMContentLoaded', function() {
          const modal = document.getElementById('default-modal');
          const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
-         
+
          // Periksa apakah popup sudah ditutup sebelumnya
          if (sessionStorage.getItem('popupClosed') === 'true') {
              modal.classList.add('hidden');
              modal.setAttribute('aria-hidden', 'true');
          }
-         
+
          closeButton.addEventListener('click', function() {
              modal.classList.add('hidden');
              modal.setAttribute('aria-hidden', 'true');
              sessionStorage.setItem('popupClosed', 'true');
          });
      });
-     
+
          </script>
-     
+
 </div>
 
 

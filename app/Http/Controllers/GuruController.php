@@ -115,16 +115,26 @@ class GuruController
 
     public function deleteDataGuru($id): Response|RedirectResponse
     {
-        $this->guruService->delete($id);
-        Alert::success('Sukses', 'Berhasil Menghapus Data Guru');
-        return redirect()->route('guru');
+        try {
+            $this->guruService->delete($id);
+            Alert::success('Sukses', 'Berhasil Menghapus Data Guru');
+            return redirect()->route('guru');
+        }catch (\Exception $e){
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 
     public function deleteAllDataGuru(): Response|RedirectResponse
     {
-        $this->guruService->deleteAll();
-        Alert::success('Sukses', 'Berhasil Menghapus Semua Data Guru');
-        return redirect()->route('guru');
+        try {
+            $this->guruService->deleteAll();
+            Alert::success('Sukses', 'Berhasil Menghapus Semua Data Guru');
+            return redirect()->route('guru');
+        }catch (\Exception $e){
+            Alert::error('Gagal', 'Terdapat Kesalahan saat Menghapus Data Mata Guru. Pastikan data guru tidak dipakai pada sistem e-learning.');
+            return redirect()->back();
+        }
     }
 
     public function importGuru():Response{

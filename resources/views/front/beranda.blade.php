@@ -1238,7 +1238,7 @@
         </div>
         @foreach($welcomes as $welcome)
         <div class="flex-grow p-4 md:p-5 overflow-auto">
-            <img src="{{asset('storage/welcome/' . $welcome->gambar) }}" class="w-full h-full rounded-t-md object-cover object-center" />
+            <img src="{{asset('storage/public/welcome/' . $welcome->gambar) }}" class="w-full h-full rounded-t-md object-cover object-center" />
         </div>
         @endforeach
         <div class="mt-auto">
@@ -1252,22 +1252,22 @@
         document.addEventListener('DOMContentLoaded', function() {
          const modal = document.getElementById('default-modal');
          const closeButton = modal.querySelector('[data-modal-hide="default-modal"]');
-         
+
          // Periksa apakah popup sudah ditutup sebelumnya
          if (sessionStorage.getItem('popupClosed') === 'true') {
              modal.classList.add('hidden');
              modal.setAttribute('aria-hidden', 'true');
          }
-         
+
          closeButton.addEventListener('click', function() {
              modal.classList.add('hidden');
              modal.setAttribute('aria-hidden', 'true');
              sessionStorage.setItem('popupClosed', 'true');
          });
      });
-     
+
          </script>
-     
+
 </div>
 
 
