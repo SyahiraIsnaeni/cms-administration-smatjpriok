@@ -52,7 +52,7 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama Kelas</th>
+                                                            <th>Nama Pengunjung</th>
                                                             <th>Tanggal Berkunjung</th>
                                                             <th>Aksi</th>
                                                         </tr>

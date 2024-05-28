@@ -87,12 +87,14 @@
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <form method="post" action="{{ route('dikembalikan-peminjaman', $row->id) }}" class="d-inline">
-                                                                        @csrf
-                                                                        <button class="btn icon btn-success" style="margin-left: 5px">
-                                                                            dikembalikan
-                                                                        </button>
-                                                                    </form>
+                                                                    @if($row->status != "dikembalikan")
+                                                                        <form method="post" action="{{ route('dikembalikan-peminjaman', $row->id) }}" class="d-inline">
+                                                                            @csrf
+                                                                            <button class="btn icon btn-success" style="margin-left: 5px">
+                                                                                dikembalikan
+                                                                            </button>
+                                                                        </form>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                         @empty

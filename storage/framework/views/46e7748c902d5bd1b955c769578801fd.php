@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Pengumuman Detail SMA Tanjung Priok Jakarta</title>
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" />
+    <link rel="icon" href="<?php echo e(asset('images/logo.png')); ?>" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link href="<?php echo e(asset('css/styles.css')); ?>" rel="stylesheet" />
 
     <!-- PENTING!!!! -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -16,7 +16,7 @@
     <!-- TAMPILAN HP -->
     <div class="md:hidden relative">
         <div class="ml-5 sm:ml-8 flex items-center">
-            <img src="{{ asset('images/logo.png') }}" class="w-10 my-auto" />
+            <img src="<?php echo e(asset('images/logo.png')); ?>" class="w-10 my-auto" />
             <h1
                 class="font-semibold text-sm text-white block my-auto ml-2 tracking-normal"
             >
@@ -45,12 +45,12 @@
             id="mobileMenu"
         >
             <a
-                href="{{route("home")}}"
+                href="<?php echo e(route("home")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Beranda</a
             >
             <a
-                href="{{route("profil-sekolah")}}"
+                href="<?php echo e(route("profil-sekolah")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Profil</a
             >
@@ -64,24 +64,24 @@
                     id="dataDropdownContentHP"
                 >
                     <a
-                        href="{{route("list-guru")}}"
+                        href="<?php echo e(route("list-guru")); ?>"
                         class="block text-black hover:text-[#FF8B42] py-1 -mt-5 text-[13px] text-center"
                     >Data Guru</a
                     >
                     <a
-                        href="{{route("list-staf")}}"
+                        href="<?php echo e(route("list-staf")); ?>"
                         class="block text-black hover:text-[#FF8B42] py-1 text-[13px] text-center"
                     >Data Staf</a
                     >
                 </div>
             </a>
             <a
-                href="{{route("konten-sekolah")}}"
+                href="<?php echo e(route("konten-sekolah")); ?>"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >Konten</a
             >
             <a
-                href="https://e-learning.smatanjungpriokjakarta.sch.id/"
+                href="https://frontend-e-learning.web.app/view/login/siswa.html"
                 class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]"
             >E-Learning</a
             >
@@ -93,7 +93,7 @@
     <div class="hidden mx-5 sm:mx-8 lg:mx-10 xl:mx-20 md:grid grid-cols-2">
         <div class="flex">
             <img
-                src="{{ asset('images/logo.png') }}"
+                src="<?php echo e(asset('images/logo.png')); ?>"
                 class="md:w-[40px] md:h-[40px] lg:w-[48px] lg:h-[47px]"
             />
             <h1
@@ -105,10 +105,10 @@
         <div
             class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal"
         >
-            <a href="{{route("home")}}">
+            <a href="<?php echo e(route("home")); ?>">
                 <p class="hover:text-[#FF8B42]">Beranda</p>
             </a>
-            <a href="{{route("profil-sekolah")}}">
+            <a href="<?php echo e(route("profil-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Profil</p>
             </a>
             <a href="#" id="dataDropdown1" class="relative block">
@@ -117,20 +117,20 @@
                     class="hidden font-medium absolute bg-[#FF8B42] xl:mt-[49px] text-center lg:mt-[48px] mt-[42px] px-4 py-4 w-[100px] lg:w-[120px] rounded-b-md shadow-md text-xs lg:text-[13px] xl:text-[14px] -ml-8"
                     id="dataDropdownContent1"
                 >
-                    <a href="{{route("list-guru")}}" class="block text-black hover:font-bold py-1"
+                    <a href="<?php echo e(route("list-guru")); ?>" class="block text-black hover:font-bold py-1"
                     >Data Guru</a
                     >
                     <a
-                        href="{{route("list-staf")}}"
+                        href="<?php echo e(route("list-staf")); ?>"
                         class="block text-black hover:font-bold py-1 mt-2"
                     >Data Staf</a
                     >
                 </div>
             </a>
-            <a href="{{route("konten-sekolah")}}">
+            <a href="<?php echo e(route("konten-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
-            <a href="https://e-learning.smatanjungpriokjakarta.sch.id/">
+            <a href="https://frontend-e-learning.web.app/view/login/siswa.html">
                 <p class="hover:text-[#FF8B42]">E-Learning</p>
             </a>
         </div>
@@ -173,7 +173,8 @@
         <h1
             class="font-bold leading-[1.5] md:leading-[1.4] text-xl sm:text-2xl md:text-3xl lg:text-[33px] xl:text-4xl"
         >
-            {{ $pengumuman->judul}}
+            <?php echo e($pengumuman->judul); ?>
+
         </h1>
         <div class="lg:mt-4 mt-2 flex">
             <svg
@@ -188,7 +189,8 @@
             <p
                 class="text-[13px] sm:text-sm md:text-[14.5px] lg:text-[15px] xl:text-base font-light"
             >
-                By {{ $pengumuman->penulis}}
+                By <?php echo e($pengumuman->penulis); ?>
+
             </p>
         </div>
         <div class="mt-0.5 md:mt-1 lg:mt-1.5 flex">
@@ -204,21 +206,22 @@
             <p
                 class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[15px] xl:text-base font-light"
             >
-                {{ \Carbon\Carbon::parse($pengumuman->updated_at)->setTimezone('Asia/Jakarta')->translatedFormat('d F Y, H:i') }} WIB
+                <?php echo e(\Carbon\Carbon::parse($pengumuman->updated_at)->setTimezone('Asia/Jakarta')->translatedFormat('d F Y, H:i')); ?> WIB
             </p>
         </div>
         <img
-            src="{{ asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar) }}"
+            src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $pengumuman->gambar)); ?>"
             class="w-full h-[250px] sm:h-[300px] md:h-[380px] lg:h-[550px] xl:h-[600px] mt-4 lg:mt-5 xl:mt-7 object-cover object-center"
         />
         <p
             class="mt-5 lg:mt-7 sm:leading-relaxed lg:leading-[1.7] xl:leading-[1.8] text-sm sm:text-[14.5px] md:text-[15px] lg:text-base xl:text-[17px] text-justify"
         >
-            {!!  $pengumuman->konten !!}
+            <?php echo $pengumuman->konten; ?>
+
         </p>
 
-        @if($pengumuman->dokumen != null)
-            <a href="{{asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen) }}">
+        <?php if($pengumuman->dokumen != null): ?>
+            <a href="<?php echo e(asset('storage/public/pengumuman/dokumen/'.$pengumuman->dokumen)); ?>">
                 <div class="flex mt-5">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -229,10 +232,10 @@
                             d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"
                         />
                     </svg>
-                    <p class="underline underline-offset-2 text-[13px] sm:text-sm md:text-[14.5px] lg:text-[15px] xl:text-base">{{$pengumuman->dokumen}}</p>
+                    <p class="underline underline-offset-2 text-[13px] sm:text-sm md:text-[14.5px] lg:text-[15px] xl:text-base"><?php echo e($pengumuman->dokumen); ?></p>
                 </div>
             </a>
-        @endif
+        <?php endif; ?>
 
     </div>
 </section>
@@ -244,29 +247,33 @@
             Pengumuman Lainnya
         </h1>
         <div class="mt-7 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-7 md:gap-10 lg:gap-12">
-            @foreach($nextPengumuman as $row)
-            <a href="{{ route('detail-pengumuman', ['slug' => $row->slug]) }}">
+            <?php $__currentLoopData = $nextPengumuman; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <a href="<?php echo e(route('detail-pengumuman', ['slug' => $row->slug])); ?>">
                 <div class="bg-white rounded-md border border-black border-opacity-30 hover:scale-105 ease-in-out duration-300 w-full">
-                    <img class="w-full h-[210px] object-cover object-center rounded-t-md" src="{{ asset('storage/public/pengumuman/gambar/' . $row->gambar) }}">
+                    <img class="w-full h-[210px] object-cover object-center rounded-t-md" src="<?php echo e(asset('storage/public/pengumuman/gambar/' . $row->gambar)); ?>">
                     <div class="bg-white rounded-b-md py-2 xl:py-2.5 px-3 xl:px-3.5">
                         <h1 class="font-semibold text-[15px] sm:text-[15.5px] md:text-base lg:text-[15px] xl:text-[15.5px]">
-                            {{$row->judul}}
+                            <?php echo e($row->judul); ?>
+
                         </h1>
                         <p class="mt-1 xl:mt-1.5 font-light text-[13px] md:text-sm lg:text-[13.5px]">
-                            {{ $row->updated_at->format('d M Y')}} | {{ $row->kategoriPengumuman->kategori }}
+                            <?php echo e($row->updated_at->format('d M Y')); ?> | <?php echo e($row->kategoriPengumuman->kategori); ?>
+
                         </p>
                         <p class="mt-0.5 font-light text-[13px] md:text-sm lg:text-[13.5px]">
-                            By {{ $row->penulis}}
+                            By <?php echo e($row->penulis); ?>
+
                         </p>
                     </div>
                 </div>
             </a>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
-@include('front.footer')
+<?php echo $__env->make('front.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/front/detail-pengumuman.blade.php ENDPATH**/ ?>

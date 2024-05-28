@@ -88,12 +88,14 @@
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
-                                                                    <form method="post" action="<?php echo e(route('dikembalikan-peminjaman', $row->id)); ?>" class="d-inline">
-                                                                        <?php echo csrf_field(); ?>
-                                                                        <button class="btn icon btn-success" style="margin-left: 5px">
-                                                                            dikembalikan
-                                                                        </button>
-                                                                    </form>
+                                                                    <?php if($row->status != "dikembalikan"): ?>
+                                                                        <form method="post" action="<?php echo e(route('dikembalikan-peminjaman', $row->id)); ?>" class="d-inline">
+                                                                            <?php echo csrf_field(); ?>
+                                                                            <button class="btn icon btn-success" style="margin-left: 5px">
+                                                                                dikembalikan
+                                                                            </button>
+                                                                        </form>
+                                                                    <?php endif; ?>
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

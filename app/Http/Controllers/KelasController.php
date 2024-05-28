@@ -105,7 +105,7 @@ class KelasController
         } catch (\Exception $e) {
             DB::rollBack();
 
-            Alert::error('Gagal', 'Pastikan data kelas tidak dipakai pada data siswa, mata pelajaran, dan sistem e-learning.');
+            Alert::error('Gagal', 'Pastikan data kelas tidak dipakai pada data siswa, mata pelajaran, penjadwalan, peminjaman perpustakaan, dan sistem e-learning.');
             return redirect()->back();
         }
     }
