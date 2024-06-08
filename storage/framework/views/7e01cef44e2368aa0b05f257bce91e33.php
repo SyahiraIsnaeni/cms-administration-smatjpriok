@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Ekstrakurikuler</h3>
+                        <h3>Data Penjadwalan Sekolah</h3>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,18 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <div class="card-header">
+                                    <div class="card-header" style="display: flex">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/beranda/ekstrakurikuler/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="<?php echo e(route("add-jadwal")); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                        </div>
+                                        <div class="card-head-row" style="margin-left: 10px">
+                                            <form action="<?php echo e(route("delete-all-jadwal")); ?>" method="POST" >
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" class="btn btn-danger ml-auto">
+                                                    <i class="bi bi-arrow-clockwise" style="margin-right: 4px"></i> Reset Data
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -52,30 +61,26 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama Ekstrakurikuler</th>
-                                                            <th>Logo</th>
-                                                            <th>Foto Kegiatan</th>
-                                                            <th>Deskripsi</th>
+                                                            <th>Hari</th>
+                                                            <th>Mata Pelajaran</th>
+                                                            <th>Kelas</th>
+                                                            <th>Guru</th>
+                                                            <th>Jam Mulai</th>
+                                                            <th>Jam Selesai</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $jadwals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500"><?php echo e($ekstrakurikuler->nama); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?> width="100" height="100"></td>
-                                                                <td>
-                                                                    <?php $__currentLoopData = $ekstrakurikuler->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <img src="<?php echo e(asset('storage/public/ekstrakurikuler-images/' . $image->image)); ?>" width="150" height="100">
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </td>
-                                                                <td class="text-bold-500"><?php echo strlen($ekstrakurikuler->deskripsi) > 200 ? substr($ekstrakurikuler->deskripsi, 0, 200) . '...' : $ekstrakurikuler->deskripsi; ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->day->name); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->mapel->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->mapel->kelas->nama_kelas); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($jadwal->mapel->guru->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->start_time)->format('H:i')); ?></td>
+                                                                <td class="text-bold-500"><?php echo e(\Carbon\Carbon::parse($jadwal->end_time)->format('H:i')); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="<?php echo e(route('edit-ekstrakurikuler', ['id' => $ekstrakurikuler->id])); ?>" class="btn icon btn-primary">
-                                                                        <i class="bi bi-pencil"></i>
-                                                                    </a>
-                                                                    <br>
-                                                                    <form method="post" action="<?php echo e(route('delete-ekstrakurikuler', $ekstrakurikuler->id)); ?>" class="d-inline">
+                                                                    <form method="post" action="<?php echo e(route('delete-jadwal', $jadwal->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
@@ -91,8 +96,6 @@
                                                         <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    <?php echo e($ekstrakurikulers->links()); ?>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -133,4 +136,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/ekstrakurikuler/view.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/penjadwalan/view.blade.php ENDPATH**/ ?>

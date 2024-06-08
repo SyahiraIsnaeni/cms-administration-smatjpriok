@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Prestasi</h3>
+                        <h3>Tambah Data Jadwal</h3>
                     </div>
                 </div>
             </div>
@@ -41,32 +41,47 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/beranda/prestasi" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="<?php echo e(route("jadwal")); ?>" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-prestasi')); ?>">
+                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-data-jadwal')); ?>">
                                             <?php echo csrf_field(); ?>
-                                            <div class="form-group">
-                                                <label for="squareText">Nama Siswa (20 karakter)</label>
-                                                <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Siswa" name="nama">
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Mata Pelajaran</label>
+                                                <div class="col-md-10">
+                                                    <select name="mapel" id="mapels" class="form-control">
+                                                        <option value="">Pilih mata pelajaran</option>
+                                                        <?php $__currentLoopData = $mapels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mapel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($mapel->id); ?>"><?php echo e($mapel->nama); ?> <?php echo e($mapel->kelas->nama_kelas); ?> (<?php echo e($mapel->guru->nama); ?>)</option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="squareText">Nama Kejuaraan (40 karakter)</label>
-                                                <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Kejuaraan" name="kejuaraan">
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Hari</label>
+                                                <div class="col-md-10">
+                                                    <select name="day" class="form-control">
+                                                        <option value="">Pilih hari..</option>
+                                                        <?php $__currentLoopData = $days; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($day->id); ?>"><?php echo e($day->name); ?></option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="squareText">Deskripsi (100 karakter)</label>
-                                                <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Deskripsi Singkat" name="deskripsi">
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Waktu Mulai</label>
+                                                <div class="col-md-10">
+                                                    <input type="time" name="start" class='form-control'>
+                                                </div>
                                             </div>
-                                            <div class="form-group" style="margin-top: 20px">
-                                                <label for="formFile" class="form-label">Foto Prestasi (.jpg, .png, .jpeg)</label>
-                                                <input class="form-control" type="file" id="formFile" name="gambar">
+                                            <div class="form-group row">
+                                                <label for="" class='col-md-2 col-form-label'>Waktu Berakhir</label>
+                                                <div class="col-md-10">
+                                                    <input type="time" name="end" class='form-control'>
+                                                </div>
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
@@ -98,4 +113,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/prestasi/add.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/penjadwalan/add.blade.php ENDPATH**/ ?>
