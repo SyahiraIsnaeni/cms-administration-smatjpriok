@@ -41,7 +41,7 @@
                 </div>
             </a>
             <a href="<?php echo e(route("konten-sekolah")); ?>" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">Konten</a>
-            <a href="https://frontend-e-learning.web.app/view/login/siswa.html" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">E-Learning</a>
+            <a href="https://e-learning.smatanjungpriokjakarta.sch.id/" class="text-white py-2.5 block text-center text-sm hover:text-[#FF8B42]">E-Learning</a>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
     </div>
@@ -69,7 +69,7 @@
             <a href="<?php echo e(route("konten-sekolah")); ?>">
                 <p class="hover:text-[#FF8B42]">Konten</p>
             </a>
-            <a href="https://frontend-e-learning.web.app/view/login/siswa.html">
+            <a href="https://e-learning.smatanjungpriokjakarta.sch.id/">
                 <p class="hover:text-[#FF8B42]">E-Learning</p>
             </a>
         </div>

@@ -12,6 +12,22 @@
 
     <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app.css")); ?>>
     <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app-dark.css")); ?>>
+
+    <link
+        rel="stylesheet"
+        href=<?php echo e(asset("../editor/richtexteditor/rte_theme_default.css")); ?>
+
+    />
+    <script
+        type="text/javascript"
+        src=<?php echo e(asset("../editor/richtexteditor/rte.js")); ?>
+
+    ></script>
+    <script
+        type="text/javascript"
+        src=<?php echo e(asset("../editor/richtexteditor/plugins/all_plugins.js")); ?>
+
+    ></script>
 </head>
 
 <body>
@@ -30,7 +46,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Prestasi</h3>
+                        <h3>Tambah Data Mata Pelajaran <?php echo e($kelas->nama_kelas); ?></h3>
                     </div>
                 </div>
             </div>
@@ -41,32 +57,26 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/beranda/prestasi" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="<?php echo e(route('detail-mapel', ['kelasId' => $kelas->id])); ?>" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-prestasi')); ?>">
+                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-mapel', ['kelasId' => $kelas->id])); ?>">
                                             <?php echo csrf_field(); ?>
                                             <div class="form-group">
-                                                <label for="squareText">Nama Siswa (20 karakter)</label>
+                                                <label for="squareText">Nama Mata Pelajaran</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Siswa" name="nama">
+                                                       placeholder="Contoh: Matematika" name="nama">
                                             </div>
                                             <div class="form-group">
-                                                <label for="squareText">Nama Kejuaraan (40 karakter)</label>
-                                                <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Kejuaraan" name="kejuaraan">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="squareText">Deskripsi (100 karakter)</label>
-                                                <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Deskripsi Singkat" name="deskripsi">
-                                            </div>
-                                            <div class="form-group" style="margin-top: 20px">
-                                                <label for="formFile" class="form-label">Foto Prestasi (.jpg, .png, .jpeg)</label>
-                                                <input class="form-control" type="file" id="formFile" name="gambar">
+                                                <label for="guru">Guru Pengajar</label>
+                                                <select name="guru_id" class="form-control">
+                                                    <?php $__currentLoopData = $gurus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $guru): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($guru->id); ?>"><?php echo e($guru->nama); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
@@ -98,4 +108,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/prestasi/add.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/data/mapel/add.blade.php ENDPATH**/ ?>

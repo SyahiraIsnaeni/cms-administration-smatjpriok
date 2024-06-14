@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Tambah Data Prestasi</h3>
+                        <h3>Tambah Data Struktur Organisasi</h3>
                     </div>
                 </div>
             </div>
@@ -41,32 +41,43 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard/beranda/prestasi" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="/dashboard/profil/struktur-organisasi" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-prestasi')); ?>">
+                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-struktur-organisasi')); ?>">
                                             <?php echo csrf_field(); ?>
                                             <div class="form-group">
-                                                <label for="squareText">Nama Siswa (20 karakter)</label>
+                                                <label for="squareText">Nama Kepala Sekolah</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Siswa" name="nama">
+                                                       placeholder="Nama Kepala Sekolah" name="kepsek">
                                             </div>
                                             <div class="form-group">
-                                                <label for="squareText">Nama Kejuaraan (40 karakter)</label>
+                                                <label for="squareText">Nama Wakil Bidang Kurikulum</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Nama Kejuaraan" name="kejuaraan">
+                                                       placeholder="Nama Wakil Kurikulum" name="wakil_kurikulum">
                                             </div>
                                             <div class="form-group">
-                                                <label for="squareText">Deskripsi (100 karakter)</label>
+                                                <label for="squareText">Nama Wakil Bidang Kesiswaan</label>
                                                 <input type="text" id="squareText" class="form-control square"
-                                                       placeholder="Deskripsi Singkat" name="deskripsi">
+                                                       placeholder="Nama Wakil Kesiswaan" name="wakil_kesiswaan">
                                             </div>
-                                            <div class="form-group" style="margin-top: 20px">
-                                                <label for="formFile" class="form-label">Foto Prestasi (.jpg, .png, .jpeg)</label>
-                                                <input class="form-control" type="file" id="formFile" name="gambar">
+                                            <div class="form-group">
+                                                <label for="squareText">Nama Wakil Bidang Sarana Prasarana</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       placeholder="Nama Wakil Sarana Prasarana" name="wakil_sarpras">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Nama Pembimbing Konseling</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       placeholder="Nama Pembimbing Konseling" name="bk">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="squareText">Nama Pembimbing OSIS</label>
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       placeholder="Nama Pembimbing OSIS" name="osis">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
@@ -98,4 +109,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/prestasi/add.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/profil/struktur-organisasi/add.blade.php ENDPATH**/ ?>

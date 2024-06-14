@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Ekstrakurikuler</h3>
+                        <h3>Data Peminjaman Buku</h3>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="card-header">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/beranda/ekstrakurikuler/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="<?php echo e(route("add-peminjaman")); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -52,36 +52,50 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama Ekstrakurikuler</th>
-                                                            <th>Logo</th>
-                                                            <th>Foto Kegiatan</th>
-                                                            <th>Deskripsi</th>
+                                                            <th>Nama</th>
+                                                            <th>Kelas</th>
+                                                            <th>Judul Buku</th>
+                                                            <th>Status</th>
+                                                            <th>Tanggal Pinjam</th>
+                                                            <th>Tanggal Kembali</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $peminjaman; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500"><?php echo e($ekstrakurikuler->nama); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?> width="100" height="100"></td>
+                                                                <td class="text-bold-500"><?php echo e($row->nama); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($row->kelas->nama_kelas); ?></td>
+                                                                <td><?php echo e($row->judul_buku); ?></td>
                                                                 <td>
-                                                                    <?php $__currentLoopData = $ekstrakurikuler->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <img src="<?php echo e(asset('storage/public/ekstrakurikuler-images/' . $image->image)); ?>" width="150" height="100">
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php echo e($row->status); ?>
+
                                                                 </td>
-                                                                <td class="text-bold-500"><?php echo strlen($ekstrakurikuler->deskripsi) > 200 ? substr($ekstrakurikuler->deskripsi, 0, 200) . '...' : $ekstrakurikuler->deskripsi; ?></td>
+                                                                <td><?php echo e($row->tanggal_pinjam); ?></td>
+                                                                <?php if($row->tanggal_kembali != null): ?>
+                                                                    <td><?php echo e($row->tanggal_kembali); ?></td>
+                                                                <?php else: ?>
+                                                                    <td>-</td>
+                                                                <?php endif; ?>
                                                                 <td class="text-bold-500">
-                                                                    <a href="<?php echo e(route('edit-ekstrakurikuler', ['id' => $ekstrakurikuler->id])); ?>" class="btn icon btn-primary">
+                                                                    <a href="<?php echo e(route('edit-peminjaman', ['id' => $row->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
-                                                                    <br>
-                                                                    <form method="post" action="<?php echo e(route('delete-ekstrakurikuler', $ekstrakurikuler->id)); ?>" class="d-inline">
+                                                                    <form method="post" action="<?php echo e(route('delete-peminjaman', $row->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
-                                                                        <button class="btn icon btn-danger" style="margin-top: 10px">
+                                                                        <button class="btn icon btn-danger" style="margin-left: 5px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
+                                                                    <?php if($row->status != "dikembalikan"): ?>
+                                                                        <form method="post" action="<?php echo e(route('dikembalikan-peminjaman', $row->id)); ?>" class="d-inline">
+                                                                            <?php echo csrf_field(); ?>
+                                                                            <button class="btn icon btn-success" style="margin-left: 5px">
+                                                                                dikembalikan
+                                                                            </button>
+                                                                        </form>
+                                                                    <?php endif; ?>
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -91,7 +105,7 @@
                                                         <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    <?php echo e($ekstrakurikulers->links()); ?>
+                                                    <?php echo e($peminjaman->links()); ?>
 
                                                 </div>
                                             </div>
@@ -133,4 +147,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/ekstrakurikuler/view.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/perpustakaan/peminjaman/view.blade.php ENDPATH**/ ?>

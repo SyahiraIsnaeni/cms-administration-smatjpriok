@@ -15,7 +15,7 @@
 <body>
 <script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    <?php echo $__env->make('back.admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('back.osis.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
@@ -28,7 +28,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Data Ekstrakurikuler</h3>
+                        <h3>Data Blog</h3>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="card-header">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="/dashboard/beranda/ekstrakurikuler/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="/dashboard-osis/blog/add" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -52,30 +52,34 @@
                                                     <table class="table table-bordered mb-3" id="table1">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nama Ekstrakurikuler</th>
-                                                            <th>Logo</th>
-                                                            <th>Foto Kegiatan</th>
-                                                            <th>Deskripsi</th>
+                                                            <th>Judul</th>
+                                                            <th>Penulis</th>
+                                                            <th>Gambar</th>
+                                                            <th>Status</th>
+                                                            <th>Tanggal</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php $__empty_1 = true; $__currentLoopData = $ekstrakurikulers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ekstrakurikuler): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                        <?php $__empty_1 = true; $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500"><?php echo e($ekstrakurikuler->nama); ?></td>
-                                                                <td><img src=<?php echo e(asset('storage/public/ekstrakurikuler-logos/' . $ekstrakurikuler->logo)); ?> width="100" height="100"></td>
+                                                                <td class="text-bold-500"><?php echo e($blog->judul); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($blog->penulis); ?></td>
+                                                                <td><img src=<?php echo e(asset('storage/blog/' . $blog->gambar)); ?> width="100" height="100"></td>
                                                                 <td>
-                                                                    <?php $__currentLoopData = $ekstrakurikuler->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <img src="<?php echo e(asset('storage/public/ekstrakurikuler-images/' . $image->image)); ?>" width="150" height="100">
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php if($blog->is_active == '1'): ?>
+                                                                        Diterbitkan
+                                                                    <?php else: ?>
+                                                                        Draf
+                                                                    <?php endif; ?>
                                                                 </td>
-                                                                <td class="text-bold-500"><?php echo strlen($ekstrakurikuler->deskripsi) > 200 ? substr($ekstrakurikuler->deskripsi, 0, 200) . '...' : $ekstrakurikuler->deskripsi; ?></td>
+                                                                <td><?php echo e($blog->updated_at->format('d M Y')); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="<?php echo e(route('edit-ekstrakurikuler', ['id' => $ekstrakurikuler->id])); ?>" class="btn icon btn-primary">
+                                                                    <a href="<?php echo e(route('edit-blog-osis', ['id' => $blog->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
                                                                     <br>
-                                                                    <form method="post" action="<?php echo e(route('delete-ekstrakurikuler', $ekstrakurikuler->id)); ?>" class="d-inline">
+                                                                    <form method="post" action="<?php echo e(route('delete-blog-osis', $blog->id)); ?>" class="d-inline">
                                                                         <?php echo csrf_field(); ?>
                                                                         <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-top: 10px">
@@ -91,7 +95,7 @@
                                                         <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    <?php echo e($ekstrakurikulers->links()); ?>
+                                                    <?php echo e($blogs->links()); ?>
 
                                                 </div>
                                             </div>
@@ -133,4 +137,4 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/admin/konten/beranda/ekstrakurikuler/view.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\cms-administration-smatjpriok\resources\views/back/osis/blog/view.blade.php ENDPATH**/ ?>
