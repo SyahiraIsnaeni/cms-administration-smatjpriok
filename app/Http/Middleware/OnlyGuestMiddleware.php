@@ -19,11 +19,14 @@ class OnlyGuestMiddleware
         if (Auth::check() && $request->session()->exists("admin")) {
             $role = Auth::user()->role;
             return redirect('/dashboard/' . $role);
-        }elseif (Auth::check() && $request->session()->exists("osis")){
+        } elseif (Auth::check() && $request->session()->exists("osis")) {
             $role = Auth::user()->role;
             return redirect('/dashboard/' . $role);
         }
 
-        return $next($request);
+        $response = $next($request);
+        return $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
     }
 }
