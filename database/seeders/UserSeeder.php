@@ -25,5 +25,12 @@ class UserSeeder extends Seeder
         $user2->password = bcrypt("osissmatjpriok");
         $user2->role = 'osis';
         $user2->save();
+
+        $user3 = new User();
+        $user3->name = "Perpustakaan SMA Tanjung Priok";
+        $user3->email = "perpus.smatanjungpriok@gmail.com";
+        $user3->password = bcrypt("perpussmatjpriok");
+        $user3->role = 'perpus';
+        $user3->save();
     }
 }
