@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("telepon")->nullable(false);
             $table->integer("jumlah")->nullable(false);
             $table->boolean("status")->nullable(false)->default(0);
-            $table->dateTime("tanggal_dikembalikan");
+            $table->dateTime("tanggal_dikembalikan")->nullable("true");
             $table->unsignedBigInteger("buku_id")->nullable(false);
             $table->foreign("buku_id")->references("id")->on("bukus");
             $table->timestamps();

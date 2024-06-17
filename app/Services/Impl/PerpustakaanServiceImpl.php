@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Models\Buku;
 use App\Models\Guru;
 use App\Models\Kunjungan;
 use App\Models\Peminjaman;
@@ -69,26 +70,60 @@ class PerpustakaanServiceImpl implements PerpustakaanService
 
     public function addPeminjaman(array $data)
     {
+        $buku = Buku::find($data['buku_id']);
+
+        if (!$buku) {
+            throw new \Exception('Buku tidak ditemukan');
+        }
+
+        if ($buku->jumlah < $data['jumlah']) {
+            throw new \Exception('Jumlah buku yang tersedia tidak cukup');
+        }
+
+        $buku->jumlah -= $data['jumlah'];
+        $buku->save();
+
         $peminjaman = new Peminjaman();
         $peminjaman->nama = $data['nama'];
-        $peminjaman->kelas_id = $data['kelas_id'];
-        $peminjaman->judul_buku = $data['judul_buku'];
-        $peminjaman->status = "dipinjam";
-        $peminjaman->tanggal_pinjam = Carbon::now('Asia/Jakarta');
-        $peminjaman->tanggal_kembali = null;
+        $peminjaman->kelas = $data['kelas'];
+        $peminjaman->telepon = $data['telepon'];
+        $peminjaman->jumlah = $data['jumlah'];
+        $peminjaman->buku_id = $data['buku_id'];
+        $peminjaman->tanggal_dikembalikan = null;
 
         $peminjaman->save();
 
         return $peminjaman;
     }
 
-    public function editPeminjaman($id, array $data)
+    public function editPeminjaman($id, $buku_id, array $data)
     {
         $peminjaman = Peminjaman::findOrFail($id);
 
+        $bukuLama = Buku::find($peminjaman->buku_id);
+        if ($bukuLama) {
+            $bukuLama->jumlah += $peminjaman->jumlah;
+            $bukuLama->save();
+        }
+
+        $bukuBaru = Buku::find($buku_id);
+
+        if (!$bukuBaru) {
+            throw new \Exception('Buku tidak ditemukan');
+        }
+
+        if ($bukuBaru->jumlah < $data['jumlah']) {
+            throw new \Exception('Jumlah buku yang tersedia tidak cukup');
+        }
+
+        $bukuBaru->jumlah -= $data['jumlah'];
+        $bukuBaru->save();
+
         $peminjaman->nama = $data['nama'];
-        $peminjaman->kelas_id = $data['kelas_id'];
-        $peminjaman->judul_buku = $data['judul_buku'];
+        $peminjaman->kelas = $data['kelas'];
+        $peminjaman->telepon = $data['telepon'];
+        $peminjaman->jumlah = $data['jumlah'];
+        $peminjaman->buku_id = $bukuBaru->id;
 
         $peminjaman->save();
 
@@ -104,21 +139,27 @@ class PerpustakaanServiceImpl implements PerpustakaanService
     public function dikembalikan($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        $peminjaman->status = "dikembalikan";
+
+        $peminjaman->status = 1;
         $peminjaman->tanggal_kembali = Carbon::now('Asia/Jakarta');
         $peminjaman->save();
+
+        $buku = Buku::find($peminjaman->buku_id);
+
+        if ($buku) {
+            $buku->jumlah += $peminjaman->jumlah;
+            $buku->save();
+        }
+
         return $peminjaman;
     }
 
     public function addBuku(array $data)
     {
-        $buku = new Peminjaman();
-        $buku->nama = $data['nama'];
-        $buku->kelas_id = $data['kelas_id'];
-        $buku->judul_buku = $data['judul_buku'];
-        $buku->status = "dipinjam";
-        $buku->tanggal_pinjam = Carbon::now('Asia/Jakarta');
-        $buku->tanggal_kembali = null;
+        $buku = new Buku();
+        $buku->judul = $data['judul'];
+        $buku->penerbit = $data['penerbit'];
+        $buku->jumlah = $data['jumlah'];
 
         $buku->save();
 
@@ -127,21 +168,30 @@ class PerpustakaanServiceImpl implements PerpustakaanService
 
     public function getBuku()
     {
-        // TODO: Implement getBuku() method.
+        return Buku::orderBy('created_at', 'desc')->paginate(20);
     }
 
     public function editBuku($id, array $data)
     {
-        // TODO: Implement editBuku() method.
+        $buku = Buku::findOrFail($id);
+
+        $buku->judul = $data['judul'];
+        $buku->penerbit = $data['penerbit'];
+        $buku->jumlah = $data['jumlah'];
+
+        $buku->save();
+
+        return $buku;
     }
 
     public function deleteBuku($id)
     {
-        // TODO: Implement deleteBuku() method.
+        $buku = Buku::findOrFail($id);
+        return $buku->delete();
     }
 
     public function searchBuku($judul)
     {
-        // TODO: Implement searchBuku() method.
+        return Buku::where('judul', 'like', '%' . $judul . '%')->get();
     }
 }

@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("./assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("./assets/image/logosma.png")); ?> type="image/x-icon">
 
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("./assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("./assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.perpustakaan.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.perpustakaan.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="card-header" style="display: flex">
                                         <div class="card-head-row" style="margin-left: -20px">
-                                            <a href="{{route("add-buku-perpus")}}" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
+                                            <a href="<?php echo e(route("add-buku-perpus")); ?>" class="btn btn-info btn=sm ml-auto"> <i class="bi bi-plus-circle" style="margin-right: 4px"></i>Tambah Data</a>
                                         </div>
                                     </div>
                                     <section class="section">
@@ -59,32 +59,33 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @forelse($bukus as $row)
+                                                        <?php $__empty_1 = true; $__currentLoopData = $bukus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                                             <tr>
-                                                                <td class="text-bold-500">{{ $row->judul }}</td>
-                                                                <td class="text-bold-500">{{ $row->penerbit }}</td>
-                                                                <td class="text-bold-500">{{ $row->jumlah }}</td>
+                                                                <td class="text-bold-500"><?php echo e($row->judul); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($row->penerbit); ?></td>
+                                                                <td class="text-bold-500"><?php echo e($row->jumlah); ?></td>
                                                                 <td class="text-bold-500">
-                                                                    <a href="{{ route('edit-buku-perpus', ['id' => $row->id]) }}" class="btn icon btn-primary">
+                                                                    <a href="<?php echo e(route('edit-buku-perpus', ['id' => $row->id])); ?>" class="btn icon btn-primary">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </a>
-                                                                    <form method="post" action="{{ route('delete-buku-perpus', $row->id) }}" class="d-inline">
-                                                                        @csrf
-                                                                        @method('DELETE')
+                                                                    <form method="post" action="<?php echo e(route('delete-buku-perpus', $row->id)); ?>" class="d-inline">
+                                                                        <?php echo csrf_field(); ?>
+                                                                        <?php echo method_field('DELETE'); ?>
                                                                         <button class="btn icon btn-danger" style="margin-left: 5px">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </form>
                                                                 </td>
                                                             </tr>
-                                                        @empty
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                             <tr>
                                                                 <td colspan="7" class="text-center">Data Masih Kosong</td>
                                                             </tr>
-                                                        @endforelse
+                                                        <?php endif; ?>
                                                         </tbody>
                                                     </table>
-                                                    {{$bukus->links()}}
+                                                    <?php echo e($bukus->links()); ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -114,14 +115,15 @@
 
     </div>
 </div>
-<script src={{asset("assets/static/js/components/dark.js")}}></script>
-<script src={{asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
 
-<script src={{asset("assets/compiled/js/app.js")}}></script>
 
-@include('back.admin.footer')
+<script src=<?php echo e(asset("assets/compiled/js/app.js")); ?>></script>
+
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/perpustakaan/buku/view.blade.php ENDPATH**/ ?>

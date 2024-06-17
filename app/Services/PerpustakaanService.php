@@ -17,7 +17,7 @@ interface PerpustakaanService
 
     public function addPeminjaman(array $data);
 
-    public function editPeminjaman($id, array $data);
+    public function editPeminjaman($id, $buku_id, array $data);
 
     public function deletePeminjaman($id);
 

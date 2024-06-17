@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo" style="display: flex; align-items: center;">
-                    <img src={{asset("assets/image/logosma.png")}} style="width: 40px; height: 40px">
+                    <img src=<?php echo e(asset("assets/image/logosma.png")); ?> style="width: 40px; height: 40px">
                     <a href="#" style="margin-left: 10px"><p style="font-size: 21px;margin-top: 25px">Admin</p></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -42,7 +42,7 @@
         <div class="sidebar-menu" style="margin-top: -10px">
             <ul class="menu">
                 <li
-                    class="sidebar-item {{ request()->is('dashboard-perpus/admin') ? 'active' : '' }}">
+                    class="sidebar-item <?php echo e(request()->is('dashboard-perpus/admin') ? 'active' : ''); ?>">
                     <a href="/dashboard-perpus/admin" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -50,33 +50,33 @@
                 </li>
 
                 <li
-                    class="sidebar-item {{ request()->is('dashboard-perpus/buku*') ? 'active' : '' }}">
+                    class="sidebar-item <?php echo e(request()->is('dashboard-perpus/buku*') ? 'active' : ''); ?>">
                     <a href="/dashboard-perpus/buku" class='sidebar-link'>
                         <i class="bi bi-book-half"></i>
                         <span>Data Buku</span>
                     </a>
                 </li>
 
-{{--                <li--}}
-{{--                    class="sidebar-item {{ request()->is('dashboard-perpus/kunjungan*') ? 'active' : '' }}">--}}
-{{--                    <a href="/dashboard-perpus/kunjungan" class='sidebar-link'>--}}
-{{--                        <i class="bi bi-card-heading"></i>--}}
-{{--                        <span>Kunjungan Perpustakaan</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
 
-{{--                <li--}}
-{{--                    class="sidebar-item {{ request()->is('dashboard-perpus/peminjaman*') ? 'active' : '' }}">--}}
-{{--                    <a href="/dashboard-perpus/peminjaman" class='sidebar-link'>--}}
-{{--                        <i class="bi bi-stickies-fill"></i>--}}
-{{--                        <span>Peminjaman Buku</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 <li class="sidebar-title">
-                    <form action="{{ route('logout-perpus') }}" method="post" class="d-inline">
-                        @csrf
+                    <form action="<?php echo e(route('logout-perpus')); ?>" method="post" class="d-inline">
+                        <?php echo csrf_field(); ?>
                         <button type="submit" style="background: none; border: none; cursor: pointer;">
                             <i class="bi bi-arrow-left-circle-fill"></i>
                             <span style="margin-left: 10px;">Logout</span>
@@ -88,3 +88,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/perpustakaan/sidebar.blade.php ENDPATH**/ ?>

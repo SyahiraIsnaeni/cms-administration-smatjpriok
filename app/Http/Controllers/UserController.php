@@ -44,6 +44,9 @@ class UserController
             } elseif ($user->role === 'osis') {
                 $request->session()->put("osis", $email);
                 return redirect("/dashboard-osis/admin");
+            } elseif ($user->role === 'perpus') {
+                $request->session()->put("perpus", $email);
+                return redirect("/dashboard-perpus/admin");
             }
         }
 

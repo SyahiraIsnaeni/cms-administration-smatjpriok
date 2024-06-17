@@ -83,6 +83,7 @@ Route::controller(\App\Http\Controllers\UserController::class)->group(
         Route::post("/login", "doLogin")->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class]);
         Route::post("/logout/admin", "logout")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("logout-admin");
         Route::post("/logout/osis", "logout")->middleware([\App\Http\Middleware\OnlyOsisMiddleware::class])->name("logout-osis");
+        Route::post("/logout/perpus", "logout")->middleware([\App\Http\Middleware\OnlyPerpusMiddleware::class])->name("logout-perpus");
     }
 );
 
@@ -95,6 +96,34 @@ Route::controller(\App\Http\Controllers\AdminController::class)->group(
 Route::controller(\App\Http\Controllers\OsisController::class)->group(
     function (){
         Route::get("/dashboard-osis/admin", "dashboard")->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class);
+    }
+);
+
+Route::controller(\App\Http\Controllers\PerpusController::class)->group(
+    function (){
+        Route::get("/dashboard-perpus/admin", "dashboard")->middleware(\App\Http\Middleware\OnlyPerpusMiddleware::class);
+    }
+);
+
+Route::controller(\App\Http\Controllers\BukuController::class)->middleware(\App\Http\Middleware\OnlyPerpusMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-perpus/buku", "buku")->name("buku-perpus");
+        Route::get("/dashboard-perpus/buku/add", "addBuku");
+        Route::get("/dashboard-perpus/buku/{id}/edit", "editBuku")->name("edit-buku-perpus");
+        Route::post("/dashboard-perpus/buku/add", "addDataBuku")->name("add-buku-perpus");
+        Route::post("/dashboard-perpus/buku/{id}/edit", "editDataBuku")->name("edit-data-buku-perpus");
+        Route::delete("/dashboard-perpus/buku/{id}/delete", "deleteDataBuku")->name("delete-buku-perpus");
+    }
+);
+
+Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyPerpusMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-perpus/kunjungan", "kunjungan")->name("kunjungan-perpus");
+        Route::get("/dashboard-perpus/kunjungan/add", "addKunjugan");
+        Route::get("/dashboard-perpus/kunjungan/{id}/edit", "editKunjungan")->name("edit-kunjungan-perpus");
+        Route::post("/dashboard-perpus/kunjungan/add", "addDataKunjungan")->name("add-kunjungan-perpus");
+        Route::post("/dashboard-perpus/kunjungan/{id}/edit", "editDataKunjungan")->name("edit-data-kunjungan-perpus");
+        Route::delete("/dashboard-perpus/kunjungan/{id}/delete", "deleteDataKunjungan")->name("delete-kunjungan-perpus");
     }
 );
 
@@ -371,16 +400,6 @@ Route::controller(\App\Http\Controllers\JadwalController::class)->middleware(\Ap
     }
 );
 
-Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
-    function (){
-        Route::get("/dashboard/kunjungan", "kunjungan")->name("kunjungan");
-        Route::get("/dashboard/add/kunjungan", "addKunjungan")->name("add-kunjungan");
-        Route::post("/dashboard/add/data/kunjungan", "addDataKunjungan")->name("add-data-kunjungan");
-        Route::get("/dashboard/edit/kunjungan/{id}", "editKunjungan")->name("edit-kunjungan");
-        Route::post("/dashboard/edit/data/kunjungan/{id}", "editDataKunjungan")->name("edit-data-kunjungan");
-        Route::delete("/dashboard/kunjungan/delete/{id}", "deleteKunjungan")->name("delete-kunjungan");
-    }
-);
 
 Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware(\App\Http\Middleware\OnlyAdminMiddleware::class)->group(
     function (){
