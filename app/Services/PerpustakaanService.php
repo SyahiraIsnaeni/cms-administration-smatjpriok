@@ -23,5 +23,14 @@ interface PerpustakaanService
 
     public function dikembalikan($id);
 
+    public function addBuku(array $data);
+
+    public function getBuku();
+
+    public function editBuku($id, array $data);
+
+    public function deleteBuku($id);
+
+    public function searchBuku($judul);
 
 }

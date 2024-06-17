@@ -110,4 +110,38 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         return $peminjaman;
     }
 
+    public function addBuku(array $data)
+    {
+        $buku = new Peminjaman();
+        $buku->nama = $data['nama'];
+        $buku->kelas_id = $data['kelas_id'];
+        $buku->judul_buku = $data['judul_buku'];
+        $buku->status = "dipinjam";
+        $buku->tanggal_pinjam = Carbon::now('Asia/Jakarta');
+        $buku->tanggal_kembali = null;
+
+        $buku->save();
+
+        return $buku;
+    }
+
+    public function getBuku()
+    {
+        // TODO: Implement getBuku() method.
+    }
+
+    public function editBuku($id, array $data)
+    {
+        // TODO: Implement editBuku() method.
+    }
+
+    public function deleteBuku($id)
+    {
+        // TODO: Implement deleteBuku() method.
+    }
+
+    public function searchBuku($judul)
+    {
+        // TODO: Implement searchBuku() method.
+    }
 }
