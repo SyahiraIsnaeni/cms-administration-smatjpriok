@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("../assets/image/logosma.png")}} type="image/x-icon">
-    <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.snow.css")}}>
-    <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.bubble.css")}}>
+    <link rel="shortcut icon" href=<?php echo e(asset("../assets/image/logosma.png")); ?> type="image/x-icon">
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.snow.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.bubble.css")); ?>>
 
-    <link rel="stylesheet" href={{asset("../assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("../assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app-dark.css")); ?>>
 </head>
 
 <body>
-<script src={{asset("../assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("../assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.perpustakaan.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.perpustakaan.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Peminjaman Buku</h3>
+                        <h3>Tambah Data Peminjaman Buku</h3>
                     </div>
                 </div>
             </div>
@@ -41,42 +41,42 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard-perpus/peminjaman" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="/dashboard-perpus/peminjaman/search" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="{{ route('edit-data-peminjaman-perpus', ['id' => $peminjaman->id]) }}">
-                                            @csrf
+                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-detail-peminjaman-perpus', ['id' => $buku->id])); ?>">
+                                            <?php echo csrf_field(); ?>
                                             <div class="form-group">
                                                 <label for="squareText">Judul Buku</label>
                                                 <input type="text" id="squareText" placeholder="Judul" class="form-control square"
-                                                       value="{{$buku->judul}}" disabled>
+                                                       value="<?php echo e($buku->judul); ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Nama Penerbit</label>
                                                 <input type="text" id="squareText" placeholder="Penerbit" class="form-control square"
-                                                       value="{{$buku->penerbit}}" disabled>
+                                                       value="<?php echo e($buku->penerbit); ?>" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Jumlah buku yang ingin dipinjam</label>
-                                                <input type="number" id="squareText" placeholder="Jumlah" value="{{$peminjaman->jumlah}}" class="form-control square"
+                                                <input type="number" id="squareText" placeholder="Jumlah" class="form-control square"
                                                        name="jumlah">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Nama Peminjam</label>
-                                                <input type="text" id="squareText" placeholder="Peminjam" value="{{$peminjaman->nama}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Peminjam" class="form-control square"
                                                        name="nama">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Kelas</label>
-                                                <input type="text" id="squareText" placeholder="Kelas" value="{{$peminjaman->kelas}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Kelas" class="form-control square"
                                                        name="kelas">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Telepon</label>
-                                                <input type="text" id="squareText" placeholder="Telepon" value="{{$peminjaman->telepon}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Telepon" class="form-control square"
                                                        name="telepon">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
@@ -95,17 +95,18 @@
         </div>
     </div>
 </div>
-<script src={{asset("../assets/static/js/components/dark.js")}}></script>
-<script src={{asset("../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("../assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
-@include('back.admin.footer')
-<script src={{asset("../assets/compiled/js/app.js")}}></script>
 
-<script src={{asset("../assets/extensions/quill/quill.min.js")}}></script>
-<script src={{asset("../assets/static/js/pages/quill.js")}}></script>
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<script src=<?php echo e(asset("../assets/compiled/js/app.js")); ?>></script>
+
+<script src=<?php echo e(asset("../assets/extensions/quill/quill.min.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/static/js/pages/quill.js")); ?>></script>
 
 
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/perpustakaan/peminjaman/add-detail.blade.php ENDPATH**/ ?>

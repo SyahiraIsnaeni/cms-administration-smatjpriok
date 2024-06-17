@@ -73,7 +73,6 @@
                     </a>
                 </li>
 
-
                 <li class="sidebar-title">
                     <form action="<?php echo e(route('logout-perpus')); ?>" method="post" class="d-inline">
                         <?php echo csrf_field(); ?>

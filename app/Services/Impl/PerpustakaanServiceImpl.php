@@ -70,17 +70,9 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         return Peminjaman::orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function addPeminjaman(array $data)
+    public function addPeminjaman($id, array $data)
     {
-        $buku = Buku::find($data['buku_id']);
-
-        if (!$buku) {
-            throw new \Exception('Buku tidak ditemukan');
-        }
-
-        if ($buku->jumlah < $data['jumlah']) {
-            throw new \Exception('Jumlah buku yang tersedia tidak cukup');
-        }
+        $buku = Buku::find($id);
 
         $buku->jumlah -= $data['jumlah'];
         $buku->save();
@@ -90,7 +82,7 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         $peminjaman->kelas = $data['kelas'];
         $peminjaman->telepon = $data['telepon'];
         $peminjaman->jumlah = $data['jumlah'];
-        $peminjaman->buku_id = $data['buku_id'];
+        $peminjaman->buku_id = $id;
         $peminjaman->tanggal_dikembalikan = null;
 
         $peminjaman->save();
@@ -98,7 +90,7 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         return $peminjaman;
     }
 
-    public function editPeminjaman($id, $buku_id, array $data)
+    public function editPeminjaman($id, array $data)
     {
         $peminjaman = Peminjaman::findOrFail($id);
 
@@ -108,15 +100,7 @@ class PerpustakaanServiceImpl implements PerpustakaanService
             $bukuLama->save();
         }
 
-        $bukuBaru = Buku::find($buku_id);
-
-        if (!$bukuBaru) {
-            throw new \Exception('Buku tidak ditemukan');
-        }
-
-        if ($bukuBaru->jumlah < $data['jumlah']) {
-            throw new \Exception('Jumlah buku yang tersedia tidak cukup');
-        }
+        $bukuBaru = Buku::find($peminjaman->buku_id);
 
         $bukuBaru->jumlah -= $data['jumlah'];
         $bukuBaru->save();
@@ -135,6 +119,11 @@ class PerpustakaanServiceImpl implements PerpustakaanService
     public function deletePeminjaman($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
+        $buku = Buku::find($peminjaman->buku_id);
+        if ($buku) {
+            $buku->jumlah += $peminjaman->jumlah;
+            $buku->save();
+        }
         return $peminjaman->delete();
     }
 
@@ -143,13 +132,31 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         $peminjaman = Peminjaman::findOrFail($id);
 
         $peminjaman->status = 1;
-        $peminjaman->tanggal_kembali = Carbon::now('Asia/Jakarta');
+        $peminjaman->tanggal_dikembalikan = Carbon::now('Asia/Jakarta');
         $peminjaman->save();
 
         $buku = Buku::find($peminjaman->buku_id);
 
         if ($buku) {
             $buku->jumlah += $peminjaman->jumlah;
+            $buku->save();
+        }
+
+        return $peminjaman;
+    }
+
+    public function batalDikembalikan($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        $peminjaman->status = 0;
+        $peminjaman->tanggal_dikembalikan = null;
+        $peminjaman->save();
+
+        $buku = Buku::find($peminjaman->buku_id);
+
+        if ($buku) {
+            $buku->jumlah -= $peminjaman->jumlah;
             $buku->save();
         }
 

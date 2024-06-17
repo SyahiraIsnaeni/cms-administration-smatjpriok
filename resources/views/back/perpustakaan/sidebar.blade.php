@@ -73,7 +73,6 @@
                     </a>
                 </li>
 
-
                 <li class="sidebar-title">
                     <form action="{{ route('logout-perpus') }}" method="post" class="d-inline">
                         @csrf

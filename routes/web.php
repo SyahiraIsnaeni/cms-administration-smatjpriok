@@ -127,6 +127,22 @@ Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(
     }
 );
 
+Route::controller(\App\Http\Controllers\PeminjamanController::class)->middleware(\App\Http\Middleware\OnlyPerpusMiddleware::class)->group(
+    function (){
+        Route::get("/dashboard-perpus/peminjaman", "peminjaman")->name("peminjaman-perpus");
+        Route::get("/dashboard-perpus/peminjaman/add", "addPeminjaman");
+        Route::get("/dashboard-perpus/peminjaman/{id}/edit", "editPeminjaman")->name("edit-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/add", "addDataPeminjaman")->name("add-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/search", "searchDataPeminjaman")->name("search-peminjaman-perpus");
+        Route::get("/dashboard-perpus/peminjaman/add/{id}", "addDataPeminjamanDetail")->name("detail-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/add/{id}/buku", "addDataPeminjaman")->name("add-detail-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/{id}/edit", "editDataPeminjaman")->name("edit-data-peminjaman-perpus");
+        Route::delete("/dashboard-perpus/peminjaman/{id}/delete", "deletePeminjaman")->name("delete-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/{id}/dikembalikan", "dikembalikanPeminjaman")->name("dikembalikan-peminjaman-perpus");
+        Route::post("/dashboard-perpus/peminjaman/{id}/batal/dikembalikan", "batalDikembalikanPeminjaman")->name("batal-dikembalikan-peminjaman-perpus");
+    }
+);
+
 Route::controller(\App\Http\Controllers\BlogOsisController::class)->middleware(\App\Http\Middleware\OnlyOsisMiddleware::class)->group(
     function (){
         Route::get("/dashboard-osis/blog", "blog")->name("blog-osis");

@@ -30,7 +30,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Peminjaman Buku</h3>
+                        <h3>Tambah Data Peminjaman Buku</h3>
                     </div>
                 </div>
             </div>
@@ -41,13 +41,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="/dashboard-perpus/peminjaman" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
+                                    <a href="/dashboard-perpus/peminjaman/search" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" enctype="multipart/form-data" action="{{ route('edit-data-peminjaman-perpus', ['id' => $peminjaman->id]) }}">
+                                        <form method="post" enctype="multipart/form-data" action="{{ route('add-detail-peminjaman-perpus', ['id' => $buku->id]) }}">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="squareText">Judul Buku</label>
@@ -61,22 +61,22 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Jumlah buku yang ingin dipinjam</label>
-                                                <input type="number" id="squareText" placeholder="Jumlah" value="{{$peminjaman->jumlah}}" class="form-control square"
+                                                <input type="number" id="squareText" placeholder="Jumlah" class="form-control square"
                                                        name="jumlah">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Nama Peminjam</label>
-                                                <input type="text" id="squareText" placeholder="Peminjam" value="{{$peminjaman->nama}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Peminjam" class="form-control square"
                                                        name="nama">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Kelas</label>
-                                                <input type="text" id="squareText" placeholder="Kelas" value="{{$peminjaman->kelas}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Kelas" class="form-control square"
                                                        name="kelas">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Telepon</label>
-                                                <input type="text" id="squareText" placeholder="Telepon" value="{{$peminjaman->telepon}}" class="form-control square"
+                                                <input type="text" id="squareText" placeholder="Telepon" class="form-control square"
                                                        name="telepon">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px">
