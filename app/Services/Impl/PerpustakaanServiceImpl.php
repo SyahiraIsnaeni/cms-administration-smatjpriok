@@ -48,6 +48,7 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         $kunjungan->tanggal = Carbon::now('Asia/Jakarta');
 
         $kunjungan->nama = $data['nama'];
+        $kunjungan->keperluan = $data['keperluan'];
 
         $kunjungan->save();
     }
@@ -57,6 +58,7 @@ class PerpustakaanServiceImpl implements PerpustakaanService
         $kunjungan = Kunjungan::findOrFail($id);
 
         $kunjungan->nama = $data['nama'];
+        $kunjungan->keperluan = $data['keperluan'];
 
         $kunjungan->save();
 

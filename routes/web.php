@@ -119,11 +119,11 @@ Route::controller(\App\Http\Controllers\BukuController::class)->middleware(\App\
 Route::controller(\App\Http\Controllers\KunjunganController::class)->middleware(\App\Http\Middleware\OnlyPerpusMiddleware::class)->group(
     function (){
         Route::get("/dashboard-perpus/kunjungan", "kunjungan")->name("kunjungan-perpus");
-        Route::get("/dashboard-perpus/kunjungan/add", "addKunjugan");
+        Route::get("/dashboard-perpus/kunjungan/add", "addKunjungan");
         Route::get("/dashboard-perpus/kunjungan/{id}/edit", "editKunjungan")->name("edit-kunjungan-perpus");
         Route::post("/dashboard-perpus/kunjungan/add", "addDataKunjungan")->name("add-kunjungan-perpus");
         Route::post("/dashboard-perpus/kunjungan/{id}/edit", "editDataKunjungan")->name("edit-data-kunjungan-perpus");
-        Route::delete("/dashboard-perpus/kunjungan/{id}/delete", "deleteDataKunjungan")->name("delete-kunjungan-perpus");
+        Route::delete("/dashboard-perpus/kunjungan/{id}/delete", "deleteKunjungan")->name("delete-kunjungan-perpus");
     }
 );
 

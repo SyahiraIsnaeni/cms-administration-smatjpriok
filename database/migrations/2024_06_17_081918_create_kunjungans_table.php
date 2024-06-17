@@ -14,8 +14,9 @@ class CreateKunjungansTable extends Migration
     public function up()
     {
         Schema::create('kunjungans', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
+            $table->id()->nullable(false)->primary();
+            $table->string('nama')->nullable(false);
+            $table->text('keperluan')->nullable(false);
             $table->date('tanggal');
             $table->timestamps();
         });

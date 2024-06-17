@@ -57,21 +57,21 @@
                     </a>
                 </li>
 
+                <li
+                    class="sidebar-item <?php echo e(request()->is('dashboard-perpus/kunjungan*') ? 'active' : ''); ?>">
+                    <a href="/dashboard-perpus/kunjungan" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data-fill"></i>
+                        <span>Kunjungan</span>
+                    </a>
+                </li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <li
+                    class="sidebar-item <?php echo e(request()->is('dashboard-perpus/peminjaman*') ? 'active' : ''); ?>">
+                    <a href="/dashboard-perpus/peminjaman" class='sidebar-link'>
+                        <i class="bi bi-clipboard-check-fill"></i>
+                        <span>Peminjaman Buku</span>
+                    </a>
+                </li>
 
 
                 <li class="sidebar-title">

@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{$title}}</title>
-    <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.snow.css")}}>
-    <link rel="stylesheet" href={{asset("../assets/extensions/quill/quill.bubble.css")}}>
+    <title><?php echo e($title); ?></title>
 
-    <link rel="shortcut icon" href={{asset("../../assets/image/logosma.png")}} type="image/x-icon">
+    <link rel="shortcut icon" href=<?php echo e(asset("../assets/image/logosma.png")); ?> type="image/x-icon">
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.snow.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/extensions/quill/quill.bubble.css")); ?>>
 
-    <link rel="stylesheet" href={{asset("../../assets/compiled/css/app.css")}}>
-    <link rel="stylesheet" href={{asset("../../assets/compiled/css/app-dark.css")}}>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app.css")); ?>>
+    <link rel="stylesheet" href=<?php echo e(asset("../assets/compiled/css/app-dark.css")); ?>>
+
 </head>
 
 <body>
-<script src={{asset("../../assets/static/js/initTheme.js")}}></script>
+<script src=<?php echo e(asset("../assets/static/js/initTheme.js")); ?>></script>
 <div id="app">
-    @include('back.perpustakaan.sidebar')
-    @include('sweetalert::alert')
+    <?php echo $__env->make('back.perpustakaan.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -30,7 +31,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Edit Data Kunjungan Perpustakaan</h3>
+                        <h3>Tambah Data Kunjungan Perpustakaan</h3>
                     </div>
                 </div>
             </div>
@@ -41,25 +42,26 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="card-head-row">
-                                    <a href="{{route("kunjungan-perpus")}}" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i></i> Kembali </a>
+                                    <a href="/dashboard-perpus/kunjungan" class="btn btn-warning btn-sm ml-auto"> <i class="bi bi-arrow-left-circle"></i> Kembali </a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form method="post" action="{{ route('edit-data-kunjungan-perpus', $kunjungan->id)}}" enctype="multipart/form-data">
-                                            @csrf
+                                        <form method="post" enctype="multipart/form-data" action="<?php echo e(route('add-kunjungan-perpus')); ?>">
+                                            <?php echo csrf_field(); ?>
                                             <div class="form-group">
                                                 <label for="squareText">Nama Pengunjung</label>
-                                                <input type="text" id="squareText" class="form-control square" placeholder="Pengunjung" name="nama" value="{{$kunjungan->nama}}">
+                                                <input type="text" id="squareText" class="form-control square"
+                                                       name="nama" placeholder="Pengunjung">
                                             </div>
                                             <div class="form-group">
                                                 <label for="squareText">Keperluan</label>
                                                 <textarea type="text" id="squareText" class="form-control square" placeholder="Keperluan" name="keperluan">
-                                                    {{$kunjungan->keperluan}}
+
                                                 </textarea>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-top: 20px">
                                                 <button class="btn btn-info btn-sm" type="submit"> Simpan </button>
                                                 <button class="btn btn-danger btn-sm" type="reset"> Reset </button>
                                             </div>
@@ -73,20 +75,20 @@
             </section>
             <!-- Input Style end -->
         </div>
-
     </div>
 </div>
-<script src={{asset("../../assets/static/js/components/dark.js")}}></script>
-<script src={{asset("../../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")}}></script>
+<script src=<?php echo e(asset("../assets/static/js/components/dark.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js")); ?>></script>
 
-{{--@include('sweetalert::alert', ['cdn'=>"https://cdn.jsdelivr.net/npm/sweetalert2@9"])--}}
-<script src={{asset("../assets/extensions/quill/quill.min.js")}}></script>
-<script src={{asset("../assets/static/js/pages/quill.js")}}></script>
 
-@include('back.admin.footer')
-<script src={{asset("../../assets/compiled/js/app.js")}}></script>
+<?php echo $__env->make('back.admin.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<script src=<?php echo e(asset("../assets/compiled/js/app.js")); ?>></script>
+
+<script src=<?php echo e(asset("../assets/extensions/quill/quill.min.js")); ?>></script>
+<script src=<?php echo e(asset("../assets/static/js/pages/quill.js")); ?>></script>
 
 
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\Capstone\sistem-manajemen-konten-dan-administrasi\cms_administration_smatjpriok\resources\views/back/perpustakaan/kunjungan/add.blade.php ENDPATH**/ ?>

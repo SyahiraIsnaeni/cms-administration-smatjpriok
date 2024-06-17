@@ -57,21 +57,21 @@
                     </a>
                 </li>
 
-{{--                <li--}}
-{{--                    class="sidebar-item {{ request()->is('dashboard-perpus/kunjungan*') ? 'active' : '' }}">--}}
-{{--                    <a href="/dashboard-perpus/kunjungan" class='sidebar-link'>--}}
-{{--                        <i class="bi bi-card-heading"></i>--}}
-{{--                        <span>Kunjungan Perpustakaan</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li
+                    class="sidebar-item {{ request()->is('dashboard-perpus/kunjungan*') ? 'active' : '' }}">
+                    <a href="/dashboard-perpus/kunjungan" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data-fill"></i>
+                        <span>Kunjungan</span>
+                    </a>
+                </li>
 
-{{--                <li--}}
-{{--                    class="sidebar-item {{ request()->is('dashboard-perpus/peminjaman*') ? 'active' : '' }}">--}}
-{{--                    <a href="/dashboard-perpus/peminjaman" class='sidebar-link'>--}}
-{{--                        <i class="bi bi-stickies-fill"></i>--}}
-{{--                        <span>Peminjaman Buku</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li
+                    class="sidebar-item {{ request()->is('dashboard-perpus/peminjaman*') ? 'active' : '' }}">
+                    <a href="/dashboard-perpus/peminjaman" class='sidebar-link'>
+                        <i class="bi bi-clipboard-check-fill"></i>
+                        <span>Peminjaman Buku</span>
+                    </a>
+                </li>
 
 
                 <li class="sidebar-title">

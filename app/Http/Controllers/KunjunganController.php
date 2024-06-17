@@ -26,7 +26,7 @@ class KunjunganController
         $kunjungan = $this->kunjunganService->getKunjungan();
 
         return response()
-            ->view("back.admin.perpustakaan.kunjungan.kunjungan", [
+            ->view("back.perpustakaan.kunjungan.view", [
                 "title" => "Data Kunjungan",
                 "kunjungan" => $kunjungan
             ]);
@@ -34,7 +34,7 @@ class KunjunganController
 
     public function addKunjungan():Response{
         return response()
-            ->view("back.admin.perpustakaan.kunjungan.add", [
+            ->view("back.perpustakaan.kunjungan.add", [
                 "title" => "Tambah Data Kunjungan Perpustakaan",
             ]);
     }
@@ -42,7 +42,7 @@ class KunjunganController
     public function editKunjungan($id):Response{
         $kunjungan = Kunjungan::findOrFail($id);
         return response()
-            ->view("back.admin.perpustakaan.kunjungan.edit", [
+            ->view("back.perpustakaan.kunjungan.edit", [
                 "title" => "Edit Data Kunjungan Perpustakaan",
                 "kunjungan" => $kunjungan
             ]);
@@ -61,12 +61,13 @@ class KunjunganController
 
         $data = [
             'nama' => $request->input('nama'),
+            'keperluan' => $request->input('keperluan'),
         ];
 
         try {
             $this->kunjunganService->addKunjungan($data);
             Alert::success('Sukses', 'Berhasil Menambah Data Kunjungan');
-            return redirect()->route('kunjungan');
+            return redirect()->route('kunjungan-perpus');
         } catch (\Exception $e) {
             Alert::error('Gagal', 'Terjadi kesalahan saat menambah data kunjungan');
             return redirect()->back();
@@ -75,19 +76,20 @@ class KunjunganController
 
     public function editDataKunjungan(int $id, Request $request): Response|RedirectResponse
     {
-        if (($request->input('nama') == null)) {
+        if (($request->input('nama') == null) || ($request->input('keperluan') == null)) {
             Alert::error('Gagal', 'Pastikan Data Nama Tidak Kosong');
             return redirect()->back();
         }
 
         $data = [
             'nama' => $request->input('nama'),
+            'keperluan' => $request->input('keperluan'),
         ];
 
         try {
             $this->kunjunganService->editKunjungan($id, $data);
             Alert::success('Sukses', 'Berhasil Mengubah Data Kunjungan');
-            return redirect()->route('kunjungan');
+            return redirect()->route('kunjungan-perpus');
         } catch (\Exception $e) {
             Alert::error('Gagal', 'Terjadi kesalahan saat mengedit data kunjungan');
             return redirect()->back();
@@ -99,6 +101,6 @@ class KunjunganController
     {
         $this->kunjunganService->deleteKunjungan($id);
         Alert::success('Sukses', 'Berhasil Menghapus Data Kunjungan');
-        return redirect()->route('kunjungan');
+        return redirect()->route('kunjungan-perpus');
     }
 }
