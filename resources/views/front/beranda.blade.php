@@ -21,6 +21,25 @@
         type="text/javascript"
         src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
     ></script>
+    <style>
+        /* Pastikan modal berada di atas konten lainnya */
+        #default-modal {
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999; /* Pastikan z-index cukup tinggi */
+        }
+
+        #popup {
+            height: 95%;
+            overflow-y: auto; /* Menambahkan scroll jika konten lebih panjang dari tinggi modal */
+        }
+    </style>
 </head>
 <body class="font-cms bg-[#E5F3EF]">
 <!-- NAVBAR -->
@@ -1222,7 +1241,7 @@
 {{-- pop up --}}
 @if(!$welcomes->isEmpty())
     <div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-        <div class="relative bg-[#E5F3EF] rounded-lg overflow-hidden h-[90%] w-full max-w-2xl">
+        <div id="popup" class="relative bg-[#E5F3EF] rounded-lg overflow-hidden w-full max-w-2xl">
             <!-- Modal content -->
             <div class="relative flex flex-col h-full">
                 <!-- Modal header -->
@@ -1231,12 +1250,11 @@
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
-                        <span class="sr-only">Close modal</span>
                     </button>
                 </div>
                 @foreach($welcomes as $welcome)
                     <div class="flex-grow p-4 md:p-5 overflow-auto">
-                        <img src="{{asset('storage/public/welcome/' . $welcome->gambar) }}" class="w-full h-full rounded-t-md object-cover object-center" />
+                        <img src="{{asset('storage/public/welcome/' . $welcome->gambar) }}" class="w-full h-full rounded-t-md object-cover object-center" style="object-fit: contain;"/>
                     </div>
                 @endforeach
                 <div class="mt-auto">
